@@ -1,44 +1,35 @@
 \documentclass[12pt,a4paper]{book}
 
 \usepackage[english]{babel}
-\usepackage{graphicx}
-\graphicspath{{img/}}
-\usepackage[super,sort&compress,comma]{natbib}
-\bibliographystyle{unsrtnat}
+\usepackage{graphicx} \graphicspath{{img/}}
+\usepackage[super,sort&compress,comma]{natbib} \bibliographystyle{unsrtnat}
 \usepackage[format=plain,labelfont={bf,it},textfont=it,font=small]{caption}
 \usepackage{subcaption}
 \usepackage{microtype} % fixes some over/under-full box warnings
 \usepackage{booktabs} % improved tables
 \usepackage{epigraph} % cool quotes
-\usepackage{dirtytalk} % simple quotes (\say{something})
-%\usepackage{tikz}
-%\usetikzlibrary{positioning,shapes,shadows,arrows}
-%\usepackage{tcolorbox}
+%\usepackage{tikz} \usetikzlibrary{positioning,shapes,shadows,arrows}
+%\usepackage{tcolorbox} % colored titled box (e.g: "NOTE: ...")
 \usepackage[dvipsnames]{xcolor}
 \usepackage{placeins} % float barries
 \usepackage{minted} % syntax highlighting
-\usepackage{csquotes} % normal-er quotes (import after minted to fix warning)
 % \setminted[python]{linenos} % enable line numbers on all python boxes
 \usepackage{mdframed} % framing minted boxes
-\definecolor{bg}{rgb}{0.95,0.9,0.75}
-\surroundwithmdframed[backgroundcolor=bg]{minted}
+\definecolor{bg}{rgb}{0.95,0.9,0.75} \surroundwithmdframed[backgroundcolor=bg]{minted}
+\usepackage{csquotes} % normal-er quotes (must be after minted) (\enquote{something})
 \usepackage{enumitem} % remove item separation with [noitemsep]
 % \usepackage{xspace} % smart spaces after commands
 % \newcommand*{\something}{\textit{SomEthing}\xspace}
-\usepackage{titling} % multiple different title pages
-\usepackage[blocks]{authblk} % multiple authors with affiliations (must import after titling)
-\renewcommand\Affilfont{\scriptsize}
+\usepackage{titling} % multiple/different title pages
+% \usepackage[blocks]{authblk} \renewcommand\Affilfont{\scriptsize} % multiple authors with affiliations (must import after titling)
 \usepackage{pdfpages} % include pre-rendered pdfs
-% switch out next 3 lines with hidelinks line for printer-friendly
+% switch out next 2 lines with hidelinks line for printer-friendly
 % renewcommand is for back-referencing the text from the bibliography section
 \usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
-\urlstyle{same}
-\renewcommand*\backref[1]{\ifx#1\relax \else (#1) \fi}
+\urlstyle{same} \renewcommand*\backref[1]{\ifx#1\relax \else (#1) \fi}
 % \usepackage[hidelinks]{hyperref}
-\usepackage{tocbibind} % add lof and lot to toc
-\usepackage{minitoc} % per-chapter TOC. Must be after hyperref
-\mtcsetrules{*}{off}
-\dominitoc
+\usepackage[nottoc]{tocbibind} % add lof and lot to toc
+\usepackage{etoc} % local TOCs per chapter
 \usepackage{lipsum}
 
 \newcommand{\blankpage}{\newpage\mbox{}\newpage}
@@ -50,9 +41,13 @@
 \frontmatter \pagenumbering{Roman}  % versus "roman" which is lowercase numerals
     \includepdf{cover_page.pdf} % remove addtocounter line if this is removed
 
-    \title{Enabling superstructural studies of biological assemblies by CryoET}
-    \author{Lorenzo Gaifas}
-    \date{\today}
+    \title{Enabling superstructural studies of biological assemblies by CryoET \\
+        \vskip3ex \centering \includegraphics[width=\linewidth]{blik_paper/particle_plot.png}
+    }
+    \author{Lorenzo Gaifas \\
+        \small directed by Irina Gutsche and Joanna Timmins
+    }
+    \date{\today \\ \vskip1ex \small Université de Grenoble Alpes - Institute de Biologie Structurale}
 
     \maketitle
     % for some reason numbering is messed up by inserting a pdf cover page
@@ -60,19 +55,21 @@
     \addtocounter{page}{2}
     
     \blankpage
-    \epigraph{Me dumb}{Alessio's Mom}
+    \epigraph{I should have a quote here}{Very Important Person}
 
     \include{abstract.tex}
     \include{acknowledgements.tex}
+
     \tableofcontents
 
 \mainmatter
     \include{introduction.tex}
+    \include{cryo_em.tex}
     \include{blik_paper.tex}
 
 \backmatter
     \listoffigures
-    % \listoftables
+    \listoftables
     \include{glossary.tex}
     % Fakesection Bibliography
     \bibliography{/home/lorenzo/Zotero/betterbibtex.bib}
