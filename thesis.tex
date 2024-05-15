@@ -4,13 +4,13 @@
 \usepackage{graphicx} \graphicspath{{img/}}
 \usepackage[super,sort&compress,comma]{natbib} \bibliographystyle{unsrtnat}
 \usepackage[format=plain,labelfont={bf,it},textfont=it,font=small]{caption}
-\usepackage{subcaption}
+\usepackage{subcaption} % subfigures
 \usepackage{microtype} % fixes some over/under-full box warnings
 \usepackage{booktabs} % improved tables
 \usepackage{epigraph} % cool quotes
 %\usepackage{tikz} \usetikzlibrary{positioning,shapes,shadows,arrows}
 %\usepackage{tcolorbox} % colored titled box (e.g: "NOTE: ...")
-\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames]{xcolor} % colors by name
 \usepackage{placeins} % float barries
 \usepackage{minted} % syntax highlighting
 % \setminted[python]{linenos} % enable line numbers on all python boxes
@@ -23,14 +23,20 @@
 \usepackage{titling} % multiple/different title pages
 % \usepackage[blocks]{authblk} \renewcommand\Affilfont{\scriptsize} % multiple authors with affiliations (must import after titling)
 \usepackage{pdfpages} % include pre-rendered pdfs
-% switch out next 2 lines with hidelinks line for printer-friendly
-% renewcommand is for back-referencing the text from the bibliography section
-\usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
-\urlstyle{same} \renewcommand*\backref[1]{\ifx#1\relax \else (#1) \fi}
-% \usepackage[hidelinks]{hyperref}
 \usepackage[nottoc]{tocbibind} % add lof and lot to toc
 \usepackage{etoc} % local TOCs per chapter
 \usepackage{lipsum}
+
+% different stuff if printer-friendly or not
+\usepackage{etoolbox} \newbool{printer-friendly} \setbool{printer-friendly}{false}
+\ifbool{printer-friendly}{
+    \usepackage[twoside=true]{geometry}
+    \usepackage[hidelinks]{hyperref}
+}{
+    \usepackage[twoside=false]{geometry}
+    \usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
+    \urlstyle{same} \renewcommand*\backref[1]{\ifx#1\relax \else (#1) \fi}
+}
 
 \newcommand{\blankpage}{\newpage\mbox{}\newpage}
 
