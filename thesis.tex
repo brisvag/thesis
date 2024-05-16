@@ -24,19 +24,30 @@
 % \usepackage[blocks]{authblk} \renewcommand\Affilfont{\scriptsize} % multiple authors with affiliations (must import after titling)
 \usepackage{pdfpages} % include pre-rendered pdfs
 \usepackage[nottoc]{tocbibind} % add lof and lot to toc
-\usepackage{etoc} % local TOCs per chapter
-\usepackage{lipsum}
+\usepackage{etoc} % local TOCs per chaptera
+\usepackage[perpage, symbol*]{footmisc} % footnotes counters use symbols and reset each page
 
 % different stuff if printer-friendly or not
 \usepackage{etoolbox} \newbool{printer-friendly} \setbool{printer-friendly}{false}
 \ifbool{printer-friendly}{
-    \usepackage[twoside=true]{geometry}
-    \usepackage[hidelinks]{hyperref}
+    \usepackage[twoside=true]{geometry} % twoside for book binding
+    \usepackage[hidelinks]{hyperref} % don't show link colors cause anyways we can't click xD
+    % convert href (which normally hides url with text) to a footnote so you can see it
+    \let\oldhref\href
+    \renewcommand\href[2]{%
+        \oldhref{#1}{#2}%
+        \footnote{\url{#1}}%
+    }
 }{
     \usepackage[twoside=false]{geometry}
     \usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
+    % clickable backref from the references to citation location
     \urlstyle{same} \renewcommand*\backref[1]{\ifx#1\relax \else (#1) \fi}
 }
+
+% temporary packages
+\usepackage{lipsum}
+\usepackage{outlines} % easy nested lists
 
 \newcommand{\blankpage}{\newpage\mbox{}\newpage}
 
@@ -69,9 +80,14 @@
     \tableofcontents
 
 \mainmatter
+    \include{preface.tex}
     \include{introduction.tex}
     \include{cryo_em.tex}
+    \include{em_software.tex}
     \include{blik_paper.tex}
+    \include{drad.tex}
+    \include{drad_paper.tex}
+    \include{conclusions.tex}
 
 \backmatter
     \listoffigures
@@ -80,3 +96,6 @@
     % Fakesection Bibliography
     \bibliography{./bibliography.bib}
 \end{document}
+
+% TODO: make sure chapter have short names for the header and TOCs
+% TODO: add CV at the end?
