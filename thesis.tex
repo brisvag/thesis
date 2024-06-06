@@ -1,79 +1,11 @@
-\documentclass[12pt,a4paper]{book}
-
-\usepackage[english]{babel}
-\usepackage{graphicx} \graphicspath{{img/}}
-\usepackage[super,sort&compress,comma]{natbib} \bibliographystyle{unsrtnat}
-\usepackage[format=plain,labelfont={bf,it},textfont=it,font=small]{caption}
-\usepackage{subcaption} % subfigures
-\usepackage{microtype} % fixes some over/under-full box warnings
-\usepackage{booktabs} % improved tables
-\usepackage{epigraph} % cool quotes
-%\usepackage{tikz} \usetikzlibrary{positioning,shapes,shadows,arrows}
-%\usepackage{tcolorbox} % colored titled box (e.g: "NOTE: ...")
-\usepackage[dvipsnames]{xcolor} % colors by name
-\usepackage{placeins} % float barries
-\usepackage{minted} % syntax highlighting
-% \setminted[python]{linenos} % enable line numbers on all python boxes
-\usepackage{mdframed} % framing minted boxes
-\definecolor{bg}{rgb}{0.95,0.9,0.75} \surroundwithmdframed[backgroundcolor=bg]{minted}
-\usepackage{csquotes} % normal-er quotes (must be after minted) (\enquote{something})
-\usepackage{enumitem} % remove item separation with [noitemsep]
-% \usepackage{xspace} % smart spaces after commands
-% \newcommand*{\something}{\textit{SomEthing}\xspace}
-\usepackage{titling} % multiple/different title pages
-% \usepackage[blocks]{authblk} \renewcommand\Affilfont{\scriptsize} % multiple authors with affiliations (must import after titling)
-\usepackage{pdfpages} % include pre-rendered pdfs
-\usepackage[nottoc]{tocbibind} % add lof and lot to toc
-\usepackage{etoc} % local TOCs per chaptera
-\usepackage[perpage, symbol*]{footmisc} % footnotes counters use symbols and reset each page
-
-% different stuff if printer-friendly or not
-\usepackage{etoolbox} \newbool{printer-friendly} \setbool{printer-friendly}{false}
-\ifbool{printer-friendly}{
-    \usepackage[twoside=true]{geometry} % twoside for book binding
-    \usepackage[hidelinks]{hyperref} % don't show link colors cause anyways we can't click xD
-    % convert href (which normally hides url with text) to a footnote so you can see it
-    \let\oldhref\href
-    \renewcommand\href[2]{%
-        \oldhref{#1}{#2}%
-        \footnote{\url{#1}}%
-    }
-}{
-    \usepackage[twoside=false]{geometry}
-    \usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
-    % clickable backref from the references to citation location
-    \urlstyle{same} \renewcommand*\backref[1]{\ifx#1\relax \else (#1) \fi}
-}
-
-% temporary packages
-\usepackage{lipsum}
-\usepackage{outlines} % easy nested lists
-
-\newcommand{\blankpage}{\newpage\mbox{}\newpage}
+\input{preamble.tex}
 
 \begin{document}
 
 % \renewcommand{\figureautorefname}{Figure} % must be inside begin{document} to work
 
 \frontmatter \pagenumbering{Roman}  % versus "roman" which is lowercase numerals
-    \includepdf{cover_page.pdf} % remove addtocounter line if this is removed
-
-    \title{Enabling superstructural studies of biological assemblies by CryoET \\
-        \vskip3ex \centering \includegraphics[width=\linewidth]{blik_paper/particle_plot.png}
-    }
-    \author{Lorenzo Gaifas \\
-        \small directed by Irina Gutsche and Joanna Timmins
-    }
-    \date{\today \\ \vskip1ex \small Université de Grenoble Alpes - Institute de Biologie Structurale}
-
-    \maketitle
-    % for some reason numbering is messed up by inserting a pdf cover page
-    % this line fixes it starting from after the title page
-    \addtocounter{page}{2}
-    
-    \blankpage
-    \epigraph{I should have a quote here}{Very Important Person}
-
+    \include{cover_title.tex}
     \include{abstract.tex}
     \include{acknowledgements.tex}
 
