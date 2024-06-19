@@ -1,8 +1,25 @@
 \chapter{Visualisation, annotation and analysis software}
 
 \begin{outline}
-\1 Importance of visualisation (human-in-the-loop)
-\1 a case for user-friendliness (cryosparc vs relion)
-\1 denoising and stuff (pitfalls?)
-\1 section (or chapter?) on pipepine (and maybe waretomo) 
+\1 importance of visualisation (human-in-the-loop)
+    \2 issues caused by inability to look at data (wasted work, harder to form hypotheses)
+    \2 importance of interactivity (not just looking, but picking, annotating, etc). Automation is great when it works, but in cryoet it's tricky and it often doesn't
+        \3 problem of automation vs customizability
+\1 denoising and "prettifying"
+    \2 usefulness for picking/intepreting
+    \2 pitfalls (especially with rise of AI)
+\1 annotation, segmentation, picking
+    \2 especially hard in 3D, requires extra attention both in automated and manual procedures, and benefits especially from human-in-the-loop approach
+    \2 existing software (not sure to what extent i should go here, or say to refer to the blik paper chapter)
+\1 section (or chapter?) on pipepine (and maybe waretomo)
+    \2 some suites exist that do the "whole" procedure, but they are monolithic and hard to get in/out for special cases, which occurs frequently in cryoet
+    \2 difficulties with metadata wrangling
+    \2 ...
+
+\1 I'd like to have a general section about software practices, but not sure where
+    \1 a case for user-friendliness (cryosparc > relion)
+    \1 a case for open-source (relion > cryosparc)
+    \1 a case for domain agnosticism (napari)
+    \1 the benefits of modularity, "clean code", documentation, etc, to the research community
+
 \end{outline}

@@ -2,26 +2,42 @@
 
 \begin{outline}
 \1 Background on Cryo-EM in structural biology
-    \2 Base concepts and uses
-        \3 sample prep, image formation, data collection (do not spend too much time on this), role of detectors and resolution revolution \cite{faruqiCCDDetectorsHighresolution2000}
+    \2 Base concepts (do not spend too much time on this)
+        \3 sample prep
+        \3 data collection, exposure damage, role of detectors and resolution revolution \cite{faruqiCCDDetectorsHighresolution2000}
+        \3 image formation, CTF
         \3 typical processing steps, theory behind reconstruction and classification (more time here as it's more relevant for cryoet and my work)
-    \2 typical use cases (some example of single particle data, maybe using ftsz images)
+        \3 single particle analisys
+        \3 model building...
+    \2 typical use cases (some example of single particle data, maybe using ftsz images) and advantages
+        \3 no crystal, simpler sample prep
+        \3 heterogeneity to a certain extent
+        \3 more native state
+        \3 ...
     \2 limitations (leading up to cryo-et) and comparison with other techniques (xray, nmr)
         \3 sample prep/thickness/denaturation
         \3 context missing
-        \3 ability to capture dynamics (more/less than other techniques)
+        \3 ability to capture dynamics/heterogeneity (more/less than other techniques)
+        \3 Signal/Noise
+        \3 somewhere (maybe not here?) there should be a part on algorithmic/computational limitations, which are being or could be tackled in the future
 \1 cryo-et, concepts and advantages
+    \2 base concepts and differences from SPA from thechnical standpoint
+        \3 exposure damage and dose issues
+        \3 sample prep (thinnes especially important because SNR)
+        \3 tilt-series alignment, deformation, other aberrations
+        \3 missing wedge
+        \3 FIB?
+        \3 STA (picking, averaging, classification, ...)
     \2 some references/reviews (cool stuff you can do)
         \3 \cite{turkPromiseChallengesCryoelectron2020,lucicCryoelectronTomographyChallenge2013}
-    \2 differences from SPA from thechnical standpoint
-        \3 sample prep (thinnes especially important)
-        \3 exposure damage and dose issues
-        \3 tilt-series alignment, deformation, other aberrations
-        \3 FIB?
     \2 what it provides compared to SPA
         \3 more native state and context preservation
         \3 single-particle insights
         \3 meso-scale and superstructural information
     \2 limitations (both in terms of technique, and in terms of current state of development)
         \3 (some mentioned before, maybe need to connect these two parts a bit better)
+        \3 need for custom workflow cause the goal and problems are usually unique
+        \3 issues caused by the missing wedge (alignement, reconstruction, interpretability)
+        \3 SNR, denoising
+        \3 visualisation/interaction
 \end{outline}
