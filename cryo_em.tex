@@ -19,15 +19,17 @@
         \3 context missing
         \3 ability to capture dynamics/heterogeneity (more/less than other techniques)
         \3 Signal/Noise
-        \3 somewhere (maybe not here?) there should be a part on algorithmic/computational limitations, which are being or could be tackled in the future
 \1 cryo-et, concepts and advantages
     \2 base concepts and differences from SPA from thechnical standpoint
+        \2 cryoem, but different data acquisition and thus data processing
         \3 exposure damage and dose issues
         \3 sample prep (thinnes especially important because SNR)
-        \3 tilt-series alignment, deformation, other aberrations, how they are tackled
+        \3 tilt-series alignment (fiducials), deformation, other aberrations, how they are tackled
+        \3 3D CTF
         \3 missing wedge, issues it introduces
-        \3 STA (picking, averaging, classification, ...)
-        \3 FIB, what it enables and how it works
+        \3 feature deletion (e.g: fiducials)
+        \3 segmentation/morphology
+        \3 STA (picking, averaging, classification, ...) for non-unique objects (template matching, geometric and template free, machin learning)
     \2 some references/reviews (cool stuff you can do)
         \3 \cite{turkPromiseChallengesCryoelectron2020,lucicCryoelectronTomographyChallenge2013}
     \2 what it provides compared to SPA
@@ -40,4 +42,8 @@
         \3 issues caused by the missing wedge (alignement, reconstruction, interpretability)
         \3 SNR, denoising
         \3 visualisation/interaction
+        \3 object identification (crowding
+    \2 related techinques to overcome some limitations
+        \3 FIB, what it enables and how it works
+        \2 CLEM
 \end{outline}

@@ -7,25 +7,27 @@
 \frontmatter \pagenumbering{Roman}  % versus "roman" which is lowercase numerals
     \include{cover_title.tex}
     \ifbool{printer-friendly}{\blankpage}{}
-    \epigraph{}{}
+    \epigraph{-}{-}  % TODO: dedication or cool quote
     \include{abstract.tex}
     \include{acknowledgements.tex}
-
+    \include{preface.tex}
     \tableofcontents
 
 \mainmatter
-    \include{preface.tex} % TODO: could move to frontmatter
-    \include{introduction.tex}
-    \include{cryo_em.tex}
-    \include{em_software.tex}
-    \include{blik.tex}
-    \include{napari.tex}
-    \include{drad.tex}
-    \include{ftsz.tex}
-    \include{conclusions.tex}
-    \include{annexes.tex}
+    \part{Literature Review}
+        \include{introduction.tex}
+        \include{cryo_em.tex}
+        \include{em_software.tex}
+    \part{Results}
+        \include{napari.tex}
+        \include{blik.tex}
+        \include{drad.tex}
+        \include{ftsz.tex}
+        \include{conclusions.tex}
+        \include{annexes.tex}
 
 \backmatter
+    \bookmarksetup{startatroot}  % end \part in the bookmarks
     \listoffigures
     \listoftables
     \include{glossary.tex}
@@ -37,3 +39,4 @@
 % TODO: should introduction be a brief thing at the beginning, or include everything up to the bil_paper?
 % TODO: use tikz for diagram describing blik stuff (surfaces and such)
 % TODO: take care of all the overfull/underfull nonsense
+% TODO: add quotes for chapters/sections
