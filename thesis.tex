@@ -14,8 +14,7 @@
     \tableofcontents
 
 \mainmatter
-    \part{Literature Review}
-        \include{introduction.tex}
+    \part{Introduction}
         \include{cryo_em.tex}
         \include{em_software.tex}
     \part{Results}
@@ -23,8 +22,9 @@
         \include{blik.tex}
         \include{drad.tex}
         \include{ftsz.tex}
-        \include{conclusions.tex}
         \include{annexes.tex}
+    \part{Discussion}
+        \include{conclusions.tex}
 
 \backmatter
     \bookmarksetup{startatroot}  % end \part in the bookmarks
@@ -32,6 +32,7 @@
     \listoftables
     \include{glossary.tex}
     \bibliography{./bibliography.bib}
+
 \end{document}
 
 % TODO: make sure chapter have short names for the header and TOCs (\sectionmark)
