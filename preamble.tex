@@ -11,6 +11,9 @@
         \oldhref{#1}{#2}%
         \footnote{\url{#1}}%
     }
+    % convert nameref to "fullref" cause link can't be clicked and it's easier to find with section numbers
+    \let\oldnameref\nameref
+    \renewcommand\nameref[1]{\textbf{\ref{#1}: \oldnameref{#1}}}
 }{
     \documentclass[12pt,a4paper]{extbook}
     \usepackage[twoside=false]{geometry}
@@ -26,6 +29,7 @@
 \usepackage{subcaption} % subfigures
 \usepackage{microtype} % fixes some over/under-full box warnings
 \usepackage{booktabs} % improved tables
+\usepackage{tabularx} % improved tables
 \usepackage{epigraph} % cool quotes
 %\usepackage{tikz} \usetikzlibrary{positioning,shapes,shadows,arrows}
 %\usepackage{tcolorbox} % colored titled box (e.g: "NOTE: ...")

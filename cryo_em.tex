@@ -164,11 +164,11 @@ Modern workflows also offer the ability to later refine the deformation paramete
 
 Both motion correction and CTF estimation --- as well as many other steps and techniques in image processing --- rely on the ability to quantify the similarity of two signals; this is typically done by calculating the cross-correlation (CC) of the images or signals.
 
-\subsubsection{Cross-correlation}
+\subsubsection{Cross-correlation}\label{cross_correlation}
 
 (TODO: this section might be better placed somewhere later in the results since it's mainly relevant for other stuff)
 
-The cross-correlation of two signals (such as two images) is a measure of how similar the two signals are at all possible relative shifts. For example, in the 1D case of \autoref{fig:cross_correlation}
+The CC of two signals (such as two images) is a measure of how similar the two signals are at all possible relative shifts. For example, in the 1D case of (TODO...) \autoref{fig:cross_correlation}.
 
 \begin{figure}[ht]
     \centering
@@ -177,14 +177,29 @@ The cross-correlation of two signals (such as two images) is a measure of how si
     \label{fig:cross_correlation}
 \end{figure}
 
+In the case of 2D data, calculating the cross-correlation of two images often also includes a rotational search, to account for the different in-plane rotation of particles that would otherwise be missed by simple CC.
+
+\subsubsection{Filtering and denoising}\label{filtering_and_denoising}
+
+Due to the low SNR of cryo-EM data, even motion-corrected micrographs can can be surprisingly hard to interpret.
+To enhance the contrast of biological features and better judge the quality of the data --- as well as improve the ability to distinguish particles from the background and from one another for the purposes of picking (see \nameref{particle_picking}) --- micrographs often undergo a round of filtering and/or denoising.
+
+TODO: also explain effects of high res and low res info on perceived contrast/readability.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \caption{TODO: Filtering/denoising side by side}
+    \label{fig:filtering}
+\end{figure}
+
 \subsubsection{Dataset cleaning}
 The dataset often contains bad images for various reasons: bad CTF estimation, too high motion, issues with autofocus, too thick or cracked ice, etc.
 During preprocessing, these micrographs are usually discarded, either manually or by using batch automated tools which estimate the data quality.
 
 Once the data is clean, motion corrected and CTF-estimated, the particles of interest can be picked for further processing.
 
-\subsection{Particle picking}
-
+\subsection{Particle picking}\label{particle_picking}
 In order to reconstruct the 3D map of particles of interest, one first needs to locate them on the micrograph.
 This procedure is called particle picking, and can be performed with varying levels of automation, and using several different techniques.
 The most commonly used are variations of: manual picking, template matching, and machine learning (ML) tools.
@@ -196,27 +211,47 @@ To aid with manual picking, preprocessed micrographs are often filtered and deno
 To improve the picking speed and precision, template matching is often used to automate searching for a recognizable object.
 This picking method requires a template, a small image of a 2D projection of the object of interest.
 This can be obtained in a few ways: synthetically (by using a generated shape), by projecting a known map or model from previous work, or by using the results of a first round of 2D classification (see \nameref{classification}) from a preliminary manual picking.
+While the exact details of the algorithm may vary, at its core template matching relies on calculating the CC (see \nameref{cross_correlation}) function between the template and the micrographs in order to locate putative particles positions in the whole dataset.
 
 TODO: figure with template and picks on the micrograph?
 
-\subsubsection{Filtering and denoising}\label{filtering_and_denoising}
+More recently, template matching is often being replaced with machine learning, which serves a similar purpose but can have a more nuanced understanding of surrounding context which helps reduce the false negatives and positives that are intrinsically present with template matching of noisy data.
 
-TODO: also explain effects of high res and low res info on perceived contrast/readability.
+There are also "structured" variants of all these picking methods, where some existing geometric and structural knowledge about the system is used to inform the picking in some way.
+For example, filament picking is quite commonly used due to how widespread helical assemblies are in biology; it can be done manually (CITE relion at least), template-based (CITE cryosp), and ML forms (CITE probably cryolo?).
+
+\subsection{2D Classification}\label{classification}
+
+Even with the best data and most advanced methods, picking procedures are imprecise.
+The picked particles always contain spurious background picks, or proteins we're not interested in.
+Positions (and rotations if the picking methods provide them) are not correct down to subpixel level.
+Most importantly, particles will always have a variable out-of-plane rotation resulting in different 2D projections.
+
+One or more rounds of 2D classification are usually used to separate different particles, orientations, and confromations, and to discard bad picks.
+
+Once again, some form of cross-correlation (see \nameref{cross_correlation}) is involved in the process, since the goal is to cluster together similar particles and separate different ones.
+In 2D classification, each particle is ultimately assigned to a class, and for each class a class average is computed, combining the signal from all the particles belonging to that class (\autoref{fig:classification}). 
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=.5\textwidth]{example-image.png}
-    \caption{TODO: Filtering/denoising side by side}
-    \label{fig:filtering}
+    \caption{TODO: screenshot of classification from cryosparc}
+    \label{fig:classification}
 \end{figure}
-
-
-\subsection{2D Classification}\label{classification}
-...
 
 \subsection{3D Reconstruction}\label{reconstruction}
 
 \subsection{Refinement}\label{refinement}
+
+\subsection{Model building}
+
+
+\subsection{Advantages and use cases}
+
+\subsection{Limitations}
+
+
+\section{Cryo-ET and STA}{Cryo-electron tomography and subtomogram averaging}
 
 \FloatBarrier
 
@@ -231,7 +266,7 @@ TODO: also explain effects of high res and low res info on perceived contrast/re
         \3 \tick CTF
         \3 \tick defocus (and ranges of defocus) and info spread
         \3 \tick dataset cleaning
-        \3 particle picking
+        \3 \tick particle picking
         \3 cross correlation
         \3 2D classification and selection
         \3 typical processing steps, theory behind reconstruction and classification (more time here as it's more relevant for cryoet and my work)
