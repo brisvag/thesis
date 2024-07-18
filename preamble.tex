@@ -4,13 +4,10 @@
 \ifbool{printer-friendly}{
     \documentclass[8pt,a5paper]{extbook} % extbook to allow smaller font
     \usepackage[twoside=true]{geometry} % twoside for book binding
-    \usepackage[hidelinks]{hyperref} % don't show link colors cause anyways we can't click xD
+    \usepackage[pagebackref,breaklinks,hidelinks]{hyperref} % don't show link colors cause anyways we can't click xD
     % convert href (which normally hides url with text) to a footnote so you can see it
-    \let\oldhref\href
-    \renewcommand\href[2]{%
-        \oldhref{#1}{#2}%
-        \footnote{\url{#1}}%
-    }
+    \let\oldhref\href\
+    \renewcommand\href[2]{\oldhref{#1}{#2}\footnote{\url{#1}}}
     % convert nameref to "fullref" cause link can't be clicked and it's easier to find with section numbers
     \let\oldnameref\nameref
     \renewcommand\nameref[1]{\textbf{\ref{#1}: \oldnameref{#1}}}
@@ -18,13 +15,15 @@
     \documentclass[12pt,a4paper]{extbook}
     \usepackage[twoside=false]{geometry}
     \usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
-    % clickable backref from the references to citation location
-    \urlstyle{same} \renewcommand*\backref[1]{\ifx#1\relax \else (#1) \fi}
 }
 
 \usepackage[english]{babel}
 \usepackage{graphicx} \graphicspath{{img/}}
 \usepackage[super,sort&compress,comma]{natbib} \bibliographystyle{unsrtnat}
+% backref from the references to citation location formatted as: (pg. N)
+\renewcommand*\backref[1]{\ifx#1\relax \else (pg. #1) \fi}
+\urlstyle{same} % don't use monospace font for urls
+\usepackage{hypernat} % fixes backref of ranges. must be after natbib and hyperref
 \usepackage[format=plain,labelfont={bf,it},textfont=it,font=small]{caption}
 \usepackage{subcaption} % subfigures
 \usepackage{microtype} % fixes some over/under-full box warnings
