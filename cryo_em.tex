@@ -69,6 +69,8 @@ To mitigate this effect, inelastically scattered electrons are filtered out usin
 
 Inelastic scattering is also the source of radiation damage: the energy lost by these electrons is transferred to the sample, denaturing and deforming it and thus affecting SRN.
 
+TODO: explain deviation from phase object (thickness of sample)?
+
 \begin{figure}[ht]
     \centering
     \includegraphics[width=.5\textwidth]{example-image.png}
@@ -80,11 +82,11 @@ Inelastic scattering is also the source of radiation damage: the energy lost by 
 The shift induced in the phase of the electron wave by elastic scattering events is closely related to the spatial frequency of features in the sample: smaller details such as the relative positioning of neighboring \alpha-helices, which contain information at higher spatial frequency, will scatter to higher angles; bigger features such as biological membranes will scatter to lower angles.
 Depending on the angle, the interference at the image plane will be constructive or destructive, resulting in certain spatial frequencies being dampened or lost.
 
-TODO: explain deviation from phase object (thickness of sample)?
-
 The CTF is a function that describes exactly this: how signal is transmitted through the sample and onto the image, as a function of spatial frequency.
-Specifically, the CTF is a parametrized sinusoidal function that approximates the 1D curve of the power spectrum (PS) of the image, that is: the square of the amplitude of the fourier transform of the image.
 Where the CTF reaches a value of \num{0}, no signal is transferred; a value of \num{1}, on the other hand, is a perfect signal transfer.
+
+The CTF has a close relationship with the fourier transform of a micrograph: the 1D rotational average of the power spectrum (PS) of the image (the square of the amplitude of the fourier transform of the image) forms the curve used to estimate the CTF (\autoref{fig:em_ctf_defocus}).
+An ideal sample with a uniform distribution of spatial frequencies would produce a 1D PS identical to its theoretical CTF (TODO: is this actually true?).
 
 The CTF is usually described as composed of two main elements.
 The first one is a sinusoidal component caused by the periodicity of destructive and constructive interference of electron phases at different spatial fequencies.
@@ -276,21 +278,40 @@ This time, however, the templates are obtained by projecting a 3D model at diffe
 Instead of assigning classes, projection matching refines the relative (3D) orientations of each particle relative to the original 3D object.
 The 3D model is initally either derived from previous work, or generated \textit{ab initio} from the particles themselves.
 During each iteration, particles are back-projected to generate a new 3D model, while orientations are refined in order to improve its resolution.
-Once there is no longer significant improvement, the process stops, and the final 3D map is generated.
+Once there is no longer significant improvement (see \nameref{em_fsc}), the process stops, and the final 3D map is generated.
 
 In some cases, it might be useful to go one step further and do 3D classification; this is essentially the same procedure, but using multiple 3D models at the same time to not only assign orientations, but also split particles into different classes.
 This may be useful --- especially combined with some kind of masking CITE--- in cases where 2D classification was unable to separate out very similar objects.
 
 When classification is too categorical to capture nuanced systems (such as heterogeneous conformational ensembles), other kinds of procedures able to capture more variability may be used, such as principal component analysis (PCA) (CITE dynamo/cryosparc), multibody refinement (CITE cryosp?), etc TODO.
 
-\subsubsection{FSC and gold standard}
-TODO
+\subsubsection{FSC and gold standard}\label{em_fsc}
+For most procedures that attempt to refine parameters in order to improve a 3D classification or reconstruction, a method is needed to estimate the quality (resolution) of the current model.
 
-\subsubsection{Masking and post-processing}
-TODO
+The established approach is called \textbf{gold sandard} and relies on calculating the fourier shell correlation (FSC) of two independent halves of the data.
+At the cost of halving the amount of data we can use at once to make a map, we gain the ability to estimate how trustworthy our recostruction is.
+
+At the beginning of the process, the dataset (which in the case of 3D reconstruction is the ensemble of picked particles) is randomly split in two halves.
+At each iteration of the refinement, each half is used to generate an independent 3D reconstruction.
+The fourier transforms of the two maps are then cross-correlated as a function of spatial frequency, giving a plot such as the one in \autoref{fig:em_fsc}.
+A high correlation between fourier shell at the same spatial frequency indicates a high degree of reproducibility of those frequency components: that is, up to that resolution, the map can be trusted.
+The threshold typically used to formally determine the "resolution of the map" is \num{0.143}, for both mathematical and historical reasons related to the interpretability of X-ray crystallography maps~\cite{rosenthalOptimalDeterminationParticle2003}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \caption{TODO: fsc}
+    \label{fig:em_fsc}
+\end{figure}
+
+\subsubsection{Map post-processing}
+Reconstructed maps are normally post-processed to improve interpretability and usability in model building procedures.
+
+Different types of masking, filtering, and denoising can be applied, depending on the downstream steps.
+
+TODO: feels like I should expand, but it's also not very important here.
 
 \subsection{Refinement}\label{em_refinement}
-
 Once a 3D model is obtained, several state of the art software pipelines offer the ability to refine previously-defined parameters, using the estimated resolution of the 3D reconstruction validate the improvements.
 The parameters that can be refined range from particle positions and orientations, to CTF estimation and motion correction, to more complex artifact-inducing factors such as lens aberrations and Ewald sphere curvature CITE.
 
