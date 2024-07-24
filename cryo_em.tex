@@ -7,11 +7,11 @@ Arguably, the three giants in the field are X-ray crystallography, Nuclear Magne
 Each technique has pros and cons, making it suited to different samples and applications.
 
 In X-Ray crystallography --- in many ways the predecessor to cryo-EM as all-purpose structural biology technique --- crystals are grown from the sample of interest; the crystals are then illuminated by an X-ray beam, and the diffraction pattern thus created can be detected and used to reconstruct the three-dimensional (3D) structure of the sample.
-Thanks to the short wavelength of X-rays --- as opposed to visible light --- it is possible to localize the positions of atoms with sub-angstrom precision CITE.
+Thanks to the short wavelength of X-rays --- as opposed to visible light --- it is possible to localize the positions of atoms with sub-angstrom precision.
 X-ray crystallography has played a major role in the development of structural biology, and is still the primary source of protein structures on the Protein Data Bank~\cite{bermanProteinDataBank2000,bermanAnnouncingWorldwideProtein2003}.
 However, the need for crystallization poses a few limits.
 The crystallization procedure is often hard to devise and reproduce, extending the time and resources needed for sample preparation.
-Moreover, the resulting crystal "forces" the sample into a crystalline lattice, often with biologically irrelevant chemical states, restricting the conformational freedom of the molecule and limiting the biological significance of the obtained structures CITE.
+Moreover, the resulting crystal "forces" the sample into a crystalline lattice, often with biologically irrelevant chemical states, restricting the conformational freedom of the molecule and limiting the biological significance of the obtained structures~\cite{ravikumarComparisonSidechainDispersion2022}.
 
 \section[Cryo-EM and SPA]{Cryo-electron microscopy and single particle analysis}
 
@@ -22,7 +22,7 @@ Thanks to the small wavelength of electrons, cryo-EM can reach much higher resol
 
 In the last decade, the development of direct electron detectors made it possible to reach atomic resolutions, jump-starting to the so-called resolution revolution and the rise of cryo-EM as one of the primary methods for high resolution structure determination~\cite{faruqiCCDDetectorsHighresolution2000}.
 
-Differently from light-microscopy, which relies on amplitude contrast for image formation, the electron microscope uses phase contrast, which is caused by elastic scattering events affecting the electrons traversing the sample CITE.
+Differently from light-microscopy, which relies on amplitude contrast for image formation, the electron microscope uses phase contrast, which is caused by elastic scattering events affecting the electrons traversing the sample.
 Some electrons, however, are inelastically scattered; these electrons are no longer coherent, and therefore add to the noise of the image.
 Increasing the electron dose can help improve the signal-to-noise ratio (SNR), but comes at the cost of radiation damage, which denatures the sample and rapidly destroy high-resolution information.
 For these reasons, a significant limitation --- and thus optimization target --- of cryo-EM is the low SNR.
@@ -33,12 +33,10 @@ This section describes such typical workflow, expanding on the theoretical bases
 \subsection{Sample preparation}
 Cryo-EM samples for SPA are usually prepared in vitro by expressing ad purifying the protein or complex of interest to create a minimal system.
 Sample concentration and purity are important variables to control, as they will affect vitrification and data processing complexity.
-The sample solution is then deposited on a cryo-em grid and vitrified via plunge freezing or other methods (\autoref{fig:em_plunge_freezing})(TODO: elaborate or just leave to citation?) CITE.
-Vitrification allows to fixate the sample at near-native, hydrated conditions while avoiding the formation of crystalline ice, which would damage the sample CITE.
+The sample solution is then deposited on a cryo-em grid and vitrified via plunge freezing in liquid ethane or other methods (\autoref{fig:em_plunge_freezing})~\cite{dubochetCryoelectronMicroscopyVitrified1988}.
+Vitrification allows to fixate the sample at near-native, hydrated conditions while avoiding the formation of crystalline ice, which would damage the sample.
 When vitrifying, the thickness of the ice is crucial: a thinner layer will results in fewer inelastically scattered electrons during data collection and better SNR.
 However, too-thin ice can crack and increase issues with preferential orientation or particle distribution.
-
-TODO: detergents and pref orientation (setup for ftsz)
 
 \begin{figure}[ht]
     \centering
@@ -47,9 +45,14 @@ TODO: detergents and pref orientation (setup for ftsz)
     \label{fig:em_plunge_freezing}
 \end{figure}
 
+\subsubsection{Preferential orientation}
+A common issue with sample preparation for cryo-EM is non-uniform orientation distribution of the protein in the vitrified sample. 
+
+TODO: detergents and pref orientation (setup for ftsz)
+
 \subsection{Data collection}
 The vitrified sample is loaded into the electron microscope (under cryogenic conditions and vacuum, in order to maintain the sample vitrified and uncontaminated), and suitable positions on the grid are chosen for imaging, prioritizing for: presence of the target protein or complex, fewer contaminations, and lower ice thickness.
-In modern workflows and software, this step and the subsequent data collection are increasingly automated, allowing for higher throughput (up to several thousand images per day) and lower human intervention CITE.
+In modern workflows and software, this step and the subsequent data collection are increasingly automated, allowing for higher throughput (up to several thousand images per day) and lower human intervention~\cite{schorbSoftwareToolsAutomated2019}.
 
 During collection, the sample stage and electron beam are moved to each position to collect micrographs.
 At each position, a short movie is recorded, consisting of a few low-dose, short-exposure frames: this allows to reduce the blur caused by intra-frame motion (induced by external factors among which the electron beam itself); the frames will later be aligned and averaged to produce a single higher-contrast image.
@@ -90,7 +93,7 @@ An ideal sample with a uniform distribution of spatial frequencies would produce
 
 The CTF is usually described as composed of two main elements.
 The first one is a sinusoidal component caused by the periodicity of destructive and constructive interference of electron phases at different spatial fequencies.
-It is visible in the PS of cryo-em images as a set of concentric rings called Thon rings CITE (\autoref{fig:em_ctf_defocus_2d}).
+It is visible in the PS of cryo-em images as a set of concentric rings called Thon rings (\autoref{fig:em_ctf_defocus_2d}).
 The exact shape of the Thon rings depends on several factors, first among which the defocus: changing defocus affects the oscillation frequency, thus shifting the zeros of the CTF and boosting or nullifying different spatial frequencies (\autoref{fig:em_ctf_defocus_1d}).
 
 \begin{figure}[ht]
@@ -118,8 +121,8 @@ To ensure all spatial frequencies are sampled, a data collection must include ma
 
 Of note is that since the CTF starts at \num{0}, low spatial frequencies are always dampened; in pratical terms, this results in images where low resolution features (such as membranes and big objects) are harder to see, making it harder to distinguish objects from the noise, pick particles (see \nameref{em_particle_picking}) and do further processing.
 For this reason, a certain amount of defocus is always used, unfortunately at the cost of jumbling up the high frequency information with more CTF oscillation.
-Alternatively, a phase plate can be used to shift the phase of the electrons by 90 degrees and acquire images on focus (\autoref{fig:em_ctf_phase_shift}) CITE.
-While phase plates are in theory the ideal solution, there are still some unsolved engineering and physical limitations that limit their use CITE.
+Alternatively, a phase plate can be used to shift the phase of the electrons by 90 degrees and acquire images on focus (\autoref{fig:em_ctf_phase_shift}).
+While phase plates are in theory the ideal solution to this problem, there are still some engineering and physical limitations that limit their use; several groups are currently working to overcome such hurdles~\cite{danevExpandingBoundariesCryoEM2017,schwartzLaserPhasePlate2019}.
 
 \begin{figure}[ht]
     \centering
@@ -165,7 +168,7 @@ TODO: delocalization of signal
 Before particle picking, classification, and 3D reconstruction can be performed, the collected data must undergo a few preprocessing steps.
 
 First, each movie generated during data collection must be aligned and averaged.
-In state of the art applications, this alignment is typically done not only on a full frame level, but also in a localized fashion, by aligning image patches or by describing the system with a smooth deformation field~\cite{zhengMotionCor2AnisotropicCorrection2017} (CITE cryosparc, others?).
+In state of the art applications, this alignment is typically done not only on a full frame level, but also in a localized fashion, by aligning image patches or by describing the system with a smooth deformation field~\cite{zhengMotionCor2AnisotropicCorrection2017,punjaniCryoSPARCAlgorithmsRapid2017,tegunovRealtimeCryoelectronMicroscopy2019}.
 
 In state of the art software, similarly to how motion correction is treated, defocus (and thus CTF) is estimated at a local level, accounting for variability in the positioning of the sample with respect to the detector.
 The parameters thus obtained are later used to correct for the CTF during classification and reconstruction (see \nameref{em_classification} and \nameref{em_reconstruction}).
@@ -229,7 +232,7 @@ TODO: figure with template and picks on the micrograph?
 More recently, template matching is often being replaced with machine learning, which serves a similar purpose but can have a more nuanced understanding of surrounding context which helps reduce the false negatives and positives that are intrinsically present with template matching of noisy data.
 
 There are also "structured" variants of all these picking methods, where some existing geometric and structural knowledge about the system is used to inform the picking in some way.
-For example, filament picking is quite commonly used due to how widespread helical assemblies are in biology; it can be done manually (CITE relion at least), with template-based methods (CITE cryosp), and using ML (CITE probably cryolo?).
+For example, filament picking is quite commonly used due to how widespread helical assemblies are in biology; it can be done manually~\cite{scheresRELIONImplementationBayesian2012,heHelicalReconstructionRELION2017}, with template-based methods~\cite{punjaniCryoSPARCAlgorithmsRapid2017}, and using ML~\cite{wagnerSPHIREcrYOLOFastAccurate2019,wagnerEvolutionSPHIREcrYOLOParticle2020}.
 
 Regardless of the picking method, it is important to ensure that the target object is represented with projections from many different orientations; this will be crucial to properly reconstruct a 3D map of the object (see \nameref{em_reconstruction}).
 
@@ -240,7 +243,7 @@ To do so, particles are separated into groups based on similarity, in a process 
 
 Once again, some form of cross-correlation (see \nameref{em_cross_correlation}) is involved in the process, since the goal is to cluster together similar particles and separate different ones.
 The algorithm is typically iterative: after generating a initial classes by averaging random particles, particle poses are progressively refined to find the best CC score.
-Based on this score, each particle is assigned to a class (or a score for each class, in probabilistic models CITE relion), and for each class a class average is computed, combining the signal from all the particles belonging to that class. The more poses are refined, the more the signal that's shared by similar particles is boosted, improving the SRN of the class average.
+Based on this score, each particle is assigned to a class (or a score for each class, in probabilistic models~\cite{scheresRELIONImplementationBayesian2012}), and for each class a class average is computed, combining the signal from all the particles belonging to that class. The more poses are refined, the more the signal that's shared by similar particles is boosted, improving the SRN of the class average.
 Class averages are used to calculate the CC at each iteration, and used at the end of the process to inspect the dataset and select only the useful particles (\autoref{fig:em_classification}).
 
 \begin{figure}[ht]
@@ -253,14 +256,14 @@ Class averages are used to calculate the CC at each iteration, and used at the e
 With this information, particle classes can be split into groups for further processing or discarded.
 This is typically done manually by inspecting class averages and assigning each class to a group, depending on the goals of the project and the following processing steps.
 For a uniform purified dataset, classification might only serve the purpose of discarding spurious picks.
-For trickier samples (protein complexes, high conformational variability, non-uniform orientation distribution, shotgun cryo-EM (CITE)), multiple groupings and several rounds of classification may be necessary to isolate each relevant state.
+For trickier samples (protein complexes, high conformational variability, non-uniform orientation distribution, "shotgun" cryo-EM~\cite{suBuildRetrieveMethodology2021,kyrilisIntegrativeBiologyNative2019}), multiple groupings and several rounds of classification may be necessary to isolate each relevant state.
 
 Once reasonably sure that each group contains only particles representing projections of different orientations of copies of the same object, the 3D map of this object can be reconstructed.
 
 \subsection{3D reconstruction}\label{em_reconstruction}
 
 3D reconstruction is the process by which a volumetric map of an object can be reconstructed from 2D projections.
-This is possible thanks to the central slice theorem~CITE, which provides a bidirectional mathematical relationship between a volume and its projections.
+This is possible thanks to the central slice theorem, which provides a bidirectional mathematical relationship between a volume and its projections.
 
 The theorem states that the fourier transform of the 2D projection of a volume at a certain orientation, is equal to a central slice through the fourier transform of the volume at the same orientation (\autoref{fig:em_central_slice}).
 
@@ -281,9 +284,9 @@ During each iteration, particles are back-projected to generate a new 3D model, 
 Once there is no longer significant improvement (see \nameref{em_fsc}), the process stops, and the final 3D map is generated.
 
 In some cases, it might be useful to go one step further and do 3D classification; this is essentially the same procedure, but using multiple 3D models at the same time to not only assign orientations, but also split particles into different classes.
-This may be useful --- especially combined with some kind of masking CITE--- in cases where 2D classification was unable to separate out very similar objects.
+This may be useful --- especially combined with some kind of mask to isolate areas of interest --- in cases where 2D classification was unable to separate out very similar objects.
 
-When classification is too categorical to capture nuanced systems (such as heterogeneous conformational ensembles), other kinds of procedures able to capture more variability may be used, such as principal component analysis (PCA) (CITE dynamo/cryosparc), multibody refinement (CITE cryosp?), etc TODO.
+When classification is too categorical to capture nuanced systems (such as heterogeneous conformational ensembles), other kinds of procedures able to capture more variability may be used, such as principal component analysis (PCA)~\cite{castano-diezDynamoFlexibleUserfriendly2012,punjani3DVariabilityAnalysis2021}, multibody refinement~\cite{nakaneMultibodyRefinementCryoEM2021}, 3D flexible refinement~\cite{punjani3DFlexibleRefinement2022}, etc TODO.
 
 \subsubsection{FSC and gold standard}\label{em_fsc}
 For most procedures that attempt to refine parameters in order to improve a 3D classification or reconstruction, a method is needed to estimate the quality (resolution) of the current model.
@@ -313,7 +316,7 @@ TODO: feels like I should expand, but it's also not very important here.
 
 \subsection{Refinement}\label{em_refinement}
 Once a 3D model is obtained, several state of the art software pipelines offer the ability to refine previously-defined parameters, using the estimated resolution of the 3D reconstruction validate the improvements.
-The parameters that can be refined range from particle positions and orientations, to CTF estimation and motion correction, to more complex artifact-inducing factors such as lens aberrations and Ewald sphere curvature CITE.
+The parameters that can be refined range from particle positions and orientations, to CTF estimation and motion correction, to more complex artifact-inducing factors such as lens aberrations and Ewald sphere curvature~\cite{tegunovMultiparticleCryoEMRefinement2021,punjaniCryoSPARCAlgorithmsRapid2017}.
 
 The implementation details of refinement procedures are often quite different between software, but are generally based on an iterative process where parameters are adjusted on a per-particle basis, and a new 3D reconstruction is generated and validated via FSC to estimate the effects of the correction applied.
 
@@ -348,8 +351,7 @@ A method that promises to solve these problems is cryo-electron tomography: a te
 
 \section[Cryo-ET and STA]{Cryo-electron tomography and subtomogram averaging}
 
-Cryo-ET is not a recent invention: the first appearance goes back to ... CITE.
-Its recent resurgence is closely linked to the resolution revolution, which allowed to finally overcome the biggest overarching limitation of cryo-ET --- poor signal-to-noise ratio --- enough to reach sub-nanometer resolutions.
+Tomographic reconstruction is not a recent invention: the first appearance goes back more than a century~\cite{jDeterminationFunctionsTheir1917}; its successful application to cryo-EM, however, is only a recent development closely linked to the resolution revolution, which allowed to finally overcome the biggest overarching limitation of cryo-ET --- poor signal-to-noise ratio --- enough to reach sub-nanometer resolutions.
 
 At its core, cryo-ET is just cryo-EM with extra steps; they share much of the theory, hardware and software.
 The key difference is that, where single particle cryo-EM uses projections from different \textit{copies} of the same object to reconstruct a 3D map, cryo-ET images the same location from multiple orientations in order to reconstruct a 3D map from multiple projections of the \textit{same} object.
@@ -360,13 +362,14 @@ As with SPA, vitrification remains the key step of sample preparation for cryo-E
 Due to the intrinsically worse SNR due to the lower electron dose used during data collection (see \nameref{et_data_collection}), cryo-ET sample preparation requires extra care to reduce any possible source of additional noise.
 
 One such source is the thickness of the sample; unfortunately, this is often antithetical to samples such as entire cells or organelles, where cryo-ET \textit{in situ} benefits really shine.
-Initially, this problem was tackled by either prepararing simpler model systems \textit{in vitro} --- moving partly away from the native state --- or by cutting thin slices from a thicker sample via cryo-ultramicrotomy CITE).
-In recent years, focused ion beam (FIB) milling, a technique already well established in material sciences, has found widespread use in cryo-ET sample preparation, allowing to take thin
+Initially, this problem was tackled by either prepararing simpler model systems \textit{in vitro} --- moving partly away from the native state --- or by cutting thin slices from a thicker sample via cryo-ultramicrotomy~\cite{peaseElectronMicroscopyUltramicrotomy1981}.
+In recent years, focused ion beam (FIB) milling, a technique already well established in material sciences, has found widespread use in cryo-ET sample preparation, allowing to slice thin lamellae from a vitrified sample without incurring in the shear and surface deformations of cryo-ultramicrotomy.
 
 \subsubsection{FIB milling}
-...
+Preparing lamellae via FIB milling is becoming standard procedure in cryo-ET, but is still far from being consistently reproducible and automatable.
 
 \subsection{Data collection}\label{et_data_collection}
+Differently from SPA, in order to acquire a tilt series for tomographic reconstruction, the same area of the sample needs to be imaged at a range of different angles.
 
 \newpage
 
