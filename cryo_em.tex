@@ -41,14 +41,17 @@ However, too-thin ice can crack and increase issues with preferential orientatio
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/plunge_freezing.png}
-    \caption[Vitrification via plunge freezing]{TODO: .... Figure adapted from \citet{chungNobelPrizeChemistry2017}.}
+    \caption[Vitrification via plunge freezing]{Typical vitrification procedure via plunge freezing. A drop of sample is placed on the grid, blotted with a filter paper to reduce its thickness to a thin layer, and then plunged into liquid ethane. Figure adapted from \citet{chungNobelPrizeChemistry2017}.}
     \label{fig:em_plunge_freezing}
 \end{figure}
 
 \subsubsection{Preferential orientation}
-A common issue with sample preparation for cryo-EM is non-uniform orientation distribution of the protein in the vitrified sample. 
+A common issue with sample preparation for cryo-EM is non-uniform orientation distribution of the protein in the vitrified sample, often due to particles being adsorbed to the air-water interface~\cite{nobleRoutineSingleParticle2018}.
 
-TODO: detergents and pref orientation (setup for ftsz)
+Strong preferential orientation may completely preclude the ability to do a 3D reconstruction, due to the lack of a wide distribution of orientations (see \nameref{em_reconstruction}).
+When this problem arises, there are a few ways to tackle it.
+The most common is the addition of small amounts of detergents to occupy the air-water interface and prevent particles from preferentially orienting hydrophobic surfaces out of the water.
+Other methods are a bit more involved, such as the use of functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022} (CITE ask irina).
 
 \subsection{Data collection}
 The vitrified sample is loaded into the electron microscope (under cryogenic conditions and vacuum, in order to maintain the sample vitrified and uncontaminated), and suitable positions on the grid are chosen for imaging, prioritizing for: presence of the target protein or complex, fewer contaminations, and lower ice thickness.
@@ -72,12 +75,25 @@ To mitigate this effect, inelastically scattered electrons are filtered out usin
 
 Inelastic scattering is also the source of radiation damage: the energy lost by these electrons is transferred to the sample, denaturing and deforming it and thus affecting SRN.
 
-TODO: explain deviation from phase object (thickness of sample)?
+Sample thickness is of crucial importance for image formation: higher thickness results in higher chance for collision, increasing the chance of inelastic scatterings.
+Additionally, a thicker sample may result in multiple elastic scattering events, which further alter the phase but cannot be distinguished from single scattering events, contributing to image noise.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
-    \caption[Image formation in cryo-EM]{TODO: add image of electron beam and image formation}
+    \begin{subfigure}[B]{.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{introduction/scattering.png}
+        \caption{Different ways electrons can scatter.}
+        \label{fig:em_scattering}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[B]{.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{example-image-9x16.png}
+        \caption{Electron waves path through a microscope.}
+        \label{fig:em_microscope}
+    \end{subfigure}%
+    \caption[Image formation]{TODO: describe a bit electron scattering and intereference and how this results in image formation.}
     \label{fig:em_image_formation}
 \end{figure}
 
@@ -88,7 +104,7 @@ Depending on the angle, the interference at the image plane will be constructive
 The CTF is a function that describes exactly this: how signal is transmitted through the sample and onto the image, as a function of spatial frequency.
 Where the CTF reaches a value of \num{0}, no signal is transferred; a value of \num{1}, on the other hand, is a perfect signal transfer.
 
-The CTF has a close relationship with the fourier transform of a micrograph: the 1D rotational average of the power spectrum (PS) of the image (the square of the amplitude of the fourier transform of the image) forms the curve used to estimate the CTF (\autoref{fig:em_ctf_defocus}).
+The CTF has a close relationship with the fourier transform (FT) of a micrograph: the 1D rotational average of the power spectrum (PS) of the image (the square of the amplitude of the FT of the image) forms the curve used to estimate the CTF (\autoref{fig:em_ctf_defocus}).
 An ideal sample with a uniform distribution of spatial frequencies would produce a 1D PS identical to its theoretical CTF (TODO: is this actually true?).
 
 The CTF is usually described as composed of two main elements.
@@ -159,7 +175,9 @@ Importantly, this effect is worse at higher defocus, contributing the worse high
 
 This signal decay, combined with the low SNR of the images, poses a resolution limit beyond which it is impossible to estimate (and therefore correct) the effect of the CTF on the image.
 
-TODO: delocalization of signal
+So far we discussed what happens to the fourier transform or PS of an image, that is in \textbf{fourier space}; in practice, the CTF has visible effects also in \textbf{real space}.
+The signal becomes delocalized, blurring the image; as explained by the convolution theorem~\cite{wikipediaConvolutionTheorem2024}, this delocalization is the result of the convolution of the fourier transform of the CTF (known as Point Spread Function or PSF) with the image.
+Delocalization of signal directly affects how image processing is performed; for example, particle picking should account for it by extracting bigger image patches to ensure delocalized signal can be deconvolved when CTF correcting (see \nameref{em_particle_picking}).
 
 (TODO: would be cool to link here somehow to my CTF simulator in napari... Though probably not worth discussing CTF so in depth that we explain fourier transforms and how they combine to form an image?)
 
@@ -180,13 +198,16 @@ Both motion correction and CTF estimation --- as well as many other steps and te
 
 (TODO: this section might be better placed somewhere later in the results since it's mainly relevant for other stuff)
 
-The CC of two signals (such as two images) is a measure of how similar the two signals are at all possible relative shifts. For example, in the 1D case of (TODO...) \autoref{fig:em_cross_correlation}.
+The CC of two signals (such as two images) is a measure of how similar the two signals are at all possible relative shifts.
+For example, in the 1D case of (TODO...) \autoref{fig:em_cross_correlation}.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
-    \caption{TODO: cross corr}
+    \includegraphics[width=\textwidth]{introduction/cross_correlation.png}
+    \caption[Cross correlation]{Cross correlation of two 1D signals. TODO}
     \label{fig:em_cross_correlation}
+    % TODO: generated with cc_image.py script. Should add somehow to thesis!
+    % TODO: why the hell is this background not white...
 \end{figure}
 
 In the case of 2D data, calculating the cross-correlation of two images often also includes a rotational search, to account for the different in-plane rotation of particles that would otherwise be missed by simple CC.
@@ -263,7 +284,7 @@ Once reasonably sure that each group contains only particles representing projec
 \subsection{3D reconstruction}\label{em_reconstruction}
 
 3D reconstruction is the process by which a volumetric map of an object can be reconstructed from 2D projections.
-This is possible thanks to the central slice theorem, which provides a bidirectional mathematical relationship between a volume and its projections.
+This is possible thanks to the central slice theorem~\cite{wikipediaProjectionsliceTheorem2023}, which provides a bidirectional mathematical relationship between a volume and its projections.
 
 The theorem states that the fourier transform of the 2D projection of a volume at a certain orientation, is equal to a central slice through the fourier transform of the volume at the same orientation (\autoref{fig:em_central_slice}).
 
@@ -275,6 +296,9 @@ The theorem states that the fourier transform of the 2D projection of a volume a
 \end{figure}
 
 In the case of SPA, this allows us to combine the projection of many different particles, under the assumption that they come from near-identical copies of the same object.
+
+It is crucial in this process that as many different orientations as possible are represented in the dataset.
+This is because, in order to have an isotropically well-resolved reconstruction, we need to fill the 3D fourier space as much as possible with differently oriented central slices.
 
 Similarly to 2D classification, 3D reconstruction is an iterative process where each particle is correlated to templates to find the best match.
 This time, however, the templates are obtained by projecting a 3D model at different orientations, in a process called projection matching.
