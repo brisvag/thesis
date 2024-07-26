@@ -45,13 +45,15 @@ However, too-thin ice can crack and increase issues with preferential orientatio
     \label{fig:em_plunge_freezing}
 \end{figure}
 
+TODO: talk about tilted data collection and/or easy-grid, chameleon and vitrojet (but later)
+
 \subsubsection{Preferential orientation}
 A common issue with sample preparation for cryo-EM is non-uniform orientation distribution of the protein in the vitrified sample, often due to particles being adsorbed to the air-water interface~\cite{nobleRoutineSingleParticle2018}.
 
 Strong preferential orientation may completely preclude the ability to do a 3D reconstruction, due to the lack of a wide distribution of orientations (see \nameref{em_reconstruction}).
-When this problem arises, there are a few ways to tackle it.
+When this problem arises, there are a few ways to tackle it during sample preparation.
 The most common is the addition of small amounts of detergents to occupy the air-water interface and prevent particles from preferentially orienting hydrophobic surfaces out of the water.
-Other methods are a bit more involved, such as the use of functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022} (CITE ask irina).
+Other methods are a bit more involved, such as the use of functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022}, streptavidin-coated affinity support grids~\cite{crucifixImmobilizationBiotinylatedDNA2004,hanLongShelflifeStreptavidin2016}, but can offer more control over the orientation of the particles in the sample.
 
 \subsection{Data collection}
 The vitrified sample is loaded into the electron microscope (under cryogenic conditions and vacuum, in order to maintain the sample vitrified and uncontaminated), and suitable positions on the grid are chosen for imaging, prioritizing for: presence of the target protein or complex, fewer contaminations, and lower ice thickness.
@@ -80,20 +82,8 @@ Additionally, a thicker sample may result in multiple elastic scattering events,
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}[B]{.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{introduction/scattering.png}
-        \caption{Different ways electrons can scatter.}
-        \label{fig:em_scattering}
-    \end{subfigure}%
-    \hfill
-    \begin{subfigure}[B]{.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{example-image-9x16.png}
-        \caption{Electron waves path through a microscope.}
-        \label{fig:em_microscope}
-    \end{subfigure}%
-    \caption[Image formation]{TODO: describe a bit electron scattering and intereference and how this results in image formation.}
+    \includegraphics[width=\textwidth]{introduction/scattering.png}
+    \caption[Image formation]{Electron scattering and diffraction are the physical processes at the core of cryo-EM image formation. Electrons can scatter in several different ways (left), but only elastic scattering contributes to image formation via phase contrast with the trasmitted electrons. Features contained in the sample that present different spatial frequencies result in scattering at different angles (right); depending on the difference in path travelled and the wavelength of the electron beam, this results in interference between differently scattered waves. In this figure where wave oscillations are visualized as dashed lines, we can see that the unscattered and low-angle scattered waves result in constructive interference, while the high-angle scattered interferes destructively.}
     \label{fig:em_image_formation}
 \end{figure}
 
@@ -105,7 +95,7 @@ The CTF is a function that describes exactly this: how signal is transmitted thr
 Where the CTF reaches a value of \num{0}, no signal is transferred; a value of \num{1}, on the other hand, is a perfect signal transfer.
 
 The CTF has a close relationship with the fourier transform (FT) of a micrograph: the 1D rotational average of the power spectrum (PS) of the image (the square of the amplitude of the FT of the image) forms the curve used to estimate the CTF (\autoref{fig:em_ctf_defocus}).
-An ideal sample with a uniform distribution of spatial frequencies would produce a 1D PS identical to its theoretical CTF (TODO: is this actually true?).
+An ideal sample with a uniform distribution of spatial frequencies would produce a 1D PS identical to its theoretical CTF.
 
 The CTF is usually described as composed of two main elements.
 The first one is a sinusoidal component caused by the periodicity of destructive and constructive interference of electron phases at different spatial fequencies.
@@ -151,6 +141,7 @@ While phase plates are in theory the ideal solution to this problem, there are s
 The second component of the CTF is broadly called "envelope function", a dampening effect which attenuates the signal at higher resolutions.
 It depends on many factors, such as lens aberrations, limitations of the electron gun, frame alignment imprecision, etc.
 This effect is visible in the PS as an attenuation of the signal at higher resolutions (\autoref{fig:em_ctf_envelope}).
+Since the PS (what we actually measure) is equivalent to the $CTF^2$, the dampening is exacerbated because values closer to \num{0} become even smaller and harder to detect.
 Importantly, this effect is worse at higher defocus, contributing the worse high-resolution information transfer of higher defocus images.
 
 \begin{figure}[ht]
@@ -179,8 +170,6 @@ So far we discussed what happens to the fourier transform or PS of an image, tha
 The signal becomes delocalized, blurring the image; as explained by the convolution theorem~\cite{wikipediaConvolutionTheorem2024}, this delocalization is the result of the convolution of the fourier transform of the CTF (known as Point Spread Function or PSF) with the image.
 Delocalization of signal directly affects how image processing is performed; for example, particle picking should account for it by extracting bigger image patches to ensure delocalized signal can be deconvolved when CTF correcting (see \nameref{em_particle_picking}).
 
-(TODO: would be cool to link here somehow to my CTF simulator in napari... Though probably not worth discussing CTF so in depth that we explain fourier transforms and how they combine to form an image?)
-
 \subsection{Preprocessing}
 
 Before particle picking, classification, and 3D reconstruction can be performed, the collected data must undergo a few preprocessing steps.
@@ -196,37 +185,38 @@ Both motion correction and CTF estimation --- as well as many other steps and te
 
 \subsubsection{Cross-correlation}\label{em_cross_correlation}
 
-(TODO: this section might be better placed somewhere later in the results since it's mainly relevant for other stuff)
-
 The CC of two signals (such as two images) is a measure of how similar the two signals are at all possible relative shifts.
-For example, in the 1D case of (TODO...) \autoref{fig:em_cross_correlation}.
+The CC function of two signals will be higher for signals that present more similar features, and have a peak at the relative shift where the signals present strongest similarity (\autoref{fig:em_cross_correlation}).
+This is a useful feature for most applications, because we often care about where exactly the similarity is high (e.g. for motion correction and particle picking (see \nameref{em_particle_picking})).
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/cross_correlation.png}
-    \caption[Cross correlation]{Cross correlation of two 1D signals. TODO}
+    \caption[Cross-correlation of 1D signals]{Cross-correlation of two 1D signals, \texttt{spike} and \texttt{blob}. The position of the peak of the resulting \texttt{cross-correlation} indicates relative shift at which \texttt{blob} presents maximal similarity with \texttt{spike}. Shifting \texttt{blob} by the same amount shows the best overlap between the two signals.}
     \label{fig:em_cross_correlation}
     % TODO: generated with cc_image.py script. Should add somehow to thesis!
-    % TODO: why the hell is this background not white...
 \end{figure}
 
-In the case of 2D data, calculating the cross-correlation of two images often also includes a rotational search, to account for the different in-plane rotation of particles that would otherwise be missed by simple CC.
+In the case of 2D data, calculating the cross-correlation of two images often also includes the additional step of a rotational search, to account for the different in-plane rotation of particles that would otherwise be missed by simple CC.
 
 \subsubsection{Filtering and denoising}\label{em_filtering_and_denoising}
 
 Due to the low SNR of cryo-EM data, even motion-corrected micrographs can can be surprisingly hard to interpret.
 To enhance the contrast of biological features and better judge the quality of the data --- as well as improve the ability to distinguish particles from the background and from one another for the purposes of picking (see \nameref{em_particle_picking}) --- micrographs often undergo a round of filtering and/or denoising.
 
-TODO: what is done in fourier space vs real space
-
-TODO: also explain effects of high res and low res info on perceived contrast/readability.
+The simplest --- and most commonly used --- type of filtering is fourier masking; by reducing or zeroing the values inside a disc or annulus in fourier space, the respective spatial frequencies are dampened in the image.
+In practice, this is often used to remove high-frequency components (low-pass filter), and sometimes with also very low frequency components (band-pass filter) (\autoref{fig:em_filtering}).
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
+    \includegraphics[width=\textwidth]{introduction/filtering.png}
     \caption{TODO: Filtering/denoising side by side}
     \label{fig:em_filtering}
 \end{figure}
+
+TODO: what is done in fourier space vs real space
+
+TODO: also explain effects of high res and low res info on perceived contrast/readability.
 
 \subsubsection{Dataset cleaning}
 The dataset often contains bad images for various reasons: bad CTF estimation, too high motion, issues with autofocus, too thick or cracked ice, etc.
