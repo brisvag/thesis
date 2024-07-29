@@ -205,18 +205,18 @@ Due to the low SNR of cryo-EM data, even motion-corrected micrographs can can be
 To enhance the contrast of biological features and better judge the quality of the data --- as well as improve the ability to distinguish particles from the background and from one another for the purposes of picking (see \nameref{em_particle_picking}) --- micrographs often undergo a round of filtering and/or denoising.
 
 The simplest --- and most commonly used --- type of filtering is fourier masking; by reducing or zeroing the values inside a disc or annulus in fourier space, the respective spatial frequencies are dampened in the image.
-In practice, this is often used to remove high-frequency components (low-pass filter), and sometimes with also very low frequency components (band-pass filter) (\autoref{fig:em_filtering}).
+In practice, this is often used to remove high-frequency components (low-pass filter), but there are also sometimes benefits to the removal of other ranges of spatial frequencies (\autoref{fig:em_filtering}).
+
+(TODO: actually do this image with something noisy and show the benefits; explain benefit of other filterings)
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/filtering.png}
-    \caption{TODO: Filtering/denoising side by side}
+    \caption[Fourier filtering]{Examples of how the final image (top) is affected by fourier filtering (bottom). From left to right: no filtering, low-pass, band-pass, high-pass. As highlighted by the difference between the low-passed (second column) and high-passed (last column) images, a small amount of low spatial frequency information is responsible for the majority of our perception of the general shape of an object.}
     \label{fig:em_filtering}
 \end{figure}
 
-TODO: what is done in fourier space vs real space
-
-TODO: also explain effects of high res and low res info on perceived contrast/readability.
+In the last few years, ML-based denoising has become standard practice, with algorithms such as noise2noise and noise2void~\cite{lehtinenNoise2NoiseLearningImage2018,krullNoise2VoidLearningDenoising2019} being implemented in several cryo-EM software suites~\cite{beplerTopazDenoiseGeneralDeep2020,tegunovRealtimeCryoelectronMicroscopy2019,buchholzCryoCAREContentAwareImage2018}.
 
 \subsubsection{Dataset cleaning}
 The dataset often contains bad images for various reasons: bad CTF estimation, too high motion, issues with autofocus, too thick or cracked ice, etc.
@@ -276,12 +276,12 @@ Once reasonably sure that each group contains only particles representing projec
 3D reconstruction is the process by which a volumetric map of an object can be reconstructed from 2D projections.
 This is possible thanks to the central slice theorem~\cite{wikipediaProjectionsliceTheorem2023}, which provides a bidirectional mathematical relationship between a volume and its projections.
 
-The theorem states that the fourier transform of the 2D projection of a volume at a certain orientation, is equal to a central slice through the fourier transform of the volume at the same orientation (\autoref{fig:em_central_slice}).
+The theorem states that the fourier transform of the 2D projection of a volume at a certain orientation, is equal to the central slice through the fourier transform of the volume at the orientation perpendicular to the projection (\autoref{fig:em_central_slice}, panel A).
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
-    \caption{TODO: central slice theorem}
+    \includegraphics[width=.7\textwidth]{introduction/central_slice_theorem.png}
+    \caption[Central slice theorem]{Showcase of how the central slice theorem is used for 3D reconstruction in cryo-EM. \textbf{A.} A 2D projection of a 3D volume in real space at a certain orientation is equivalent to the 2D slice perpendicular to that orientation in fourier space. \textbf{B.} \textbf{C.} \textbf{D.} \textbf{E.}. Figure adapted from \citet{nogalesCryoEMUniqueTool2015}.}
     \label{fig:em_central_slice}
 \end{figure}
 
@@ -291,16 +291,23 @@ It is crucial in this process that as many different orientations as possible ar
 This is because, in order to have an isotropically well-resolved reconstruction, we need to fill the 3D fourier space as much as possible with differently oriented central slices.
 
 Similarly to 2D classification, 3D reconstruction is an iterative process where each particle is correlated to templates to find the best match.
-This time, however, the templates are obtained by projecting a 3D model at different orientations, in a process called projection matching.
+This time, however, the templates are obtained by projecting a 3D model at different orientations, in a process called projection matching (\autoref{fig:em_projection_matching}).
 Instead of assigning classes, projection matching refines the relative (3D) orientations of each particle relative to the original 3D object.
 The 3D model is initally either derived from previous work, or generated \textit{ab initio} from the particles themselves.
 During each iteration, particles are back-projected to generate a new 3D model, while orientations are refined in order to improve its resolution.
 Once there is no longer significant improvement (see \nameref{em_fsc}), the process stops, and the final 3D map is generated.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{introduction/projection_matching.png}
+    \caption[Projection matching]{Projection matching in cryo-EM. Particle picks are assigned progressively better orientations that most closely match synthetic 2D projections generated from the current 3D model. By inserting the FT of each particle at the assigned orientation into the 3D fourier space, and then doing the inverse fourier transform to go back to real space, a new updated model is generated. Figure adapted from \citet{nogalesCryoEMUniqueTool2015}.}
+    \label{fig:em_projection_matching}
+\end{figure}
+
 In some cases, it might be useful to go one step further and do 3D classification; this is essentially the same procedure, but using multiple 3D models at the same time to not only assign orientations, but also split particles into different classes.
 This may be useful --- especially combined with some kind of mask to isolate areas of interest --- in cases where 2D classification was unable to separate out very similar objects.
 
-When classification is too categorical to capture nuanced systems (such as heterogeneous conformational ensembles), other kinds of procedures able to capture more variability may be used, such as principal component analysis (PCA)~\cite{castano-diezDynamoFlexibleUserfriendly2012,punjani3DVariabilityAnalysis2021}, multibody refinement~\cite{nakaneMultibodyRefinementCryoEM2021}, 3D flexible refinement~\cite{punjani3DFlexibleRefinement2022}, etc TODO.
+When classification is too categorical to capture nuanced systems (such as heterogeneous conformational ensembles), other kinds of procedures able to capture more variability may be used, such as principal component analysis (PCA)~\cite{castano-diezDynamoFlexibleUserfriendly2012,punjani3DVariabilityAnalysis2021}, multibody refinement~\cite{nakaneMultibodyRefinementCryoEM2021}, 3D flexible refinement~\cite{punjani3DFlexibleRefinement2022}, etc.
 
 \subsubsection{FSC and gold standard}\label{em_fsc}
 For most procedures that attempt to refine parameters in order to improve a 3D classification or reconstruction, a method is needed to estimate the quality (resolution) of the current model.
@@ -316,9 +323,21 @@ The threshold typically used to formally determine the "resolution of the map" i
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
-    \caption{TODO: fsc}
-    \label{fig:em_fsc}
+    \begin{subfigure}[B]{.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{introduction/fsc_shells.png}
+        \caption{Fourier shells, in 2D.}
+        \label{fig:em_fsc_2D}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[B]{.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{introduction/fsc_plot.png}
+        \caption{FSC for different noise levels.}
+        \label{fig:em_fsc_1D}
+    \end{subfigure}%
+    \caption[Fourier shell correlation]{Fourier shell correlation TODO.}
+    \label{em_fsc}
 \end{figure}
 
 \subsubsection{Map post-processing}
@@ -326,7 +345,7 @@ Reconstructed maps are normally post-processed to improve interpretability and u
 
 Different types of masking, filtering, and denoising can be applied, depending on the downstream steps.
 
-TODO: feels like I should expand, but it's also not very important here.
+TODO: feels like I should expand, but it's also not very important here. Sharpening?
 
 \subsection{Refinement}\label{em_refinement}
 Once a 3D model is obtained, several state of the art software pipelines offer the ability to refine previously-defined parameters, using the estimated resolution of the 3D reconstruction validate the improvements.

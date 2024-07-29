@@ -58,13 +58,14 @@ if __name__ == '__main__':
 
     v = napari.Viewer()
     v.add_image(a)
-    v.add_image(ps)
     v.add_image(low)
-    v.add_image(ps_low)
     v.add_image(band)
-    v.add_image(ps_band)
     v.add_image(high)
-    v.add_image(ps_high)
+
+    il = v.add_image(ps)
+    v.add_image(ps_low).contrast_limits = il.contrast_limits
+    v.add_image(ps_band).contrast_limits = il.contrast_limits
+    v.add_image(ps_high).contrast_limits = il.contrast_limits
 
     v.grid.enabled = True
     v.grid.stride = -1
