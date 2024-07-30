@@ -170,7 +170,7 @@ So far we discussed what happens to the fourier transform or PS of an image, tha
 The signal becomes delocalized, blurring the image; as explained by the convolution theorem~\cite{wikipediaConvolutionTheorem2024}, this delocalization is the result of the convolution of the fourier transform of the CTF (known as Point Spread Function or PSF) with the image.
 Delocalization of signal directly affects how image processing is performed; for example, particle picking should account for it by extracting bigger image patches to ensure delocalized signal can be deconvolved when CTF correcting (see \nameref{em_particle_picking}).
 
-\subsection{Preprocessing}
+\subsection{Preprocessing}\label{em_preprocessing}
 
 Before particle picking, classification, and 3D reconstruction can be performed, the collected data must undergo a few preprocessing steps.
 
@@ -278,6 +278,8 @@ This is possible thanks to the central slice theorem~\cite{wikipediaProjectionsl
 
 The theorem states that the fourier transform of the 2D projection of a volume at a certain orientation, is equal to the central slice through the fourier transform of the volume at the orientation perpendicular to the projection (\autoref{fig:em_central_slice}, panel A).
 
+It's worth noting that the algorithms used by reconstruction software, while based on this principle, are often in practice not based on fourier-domain reconstruction, but use different methods such as weighted back-projection or iterative approaches like SART and SIRT~\cite{andersenSimultaneousAlgebraicReconstruction1984,agulleiroFastTomographicReconstruction2011,wikipediaTomographicReconstruction2024}.
+
 \begin{figure}[ht]
     \centering
     \includegraphics[width=.7\textwidth]{introduction/central_slice_theorem.png}
@@ -285,7 +287,7 @@ The theorem states that the fourier transform of the 2D projection of a volume a
     \label{fig:em_central_slice}
 \end{figure}
 
-In the case of SPA, this allows us to combine the projection of many different particles, under the assumption that they come from near-identical copies of the same object.
+In the case of SPA, the central slice theorem allows us to combine the projection of many different particles, under the assumption that they come from near-identical copies of the same object.
 
 It is crucial in this process that as many different orientations as possible are represented in the dataset.
 This is because, in order to have an isotropically well-resolved reconstruction, we need to fill the 3D fourier space as much as possible with differently oriented central slices.
@@ -294,7 +296,8 @@ Similarly to 2D classification, 3D reconstruction is an iterative process where 
 This time, however, the templates are obtained by projecting a 3D model at different orientations, in a process called projection matching (\autoref{fig:em_projection_matching}).
 Instead of assigning classes, projection matching refines the relative (3D) orientations of each particle relative to the original 3D object.
 The 3D model is initally either derived from previous work, or generated \textit{ab initio} from the particles themselves.
-During each iteration, particles are back-projected to generate a new 3D model, while orientations are refined in order to improve its resolution.
+During each iteration, particles' FTs are used to fill a 3D FT according to central slice theorem, which allows to generate a new 3D model.
+The assigned orientations are progressively refined in order to improve the model resolution.
 Once there is no longer significant improvement (see \nameref{em_fsc}), the process stops, and the final 3D map is generated.
 
 \begin{figure}[ht]
@@ -323,21 +326,10 @@ The threshold typically used to formally determine the "resolution of the map" i
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}[B]{.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{introduction/fsc_shells.png}
-        \caption{Fourier shells, in 2D.}
-        \label{fig:em_fsc_2D}
-    \end{subfigure}%
-    \hfill
-    \begin{subfigure}[B]{.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{introduction/fsc_plot.png}
-        \caption{FSC for different noise levels.}
-        \label{fig:em_fsc_1D}
-    \end{subfigure}%
-    \caption[Fourier shell correlation]{Fourier shell correlation TODO.}
-    \label{em_fsc}
+    \includegraphics[width=\textwidth]{introduction/fsc.png}
+    \caption[Fourier shell correlation]{Showcase of a 2D version of fourier shell correlation. Gaussian noise was applied to two identical images, which were then compared by gradually cross-correlating concentric shells (left). The resulting plot (right) is a measure of the similarity as a function of spatial frequency. As spatial frequency increases, noise becomes dominant, degrading correlation and thus the trustworthiness of the data. The threshold of \num{0.143} is used to determine the final resolution, which is higher for the less noisy image.}
+    \label{fig:em_fsc}
+    % TODO: made with script fsc.py
 \end{figure}
 
 \subsubsection{Map post-processing}
@@ -360,7 +352,8 @@ These procedures can have dramatic effects on the final resolution of a map, esp
 If a map reaches high enough resolution, it is possible to build an atomic model based on the volume density.
 This process is called model building, and is typically done with a mix of manual and automated tools.
 
-TODO...
+Models are build by placing aminoacids (or other structural components) so that their electron occupancy matches the density map obtained from 3D reconstruction.
+Some recent tools manage to fully automate this process for maps of high enough resolution, even without knowing the protein's sequence~\cite{jamaliAutomatedModelBuilding2024}.
 
 \subsection{Pros and Cons}
 
@@ -396,13 +389,58 @@ Due to the intrinsically worse SNR due to the lower electron dose used during da
 
 One such source is the thickness of the sample; unfortunately, this is often antithetical to samples such as entire cells or organelles, where cryo-ET \textit{in situ} benefits really shine.
 Initially, this problem was tackled by either prepararing simpler model systems \textit{in vitro} --- moving partly away from the native state --- or by cutting thin slices from a thicker sample via cryo-ultramicrotomy~\cite{peaseElectronMicroscopyUltramicrotomy1981}.
-In recent years, focused ion beam (FIB) milling, a technique already well established in material sciences, has found widespread use in cryo-ET sample preparation, allowing to slice thin lamellae from a vitrified sample without incurring in the shear and surface deformations of cryo-ultramicrotomy.
+In recent years, focused ion beam (FIB) milling, a technique already well established in material sciences, has found widespread use in cryo-ET sample preparation, allowing to slice thin lamellae from a vitrified sample without incurring in the shear and surface deformations of cryo-ultramicrotomy~\cite{markoFocusedionbeamThinningFrozenhydrated2007}.
 
 \subsubsection{FIB milling}
+FIB milling typically makes use of a Gallium ion beam --- or, more recently, Xenon plasma --- to ablate a sample
+thick samples can be thinned to below \qty{150}{\nano\meter}.
 Preparing lamellae via FIB milling is becoming standard procedure in cryo-ET, but is still far from being consistently reproducible and automatable.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{introduction/fib.png}
+    \caption[FIB milling]{Microscope snapshots from FIB milling procedure on \textit{Deinococcus radiodurans}. A cluster of cells, visible as a bump on the SEM, is selected from the grid (top left). From a shallow angle of around 15 degrees from the grid (top right) the FIB is used to ablate material above and below the area of interest. This leaves a thin lamellae suitable for cryo-ET (bottom). Milled cell drawing (bottom left) taken from ~\citet{villaOpeningWindowsCell2013}.}
+    \label{fig:et_fib_milling}
+\end{figure}
+
+\subsubsection{Fiducials}
+During data collection, despite vitrification, samples undergo different kinds of deformations.
+Moreover, due to the intrinsic imprecision of controlling the hardware of the microscope, there will always be some shift and angle mismatch between different tilts during a tilt series collection (see \nameref{et_data_collection}).
+
+To help with correcting these errors, it is often useful to add to the same some fiducials: small high-contrast, round objects (typically gold beads) that can later be used to estimate sample shift, rotation, and deformations (see \nameref{et_tilt_series_alignment}).
+
 \subsection{Data collection}\label{et_data_collection}
-Differently from SPA, in order to acquire a tilt series for tomographic reconstruction, the same area of the sample needs to be imaged at a range of different angles.
+In order to acquire a sequence of images at different tilts (termed \textbf{tilt series}) for tomographic reconstruction, the same area of the sample needs to be imaged at a range of different angles.
+This requires longer and more sophisticated routines compared to SPA, since for each tilt angle the sample stage must be moved, the eucentric height reestablished, the lens refocused.
+
+Additionally, much lower electron dose than SPA must be used to preserve the specimen from radiation damage for multiple images.
+This results in significantly noisier images, which contributes to the difficulty of processing cryo-ET data.
+
+\subsection{Preprocessing}
+Cryo-ET data undergoes similar preprocessing steps as SPA data (see \nameref{em_preprocessing}), albeit with less precision due to the low electron dose.
+
+TODO: mention 3D CTF (though it happens later)
+
+\subsection{Tomogram reconstruction}
+While single particle data is ready for particle picking after preprocessing, cryo-ET data must still undergo tomographic reconstruction in order to obtain the 3D volumetric reconstruction of the sample.
+
+To do so, tilt series alignment parameters must first be estimated, in order to correct for equipment imprecision and sample deformations.
+
+\subsubsection{Tilt series alignment}\label{et_tilt_series_alignment}
+The most basic alignment procedures require at least full-frame aligment; similar to motion correction, tilt images are rotated and shifted in order to maximize their CC score.
+Where fiducials are present, these can be assumed to be static within the sample and used instead as anchors to estimate the geometric transformation between different tilts.
+
+In state of the art software, alignment procedures (with fiducials or not) also account for spatio-temporal deformations of the sample, either already during tilt series alignment~\cite{zhengAreTomoIntegratedSoftware2022}, or later during refinement~\cite{tegunovMultiparticleCryoEMRefinement2021,burtImageProcessingPipeline2024,galaz-montoyaSingleParticleTomography2015}.
+
+\subsubsection{Reconstruction}
+Similarly to how 3D reconstructions are obtained from 2D particles in SPA based on the central slice theorem (see \nameref{em_reconstruction}), the aligned tilt series can be used to reconstruct the full tomogram.
+Depending on the software suite and workflow, full tomogram reconstructions may be used only for template matching (see \nameref{et_particle_picking}) and segmentation purposes, or also to extract subtomograms at small pixel sizes for subtromogram averaging (see \nameref{et_sta}).
+
+TODO: missing wedge
+
+\subsection{Particle picking}\label{et_particle_picking}
+
+\subsection{Refinement}\label{et_refinement}
 
 \newpage
 
@@ -437,10 +475,10 @@ Differently from SPA, in order to acquire a tilt series for tomographic reconstr
         \3 \tick Signal/Noise
 \1 cryo-et, concepts and advantages
     \2 base concepts and differences from SPA from thechnical standpoint
-        \2 cryoem, but different data acquisition and thus data processing
-        \3 exposure damage and dose issues
-        \3 sample prep (thinnes especially important because SNR)
-        \3 tilt-series alignment (fiducials), deformation, other aberrations, how they are tackled
+        \2 \tick cryoem, but different data acquisition and thus data processing
+        \3 \tick exposure damage and dose issues
+        \3 \tick sample prep (thinnes especially important because SNR)
+        \3 \tick tilt-series alignment (fiducials), deformation, other aberrations, how they are tackled
         \3 3D CTF
         \3 missing wedge, issues it introduces
         \3 feature deletion (e.g: fiducials)
