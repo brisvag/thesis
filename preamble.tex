@@ -8,9 +8,6 @@
     % convert href (which normally hides url with text) to a footnote so you can see it
     \let\oldhref\href\
     \renewcommand\href[2]{\oldhref{#1}{#2}\footnote{\url{#1}}}
-    % convert nameref to "fullref" cause link can't be clicked and it's easier to find with section numbers
-    \let\oldnameref\nameref
-    \renewcommand\nameref[1]{\textbf{\ref{#1}: \oldnameref{#1}}}
 }{
     \documentclass[12pt,a4paper]{extbook}
     \usepackage[twoside=false]{geometry}
@@ -52,6 +49,8 @@
 \usepackage{siunitx} % proper handling of units and quantities
 \DeclareSIUnit\angstrom{\text {Å}}
 \usepackage{amsmath,amssymb} % for better math symbols
+% "fullref" (especially for printed cause link can't be clicked and it's easier to find with section numbers)
+\newcommand*\fullref[1]{\hyperref[{#1}]{\ref*{#1} \nameref*{#1}}}
 
 % TODO: remove temporary packages
 \usepackage{lipsum}

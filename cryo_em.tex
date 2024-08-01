@@ -50,7 +50,7 @@ TODO: talk about tilted data collection and/or easy-grid, chameleon and vitrojet
 \subsubsection{Preferential orientation}
 A common issue with sample preparation for cryo-EM is non-uniform orientation distribution of the protein in the vitrified sample, often due to particles being adsorbed to the air-water interface~\cite{nobleRoutineSingleParticle2018}.
 
-Strong preferential orientation may completely preclude the ability to do a 3D reconstruction, due to the lack of a wide distribution of orientations (see \nameref{em_reconstruction}).
+Strong preferential orientation may completely preclude the ability to do a 3D reconstruction, due to the lack of a wide distribution of orientations (see \fullref{em_reconstruction}).
 When this problem arises, there are a few ways to tackle it during sample preparation.
 The most common is the addition of small amounts of detergents to occupy the air-water interface and prevent particles from preferentially orienting hydrophobic surfaces out of the water.
 Other methods are a bit more involved, such as the use of functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022}, streptavidin-coated affinity support grids~\cite{crucifixImmobilizationBiotinylatedDNA2004,hanLongShelflifeStreptavidin2016}, but can offer more control over the orientation of the particles in the sample.
@@ -125,9 +125,9 @@ The exact shape of the Thon rings depends on several factors, first among which 
 
 To ensure all spatial frequencies are sampled, a data collection must include many images collected at a range of different defoci.
 
-Of note is that since the CTF starts at \num{0}, low spatial frequencies are always dampened; in pratical terms, this results in images where low resolution features (such as membranes and big objects) are harder to see, making it harder to distinguish objects from the noise, pick particles (see \nameref{em_particle_picking}) and do further processing.
+Of note is that since the CTF starts at \num{0}, low spatial frequencies are always dampened; in pratical terms, this results in images where low resolution features (such as membranes and big objects) are harder to see, making it harder to distinguish objects from the noise, pick particles (see \fullref{em_particle_picking}) and do further processing.
 For this reason, a certain amount of defocus is always used, unfortunately at the cost of jumbling up the high frequency information with more CTF oscillation.
-Alternatively, a phase plate can be used to shift the phase of the electrons by 90 degrees and acquire images on focus (\autoref{fig:em_ctf_phase_shift}).
+Alternatively, a phase plate can be used to shift the phase of the electrons by \ang{90} and acquire images on focus (\autoref{fig:em_ctf_phase_shift}).
 While phase plates are in theory the ideal solution to this problem, there are still some engineering and physical limitations that limit their use; several groups are currently working to overcome such hurdles~\cite{danevExpandingBoundariesCryoEM2017,schwartzLaserPhasePlate2019}.
 
 \begin{figure}[ht]
@@ -168,7 +168,7 @@ This signal decay, combined with the low SNR of the images, poses a resolution l
 
 So far we discussed what happens to the fourier transform or PS of an image, that is in \textbf{fourier space}; in practice, the CTF has visible effects also in \textbf{real space}.
 The signal becomes delocalized, blurring the image; as explained by the convolution theorem~\cite{wikipediaConvolutionTheorem2024}, this delocalization is the result of the convolution of the fourier transform of the CTF (known as Point Spread Function or PSF) with the image.
-Delocalization of signal directly affects how image processing is performed; for example, particle picking should account for it by extracting bigger image patches to ensure delocalized signal can be deconvolved when CTF correcting (see \nameref{em_particle_picking}).
+Delocalization of signal directly affects how image processing is performed; for example, particle picking should account for it by extracting bigger image patches to ensure delocalized signal can be deconvolved when CTF correcting (see \fullref{em_particle_picking}).
 
 \subsection{Preprocessing}\label{em_preprocessing}
 
@@ -178,8 +178,8 @@ First, each movie generated during data collection must be aligned and averaged.
 In state of the art applications, this alignment is typically done not only on a full frame level, but also in a localized fashion, by aligning image patches or by describing the system with a smooth deformation field~\cite{zhengMotionCor2AnisotropicCorrection2017,punjaniCryoSPARCAlgorithmsRapid2017,tegunovRealtimeCryoelectronMicroscopy2019}.
 
 In state of the art software, similarly to how motion correction is treated, defocus (and thus CTF) is estimated at a local level, accounting for variability in the positioning of the sample with respect to the detector.
-The parameters thus obtained are later used to correct for the CTF during classification and reconstruction (see \nameref{em_classification} and \nameref{em_reconstruction}).
-Modern workflows also offer the ability to later refine the deformation parameters as part of the refinement process (see \nameref{em_refinement}).
+The parameters thus obtained are later used to correct for the CTF during classification and reconstruction (see \fullref{em_classification} and \fullref{em_reconstruction}).
+Modern workflows also offer the ability to later refine the deformation parameters as part of the refinement process (see \fullref{em_refinement}).
 
 Both motion correction and CTF estimation --- as well as many other steps and techniques in image processing --- rely on the ability to quantify the similarity of two signals; this is typically done by calculating the cross-correlation (CC) of the images or signals.
 
@@ -187,7 +187,7 @@ Both motion correction and CTF estimation --- as well as many other steps and te
 
 The CC of two signals (such as two images) is a measure of how similar the two signals are at all possible relative shifts.
 The CC function of two signals will be higher for signals that present more similar features, and have a peak at the relative shift where the signals present strongest similarity (\autoref{fig:em_cross_correlation}).
-This is a useful feature for most applications, because we often care about where exactly the similarity is high (e.g. for motion correction and particle picking (see \nameref{em_particle_picking})).
+This is a useful feature for most applications, because we often care about where exactly the similarity is high (e.g. for motion correction and particle picking (see \fullref{em_particle_picking})).
 
 \begin{figure}[ht]
     \centering
@@ -202,7 +202,7 @@ In the case of 2D data, calculating the cross-correlation of two images often al
 \subsubsection{Filtering and denoising}\label{em_filtering_and_denoising}
 
 Due to the low SNR of cryo-EM data, even motion-corrected micrographs can can be surprisingly hard to interpret.
-To enhance the contrast of biological features and better judge the quality of the data --- as well as improve the ability to distinguish particles from the background and from one another for the purposes of picking (see \nameref{em_particle_picking}) --- micrographs often undergo a round of filtering and/or denoising.
+To enhance the contrast of biological features and better judge the quality of the data --- as well as improve the ability to distinguish particles from the background and from one another for the purposes of picking (see \fullref{em_particle_picking}) --- micrographs often undergo a round of filtering and/or denoising.
 
 The simplest --- and most commonly used --- type of filtering is fourier masking; by reducing or zeroing the values inside a disc or annulus in fourier space, the respective spatial frequencies are dampened in the image.
 In practice, this is often used to remove high-frequency components (low-pass filter), but there are also sometimes benefits to the removal of other ranges of spatial frequencies (\autoref{fig:em_filtering}).
@@ -231,12 +231,12 @@ The most commonly used are variations of: manual picking, template matching, and
 
 Manual picking is generally more intuitive and can be very precise, but is also tedious and time-consuming.
 Data may also be too noisy for humans to distinguish particles from one another and from the background, leading to missed particles or wrong picks.
-To aid with manual picking, preprocessed micrographs are often filtered and denoised to improve the contrast (see \nameref{em_filtering_and_denoising}).
+To aid with manual picking, preprocessed micrographs are often filtered and denoised to improve the contrast (see \fullref{em_filtering_and_denoising}).
 
 To improve the picking speed and precision, template matching is often used to automate searching for a recognizable object.
 This picking method requires a template, a small image of a 2D projection of the object of interest.
-This can be obtained in a few ways: synthetically (by using a generated shape), by projecting a known map or model from previous work, or by using the results of a first round of 2D classification (see \nameref{em_classification}) from a preliminary manual picking.
-While the exact details of the algorithm may vary, at its core template matching relies on calculating the CC (see \nameref{em_cross_correlation}) function between the template and the micrographs in order to locate putative particles positions in the whole dataset.
+This can be obtained in a few ways: synthetically (by using a generated shape), by projecting a known map or model from previous work, or by using the results of a first round of 2D classification (see \fullref{em_classification}) from a preliminary manual picking.
+While the exact details of the algorithm may vary, at its core template matching relies on calculating the CC (see \fullref{em_cross_correlation}) function between the template and the micrographs in order to locate putative particles positions in the whole dataset.
 
 TODO: figure with template and picks on the micrograph?
 
@@ -245,14 +245,14 @@ More recently, template matching is often being replaced with machine learning, 
 There are also "structured" variants of all these picking methods, where some existing geometric and structural knowledge about the system is used to inform the picking in some way.
 For example, filament picking is quite commonly used due to how widespread helical assemblies are in biology; it can be done manually~\cite{scheresRELIONImplementationBayesian2012,heHelicalReconstructionRELION2017}, with template-based methods~\cite{punjaniCryoSPARCAlgorithmsRapid2017}, and using ML~\cite{wagnerSPHIREcrYOLOFastAccurate2019,wagnerEvolutionSPHIREcrYOLOParticle2020}.
 
-Regardless of the picking method, it is important to ensure that the target object is represented with projections from many different orientations; this will be crucial to properly reconstruct a 3D map of the object (see \nameref{em_reconstruction}).
+Regardless of the picking method, it is important to ensure that the target object is represented with projections from many different orientations; this will be crucial to properly reconstruct a 3D map of the object (see \fullref{em_reconstruction}).
 
 \subsection{2D classification}\label{em_classification}
 
 Even with the best data and most advanced methods, picked particles typically contain a variety of several different objects, conformations, and spurious background picks; before moving on to reconstruction, useful particles need to be separated from the chaff.
 To do so, particles are separated into groups based on similarity, in a process called 2D classification.
 
-Once again, some form of cross-correlation (see \nameref{em_cross_correlation}) is involved in the process, since the goal is to cluster together similar particles and separate different ones.
+Once again, some form of cross-correlation (see \fullref{em_cross_correlation}) is involved in the process, since the goal is to cluster together similar particles and separate different ones.
 The algorithm is typically iterative: after generating a initial classes by averaging random particles, particle poses are progressively refined to find the best CC score.
 Based on this score, each particle is assigned to a class (or a score for each class, in probabilistic models~\cite{scheresRELIONImplementationBayesian2012}), and for each class a class average is computed, combining the signal from all the particles belonging to that class. The more poses are refined, the more the signal that's shared by similar particles is boosted, improving the SRN of the class average.
 Class averages are used to calculate the CC at each iteration, and used at the end of the process to inspect the dataset and select only the useful particles (\autoref{fig:em_classification}).
@@ -298,7 +298,7 @@ Instead of assigning classes, projection matching refines the relative (3D) orie
 The 3D model is initally either derived from previous work, or generated \textit{ab initio} from the particles themselves.
 During each iteration, particles' FTs are used to fill a 3D FT according to central slice theorem, which allows to generate a new 3D model.
 The assigned orientations are progressively refined in order to improve the model resolution.
-Once there is no longer significant improvement (see \nameref{em_fsc}), the process stops, and the final 3D map is generated.
+Once there is no longer significant improvement (see \fullref{em_fsc}), the process stops, and the final 3D map is generated.
 
 \begin{figure}[ht]
     \centering
@@ -385,7 +385,7 @@ This section describes the theory of cryo-ET, how it deviates from SPA, and the 
 
 \subsection{Sample preparation}
 As with SPA, vitrification remains the key step of sample preparation for cryo-ET.
-Due to the intrinsically worse SNR due to the lower electron dose used during data collection (see \nameref{et_data_collection}), cryo-ET sample preparation requires extra care to reduce any possible source of additional noise.
+Due to the intrinsically worse SNR due to the lower electron dose used during data collection (see \fullref{et_data_collection}), cryo-ET sample preparation requires extra care to reduce any possible source of additional noise.
 
 One such source is the thickness of the sample; unfortunately, this is often antithetical to samples such as entire cells or organelles, where cryo-ET \textit{in situ} benefits really shine.
 Initially, this problem was tackled by either prepararing simpler model systems \textit{in vitro} --- moving partly away from the native state --- or by cutting thin slices from a thicker sample via cryo-ultramicrotomy~\cite{peaseElectronMicroscopyUltramicrotomy1981}.
@@ -399,50 +399,71 @@ Preparing lamellae via FIB milling is becoming standard procedure in cryo-ET, bu
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/fib.png}
-    \caption[FIB milling]{Microscope snapshots from FIB milling procedure on \textit{Deinococcus radiodurans}. A cluster of cells, visible as a bump on the SEM, is selected from the grid (top left). From a shallow angle of around 15 degrees from the grid (top right) the FIB is used to ablate material above and below the area of interest. This leaves a thin lamellae suitable for cryo-ET (bottom). Milled cell drawing (bottom left) taken from ~\citet{villaOpeningWindowsCell2013}.}
+    \caption[FIB milling]{Microscope snapshots from FIB milling procedure on \textit{Deinococcus radiodurans}. A cluster of cells, visible as a bump on the SEM, is selected from the grid (top left). From a shallow angle of around \ang{15} from the grid (top right) the FIB is used to ablate material above and below the area of interest. This leaves a thin lamellae suitable for cryo-ET (bottom). Milled cell drawing (bottom left) taken from ~\citet{villaOpeningWindowsCell2013}.}
     \label{fig:et_fib_milling}
 \end{figure}
 
-\subsubsection{Fiducials}
+\subsubsection{Fiducials}\label{fiducials}
 During data collection, despite vitrification, samples undergo different kinds of deformations.
-Moreover, due to the intrinsic imprecision of controlling the hardware of the microscope, there will always be some shift and angle mismatch between different tilts during a tilt series collection (see \nameref{et_data_collection}).
+Moreover, due to the intrinsic imprecision of controlling the hardware of the microscope, there will always be some shift and angle mismatch between different tilts during a tilt series collection (see \fullref{et_data_collection}).
 
-To help with correcting these errors, it is often useful to add to the same some fiducials: small high-contrast, round objects (typically gold beads) that can later be used to estimate sample shift, rotation, and deformations (see \nameref{et_tilt_series_alignment}).
+To help with correcting these errors, it is often useful to add to the same some fiducials: small high-contrast, round objects (typically gold beads) that can later be used to estimate sample shift, rotation, and deformations (see \fullref{et_tilt_series_alignment}).
 
 \subsection{Data collection}\label{et_data_collection}
 In order to acquire a sequence of images at different tilts (termed \textbf{tilt series}) for tomographic reconstruction, the same area of the sample needs to be imaged at a range of different angles.
 This requires longer and more sophisticated routines compared to SPA, since for each tilt angle the sample stage must be moved, the eucentric height reestablished, the lens refocused.
 
-Additionally, much lower electron dose than SPA must be used to preserve the specimen from radiation damage for multiple images.
-This results in significantly noisier images, which contributes to the difficulty of processing cryo-ET data.
+Due to the multiple exposures, in order to preserve the specimen from radiation damage the electron duse must be fractionated to much lower than typical in SPA, but still high enough to capture enough signal to allow motion correction~\cite{mcewenRelevanceDosefractionationTomography1995}.
+
+Each subsequent exposure further damages the sample, which degrades the high resolution information first.
+This, in combination with the fact that in cryo-ET the electron beam has to traverse a thicker sample at high tilts --- leading to worse SNR --- created the need for optimized collection schemes.
+The most commonly used nowadays is the Hagen (or dose-symmetric)  scheme~\cite{hagenImplementationCryoelectronTomography2017}: it collects the first image at \ang{0} tilt, and then alternates between negative and positive tilts until it reaches the maximum tilt.
+This minimizes the radiation damage when SNR is best, allowing to capture high resolution information at its prime, before it is degraded.
+
+Due to the geometry of the sample and its support within the microscope, there is a limit to how high an angle can be reached when tilting the sample.
+This angle is typically around \ang{60}-\ang{70}, beyond which either the sample grid comes into view, or the sample becomes too thick for imaging at such low doses.
+This will result in a \textbf{missing wedge} of information during tomographic reconstruction (see \fullref{et_tomo_reconstruction}).
+
+Conventional wisdom sets the interval between subsequent tilts at around \ang{3} to ensure enough fourier space filling while limiting radiation damage, though depending on the application --- especially where certain spatial frequencies are considered important or over-represented in the sample --- it might be worth considering smaller, wider, or non-linear increments~\cite{copeCryoElectronTomographyStructural2011}.
 
 \subsection{Preprocessing}
-Cryo-ET data undergoes similar preprocessing steps as SPA data (see \nameref{em_preprocessing}), albeit with less precision due to the low electron dose.
+Cryo-ET data undergoes similar preprocessing steps as SPA data (see \fullref{em_preprocessing}), albeit with less precision due to the low electron dose.
 
-TODO: mention 3D CTF (though it happens later)
+While at this point single particle data is ready for particle picking and other downstream work, cryo-ET data must still undergo tomographic reconstruction in order to obtain the 3D volumetric reconstruction of the sample.
 
-\subsection{Tomogram reconstruction}
-While single particle data is ready for particle picking after preprocessing, cryo-ET data must still undergo tomographic reconstruction in order to obtain the 3D volumetric reconstruction of the sample.
-
-To do so, tilt series alignment parameters must first be estimated, in order to correct for equipment imprecision and sample deformations.
+To do so, tilt series alignment parameters must first be estimated in order to correct for equipment imprecision and sample deformations, and then used the 3D volume reconstruction.
 
 \subsubsection{Tilt series alignment}\label{et_tilt_series_alignment}
 The most basic alignment procedures require at least full-frame aligment; similar to motion correction, tilt images are rotated and shifted in order to maximize their CC score.
-Where fiducials are present, these can be assumed to be static within the sample and used instead as anchors to estimate the geometric transformation between different tilts.
+Where fiducials are present (see \fullref{fiducials}), these can be treated as static points within the sample and used instead as anchors to mathematically estimate the geometric transformation between different tilts~\cite{nicastroMolecularArchitectureAxonemes2006,heumannClusteringVarianceMaps2011,castano-diezDynamoCatalogueGeometrical2017}.
 
-In state of the art software, alignment procedures (with fiducials or not) also account for spatio-temporal deformations of the sample, either already during tilt series alignment~\cite{zhengAreTomoIntegratedSoftware2022}, or later during refinement~\cite{tegunovMultiparticleCryoEMRefinement2021,burtImageProcessingPipeline2024,galaz-montoyaSingleParticleTomography2015}.
+In state of the art software, alignment procedures (with or without fiducials) can also account for spatio-temporal deformations of the sample, either already during tilt series alignment~\cite{zhengAreTomoIntegratedSoftware2022}, or later during refinement~\cite{tegunovMultiparticleCryoEMRefinement2021,burtImageProcessingPipeline2024,galaz-montoyaSingleParticleTomography2015} (see \fullref{et_refinement}).
 
-\subsubsection{Reconstruction}
-Similarly to how 3D reconstructions are obtained from 2D particles in SPA based on the central slice theorem (see \nameref{em_reconstruction}), the aligned tilt series can be used to reconstruct the full tomogram.
-Depending on the software suite and workflow, full tomogram reconstructions may be used only for template matching (see \nameref{et_particle_picking}) and segmentation purposes, or also to extract subtomograms at small pixel sizes for subtromogram averaging (see \nameref{et_sta}).
+\subsubsection{Tomogram Reconstruction}\label{et_tomo_reconstruction}
+Similarly to how 3D reconstructions are obtained from 2D particles in SPA based on the central slice theorem (see \fullref{em_reconstruction}), the aligned tilt series can be used to reconstruct the full tomogram.
+Depending on the software suite and workflow, full tomogram reconstructions may be used only for template matching (see \fullref{et_particle_picking}) and segmentation purposes, or also to extract subtomograms at small pixel sizes for subtromogram averaging (see \fullref{et_sta}).
+
+Due to...
+
+TODO: mention 3D CTF (though it happens later, ~\cite{turonovaEfficient3DCTFCorrection2017})
 
 TODO: missing wedge
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{example-image-16x9.png}
+    \caption{TODO: missing wedge}
+    \label{fig:et_missing_wedge}
+\end{figure}
+
 \subsection{Particle picking}\label{et_particle_picking}
+...
 
 \subsection{Subtomogram averaging}\label{et_sta}
+...
 
 \subsection{Refinement}\label{et_refinement}
+...
 
 \newpage
 
