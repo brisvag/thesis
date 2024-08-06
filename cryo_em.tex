@@ -207,13 +207,12 @@ To enhance the contrast of biological features and better judge the quality of t
 The simplest --- and most commonly used --- type of filtering is fourier masking; by reducing or zeroing the values inside a disc or annulus in fourier space, the respective spatial frequencies are dampened in the image.
 In practice, this is often used to remove high-frequency components (low-pass filter), but there are also sometimes benefits to the removal of other ranges of spatial frequencies (\autoref{fig:em_filtering}).
 
-(TODO: actually do this image with something noisy and show the benefits; explain benefit of other filterings)
-
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/filtering.png}
-    \caption[Fourier filtering]{Examples of how the final image (top) is affected by fourier filtering (bottom). From left to right: no filtering, low-pass, band-pass, high-pass. As highlighted by the difference between the low-passed (second column) and high-passed (last column) images, a small amount of low spatial frequency information is responsible for the majority of our perception of the general shape of an object.}
+    \caption[Fourier filtering]{Examples of how filtering a noisy image (top left image) with different kinds of fourier masks (bottom row) produces different results (top row). From left to right: no filtering, low-pass, band-pass, high-pass. Low-pass filtering can restore interpretability of highly noisy images. As highlighted by the difference between the low-passed (second column) and high-passed (last column) images, a very small range of low spatial frequencies is actually responsible for the majority of our perception of the general shape of an object. Noise, on the other hand, more strongly affects high resolution information.}
     \label{fig:em_filtering}
+    % TODO: made with filter.py
 \end{figure}
 
 In the last few years, ML-based denoising has become standard practice, with algorithms such as noise2noise and noise2void~\cite{lehtinenNoise2NoiseLearningImage2018,krullNoise2VoidLearningDenoising2019} being implemented in several cryo-EM software suites~\cite{beplerTopazDenoiseGeneralDeep2020,tegunovRealtimeCryoelectronMicroscopy2019,buchholzCryoCAREContentAwareImage2018}.

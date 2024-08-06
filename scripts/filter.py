@@ -4,6 +4,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 from scipy.fft import fftn, fftshift, ifftn, ifftshift
+from skimage.util import random_noise
 import napari
 
 def smoothstep_normalized(arr, min_val, max_val):
@@ -33,15 +34,15 @@ def annulus(shape, start, end, padding=0.0):
     return mask
 
 
-
 if __name__ == '__main__':
     im = Image.open('/home/brisvag/Downloads/moyai.jpg').convert('L')
     a = np.asarray(im)
+    a = random_noise(a, var=0.5)
     ft = fftshift(fftn(a))
     ps = np.log(np.abs(ft)**2 - 1)
 
     lowpass = annulus(a.shape, 0, .05, padding=0.01)
-    bandpass = annulus(a.shape, .02, .1, padding=0.01)
+    bandpass = annulus(a.shape, .02, .15, padding=0.01)
     highpass = annulus(a.shape, .1, 2, padding=0.01)
 
     ft_low = ft * lowpass
