@@ -107,11 +107,12 @@ In cryo-ET, the equivalent to SPA's 2D classificatin and 3D refinement is subtom
 The idea at the core is the same: by combining the data from many subvolumes extracted from the tomogram (subtomograms) which contain copies of the same object, the SNR can be drastically improved.
 The basic procedure is also very similiar to SPA, only in 3D: subtomograms are extracted from the full reconstructed tomogram based on the positions of the particle picks; then, rounds of cross-correlation and refinement (and/or classification) improve the model until convergence (see \fullref{em_classification}).
 
-In recent years, however, the field is moving away from this simpler approach where "rigid" subtomograms are extracted from a full 3D reconstruction, in favor of directly reconstructing subtomograms from the 2D data, using what is sometimes called \textbf{per-particle tilt series}~\cite{zivanovBayesianApproachSingleparticle2022,tegunovRealtimeCryoelectronMicroscopy2019,chenCompleteDataProcessing2019}.
-This opens up many avenues for optimization, such as 3D-CTF correction (see \fullref{et_tomo_reconstruction})~\cite{turonovaEfficient3DCTFCorrection2017}, multi-particle refinement~\cite{tegunovMultiparticleCryoEMRefinement2021}, bayesian polishing~\cite{zivanovBayesianApproachSingleparticle2022}, and more.
+In recent years, however, the field is moving away from this naive approach where "rigid" subtomograms are extracted from a full 3D reconstruction, in favor of directly reconstructing subtomograms from the 2D data, using what is sometimes called \textbf{per-particle tilt series}~\cite{zivanovBayesianApproachSingleparticle2022,tegunovRealtimeCryoelectronMicroscopy2019,chenCompleteDataProcessing2019}.
+This opens up many avenues for optimization --- such as 3D-CTF correction (see \fullref{et_tomo_reconstruction})~\cite{turonovaEfficient3DCTFCorrection2017}, multi-particle refinement~\cite{tegunovMultiparticleCryoEMRefinement2021} or bayesian polishing~\cite{zivanovBayesianApproachSingleparticle2022} --- by not allowing the subtomogram reconstruction parameters to be tweaked after the first reconstruction (see \fullref{em_refinement}).
 
-
-TODO: missing wedge effect on alignment
+A significant obstacle during alignment is caused by the missing wedge; it is such a prominent feature that during cross-correlation, it would normally overpower everything else in the subtomograms.
+Because of this, subtomograms would end up being rotationally aligned based on how they are rotated relative to the missing wedge, instead of their relative rotation to each other.
+For this reason, missing wedge compensation is a crucial step for the success of STA procedures~\cite{galaz-montoyaAlignmentAlgorithmsPerparticle2016} (CITE more).
 
 \section{Refinement}\label{et_refinement}
 
@@ -119,3 +120,34 @@ TODO: not sure if there's anything else to say here, maybe no need.
 
 \section{Pros and Cons}
 ...
+
+TODO: end with sentence on how lots of limitations are due to the current state of the software ecosystem
+
+\begin{outline}
+\1 \tick base concepts and differences from SPA from thechnical standpoint
+    \2 \tick cryoem, but different data acquisition and thus data processing
+    \2 \tick exposure damage and dose issues
+    \2 \tick sample prep (thinnes especially important because SNR)
+    \2 \tick tilt-series alignment (fiducials), deformation, other aberrations, how they are tackled
+    \2 \tick 3D CTF
+    \2 \tick missing wedge, issues it introduces
+    \2 \tick feature deletion (e.g: fiducials)
+    \2 \tick segmentation/morphology
+    \2 \tick STA (picking, averaging, classification, ...) for non-unique objects (template matching, geometric and template free, machin learning)
+\1 \tick some references/reviews (cool stuff you can do)
+    \2 \tick \cite{turkPromiseChallengesCryoelectron2020,lucicCryoelectronTomographyChallenge2013}
+\1 what it provides compared to SPA
+    \2 more native state and context preservation
+    \2 single-particle insights
+    \2 mesoscale and superstructural information
+\1 limitations (both in terms of technique, and in terms of current state of development)
+    \2 (some mentioned before, maybe need to connect these two parts a bit better)
+    \2 need for custom workflow cause the goal and problems are usually unique
+    \2 issues caused by the missing wedge (alignement, reconstruction, interpretability)
+    \2 SNR, denoising
+    \2 visualisation/interaction
+    \2 object identification (crowding
+\1 related techinques to overcome some limitations
+    \2 \tick FIB, what it enables and how it works
+    \2 CLEM
+\end{outline}

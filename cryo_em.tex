@@ -338,7 +338,7 @@ TODO: feels like I should expand, but it's also not very important here. Sharpen
 
 \section{Refinement}\label{em_refinement}
 Once a 3D model is obtained, several state of the art software pipelines offer the ability to refine previously-defined parameters, using the estimated resolution of the 3D reconstruction validate the improvements.
-The parameters that can be refined range from particle positions and orientations, to CTF estimation and motion correction, to more complex artifact-inducing factors such as lens aberrations and Ewald sphere curvature~\cite{tegunovMultiparticleCryoEMRefinement2021,punjaniCryoSPARCAlgorithmsRapid2017}.
+The parameters that can be refined range from particle positions and orientations, to CTF estimation and motion correction, to more complex artifact-inducing factors such as lens aberrations and Ewald sphere curvature~\cite{tegunovMultiparticleCryoEMRefinement2021,punjaniCryoSPARCAlgorithmsRapid2017,scheresRELIONImplementationBayesian2012}.
 
 The implementation details of refinement procedures are often quite different between software, but are generally based on an iterative process where parameters are adjusted on a per-particle basis, and a new 3D reconstruction is generated and validated via FSC to estimate the effects of the correction applied.
 
@@ -376,57 +376,29 @@ A method that promises to solve these problems is cryo-electron tomography: a te
 \FloatBarrier
 
 \begin{outline}
-\1 Background on Cryo-EM in structural biology
-    \2 \tick Base concepts (do not spend too much time on this)
-        \3 \tick sample prep
-        \3 \tick exposure damage
-        \3 \tick role of detectors and resolution revolution \cite{faruqiCCDDetectorsHighresolution2000}
-        \3 \tick data collection
-        \3 \tick image formation
-        \3 \tick CTF
-        \3 \tick defocus (and ranges of defocus) and info spread
-        \3 \tick dataset cleaning
-        \3 \tick particle picking
-        \3 \tick cross correlation
-        \3 \tick 2D classification and selection
-        \3 \tick typical processing steps, theory behind reconstruction and classification (more time here as it's more relevant for cryoet and my work)
-        \3 \tick single particle analisys
-        \3 \tick model building
-    \2 \tick typical use cases (some example of single particle data, maybe using ftsz images) and advantages
-        \3 \tick no crystal, simpler sample prep
-        \3 \tick heterogeneity to a certain extent
-        \3 \tick more native state
-        \3 \tick bigger targets? complexes
-    \2 \tick limitations (leading up to cryo-et) and comparison with other techniques (xray, nmr)
-        \3 \tick sample prep/thickness/denaturation
-        \3 \tick context missing
-        \3 \tick ability to capture dynamics/heterogeneity (more/less than other techniques)
-        \3 \tick Signal/Noise
-\1 cryo-et, concepts and advantages
-    \2 \tick base concepts and differences from SPA from thechnical standpoint
-        \2 \tick cryoem, but different data acquisition and thus data processing
-        \3 \tick exposure damage and dose issues
-        \3 \tick sample prep (thinnes especially important because SNR)
-        \3 \tick tilt-series alignment (fiducials), deformation, other aberrations, how they are tackled
-        \3 \tick 3D CTF
-        \3 \tick missing wedge, issues it introduces
-        \3 \tick feature deletion (e.g: fiducials)
-        \3 \tick segmentation/morphology
-        \3 \tick STA (picking, averaging, classification, ...) for non-unique objects (template matching, geometric and template free, machin learning)
-    \2 \tick some references/reviews (cool stuff you can do)
-        \3 \tick \cite{turkPromiseChallengesCryoelectron2020,lucicCryoelectronTomographyChallenge2013}
-    \2 what it provides compared to SPA
-        \3 more native state and context preservation
-        \3 single-particle insights
-        \3 mesoscale and superstructural information
-    \2 limitations (both in terms of technique, and in terms of current state of development)
-        \3 (some mentioned before, maybe need to connect these two parts a bit better)
-        \3 need for custom workflow cause the goal and problems are usually unique
-        \3 issues caused by the missing wedge (alignement, reconstruction, interpretability)
-        \3 SNR, denoising
-        \3 visualisation/interaction
-        \3 object identification (crowding
-    \2 related techinques to overcome some limitations
-        \3 FIB, what it enables and how it works
-        \2 CLEM
+\1 \tick Base concepts (do not spend too much time on this)
+    \2 \tick sample prep
+    \2 \tick exposure damage
+    \2 \tick role of detectors and resolution revolution \cite{faruqiCCDDetectorsHighresolution2000}
+    \2 \tick data collection
+    \2 \tick image formation
+    \2 \tick CTF
+    \2 \tick defocus (and ranges of defocus) and info spread
+    \2 \tick dataset cleaning
+    \2 \tick particle picking
+    \2 \tick cross correlation
+    \2 \tick 2D classification and selection
+    \2 \tick typical processing steps, theory behind reconstruction and classification (more time here as it's more relevant for cryoet and my work)
+    \2 \tick single particle analisys
+    \2 \tick model building
+\1 \tick typical use cases (some example of single particle data, maybe using ftsz images) and advantages
+    \2 \tick no crystal, simpler sample prep
+    \2 \tick heterogeneity to a certain extent
+    \2 \tick more native state
+    \2 \tick bigger targets? complexes
+\1 \tick limitations (leading up to cryo-et) and comparison with other techniques (xray, nmr)
+    \2 \tick sample prep/thickness/denaturation
+    \2 \tick context missing
+    \2 \tick ability to capture dynamics/heterogeneity (more/less than other techniques)
+    \2 \tick Signal/Noise
 \end{outline}
