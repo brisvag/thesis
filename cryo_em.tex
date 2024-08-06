@@ -370,14 +370,14 @@ On the other hand, NMR takes the near-native crown, being able to collect data o
 
 However, near-native is often not enough: all these techniques rely on drawing information about an ensemble of molecules, typically with a purified sample prepared \textit{in vitro}.
 Often, macromolecular systems can only be fully understood by accounting for their biological context, which is partly or fully lost in the expression and purification process.
-When studying biological systems that form larger meso-scale and dynamic complexes, having a three-dimensional understanding of invididual events within their context becomes paramount.
+When studying biological systems that form larger mesoscale and dynamic complexes, having a three-dimensional understanding of invididual events within their context becomes paramount.
 
 A method that promises to solve these problems is cryo-electron tomography: a technique that can look not only at purified samples, but at entire organisms, \textit{in situ} and near-native conditions, with the ability to reach high resolutions via subtomogram averaging, while retaining contextual information and providing a 3D view into single events.
 
 
 \section[Cryo-ET and STA]{Cryo-electron tomography and subtomogram averaging}
 
-Tomographic reconstruction is not a recent invention: the first appearance goes back more than a century~\cite{jDeterminationFunctionsTheir1917}; its successful application to cryo-EM, however, is only a recent development closely linked to the resolution revolution, which allowed to finally overcome the biggest overarching limitation of cryo-ET --- poor signal-to-noise ratio --- enough to reach sub-nanometer resolutions.
+Tomographic reconstruction is not a recent invention: the first appearance goes back more than a century~\cite{jDeterminationFunctionsTheir1917}; its successful application to cryo-EM, however, is only a recent development closely linked to the resolution revolution, which allowed to finally overcome the biggest overarching limitation of cryo-ET --- poor signal-to-noise ratio --- enough to reach sub-nanometer resolutions~\cite{lucicCryoelectronTomographyChallenge2013,turkPromiseChallengesCryoelectron2020}.
 
 At its core, cryo-ET is just cryo-EM with extra steps; they share much of the theory, hardware and software.
 The key difference is that, where single particle cryo-EM uses projections from different \textit{copies} of the same object to reconstruct a 3D map, cryo-ET images the same location from multiple orientations in order to reconstruct a 3D map from multiple projections of the \textit{same} object.
@@ -437,32 +437,64 @@ To do so, tilt series alignment parameters must first be estimated in order to c
 The most basic alignment procedures require at least full-frame aligment; similar to motion correction, tilt images are rotated and shifted in order to maximize their CC score.
 Where fiducials are present (see \fullref{fiducials}), these can be treated as static points within the sample and used instead as anchors to mathematically estimate the geometric transformation between different tilts~\cite{nicastroMolecularArchitectureAxonemes2006,heumannClusteringVarianceMaps2011,castano-diezDynamoCatalogueGeometrical2017}.
 
-In state of the art software, alignment procedures (with or without fiducials) can also account for spatio-temporal deformations of the sample, either already during tilt series alignment~\cite{zhengAreTomoIntegratedSoftware2022}, or later during refinement~\cite{tegunovMultiparticleCryoEMRefinement2021,burtImageProcessingPipeline2024,galaz-montoyaSingleParticleTomography2015} (see \fullref{et_refinement}).
+In state of the art software, alignment procedures (with or without fiducials) can also account for spatio-temporal deformations of the sample, either already during tilt series alignment~\cite{zhengAreTomoIntegratedSoftware2022}, or later during refinement~\cite{tegunovMultiparticleCryoEMRefinement2021,burtImageProcessingPipeline2024,galaz-montoyaSingleParticleTomography2015,chenCompleteDataProcessing2019} (see \fullref{et_refinement}).
 
 \subsubsection{Tomogram Reconstruction}\label{et_tomo_reconstruction}
 Similarly to how 3D reconstructions are obtained from 2D particles in SPA based on the central slice theorem (see \fullref{em_reconstruction}), the aligned tilt series can be used to reconstruct the full tomogram.
 Depending on the software suite and workflow, full tomogram reconstructions may be used only for template matching (see \fullref{et_particle_picking}) and segmentation purposes, or also to extract subtomograms at small pixel sizes for subtromogram averaging (see \fullref{et_sta}).
 
-Due to...
+Differently from SPA, cryo-ET has the advantage of knowing the 3D positioning of features in the tomogram.
+This allows to bring defocus estimation and CTF correction to the next level: not only is CTF locally estimated depending on the in-plane position of features, but also accounting for the defocus difference between the top and bottom of the sample.
+While this idea was around for a long time, only in recent years tools were developed that can run in reasonable time and significantly improve the final resolution~\cite{turonovaEfficient3DCTFCorrection2017,tegunovRealtimeCryoelectronMicroscopy2019}. 
+Depending on the software, 3D-CTF might be estimated and corrected at different levels (tilt image, full tomogram or subtomogram), and may be able to be refined during refinement (see \fullref{et_refinement}).
 
-TODO: mention 3D CTF (though it happens later, ~\cite{turonovaEfficient3DCTFCorrection2017})
+Due to the limited range of tilt angles collected in typical cryo-ET workflows, not all views of the sample are represented; when reconstructing the 3D FT of the sample, this is clearly visible in in fourier space as a wedge of missing information (\autoref{fig:et_missing_wedge}).
+The missing wedge introduces several problems in downstream processing: it blurs the tomogram in the Z direction, it biases subtomogram alignment, and it leads to anisotropic resolution for objects with preferential orientation.
 
-TODO: missing wedge
+If fiducials (or other high-contrast objects of no real interest) are present in the sample, it is often useful to mask them during reconstruction, in order to avoid the high-contrast artifactual streaks caused by the missing wedge, which can impair the interpretability of the tomogram~\cite{tegunovRealtimeCryoelectronMicroscopy2019,burtTeamtomoFidder2024}.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{example-image-16x9.png}
-    \caption{TODO: missing wedge}
+    \includegraphics[width=\textwidth]{introduction/missing_wedge.png}
+    \caption[Missing wedge]{2D slice through the 3D FT of a tomogram, perpendicular to the tilt axis. The 2D FT of images of the tiltseries are visible as lines at regular angular spacing; at the top and bottom they are not present, creating the missing wedge.}
     \label{fig:et_missing_wedge}
 \end{figure}
 
+\subsection{Annotation and segmentation}\label{et_annotation_segmentation}
+Thanks to the \textit{in situ} and quasi-native nature of tomography data, it is often useful to annotate or segment tomograms in order to get a better view of the morphology of the sample, or to find areas and particles of interest more easily.
+
+One of the most common approaches is to do semantic segmentation (aka labeling), where individual voxels are assigned a type --- "membrane", "ribosome", and so on, though usually in the form of a integer --- either by manually painting over the sample, or automatically via image processing algorithms or ML tools.
+Labeling helps with visualisation by boiling down the sample to its most fundamental components, while also serving as a powerful tool for quantitative and morphological analysis of complex mesoscale objects.
+To this end, segmentations are often used as starting point for other kinds of annotations, such as abstracting membranes or filaments to mathematical objects like splines and skeletons (CITE skan?) in order to calculate properties such as membrane curvature, filament branch length, and so on.
+
+In some projects, morphology is all that matters, with no need to reach high resolution; in such cases, the cryo-ET pipeline can stop after annotation.
+Where high resolution molecular structures are the goal, segmentations and other annotations may also be used as a starting point for particle picking.
+
 \subsection{Particle picking}\label{et_particle_picking}
-...
+Picking particles in tomograms is not so different from picking particles from 2D micrographs, other than having an extra dimension.
+Manual picking and template matching are still the preferred methods, though more and more software is developed for ML-based or hybrid methods (CITE cryolo, ...).
+
+As with most things in cryo-ET, low SNR is the main obstacle to overcome; this is why some picking tools --- such as the one developed during this thesis (see \fullref{blik}) --- attempt to use as much prior knowledge about the system as possible in order to limit the degrees of freedom when searching for particles~\cite{castano-diezDynamoCatalogueGeometrical2017,wagnerEvolutionSPHIREcrYOLOParticle2020,gaifasBlikExtensible3D2024}.
+
+Whenever possible, segmentation or other kinds of annotation can be used as baseline for particle picking: either by masking areas of interest --- such as picking only inside a certain cellular structure --- or by seeding particle picks based on the annotation geometry --- such as distributing particles on the surface of a membrane.
+Such information may also be used to initialize the particle orientation to something self-consistent (e.g: all perpendicular to the membrane); this can affect drastically the initial model generation and subsequent refinement, where 3D rotational search may otherwise not overcome the SNR.
 
 \subsection{Subtomogram averaging}\label{et_sta}
-...
+In cryo-ET, the equivalent to SPA's 2D classificatin and 3D refinement is subtomogram averaging (STA).
+The idea at the core is the same: by combining the data from many subvolumes extracted from the tomogram (subtomograms) which contain copies of the same object, the SNR can be drastically improved.
+The basic procedure is also very similiar to SPA, only in 3D: subtomograms are extracted from the full reconstructed tomogram based on the positions of the particle picks; then, rounds of cross-correlation and refinement (and/or classification) improve the model until convergence (see \fullref{em_classification}).
+
+In recent years, however, the field is moving away from this simpler approach where "rigid" subtomograms are extracted from a full 3D reconstruction, in favor of directly reconstructing subtomograms from the 2D data, using what is sometimes called \textbf{per-particle tilt series}~\cite{zivanovBayesianApproachSingleparticle2022,tegunovRealtimeCryoelectronMicroscopy2019,chenCompleteDataProcessing2019}.
+This opens up many avenues for optimization, such as 3D-CTF correction (see \fullref{et_tomo_reconstruction})~\cite{turonovaEfficient3DCTFCorrection2017}, multi-particle refinement~\cite{tegunovMultiparticleCryoEMRefinement2021}, bayesian polishing~\cite{zivanovBayesianApproachSingleparticle2022}, and more.
+
+
+TODO: missing wedge effect on alignment
 
 \subsection{Refinement}\label{et_refinement}
+
+TODO: not sure if there's anything else to say here, maybe no need.
+
+\subsection{Pros and Cons}
 ...
 
 \newpage
@@ -497,22 +529,22 @@ TODO: missing wedge
         \3 \tick ability to capture dynamics/heterogeneity (more/less than other techniques)
         \3 \tick Signal/Noise
 \1 cryo-et, concepts and advantages
-    \2 base concepts and differences from SPA from thechnical standpoint
+    \2 \tick base concepts and differences from SPA from thechnical standpoint
         \2 \tick cryoem, but different data acquisition and thus data processing
         \3 \tick exposure damage and dose issues
         \3 \tick sample prep (thinnes especially important because SNR)
         \3 \tick tilt-series alignment (fiducials), deformation, other aberrations, how they are tackled
-        \3 3D CTF
-        \3 missing wedge, issues it introduces
-        \3 feature deletion (e.g: fiducials)
-        \3 segmentation/morphology
-        \3 STA (picking, averaging, classification, ...) for non-unique objects (template matching, geometric and template free, machin learning)
-    \2 some references/reviews (cool stuff you can do)
-        \3 \cite{turkPromiseChallengesCryoelectron2020,lucicCryoelectronTomographyChallenge2013}
+        \3 \tick 3D CTF
+        \3 \tick missing wedge, issues it introduces
+        \3 \tick feature deletion (e.g: fiducials)
+        \3 \tick segmentation/morphology
+        \3 \tick STA (picking, averaging, classification, ...) for non-unique objects (template matching, geometric and template free, machin learning)
+    \2 \tick some references/reviews (cool stuff you can do)
+        \3 \tick \cite{turkPromiseChallengesCryoelectron2020,lucicCryoelectronTomographyChallenge2013}
     \2 what it provides compared to SPA
         \3 more native state and context preservation
         \3 single-particle insights
-        \3 meso-scale and superstructural information
+        \3 mesoscale and superstructural information
     \2 limitations (both in terms of technique, and in terms of current state of development)
         \3 (some mentioned before, maybe need to connect these two parts a bit better)
         \3 need for custom workflow cause the goal and problems are usually unique
