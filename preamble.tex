@@ -21,6 +21,7 @@
 \renewcommand*\backref[1]{\ifx#1\relax \else (pg. #1) \fi}
 \urlstyle{same} % don't use monospace font for urls
 \usepackage{hypernat} % fixes backref of ranges. must be after natbib and hyperref
+\newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{DOI:~\detokenize{#1}}} % hyperlink DOIs
 \usepackage[format=plain,labelfont={bf,it},textfont=it,font=small]{caption}
 \usepackage{subcaption} % subfigures
 \usepackage{microtype} % fixes some over/under-full box warnings

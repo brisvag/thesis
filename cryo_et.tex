@@ -26,6 +26,8 @@ Preparing lamellae via FIB milling is becoming standard procedure in cryo-ET, bu
     \label{fig:et_fib_milling}
 \end{figure}
 
+TODO: CLEM perspectives?
+
 \subsection{Fiducials}\label{fiducials}
 During data collection, despite vitrification, samples undergo different kinds of deformations.
 Moreover, due to the intrinsic imprecision of controlling the hardware of the microscope, there will always be some shift and angle mismatch between different tilts during a tilt series collection (see \fullref{et_data_collection}).
@@ -83,6 +85,8 @@ If fiducials (or other high-contrast objects of no real interest) are present in
     \label{fig:et_missing_wedge}
 \end{figure}
 
+TODO: missing wedge correction (isonet)
+
 \section{Annotation and segmentation}\label{et_annotation_segmentation}
 Thanks to the \textit{in situ} and quasi-native nature of tomography data, it is often useful to annotate or segment tomograms in order to get a better view of the morphology of the sample, or to find areas and particles of interest more easily.
 
@@ -96,6 +100,8 @@ Where high resolution molecular structures are the goal, segmentations and other
 \section{Particle picking}\label{et_particle_picking}
 Picking particles in tomograms is not so different from picking particles from 2D micrographs, other than having an extra dimension.
 Manual picking and template matching are still the preferred methods, though more and more software is developed for ML-based or hybrid methods (CITE cryolo, ...).
+
+TODO: manual picking harder cause 3rd dimension (filaments...), crowding, missing wedge
 
 As with most things in cryo-ET, low SNR is the main obstacle to overcome; this is why some picking tools --- such as the one developed during this thesis (see \fullref{blik}) --- attempt to use as much prior knowledge about the system as possible in order to limit the degrees of freedom when searching for particles~\cite{castano-diezDynamoCatalogueGeometrical2017,wagnerEvolutionSPHIREcrYOLOParticle2020,gaifasBlikExtensible3D2024}.
 
@@ -119,9 +125,26 @@ For this reason, missing wedge compensation is a crucial step for the success of
 TODO: not sure if there's anything else to say here, maybe no need.
 
 \section{Pros and Cons}
-...
 
-TODO: end with sentence on how lots of limitations are due to the current state of the software ecosystem
+Cryo-ET has seen a rapid development in recent years, bringing it to the forefront of structual biology techinques.
+
+By providing a high resolution, \textit{in situ} view of biological systems, it brings insights that other \textit{ex situ} techniques like X-ray crystallography and SPA cannot provide.
+At the same time, thanks to STA, cryo-ET is able to bridge the gap with single particle analysis, reaching in some cases sub-nanometer resolution for single particle structures, while maintaining the ability to contextualize such structures within the complex biological system they belong to.
+
+A distinctive strength of cryo-ET is the ability to explore mesoscale systems or superstructures --- such as folded 2D lattices and filaments --- without trivializing them for bottom up, \textit{in vitro} reconstitution, and instead observing their structural arrangement as it behaves \textit{in situ}.
+
+Many of cryo-ET's limitations are utlimately ascribable to the low SNR; some of them can be overcome with hardware improvements (better sample preparation, detectors and phase plates), and others with software advances (chromatic aberration correction, better alignment and refinement procedures).
+In recent years, several groups are working on developing new hardware and software for cryo-EM and cryo-ET, steadily improving the attainable resolution (\autoref{fig:et_smallest_particle})~\cite{russoCryomicroscopySituWhat2022}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{introduction/smallest_particle_plot_russo.png}
+    \caption[Particle size limit in cryo-ET]{Theoretical lower limit of particle size that can be resolved via cryo-ET, depending on the sample size. Currently, even the best tomography results are far from the theoretical limits due to lack of optimization in sample preparation and hardware. The current theoretical limits can yet be improved by implementing some additional methods. Figure taken from \citet{russoElectronCryomicroscopeHardware2023}.}
+    \label{fig:et_smallest_particle}
+    % TODO: find better version? Ask chris?
+\end{figure}
+
+Another common hurdle, especially for researchers new to cryo-ET, is presented by the messy and fragmented software ecosystem.
 
 \begin{outline}
 \1 \tick base concepts and differences from SPA from thechnical standpoint
@@ -137,16 +160,16 @@ TODO: end with sentence on how lots of limitations are due to the current state 
 \1 \tick some references/reviews (cool stuff you can do)
     \2 \tick \cite{turkPromiseChallengesCryoelectron2020,lucicCryoelectronTomographyChallenge2013}
 \1 what it provides compared to SPA
-    \2 more native state and context preservation
-    \2 single-particle insights
-    \2 mesoscale and superstructural information
+    \2 \tick more native state and context preservation
+    \2 \tick single-particle insights
+    \2 \tick mesoscale and superstructural information
 \1 limitations (both in terms of technique, and in terms of current state of development)
-    \2 (some mentioned before, maybe need to connect these two parts a bit better)
-    \2 need for custom workflow cause the goal and problems are usually unique
-    \2 issues caused by the missing wedge (alignement, reconstruction, interpretability)
-    \2 SNR, denoising
+    \2 \tick (some mentioned before, maybe need to connect these two parts a bit better)
+    \2 \tick need for custom workflow cause the goal and problems are usually unique
+    \2 \tick issues caused by the missing wedge (alignement, reconstruction, interpretability)
+    \2 \tick SNR, denoising
     \2 visualisation/interaction
-    \2 object identification (crowding
+    \2 object identification (crowding)
 \1 related techinques to overcome some limitations
     \2 \tick FIB, what it enables and how it works
     \2 CLEM
