@@ -1,17 +1,31 @@
 \chapter[\texttt{blik}: a cryo-ET visualisation and analysis tool]{\texttt{blik} is an extensible 3D visualization tool for the annotation and analysis of cryo-electron tomography data}\label{blik}
 
-A common thread throughout this thesis has been the need of developing custom tools for interacting with cryo-ET data.
-During my first year, I encountered napari and its community of developers, which shaped significantly the direction of my work, and started the project of blik.
+\section{Preface}
 
-Here goes a small preface to the paper itself (context in the rest of the thesis, what work I did vs what I didn't), where/when it was published, etc.
+In most scientific fields, the ability to visualize and interactively explore one's data is crucial to forming an understanding of the analysed system, and for hypothesis generation.
+Fields working with higher dimensional data, such as cryo-ET, benefit especially from interactive visualisation, as static plots and 2D images are often unfit to capture the full scope of the system.
+
+Unfortunately, as cryo-ET workflows become more and more automated and software tools become more abstracted from the data itself, it is easy --- and tempting --- to follow entire processing workflows while rarely looking at the data other than through summaries or final results.
+This is often encouraged by the monolithic software suites currently dominating the field, making it harder to implement and use custom tools to inspect or intervene at any one point of the workflow.
+
+The development of blik and my ongoing contribution to the napari community~\cite{thenaparicommunityNapariMultidimensionalImage-} started as a way to address these issues and enable myself and others to ergonomically and visually interact with the data at any point of the processing pipeline.
+
+What follows is our paper published in PLOS Biology on April 30 of 2024, which summarizes the capabilities of blik and the development that went into it and the surrounding ecosystem.
+Following the paper is a summary of more recent developments and uses of blik (see \fullref{blik_addendum}).
 
 \localtableofcontents  % TODO: where exactly to put this?
 
 % TODO: uncomment to add paper
-% \input{blik_paper.tex}
+\input{blik_paper.tex}
 
-\section{Addendum}
+\section{Addendum}\label{blik_addendum}
 
-Also: add a chapter/section after this about other applications of blik by other people?
+After this paper was finalized, blik continued to receive regular updates and new features, and has increasingly been used in production.
+
+- surface from segmentation (collaboration!!!)
+- sphere picking
+- 
+
+Also: add a chapter or section after this about other applications of blik by other people?
 
 TODO: mention what changed since the paper
