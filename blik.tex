@@ -1,30 +1,29 @@
 \chapter[blik: a cryo-ET visualisation and analysis tool]{blik is an extensible 3D visualization tool for the annotation and analysis of cryo-electron tomography data}\label{blik}
 
-\localtableofcontents  % MUST go right after chapter or won't have the right level :/
-
-\section{Preface}
 In most scientific fields, the ability to visualize and interactively explore one's data is crucial to forming an understanding of the analysed system, and for hypothesis generation.
 Fields working with higher dimensional data, such as cryo-ET, benefit especially from interactive visualisation, as static plots and 2D images are often unfit to capture the full scope of the system.
 
 Unfortunately, as cryo-ET workflows become more and more automated and software tools become more abstracted from the data itself, it is easy --- and tempting --- to follow entire processing workflows while rarely looking at the data other than through summaries or final results.
 This is often encouraged by the monolithic software suites currently dominating the field, making it harder to implement and use custom tools to inspect or intervene at any one point of the workflow.
 
-The development of blik and my ongoing contribution to the napari community~\cite{thenaparicommunityNapariMultidimensionalImage-} started as a way to address these issues and enable myself and others to ergonomically and visually interact with the data at any point of the processing pipeline.
+The development of blik and my ongoing contribution to the napari community~\cite{thenaparicommunityNapariMultidimensionalImage2024} started as a way to address these issues and enable myself and others to ergonomically and visually interact with the data at any point of the processing pipeline.
 
 What follows is our paper published in PLOS Biology on April 30 of 2024, which summarizes the capabilities of blik and the development that went into it and the surrounding ecosystem.
 Following the paper is a summary of more recent developments and uses of blik (\fullref{blik_addendum}).
+
+\localtableofcontents  % MUST go right after chapter or won't have the right level :/
 
 % TODO: uncomment to add paper
 \input{blik_paper.tex}
 
 \section{Addendum}\label{blik_addendum}
 
-After this paper was finalized, blik continued to receive regular updates and new features, and has increasingly been used in production.
+Since this paper was finalized, blik continued to receive regular updates and new features, and has increasingly been used in production by a few colleagues.
 
-- surface from segmentation (collaboration!!!)
-- sphere picking
-- 
+An exciting addition is the ability to now use membrane segmentation --- coming from any other software --- to seed the surface picking more precisely and without the need for manual intervention.
+With the increasingly better surface segmentation tools available to the community, this feature enables a faster and more robust way to resample surfaces or distribute particles on membranes.
+This feature was the result of a productive hackaton in collaboration with several core developers of napari and members of Ben Engel's group at the University of Basel, which also resulted in another tool called Surforama~\cite{yamauchiSurforamaInteractiveExploration2024}.
 
-Also: add a chapter or section after this about other applications of blik by other people?
+Other ways to pick particles are also being added, such as a sphere-based picking for particles on vescicles, and more refined controls for setting the 3D orientation of picked particles.
 
-TODO: mention what changed since the paper
+blik is now being regularly used by our team and others to visualise and annotate tomograms, and pick particles for STA, and was used extensively for the work on \textit{D. radiodurans} presented in \fullref{drad}.

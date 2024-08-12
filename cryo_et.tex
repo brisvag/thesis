@@ -1,4 +1,6 @@
-\chapter[Cryo-ET and STA]{Cryo-electron tomography and subtomogram averaging}
+\chapter[Cryo-ET and STA]{Cryo-electron tomography and subtomogram averaging}\label{et}
+
+\localtableofcontents
 
 Tomographic reconstruction is not a recent invention: the first appearance goes back more than a century~\cite{jDeterminationFunctionsTheir1917}; its successful application to cryo-EM, however, is only a recent development closely linked to the resolution revolution, which allowed to finally overcome the biggest overarching limitation of cryo-ET --- poor signal-to-noise ratio --- enough to reach sub-nanometer resolutions~\cite{lucicCryoelectronTomographyChallenge2013,turkPromiseChallengesCryoelectron2020}.
 
@@ -144,33 +146,4 @@ In recent years, several groups are working on developing new hardware and softw
     % TODO: find better version? Ask chris?
 \end{figure}
 
-Another common hurdle, especially for researchers new to cryo-ET, is presented by the messy and fragmented software ecosystem.
-
-\begin{outline}
-\1 \tick base concepts and differences from SPA from thechnical standpoint
-    \2 \tick cryoem, but different data acquisition and thus data processing
-    \2 \tick exposure damage and dose issues
-    \2 \tick sample prep (thinnes especially important because SNR)
-    \2 \tick tilt-series alignment (fiducials), deformation, other aberrations, how they are tackled
-    \2 \tick 3D CTF
-    \2 \tick missing wedge, issues it introduces
-    \2 \tick feature deletion (e.g: fiducials)
-    \2 \tick segmentation/morphology
-    \2 \tick STA (picking, averaging, classification, ...) for non-unique objects (template matching, geometric and template free, machin learning)
-\1 \tick some references/reviews (cool stuff you can do)
-    \2 \tick \cite{turkPromiseChallengesCryoelectron2020,lucicCryoelectronTomographyChallenge2013}
-\1 what it provides compared to SPA
-    \2 \tick more native state and context preservation
-    \2 \tick single-particle insights
-    \2 \tick mesoscale and superstructural information
-\1 limitations (both in terms of technique, and in terms of current state of development)
-    \2 \tick (some mentioned before, maybe need to connect these two parts a bit better)
-    \2 \tick need for custom workflow cause the goal and problems are usually unique
-    \2 \tick issues caused by the missing wedge (alignement, reconstruction, interpretability)
-    \2 \tick SNR, denoising
-    \2 visualisation/interaction
-    \2 object identification (crowding)
-\1 related techinques to overcome some limitations
-    \2 \tick FIB, what it enables and how it works
-    \2 CLEM
-\end{outline}
+Another common hurdle, especially for researchers new to cryo-ET or programming, is presented by the budding, messy and fragmented software ecosystem. 

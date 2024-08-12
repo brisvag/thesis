@@ -1,4 +1,4 @@
-\chapter[Cryo-EM and SPA]{Cryo-electron microscopy and single particle analysis}
+\chapter[Cryo-EM and SPA]{Cryo-electron microscopy and single particle analysis}\label{em}
 
 Structural biologists employ several techinques to understand the structure and function of biomolecular systems, typically proteins, nucleic acids and their ligands.
 Arguably, the three giants in the field are X-ray crystallography, Nuclear Magnetic Resonance (NMR) and cryo-electron microscopy (cryo-EM), with several other techniques playing complementary, more specialized or niche roles (such as mass spectroscopy, neutron scattering or small-angle scattering).
@@ -10,6 +10,8 @@ X-ray crystallography has played a major role in the development of structural b
 However, the need for crystallization poses a few limits.
 The crystallization procedure is often hard to devise and reproduce, extending the time and resources needed for sample preparation.
 Moreover, the resulting crystal "forces" the sample into a crystalline lattice, often with biologically irrelevant chemical states, restricting the conformational freedom of the molecule and limiting the biological significance of the obtained structures~\cite{ravikumarComparisonSidechainDispersion2022}.
+
+\localtableofcontents
 
 \section{Cryo-EM 101}
 
@@ -370,35 +372,3 @@ Often, macromolecular systems can only be fully understood by accounting for the
 When studying biological systems that form larger mesoscale and dynamic complexes, having a three-dimensional understanding of invididual events within their context becomes paramount.
 
 A method that promises to solve these problems is cryo-electron tomography: a technique that can look not only at purified samples, but at entire organisms, \textit{in situ} and near-native conditions, with the ability to reach high resolutions via subtomogram averaging, while retaining contextual information and providing a 3D view into single events.
-
-\newpage
-
-\FloatBarrier
-
-\begin{outline}
-\1 \tick Base concepts (do not spend too much time on this)
-    \2 \tick sample prep
-    \2 \tick exposure damage
-    \2 \tick role of detectors and resolution revolution \cite{faruqiCCDDetectorsHighresolution2000}
-    \2 \tick data collection
-    \2 \tick image formation
-    \2 \tick CTF
-    \2 \tick defocus (and ranges of defocus) and info spread
-    \2 \tick dataset cleaning
-    \2 \tick particle picking
-    \2 \tick cross correlation
-    \2 \tick 2D classification and selection
-    \2 \tick typical processing steps, theory behind reconstruction and classification (more time here as it's more relevant for cryoet and my work)
-    \2 \tick single particle analisys
-    \2 \tick model building
-\1 \tick typical use cases (some example of single particle data, maybe using ftsz images) and advantages
-    \2 \tick no crystal, simpler sample prep
-    \2 \tick heterogeneity to a certain extent
-    \2 \tick more native state
-    \2 \tick bigger targets? complexes
-\1 \tick limitations (leading up to cryo-et) and comparison with other techniques (xray, nmr)
-    \2 \tick sample prep/thickness/denaturation
-    \2 \tick context missing
-    \2 \tick ability to capture dynamics/heterogeneity (more/less than other techniques)
-    \2 \tick Signal/Noise
-\end{outline}
