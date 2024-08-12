@@ -48,7 +48,7 @@ TODO: talk about tilted data collection and/or easy-grid, chameleon and vitrojet
 \subsection{Preferential orientation}
 A common issue with sample preparation for cryo-EM is non-uniform orientation distribution of the protein in the vitrified sample, often due to particles being adsorbed to the air-water interface~\cite{nobleRoutineSingleParticle2018}.
 
-Strong preferential orientation may completely preclude the ability to do a 3D reconstruction, due to the lack of a wide distribution of orientations (see \fullref{em_reconstruction}).
+Strong preferential orientation may completely preclude the ability to do a 3D reconstruction, due to the lack of a wide distribution of orientations (\fullref{em_reconstruction}).
 When this problem arises, there are a few ways to tackle it during sample preparation.
 The most common is the addition of small amounts of detergents to occupy the air-water interface and prevent particles from preferentially orienting hydrophobic surfaces out of the water.
 Other methods are a bit more involved, such as the use of functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022}, streptavidin-coated affinity support grids~\cite{crucifixImmobilizationBiotinylatedDNA2004,hanLongShelflifeStreptavidin2016}, but can offer more control over the orientation of the particles in the sample.
@@ -123,7 +123,7 @@ The exact shape of the Thon rings depends on several factors, first among which 
 
 To ensure all spatial frequencies are sampled, a data collection must include many images collected at a range of different defoci.
 
-Of note is that since the CTF starts at \num{0}, low spatial frequencies are always dampened; in pratical terms, this results in images where low resolution features (such as membranes and big objects) are harder to see, making it harder to distinguish objects from the noise, pick particles (see \fullref{em_particle_picking}) and do further processing.
+Of note is that since the CTF starts at \num{0}, low spatial frequencies are always dampened; in pratical terms, this results in images where low resolution features (such as membranes and big objects) are harder to see, making it harder to distinguish objects from the noise, pick particles (\fullref{em_particle_picking}) and do further processing.
 For this reason, a certain amount of defocus is always used, unfortunately at the cost of jumbling up the high frequency information with more CTF oscillation.
 Alternatively, a phase plate can be used to shift the phase of the electrons by \ang{90} and acquire images on focus (\autoref{fig:em_ctf_phase_shift}).
 While phase plates are in theory the ideal solution to this problem, there are still some engineering and physical limitations that limit their use; several groups are currently working to overcome such hurdles~\cite{danevExpandingBoundariesCryoEM2017,schwartzLaserPhasePlate2019}.
@@ -166,7 +166,7 @@ This signal decay, combined with the low SNR of the images, poses a resolution l
 
 So far we discussed what happens to the fourier transform or PS of an image, that is in \textbf{fourier space}; in practice, the CTF has visible effects also in \textbf{real space}.
 The signal becomes delocalized, blurring the image; as explained by the convolution theorem~\cite{wikipediaConvolutionTheorem2024}, this delocalization is the result of the convolution of the fourier transform of the CTF (known as Point Spread Function or PSF) with the image.
-Delocalization of signal directly affects how image processing is performed; for example, particle picking should account for it by extracting bigger image patches to ensure delocalized signal can be deconvolved when CTF correcting (see \fullref{em_particle_picking}).
+Delocalization of signal directly affects how image processing is performed; for example, particle picking should account for it by extracting bigger image patches to ensure delocalized signal can be deconvolved when CTF correcting (\fullref{em_particle_picking}).
 
 \section{Preprocessing}\label{em_preprocessing}
 
@@ -176,8 +176,8 @@ First, each movie generated during data collection must be aligned and averaged.
 In state of the art applications, this alignment is typically done not only on a full frame level, but also in a localized fashion, by aligning image patches or by describing the system with a smooth deformation field~\cite{zhengMotionCor2AnisotropicCorrection2017,punjaniCryoSPARCAlgorithmsRapid2017,tegunovRealtimeCryoelectronMicroscopy2019}.
 
 In state of the art software, similarly to how motion correction is treated, defocus (and thus CTF) is estimated at a local level, accounting for variability in the positioning of the sample with respect to the detector.
-The parameters thus obtained are later used to correct for the CTF during classification and reconstruction (see \fullref{em_classification} and \fullref{em_reconstruction}).
-Modern workflows also offer the ability to later refine the deformation parameters as part of the refinement process (see \fullref{em_refinement}).
+The parameters thus obtained are later used to correct for the CTF during classification and reconstruction (\fullref{em_classification} and \fullref{em_reconstruction}).
+Modern workflows also offer the ability to later refine the deformation parameters as part of the refinement process (\fullref{em_refinement}).
 
 Both motion correction and CTF estimation --- as well as many other steps and techniques in image processing --- rely on the ability to quantify the similarity of two signals; this is typically done by calculating the cross-correlation (CC) of the images or signals.
 
@@ -185,7 +185,7 @@ Both motion correction and CTF estimation --- as well as many other steps and te
 
 The CC of two signals (such as two images) is a measure of how similar the two signals are at all possible relative shifts.
 The CC function of two signals will be higher for signals that present more similar features, and have a peak at the relative shift where the signals present strongest similarity (\autoref{fig:em_cross_correlation}).
-This is a useful feature for most applications, because we often care about where exactly the similarity is high (e.g. for motion correction and particle picking (see \fullref{em_particle_picking})).
+This is a useful feature for most applications, because we often care about where exactly the similarity is high (e.g. for motion correction and particle picking (\fullref{em_particle_picking})).
 
 \begin{figure}[ht]
     \centering
@@ -200,7 +200,7 @@ In the case of 2D data, calculating the cross-correlation of two images often al
 \subsection{Filtering and denoising}\label{em_filtering_and_denoising}
 
 Due to the low SNR of cryo-EM data, even motion-corrected micrographs can can be surprisingly hard to interpret.
-To enhance the contrast of biological features and better judge the quality of the data --- as well as improve the ability to distinguish particles from the background and from one another for the purposes of picking (see \fullref{em_particle_picking}) --- micrographs often undergo a round of filtering and/or denoising.
+To enhance the contrast of biological features and better judge the quality of the data --- as well as improve the ability to distinguish particles from the background and from one another for the purposes of picking (\fullref{em_particle_picking}) --- micrographs often undergo a round of filtering and/or denoising.
 
 The simplest --- and most commonly used --- type of filtering is fourier masking; by reducing or zeroing the values inside a disc or annulus in fourier space, the respective spatial frequencies are dampened in the image.
 In practice, this is often used to remove high-frequency components (low-pass filter), but there are also sometimes benefits to the removal of other ranges of spatial frequencies (\autoref{fig:em_filtering}).
@@ -228,12 +228,12 @@ The most commonly used are variations of: manual picking, template matching, and
 
 Manual picking is generally more intuitive and can be very precise, but is also tedious and time-consuming.
 Data may also be too noisy for humans to distinguish particles from one another and from the background, leading to missed particles or wrong picks.
-To aid with manual picking, preprocessed micrographs are often filtered and denoised to improve the contrast (see \fullref{em_filtering_and_denoising}).
+To aid with manual picking, preprocessed micrographs are often filtered and denoised to improve the contrast (\fullref{em_filtering_and_denoising}).
 
 To improve the picking speed and precision, template matching is often used to automate searching for a recognizable object.
 This picking method requires a template, a small image of a 2D projection of the object of interest.
-This can be obtained in a few ways: synthetically (by using a generated shape), by projecting a known map or model from previous work, or by using the results of a first round of 2D classification (see \fullref{em_classification}) from a preliminary manual picking.
-While the exact details of the algorithm may vary, at its core template matching relies on calculating the CC (see \fullref{em_cross_correlation}) function between the template and the micrographs in order to locate putative particles positions in the whole dataset.
+This can be obtained in a few ways: synthetically (by using a generated shape), by projecting a known map or model from previous work, or by using the results of a first round of 2D classification (\fullref{em_classification}) from a preliminary manual picking.
+While the exact details of the algorithm may vary, at its core template matching relies on calculating the CC (\fullref{em_cross_correlation}) function between the template and the micrographs in order to locate putative particles positions in the whole dataset.
 
 TODO: figure with template and picks on the micrograph?
 
@@ -242,14 +242,14 @@ More recently, template matching is often being replaced with machine learning, 
 There are also "structured" variants of all these picking methods, where some existing geometric and structural knowledge about the system is used to inform the picking in some way.
 For example, filament picking is quite commonly used due to how widespread helical assemblies are in biology; it can be done manually~\cite{scheresRELIONImplementationBayesian2012,heHelicalReconstructionRELION2017}, with template-based methods~\cite{punjaniCryoSPARCAlgorithmsRapid2017}, and using ML~\cite{wagnerSPHIREcrYOLOFastAccurate2019,wagnerEvolutionSPHIREcrYOLOParticle2020}.
 
-Regardless of the picking method, it is important to ensure that the target object is represented with projections from many different orientations; this will be crucial to properly reconstruct a 3D map of the object (see \fullref{em_reconstruction}).
+Regardless of the picking method, it is important to ensure that the target object is represented with projections from many different orientations; this will be crucial to properly reconstruct a 3D map of the object (\fullref{em_reconstruction}).
 
 \section{2D classification}\label{em_classification}
 
 Even with the best data and most advanced methods, picked particles typically contain a variety of several different objects, conformations, and spurious background picks; before moving on to reconstruction, useful particles need to be separated from the chaff.
 To do so, particles are separated into groups based on similarity, in a process called 2D classification.
 
-Once again, some form of cross-correlation (see \fullref{em_cross_correlation}) is involved in the process, since the goal is to cluster together similar particles and separate different ones.
+Once again, some form of cross-correlation (\fullref{em_cross_correlation}) is involved in the process, since the goal is to cluster together similar particles and separate different ones.
 The algorithm is typically iterative: after generating a initial classes by averaging random particles, particle poses are progressively refined to find the best CC score.
 Based on this score, each particle is assigned to a class (or a score for each class, in probabilistic models~\cite{scheresRELIONImplementationBayesian2012}), and for each class a class average is computed, combining the signal from all the particles belonging to that class. The more poses are refined, the more the signal that's shared by similar particles is boosted, improving the SRN of the class average.
 Class averages are used to calculate the CC at each iteration, and used at the end of the process to inspect the dataset and select only the useful particles (\autoref{fig:em_classification}).
@@ -295,7 +295,7 @@ Instead of assigning classes, projection matching refines the relative (3D) orie
 The 3D model is initally either derived from previous work, or generated \textit{ab initio} from the particles themselves.
 During each iteration, particles' FTs are used to fill a 3D FT according to central slice theorem, which allows to generate a new 3D model.
 The assigned orientations are progressively refined in order to improve the model resolution.
-Once there is no longer significant improvement (see \fullref{em_fsc}), the process stops, and the final 3D map is generated.
+Once there is no longer significant improvement (\fullref{em_fsc}), the process stops, and the final 3D map is generated.
 
 \begin{figure}[ht]
     \centering

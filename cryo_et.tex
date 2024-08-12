@@ -8,7 +8,7 @@ This section describes the theory of cryo-ET, how it deviates from SPA, and the 
 
 \section{Sample preparation}
 As with SPA, vitrification remains the key step of sample preparation for cryo-ET.
-Due to the intrinsically worse SNR due to the lower electron dose used during data collection (see \fullref{et_data_collection}), cryo-ET sample preparation requires extra care to reduce any possible source of additional noise.
+Due to the intrinsically worse SNR due to the lower electron dose used during data collection (\fullref{et_data_collection}), cryo-ET sample preparation requires extra care to reduce any possible source of additional noise.
 
 One such source is the thickness of the sample; unfortunately, this is often antithetical to samples such as entire cells or organelles, where cryo-ET \textit{in situ} benefits really shine.
 Initially, this problem was tackled by either prepararing simpler model systems \textit{in vitro} --- moving partly away from the native state --- or by cutting thin slices from a thicker sample via cryo-ultramicrotomy~\cite{peaseElectronMicroscopyUltramicrotomy1981}.
@@ -30,9 +30,9 @@ TODO: CLEM perspectives?
 
 \subsection{Fiducials}\label{fiducials}
 During data collection, despite vitrification, samples undergo different kinds of deformations.
-Moreover, due to the intrinsic imprecision of controlling the hardware of the microscope, there will always be some shift and angle mismatch between different tilts during a tilt series collection (see \fullref{et_data_collection}).
+Moreover, due to the intrinsic imprecision of controlling the hardware of the microscope, there will always be some shift and angle mismatch between different tilts during a tilt series collection (\fullref{et_data_collection}).
 
-To help with correcting these errors, it is often useful to add to the same some fiducials: small high-contrast, round objects (typically gold beads) that can later be used to estimate sample shift, rotation, and deformations (see \fullref{et_tilt_series_alignment}).
+To help with correcting these errors, it is often useful to add to the same some fiducials: small high-contrast, round objects (typically gold beads) that can later be used to estimate sample shift, rotation, and deformations (\fullref{et_tilt_series_alignment}).
 
 \section{Data collection}\label{et_data_collection}
 In order to acquire a sequence of images at different tilts (termed \textbf{tilt series}) for tomographic reconstruction, the same area of the sample needs to be imaged at a range of different angles.
@@ -47,12 +47,12 @@ This minimizes the radiation damage when SNR is best, allowing to capture high r
 
 Due to the geometry of the sample and its support within the microscope, there is a limit to how high an angle can be reached when tilting the sample.
 This angle is typically around \ang{60}-\ang{70}, beyond which either the sample grid comes into view, or the sample becomes too thick for imaging at such low doses.
-This will result in a \textbf{missing wedge} of information during tomographic reconstruction (see \fullref{et_tomo_reconstruction}).
+This will result in a \textbf{missing wedge} of information during tomographic reconstruction (\fullref{et_tomo_reconstruction}).
 
 Conventional wisdom sets the interval between subsequent tilts at around \ang{3} to ensure enough fourier space filling while limiting radiation damage, though depending on the application --- especially where certain spatial frequencies are considered important or over-represented in the sample --- it might be worth considering smaller, wider, or non-linear increments~\cite{copeCryoElectronTomographyStructural2011}.
 
 \section{Preprocessing}
-Cryo-ET data undergoes similar preprocessing steps as SPA data (see \fullref{em_preprocessing}), albeit with less precision due to the low electron dose.
+Cryo-ET data undergoes similar preprocessing steps as SPA data (\fullref{em_preprocessing}), albeit with less precision due to the low electron dose.
 
 While at this point single particle data is ready for particle picking and other downstream work, cryo-ET data must still undergo tomographic reconstruction in order to obtain the 3D volumetric reconstruction of the sample.
 
@@ -60,18 +60,18 @@ To do so, tilt series alignment parameters must first be estimated in order to c
 
 \subsection{Tilt series alignment}\label{et_tilt_series_alignment}
 The most basic alignment procedures require at least full-frame aligment; similar to motion correction, tilt images are rotated and shifted in order to maximize their CC score.
-Where fiducials are present (see \fullref{fiducials}), these can be treated as static points within the sample and used instead as anchors to mathematically estimate the geometric transformation between different tilts~\cite{nicastroMolecularArchitectureAxonemes2006,heumannClusteringVarianceMaps2011,castano-diezDynamoCatalogueGeometrical2017}.
+Where fiducials are present (\fullref{fiducials}), these can be treated as static points within the sample and used instead as anchors to mathematically estimate the geometric transformation between different tilts~\cite{nicastroMolecularArchitectureAxonemes2006,heumannClusteringVarianceMaps2011,castano-diezDynamoCatalogueGeometrical2017}.
 
-In state of the art software, alignment procedures (with or without fiducials) can also account for spatio-temporal deformations of the sample, either already during tilt series alignment~\cite{zhengAreTomoIntegratedSoftware2022}, or later during refinement~\cite{tegunovMultiparticleCryoEMRefinement2021,burtImageProcessingPipeline2024,galaz-montoyaSingleParticleTomography2015,chenCompleteDataProcessing2019} (see \fullref{et_refinement}).
+In state of the art software, alignment procedures (with or without fiducials) can also account for spatio-temporal deformations of the sample, either already during tilt series alignment~\cite{zhengAreTomoIntegratedSoftware2022}, or later during refinement~\cite{tegunovMultiparticleCryoEMRefinement2021,burtImageProcessingPipeline2024,galaz-montoyaSingleParticleTomography2015,chenCompleteDataProcessing2019} (\fullref{et_refinement}).
 
 \subsection{Tomogram Reconstruction}\label{et_tomo_reconstruction}
-Similarly to how 3D reconstructions are obtained from 2D particles in SPA based on the central slice theorem (see \fullref{em_reconstruction}), the aligned tilt series can be used to reconstruct the full tomogram.
-Depending on the software suite and workflow, full tomogram reconstructions may be used only for template matching (see \fullref{et_particle_picking}) and segmentation purposes, or also to extract subtomograms at small pixel sizes for subtromogram averaging (see \fullref{et_sta}).
+Similarly to how 3D reconstructions are obtained from 2D particles in SPA based on the central slice theorem (\fullref{em_reconstruction}), the aligned tilt series can be used to reconstruct the full tomogram.
+Depending on the software suite and workflow, full tomogram reconstructions may be used only for template matching (\fullref{et_particle_picking}) and segmentation purposes, or also to extract subtomograms at small pixel sizes for subtromogram averaging (\fullref{et_sta}).
 
 Differently from SPA, cryo-ET has the advantage of knowing the 3D positioning of features in the tomogram.
 This allows to bring defocus estimation and CTF correction to the next level: not only is CTF locally estimated depending on the in-plane position of features, but also accounting for the defocus difference between the top and bottom of the sample.
 While this idea was around for a long time, only in recent years tools were developed that can run in reasonable time and significantly improve the final resolution~\cite{turonovaEfficient3DCTFCorrection2017,tegunovRealtimeCryoelectronMicroscopy2019}. 
-Depending on the software, 3D-CTF might be estimated and corrected at different levels (tilt image, full tomogram or subtomogram), and may be able to be refined during refinement (see \fullref{et_refinement}).
+Depending on the software, 3D-CTF might be estimated and corrected at different levels (tilt image, full tomogram or subtomogram), and may be able to be refined during refinement (\fullref{et_refinement}).
 
 Due to the limited range of tilt angles collected in typical cryo-ET workflows, not all views of the sample are represented; when reconstructing the 3D FT of the sample, this is clearly visible in in fourier space as a wedge of missing information (\autoref{fig:et_missing_wedge}).
 The missing wedge introduces several problems in downstream processing: it blurs the tomogram in the Z direction, it biases subtomogram alignment, and it leads to anisotropic resolution for objects with preferential orientation.
@@ -103,7 +103,7 @@ Manual picking and template matching are still the preferred methods, though mor
 
 TODO: manual picking harder cause 3rd dimension (filaments...), crowding, missing wedge
 
-As with most things in cryo-ET, low SNR is the main obstacle to overcome; this is why some picking tools --- such as the one developed during this thesis (see \fullref{blik}) --- attempt to use as much prior knowledge about the system as possible in order to limit the degrees of freedom when searching for particles~\cite{castano-diezDynamoCatalogueGeometrical2017,wagnerEvolutionSPHIREcrYOLOParticle2020,gaifasBlikExtensible3D2024}.
+As with most things in cryo-ET, low SNR is the main obstacle to overcome; this is why some picking tools --- such as the one developed during this thesis (\fullref{blik}) --- attempt to use as much prior knowledge about the system as possible in order to limit the degrees of freedom when searching for particles~\cite{castano-diezDynamoCatalogueGeometrical2017,wagnerEvolutionSPHIREcrYOLOParticle2020,gaifasBlikExtensible3D2024}.
 
 Whenever possible, segmentation or other kinds of annotation can be used as baseline for particle picking: either by masking areas of interest --- such as picking only inside a certain cellular structure --- or by seeding particle picks based on the annotation geometry --- such as distributing particles on the surface of a membrane.
 Such information may also be used to initialize the particle orientation to something self-consistent (e.g: all perpendicular to the membrane); this can affect drastically the initial model generation and subsequent refinement, where 3D rotational search may otherwise not overcome the SNR.
@@ -111,10 +111,10 @@ Such information may also be used to initialize the particle orientation to some
 \section{Subtomogram averaging}\label{et_sta}
 In cryo-ET, the equivalent to SPA's 2D classificatin and 3D refinement is subtomogram averaging (STA).
 The idea at the core is the same: by combining the data from many subvolumes extracted from the tomogram (subtomograms) which contain copies of the same object, the SNR can be drastically improved.
-The basic procedure is also very similiar to SPA, only in 3D: subtomograms are extracted from the full reconstructed tomogram based on the positions of the particle picks; then, rounds of cross-correlation and refinement (and/or classification) improve the model until convergence (see \fullref{em_classification}).
+The basic procedure is also very similiar to SPA, only in 3D: subtomograms are extracted from the full reconstructed tomogram based on the positions of the particle picks; then, rounds of cross-correlation and refinement (and/or classification) improve the model until convergence (\fullref{em_classification}).
 
 In recent years, however, the field is moving away from this naive approach where "rigid" subtomograms are extracted from a full 3D reconstruction, in favor of directly reconstructing subtomograms from the 2D data, using what is sometimes called \textbf{per-particle tilt series}~\cite{zivanovBayesianApproachSingleparticle2022,tegunovRealtimeCryoelectronMicroscopy2019,chenCompleteDataProcessing2019}.
-This opens up many avenues for optimization --- such as 3D-CTF correction (see \fullref{et_tomo_reconstruction})~\cite{turonovaEfficient3DCTFCorrection2017}, multi-particle refinement~\cite{tegunovMultiparticleCryoEMRefinement2021} or bayesian polishing~\cite{zivanovBayesianApproachSingleparticle2022} --- by not allowing the subtomogram reconstruction parameters to be tweaked after the first reconstruction (see \fullref{em_refinement}).
+This opens up many avenues for optimization --- such as 3D-CTF correction (\fullref{et_tomo_reconstruction})~\cite{turonovaEfficient3DCTFCorrection2017}, multi-particle refinement~\cite{tegunovMultiparticleCryoEMRefinement2021} or bayesian polishing~\cite{zivanovBayesianApproachSingleparticle2022} --- by not allowing the subtomogram reconstruction parameters to be tweaked after the first reconstruction (\fullref{em_refinement}).
 
 A significant obstacle during alignment is caused by the missing wedge; it is such a prominent feature that during cross-correlation, it would normally overpower everything else in the subtomograms.
 Because of this, subtomograms would end up being rotationally aligned based on how they are rotated relative to the missing wedge, instead of their relative rotation to each other.
