@@ -11,51 +11,66 @@
     \usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
 }
 
+% other layout settings
+\renewcommand{\baselinestretch}{1.5} % line spacing
+\urlstyle{same} % don't use monospace font for urls
+
+% general must-have or good-to-have stuff
 \usepackage[english]{babel}
+\usepackage{microtype} % fixes some over/under-full box warnings
 \usepackage[T1]{fontenc} % better behaviour for fonts (copy-pasting, etc)
 \usepackage{charter} % font typeface
-\renewcommand{\baselinestretch}{1.25} % line spacing
-\usepackage{graphicx} \graphicspath{{img/}}
-\usepackage[super,sort&compress,comma]{natbib} \bibliographystyle{unsrtnat}
-% backref from the references to citation location formatted as: (pg. N)
-\renewcommand*\backref[1]{\ifx#1\relax \else (pg. #1) \fi}
-\urlstyle{same} % don't use monospace font for urls
-\usepackage{hypernat} % fixes backref of ranges. must be after natbib and hyperref
-\newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{DOI:~\detokenize{#1}}} % hyperlink DOIs
-\usepackage[format=plain,labelfont={bf,it},textfont=it,font=small]{caption}
-\usepackage{subcaption} % subfigures
-\usepackage{microtype} % fixes some over/under-full box warnings
 \usepackage{booktabs} % improved tables
 \usepackage{tabularx} % improved tables
-\usepackage{epigraph} % cool quotes
-%\usepackage{tikz} \usetikzlibrary{positioning,shapes,shadows,arrows}
-%\usepackage{tcolorbox} % colored titled box (e.g: "NOTE: ...")
-\usepackage[dvipsnames]{xcolor} % colors by name
-\usepackage{placeins} % float barries
-\usepackage{minted} % syntax highlighting
-% \setminted[python]{linenos} % enable line numbers on all python boxes
-\usepackage{mdframed} % framing minted boxes
-\definecolor{bg}{rgb}{0.95,0.9,0.75} \surroundwithmdframed[backgroundcolor=bg]{minted}
-\usepackage[autostyle,english=american]{csquotes} \MakeOuterQuote{"} % normal-er quotes (must be after minted)
+\usepackage{placeins} % float barriers with \FloatBarrier
 \usepackage{enumitem} % remove item separation with [noitemsep]
-% \usepackage{xspace} % smart spaces after commands
-% \newcommand*{\something}{\textit{SomEthing}\xspace}
-\usepackage{titling} % multiple/different title pages
-% \usepackage[blocks]{authblk} \renewcommand\Affilfont{\scriptsize} % multiple authors with affiliations (must import after titling)
 \usepackage{pdfpages} % include pre-rendered pdfs
 \usepackage{tocbibind} % add lof and lot to toc
 \usepackage{etoc} % local TOCs per chaptera
 \usepackage[perpage, symbol*]{footmisc} % footnotes counters use symbols and reset each page
-\usepackage{bookmark} % allow to end parts/sections
+\usepackage{bookmark} % allow to end parts/sections (\startatroot}
 \usepackage{siunitx} % proper handling of units and quantities
-\DeclareSIUnit\angstrom{\text {Å}}
 \usepackage{amsmath,amssymb} % for better math symbols
-% "fullref" (especially for printed cause link can't be clicked and it's easier to find with section numbers)
-\newcommand*\fullref[1]{\hyperref[{#1}]{\ref*{#1} \nameref*{#1}}}
 
-% TODO: remove temporary packages
+% bibliography
+\usepackage[super,sort&compress,comma]{natbib}
+\bibliographystyle{unsrtnat}
+\def\bibfont{\footnotesize}
+\renewcommand*\backref[1]{\ifx#1\relax \else (pg. #1) \fi} % backref to citation location formatted as: (pg. N)
+\usepackage{hypernat} % fixes backref of ranges. must be after natbib and hyperref
+\newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{DOI:~\detokenize{#1}}} % hyperlink DOIs
+
+% figures and captions
+\usepackage{graphicx}
+\graphicspath{{img/}}
+\usepackage[format=plain,labelfont={bf,it},textfont=it,font=small]{caption}
+\usepackage{subcaption} % subfigures
+
+% code and note boxes and frames
+\usepackage{minted} % syntax highlighting
+\usepackage[nobreak]{mdframed} % framing minted boxes
+\surroundwithmdframed[backgroundcolor=black!10]{minted}
+% \setminted[python]{linenos} % enable line numbers on all python boxes
+%\usepackage{tcolorbox} % colored titled box (e.g: "NOTE: ...")
+
+% other miscellaneous
+\usepackage[autostyle,english=american]{csquotes} \MakeOuterQuote{"} % normal-er quotes (must be after minted)
+
+% situational but useful or cool
+\usepackage{epigraph} % cool quotes
+%\usepackage{tikz} \usetikzlibrary{positioning,shapes,shadows,arrows}
+% \usepackage{xspace} % smart spaces after commands
+% \newcommand*{\something}{\textit{SomEthing}\xspace}
+% \usepackage[blocks]{authblk} \renewcommand\Affilfont{\scriptsize} % multiple authors with affiliations (must import after titling if it's there)
+% \usepackage{titling} % multiple/different title pages
+
+% custom commands or declarations for this document
+\DeclareSIUnit\angstrom{\text {Å}}
+\newcommand{\blankpage}{\newpage\mbox{}\newpage}
+% "fullref" (especially for printed cause link can't be clicked and it's easier to find with section numbers)
+\newcommand*\fullref[1]{\hyperref[{#1}]{\bfseries\ref*{#1} \nameref*{#1}}}
+
+% TODO: to remove, temporary packages
 \usepackage{lipsum}
 \usepackage{outlines} % easy nested lists
 \usepackage{pifont} \newcommand{\tick}{\ding{51}} % icons (e.g checkmark)
-
-\newcommand{\blankpage}{\newpage\mbox{}\newpage}

@@ -3,7 +3,7 @@
 \begin{document}
 
 % preamble-like things that need to be after \begin{document} because reasons
-ifbool{printer-friendly}{
+\ifbool{printer-friendly}{
     % convert href (which normally hides url with text) to a footnote so you can see it
     \let\oldhref\href\ \renewcommand\href[2]{\oldhref{#1}{#2}\footnote{\url{#1}}}
 }{}
@@ -16,19 +16,19 @@ ifbool{printer-friendly}{
     \include{abstract.tex}
     \include{acknowledgements.tex}
     \include{preface.tex}
-    \tableofcontents
+    \etocsettocdepth{1} \tableofcontents \etocsettocdepth{all}
 
 \mainmatter
-    \part{Introduction}
+    \part{Introduction}\label{introduction}
         \include{cryo_em.tex}
         \include{cryo_et.tex}
-    \part{Results}
+    \part{Results}\label{results}
         \include{blik.tex}
         \include{napari.tex}
         \include{drad.tex}
         \include{ftsz.tex}
         \include{annexes.tex}
-    \part{Discussion}
+    \part{Discussion}\label{discussion}
         \include{conclusions.tex}
         \include{em_software.tex}
 
@@ -56,3 +56,4 @@ ifbool{printer-friendly}{
 % TODO: section title case consistency
 % TODO: add color to text in captions where relevant?
 % TODO: change degrees to symbol
+% TODO: check that first appearance of acronyms is explained (cryo-et/em, spa, sta, ...)
