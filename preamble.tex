@@ -11,10 +11,6 @@
     \usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
 }
 
-% other layout settings
-\renewcommand{\baselinestretch}{1.5} % line spacing
-\urlstyle{same} % don't use monospace font for urls
-
 % general must-have or good-to-have stuff
 \usepackage[english]{babel}
 \usepackage{microtype} % fixes some over/under-full box warnings
@@ -31,6 +27,11 @@
 \usepackage{bookmark} % allow to end parts/sections (\startatroot}
 \usepackage[separate-uncertainty=true]{siunitx} % proper handling of units and quantities
 \usepackage{amsmath,amssymb} % for better math symbols
+\usepackage{setspace} % use stuff like \onehalfspacing and \begin{singlespace}
+
+% some layout settings
+\onehalfspacing
+\urlstyle{same} % don't use monospace font for urls
 
 % bibliography
 \usepackage[super,sort&compress,comma]{natbib}

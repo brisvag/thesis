@@ -1,26 +1,37 @@
 \chapter{FtsZ: structural insights}
 
-In order to elucidate the role of FtsZ in \textit{D. radiodurans}'s septation, we decided to perform subtomogram averaging on particles picked at the septa.
+As mentioned in \fullref{drad_ftsz}, FtsZ is an extremely well conserved prokaryotic tubulin homologue, known to form ring-like structures (the Z-ring) at the septation site in most bacteria.
+It polymerizes in a GTP-dependent fashion to form filaments and bundles, anchoring to the membrane via its partner FtsA, and interacting with several other partners in the cytokinesis and peptidoglycan (PG) synthesis machinery.
 
-\section{Biological function}
+Based on crystal structures, filaments have been shown to form through head-to-tail stacking of monomers CITE.
+However, there is no information regarding the flexible C-terminal region, which is responsible for regulating its activity and interaction with its cellular partners, including FtsA.
+It's also unclear how multiple filaments may assemble to form bundles at the structural level and even less so in vivo.
+Thus --- while its key role in cell division is undisputed --- the exact mechanism and function of FtsZ are still unclear.
+There is no consensus model, as the current evidence is inconclusive, sometimes presenting significant variations between species --- likely ascribable to different shapes or membrane compositions between bacteria.
 
-As we discussed in \fullref{drad_ftsz}, FtsZ is an extremely conserbed tubulin homologue, known to form ring-like structures (the Z-ring) at the septation site in most bacteria.
-FtsZ is anchored to the membrane via its partner FtsA, and is known to have several other partners belonging to the cytokinesis and peptidoglycan (PG) synthesis machinery.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \caption{TODO: ftsz ring and cystal structure?}
+    \label{fig:ftsz_ring}
+\end{figure}
 
-While its key role in cell division is undisputed, the exact role and mechanisms of FtsZ are still unclear, with conflicting evidence found in different publications, especially between those investigating different bacteria.
+\localtableofcontents
+
+\section{State of the art}
 
 Some studies have shown that FtsZ presents mechanical functions that may drive the septation process.
 \textit{T. maritima} FtsZ+FtsA expressed in liposomes was shown to form coil-like structures, which can constrict the membrane via a "filament sliding" mechanism, creating a partial septum~\cite{szwedziakArchitectureRingFormed2014}.
 In \textit{C. crescentus}, FtsZ may form short, loosely bundled filaments, which may drive constriction via an "iterative pinching" mechanism where repeated rounds of phosphorylation lightly bend the filament, thus slowly pinching the membrane~\cite{liStructureFtsZFilaments2007}.
 
-Other publications investigated the recruitment and signalling role of FtsZ for downstream machinery such as PG syntesis.
-FtsZ was shown to undergo plus-end polymerisation and minus-end depolymerisation, in a GTP-regulated process typical of cytoskeletal proteins called treadmilling~\cite{looseBacterialCellDivision2014}.
+Other publications investigated the recruitment and signalling role of FtsZ for downstream machinery such as PG synthesis.
+FtsZ was shown to undergo plus-end polymerization and minus-end depolymerization, in a GTP-regulated process typical of cytoskeletal proteins called treadmilling~\cite{looseBacterialCellDivision2014}.
 In \textit{B. subtilis}, this treadmilling is required to drive the movement along the septum of the PG synthesis centers~\cite{bisson-filhoTreadmillingFtsZFilaments2017}.
 A "diffusion-and-capture" model was proposed, where the FtsZ ring performs a recruitment role by engaging in weak transient interactions with downstream machinery for PG synthesis~\cite{baranovaDiffusionCapturePermits2020}.
 However, in \textit{S. aureus}, cytokinesis may actually occur in two separate steps: a slow, FtsZ-driven, treadmilling-dependent step which causes initial invagination, followed by a faster step where PG synthesis is the driving force for septation~\cite{monteiroPeptidoglycanSynthesisDrives2018}.
 
 While FtsZ ring formation and PG synthesis are clearly linked, their precise interaction may differ between bacteria.
-In \textit{E. coli}, GTP regulates FtsZ treadmilling, which in turn controls the movement of the synthesis machinery.
+In \textit{E. coli}, GTP regulates FtsZ treadmilling, which in turn controls the movement of the synthesis machinery~\cite{yangGTPaseActivityCoupled2017}.
 However, it does not appear to affect the rate of PG synthesis, as opposed to what happens in \textit{B. subtilis}, which suggest that the presence or absence of an outer membrane may change PG synthesis machinery regulation~\cite{yangGTPaseActivityCoupled2017}.
 Indeed, in \textit{E. coli}, some additional proteins may help with a timely invagination of the outer membrane, although they are not needed for septation to occur~\cite{gerdingTransenvelopeTolPal2007}.
 This is intriguing for \textit{D. radiodurans} which, despite staining gram-positive, presents an outer membrane.

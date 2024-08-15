@@ -4,18 +4,17 @@ Structural biologists employ several techinques to understand the structure and 
 Arguably, the three giants in the field are X-ray crystallography, Nuclear Magnetic Resonance (NMR) and cryo-electron microscopy (cryo-EM), with several other techniques playing complementary, more specialized or niche roles (such as mass spectroscopy, neutron scattering or small-angle scattering).
 Each technique has pros and cons, making it suited to different samples and applications.
 
-In X-Ray crystallography --- in many ways the predecessor to cryo-EM as all-purpose structural biology technique --- crystals are grown from the sample of interest; the crystals are then illuminated by an X-ray beam, and the diffraction pattern thus created can be detected and used to reconstruct the three-dimensional (3D) structure of the sample.
+In X-ray crystallography --- in many ways the predecessor to cryo-EM as all-purpose structural biology technique --- crystals are grown from the sample of interest; the crystals are then illuminated by an X-ray beam, and the diffraction pattern thus created can be detected and used to reconstruct the three-dimensional (3D) structure of the sample.
 Thanks to the short wavelength of X-rays --- as opposed to visible light --- it is possible to localize the positions of atoms with sub-angstrom precision.
 X-ray crystallography has played a major role in the development of structural biology, and is still the primary source of protein structures on the Protein Data Bank~\cite{bermanProteinDataBank2000,bermanAnnouncingWorldwideProtein2003}.
-However, the need for crystallization poses a few limits.
-The crystallization procedure is often hard to devise and reproduce, extending the time and resources needed for sample preparation.
-Moreover, the resulting crystal "forces" the sample into a crystalline lattice, often with biologically irrelevant chemical states, restricting the conformational freedom of the molecule and limiting the biological significance of the obtained structures~\cite{ravikumarComparisonSidechainDispersion2022}.
+However, the need for crystallization constitutes a major bottleneck: it requires very pure and homogeneous samples, and the procedure is often hard to devise and reproduce, requiring time, resources and some luck.
+Moreover, the protein is forced into a specific crystalline lattice, restricting the conformational freedom of the molecule and potentially limiting the biological significance of the obtained structures~\cite{ravikumarComparisonSidechainDispersion2022}.
 
 \localtableofcontents
 
-\section{Cryo-EM 101}
+\section{Cryo-EM: basic concepts}
 
-Cryo-EM improves on these aspects by forgoing crystallization in favor of sample vitrification, which allows to capture the sample in near-native state. This requires analysing many individual particles at different orientations, in a procedure known as single particle analysis (SPA).
+Cryo-EM improves on these aspects by forgoing crystallization in favor of sample vitrification, which allows to capture the sample in a near-native state. This requires analysing many individual particles in different orientations, in a procedure known as single particle analysis (SPA).
 
 In simple terms, the electron microscope works by shooting a coherent electron beam at the sample, and using a camera to detect the scattered electrons and form an image.
 Thanks to the small wavelength of electrons, cryo-EM can reach much higher resolution than light microscopy; however, it presents unique challenges and limitations that its more familiar light-based counterpart does not.
@@ -24,18 +23,25 @@ In the last decade, the development of direct electron detectors made it possibl
 
 Differently from light-microscopy, which relies on amplitude contrast for image formation, the electron microscope uses phase contrast, which is caused by elastic scattering events affecting the electrons traversing the sample.
 Some electrons, however, are inelastically scattered; these electrons are no longer coherent, and therefore add to the noise of the image.
-Increasing the electron dose can help improve the signal-to-noise ratio (SNR), but comes at the cost of radiation damage, which denatures the sample and rapidly destroy high-resolution information.
+Increasing the electron dose can help improve the signal-to-noise ratio (SNR), but comes at the cost of radiation damage, which denatures the sample and rapidly destroys high-resolution information.
 For these reasons, a significant limitation --- and thus optimization target --- of cryo-EM is the low SNR.
 
 The cryo-EM workflow is well established, and usually consists of the same principal components: sample preparation and vitrification, data collection, preprocessing (cleaning, motion and CTF correction), particle picking and classification, three-dimensional (3D) reconstruction, and model building.
-This section describes such typical workflow, expanding on the theoretical bases surrounding each step.
+This section describes such typical workflow, expanding on the theoretical bases underlying each step.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \caption[Cryo-EM workflow]{TODO: typical cryoem workflow}
+    \label{fig:em_workflow}
+\end{figure}
 
 \section{Sample preparation}
 Cryo-EM samples for SPA are usually prepared in vitro by expressing ad purifying the protein or complex of interest to create a minimal system.
 Sample concentration and purity are important variables to control, as they will affect vitrification and data processing complexity.
-The sample solution is then deposited on a cryo-em grid and vitrified via plunge freezing in liquid ethane or other methods (\autoref{fig:em_plunge_freezing})~\cite{dubochetCryoelectronMicroscopyVitrified1988}.
-Vitrification allows to fixate the sample at near-native, hydrated conditions while avoiding the formation of crystalline ice, which would damage the sample.
-When vitrifying, the thickness of the ice is crucial: a thinner layer will results in fewer inelastically scattered electrons during data collection and better SNR.
+The sample solution is then deposited on a cryo-EM grid and vitrified via plunge freezing in liquid ethane or other methods (\autoref{fig:em_plunge_freezing})~\cite{dubochetCryoelectronMicroscopyVitrified1988}.
+Vitrification allows to fix the sample in near-native, hydrated conditions while avoiding the formation of crystalline ice, which would damage the sample.
+When vitrifying, the thickness of the ice is crucial: a thinner layer will result in fewer inelastically scattered electrons during data collection and better SNR.
 However, too-thin ice can crack and increase issues with preferential orientation or particle distribution.
 
 \begin{figure}[ht]
@@ -70,7 +76,7 @@ An important concept to be mindful of when setting up a data collection is defoc
 In electron microscopy, image contrast derives almost entirely from phase contrast.
 The electron beam generated by the microscope is initially coherent, that is the phases of all the electrons in the beam are correlated.
 When electrons traverse the sample, they have a chance to undergo elastic scattering; this results in a shift in the electron's phase, leading to interference with the unscattered wave at the image plane (\autoref{fig:em_image_formation}).
-It's this interference that create phase contrast, which the camera detects to generate the image.
+It's this interference that creates phase contrast, which the camera detects to generate the image.
 
 Some electrons are also inelastically scattered: these electrons lose energy and coherence, and are therefore adding to the noise of the image because the lenses no longer focus them to the right place.
 To mitigate this effect, inelastically scattered electrons are filtered out using an energy filter, which removes electrons with energy that differs significantly from the unscattered ones (\autoref{fig:em_image_formation}).
@@ -83,7 +89,7 @@ Additionally, a thicker sample may result in multiple elastic scattering events,
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/scattering.png}
-    \caption[Image formation]{Electron scattering and diffraction are the physical processes at the core of cryo-EM image formation. Electrons can scatter in several different ways (left), but only elastic scattering contributes to image formation via phase contrast with the trasmitted electrons. Features contained in the sample that present different spatial frequencies result in scattering at different angles (right); depending on the difference in path travelled and the wavelength of the electron beam, this results in interference between differently scattered waves. In this figure where wave oscillations are visualized as dashed lines, we can see that the unscattered and low-angle scattered waves result in constructive interference, while the high-angle scattered interferes destructively.}
+    \caption[Image formation]{Electron scattering and diffraction are the physical processes at the core of cryo-EM image formation. Electrons can scatter in several different ways (left), but only elastic scattering contributes to image formation via phase contrast with the trasmitted electrons. Features contained in the sample that present different spatial frequencies result in scattering at different angles (right); depending on the difference in path travelled and the wavelength of the electron beam, this results in interference between differently scattered waves. In this figure where wave oscillations are visualized as dashed lines, we can see that the unscattered and low-angle scattered waves result in constructive interference, while the high-angle scattered waves interfere destructively.}
     \label{fig:em_image_formation}
 \end{figure}
 
@@ -104,7 +110,7 @@ The exact shape of the Thon rings depends on several factors, first among which 
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}{.6\textwidth}
+    \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=\textwidth]{introduction/ctf_defocus_2d.png}
         \caption{2D power spectrum ($CTF^2$).}
@@ -118,7 +124,7 @@ The exact shape of the Thon rings depends on several factors, first among which 
         \label{fig:em_ctf_defocus_1d}
     \end{subfigure}%
 
-    \caption[CTF: effect of defocus]{Simulated CTF of two images at different defoci. Highlighted in green is the spatial frequency of \qty{0.1}{\angstrom^{-1}}, where there the blue line (CTF at defocus \qty{0.5}{{\mu}m}) is close to \num{0}, whereas the orange line (CTF at defocus \qty{0.7}{{\mu}m}) is close to \num{1}. Image generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
+    \caption[CTF: effect of defocus]{Simulated CTF of two images at different defoci. \textbf{(a)} 2D power spectrum ($CTF^2$). \textbf{(b)} 1D rotational average, highlighting in green the spatial frequency of \qty{0.1}{\angstrom^{-1}}, where the blue line (CTF at defocus \qty{0.5}{{\mu}m}) is close to \num{0}, whereas the orange line (CTF at defocus \qty{0.7}{{\mu}m}) is close to \num{1}. Images generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
     % https://ctfsimulation.streamlit.app/?ctf_type=CTF%5E2&ctf_type=CTF%5E2&defocus=0.5&defocus=0.7&over_sample=6&over_sample=6&share_url=1&show_2d=1
     \label{fig:em_ctf_defocus}
 \end{figure}
@@ -133,7 +139,7 @@ While phase plates are in theory the ideal solution to this problem, there are s
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/ctf_phase_shift.png}
-    \caption[CTF: effect of phase shift]{Simulated CTF of two images at different phase shifts. Note how the phase-shifted CTF (orange) has a peak at spatial fequency \num{0}, boosting low-resolution features. Image generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
+    \caption[CTF: effect of phase shift]{1D rotational average of a simulated CTF of two images at different phase shifts. Note how the phase-shifted CTF (orange) has a peak at spatial fequency \num{0}, boosting low-resolution features. Image generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
     % https://ctfsimulation.streamlit.app/?ctf_type=CTF%5E2&ctf_type=CTF%5E2&defocus=0.5&defocus=0.7&over_sample=6&over_sample=6&share_url=1&show_2d=1&phaseshift=0.0&phaseshift=90.0
     \label{fig:em_ctf_phase_shift}
 \end{figure}
@@ -159,7 +165,7 @@ Importantly, this effect is worse at higher defocus, contributing the worse high
         \caption{1D rotational average.}
         \label{fig:em_ctf_envelope_1d}
     \end{subfigure}%
-    \caption[CTF: effect of the envelope function]{Simulated CTF of an image, including some envelope function effects (such as beam convergence and energy spread). As a result, higher resolution frequencies are dampened, reducing the signal available for CTF estimation and high resolution reconstruction. Image generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
+    \caption[CTF: effect of the envelope function]{2D power spectrum (left) and 1D rotational average (right) of a simulated CTF, including some envelope function effects (such as beam convergence and energy spread). As a result, higher resolution frequencies are dampened, reducing the signal available for CTF estimation and high resolution reconstruction. Images generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
     % https://ctfsimulation.streamlit.app/?ctf_type=CTF%5E2&defocus=0.5&defocus=0.7&over_sample=3&share_url=1&show_2d=1&phaseshift=0.0&phaseshift=90.0&bfactor=10.0&alpha=0.3&dE=2.0&dI=7.0&dZ=0.1&dXY=0.1
     \label{fig:em_ctf_envelope}
 \end{figure}
@@ -201,7 +207,7 @@ In the case of 2D data, calculating the cross-correlation of two images often al
 
 \subsection{Filtering and denoising}\label{em_filtering_and_denoising}
 
-Due to the low SNR of cryo-EM data, even motion-corrected micrographs can can be surprisingly hard to interpret.
+Due to the low SNR of cryo-EM data, even motion-corrected micrographs can be surprisingly hard to interpret.
 To enhance the contrast of biological features and better judge the quality of the data --- as well as improve the ability to distinguish particles from the background and from one another for the purposes of picking (\fullref{em_particle_picking}) --- micrographs often undergo a round of filtering and/or denoising.
 
 The simplest --- and most commonly used --- type of filtering is fourier masking; by reducing or zeroing the values inside a disc or annulus in fourier space, the respective spatial frequencies are dampened in the image.
@@ -215,7 +221,7 @@ In practice, this is often used to remove high-frequency components (low-pass fi
     % TODO: made with filter.py
 \end{figure}
 
-In the last few years, ML-based denoising has become standard practice, with algorithms such as noise2noise and noise2void~\cite{lehtinenNoise2NoiseLearningImage2018,krullNoise2VoidLearningDenoising2019} being implemented in several cryo-EM software suites~\cite{beplerTopazDenoiseGeneralDeep2020,tegunovRealtimeCryoelectronMicroscopy2019,buchholzCryoCAREContentAwareImage2018}.
+In the last few years, denoising using machine learning (ML) tools has become standard practice, with algorithms such as noise2noise and noise2void~\cite{lehtinenNoise2NoiseLearningImage2018,krullNoise2VoidLearningDenoising2019} being implemented in several cryo-EM software suites~\cite{beplerTopazDenoiseGeneralDeep2020,tegunovRealtimeCryoelectronMicroscopy2019,buchholzCryoCAREContentAwareImage2018}.
 
 \subsection{Dataset cleaning}
 The dataset often contains bad images for various reasons: bad CTF estimation, too high motion, issues with autofocus, too thick or cracked ice, etc.
@@ -226,7 +232,7 @@ Once the data is clean, motion corrected and CTF-estimated, the particles of int
 \section{Particle picking}\label{em_particle_picking}
 In order to reconstruct the 3D map of particles of interest, one first needs to locate them on the micrograph.
 This procedure is called particle picking, and can be performed with varying levels of automation, and using several different techniques.
-The most commonly used are variations of: manual picking, template matching, and machine learning (ML) tools.
+The most commonly used are variations of: manual picking, template matching, and ML tools.
 
 Manual picking is generally more intuitive and can be very precise, but is also tedious and time-consuming.
 Data may also be too noisy for humans to distinguish particles from one another and from the background, leading to missed particles or wrong picks.
@@ -248,11 +254,11 @@ Regardless of the picking method, it is important to ensure that the target obje
 
 \section{2D classification}\label{em_classification}
 
-Even with the best data and most advanced methods, picked particles typically contain a variety of several different objects, conformations, and spurious background picks; before moving on to reconstruction, useful particles need to be separated from the chaff.
-To do so, particles are separated into groups based on similarity, in a process called 2D classification.
+Even with the best data and most advanced methods, picked particles typically contain a variety of several different objects, conformations, and spurious background picks; before moving on to reconstruction, the wheat should be separated from the chaff.
+To do so, particles are split into groups based on similarity, in a process called 2D classification.
 
 Once again, some form of cross-correlation (\fullref{em_cross_correlation}) is involved in the process, since the goal is to cluster together similar particles and separate different ones.
-The algorithm is typically iterative: after generating a initial classes by averaging random particles, particle poses are progressively refined to find the best CC score.
+The algorithm is typically iterative: after generating an initial set of classes by averaging random particles, particle poses are progressively refined to find the best CC score.
 Based on this score, each particle is assigned to a class (or a score for each class, in probabilistic models~\cite{scheresRELIONImplementationBayesian2012}), and for each class a class average is computed, combining the signal from all the particles belonging to that class. The more poses are refined, the more the signal that's shared by similar particles is boosted, improving the SRN of the class average.
 Class averages are used to calculate the CC at each iteration, and used at the end of the process to inspect the dataset and select only the useful particles (\autoref{fig:em_classification}).
 
@@ -277,13 +283,14 @@ This is possible thanks to the central slice theorem~\cite{wikipediaProjectionsl
 
 The theorem states that the fourier transform of the 2D projection of a volume at a certain orientation, is equal to the central slice through the fourier transform of the volume at the orientation perpendicular to the projection (\autoref{fig:em_central_slice}, panel A).
 
-It's worth noting that the algorithms used by reconstruction software, while based on this principle, are often in practice not based on fourier-domain reconstruction, but use different methods such as weighted back-projection or iterative approaches like SART and SIRT~\cite{andersenSimultaneousAlgebraicReconstruction1984,agulleiroFastTomographicReconstruction2011,wikipediaTomographicReconstruction2024}.
+It's worth noting that the algorithms used by reconstruction software, while based on this principle, are often in practice not based on fourier-domain reconstruction, but use different methods such as weighted back-projection or iterative approaches like Simultaneous Algebraic Reconstruction Technique (SART) and Simultaneous Iterative Reconstruction Technique (SIRT)~\cite{andersenSimultaneousAlgebraicReconstruction1984,agulleiroFastTomographicReconstruction2011,wikipediaTomographicReconstruction2024}.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=.7\textwidth]{introduction/central_slice_theorem.png}
     \caption[Central slice theorem]{Showcase of how the central slice theorem is used for 3D reconstruction in cryo-EM. \textbf{A.} A 2D projection of a 3D volume in real space at a certain orientation is equivalent to the 2D slice perpendicular to that orientation in fourier space. \textbf{B.} \textbf{C.} \textbf{D.} \textbf{E.}. Figure adapted from \citet{nogalesCryoEMUniqueTool2015}.}
     \label{fig:em_central_slice}
+    % generated with fsc.py
 \end{figure}
 
 In the case of SPA, the central slice theorem allows us to combine the projection of many different particles, under the assumption that they come from near-identical copies of the same object.
@@ -314,8 +321,8 @@ When classification is too categorical to capture nuanced systems (such as heter
 \subsection{FSC and gold standard}\label{em_fsc}
 For most procedures that attempt to refine parameters in order to improve a 3D classification or reconstruction, a method is needed to estimate the quality (resolution) of the current model.
 
-The established approach is called \textbf{gold sandard} and relies on calculating the fourier shell correlation (FSC) of two independent halves of the data.
-At the cost of halving the amount of data we can use at once to make a map, we gain the ability to estimate how trustworthy our recostruction is.
+The established approach is called \textbf{gold standard} and relies on calculating the fourier shell correlation (FSC) of two independent halves of the data.
+At the cost of halving the amount of data we can use at once to make a map, we gain the ability to estimate how trustworthy our reconstruction is.
 
 At the beginning of the process, the dataset (which in the case of 3D reconstruction is the ensemble of picked particles) is randomly split in two halves.
 At each iteration of the refinement, each half is used to generate an independent 3D reconstruction.
@@ -339,7 +346,7 @@ Different types of masking, filtering, and denoising can be applied, depending o
 TODO: feels like I should expand, but it's also not very important here. Sharpening?
 
 \section{Refinement}\label{em_refinement}
-Once a 3D model is obtained, several state of the art software pipelines offer the ability to refine previously-defined parameters, using the estimated resolution of the 3D reconstruction validate the improvements.
+Once a 3D model is obtained, several state of the art software pipelines offer the ability to refine previously-defined parameters, using the estimated resolution of the 3D reconstruction to validate the improvements.
 The parameters that can be refined range from particle positions and orientations, to CTF estimation and motion correction, to more complex artifact-inducing factors such as lens aberrations and Ewald sphere curvature~\cite{tegunovMultiparticleCryoEMRefinement2021,punjaniCryoSPARCAlgorithmsRapid2017,scheresRELIONImplementationBayesian2012}.
 
 The implementation details of refinement procedures are often quite different between software, but are generally based on an iterative process where parameters are adjusted on a per-particle basis, and a new 3D reconstruction is generated and validated via FSC to estimate the effects of the correction applied.
@@ -351,24 +358,5 @@ These procedures can have dramatic effects on the final resolution of a map, esp
 If a map reaches high enough resolution, it is possible to build an atomic model based on the volume density.
 This process is called model building, and is typically done with a mix of manual and automated tools.
 
-Models are build by placing aminoacids (or other structural components) so that their electron occupancy matches the density map obtained from 3D reconstruction.
-Some recent tools manage to fully automate this process for maps of high enough resolution, even without knowing the protein's sequence~\cite{jamaliAutomatedModelBuilding2024}.
-
-\section{Pros and Cons}
-
-TODO: I don't love this section. Need some rewording/restructuring.
-
-SPA offers some advantages and disadvantages compared to other popular techniques, making it more suitable for certain applications.
-
-Compared to X-ray crystallography, SPA sample preparation is a strong selling point: it can be much faster and simpler, not requiring crystallization and needing small quantities of sample, and being less sensitive to contamination.
-Thanks to the fast vitrification, SPA is also better for studying the sample at near-native state, and for capturing rare or dynamic states (though the analysis in these cases becomes trickier).
-However, due to the unknown particle orientations and low SNR, SPA data analysis is trickier and more error-prone, especially for small particles (\lesssim\qty{100}{\kilo\dalton}).
-
-Bigger particles or complexes are usually better handled by cryo-EM: with increasing size, crystallization gets more difficult, and NMR spectra become harder to interpret to extract complete structural information.
-On the other hand, NMR takes the near-native crown, being able to collect data on a sample directly in solution, providing information about dynamics and interactions.
-
-However, near-native is often not enough: all these techniques rely on drawing information about an ensemble of molecules, typically with a purified sample prepared \textit{in vitro}.
-Often, macromolecular systems can only be fully understood by accounting for their biological context, which is partly or fully lost in the expression and purification process.
-When studying biological systems that form larger mesoscale and dynamic complexes, having a three-dimensional understanding of invididual events within their context becomes paramount.
-
-A method that promises to solve these problems is cryo-electron tomography: a technique that can look not only at purified samples, but at entire organisms, \textit{in situ} and near-native conditions, with the ability to reach high resolutions via subtomogram averaging, while retaining contextual information and providing a 3D view into single events.
+Models are built by placing amino acids (or other structural components) so that their electron occupancy matches the density map obtained from 3D reconstruction.
+Some recent tools manage to fully automate this process for maps of high enough resolution (\lesssim\qty{4}{\angstrom}), even without knowing the protein's sequence~\cite{jamaliAutomatedModelBuilding2024}.
