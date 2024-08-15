@@ -4,11 +4,9 @@
 \ifbool{printer-friendly}{
     \documentclass[8pt,a5paper]{extbook} % extbook to allow smaller font
     \usepackage[twoside=true]{geometry} % twoside for book binding
-    \usepackage[pagebackref,breaklinks,hidelinks]{hyperref} % don't show link colors cause anyways we can't click xD
 }{
     \documentclass[12pt,a4paper]{extbook}
     \usepackage[twoside=false]{geometry}
-    \usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
 }
 
 % general must-have or good-to-have stuff
@@ -16,34 +14,42 @@
 \usepackage{microtype} % fixes some over/under-full box warnings
 \usepackage[T1]{fontenc} % better behaviour for fonts (copy-pasting, etc)
 \usepackage{charter} % font typeface
-\usepackage{booktabs} % improved tables
-\usepackage{tabularx} % improved tables
-\usepackage{placeins} % float barriers with \FloatBarrier
-\usepackage{enumitem} % remove item separation with [noitemsep]
-\usepackage{pdfpages} % include pre-rendered pdfs
-\usepackage{tocbibind} % add lof and lot to toc
-\usepackage{etoc} % local TOCs per chaptera
-\usepackage[perpage, symbol*]{footmisc} % footnotes counters use symbols and reset each page
-\usepackage{bookmark} % allow to end parts/sections (\startatroot}
-\usepackage[separate-uncertainty=true]{siunitx} % proper handling of units and quantities
-\usepackage{amsmath,amssymb} % for better math symbols
-\usepackage{setspace} % use stuff like \onehalfspacing and \begin{singlespace}
-
-% some layout settings
-\onehalfspacing
-\urlstyle{same} % don't use monospace font for urls
+\usepackage{setspace} \onehalfspacing % use stuff like \onehalfspacing and \begin{singlespace}
 
 % bibliography
 \usepackage[super,sort&compress,comma]{natbib}
 \bibliographystyle{unsrtnat}
 \def\bibfont{\footnotesize}
+
+% hyperrefs and friends
+\ifbool{printer-friendly}{
+    \usepackage[pagebackref,breaklinks,hidelinks]{hyperref}
+}{
+    \usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
+}
+\urlstyle{same} % don't use monospace font for urls
 \renewcommand*\backref[1]{\ifx#1\relax \else (pg. #1) \fi} % backref to citation location formatted as: (pg. N)
 \usepackage{hypernat} % fixes backref of ranges. must be after natbib and hyperref
 \newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{DOI:~\detokenize{#1}}} % hyperlink DOIs
+% "fullref" (especially for printed cause link can't be clicked and it's easier to find with section numbers)
+\newcommand*\fullref[1]{\hyperref[{#1}]{\bfseries\ref*{#1} \nameref*{#1}}}
+
+% useful miscellaneous
+\usepackage{pdfpages} % include pre-rendered pdfs
+\usepackage{tocbibind} % add lof and lot to toc
+\usepackage{etoc} % local TOCs per-chapter
+\usepackage{bookmark} % allow to end parts/sections (\startatroot}
+\usepackage{booktabs} % improved tables
+\usepackage{tabularx} % improved tables
+\usepackage{placeins} % float barriers with \FloatBarrier
+\usepackage{enumitem} % remove item separation with [noitemsep]
+\usepackage[perpage, symbol*]{footmisc} % footnotes counters use symbols and reset each page
+\usepackage[separate-uncertainty=true]{siunitx} % proper handling of units and quantities
+\usepackage{amsmath,amssymb} % for better math symbols
+\usepackage{epigraph} % cool quotes
 
 % figures and captions
-\usepackage{graphicx}
-\graphicspath{{img/}}
+\usepackage{graphicx} \graphicspath{{img/}}
 \usepackage[format=plain,labelfont={bf,it},textfont=it,font=small]{caption}
 \usepackage{subcaption} % subfigures
 
@@ -54,24 +60,18 @@
 % \setminted[python]{linenos} % enable line numbers on all python boxes
 %\usepackage{tcolorbox} % colored titled box (e.g: "NOTE: ...")
 
-% other miscellaneous
+% other (order matters...)
 \usepackage[autostyle,english=american]{csquotes} \MakeOuterQuote{"} % normal-er quotes (must be after minted)
 
 % situational but useful or cool
-\usepackage{epigraph} % cool quotes
-%\usepackage{tikz} \usetikzlibrary{positioning,shapes,shadows,arrows}
-% \usepackage{xspace} % smart spaces after commands
-% \newcommand*{\something}{\textit{SomEthing}\xspace}
-% \usepackage[blocks]{authblk} \renewcommand\Affilfont{\scriptsize} % multiple authors with affiliations (must import after titling if it's there)
+% \usepackage{tikz} \usetikzlibrary{positioning,shapes,shadows,arrows}
+% \usepackage{xspace} % smart spaces after commands % \newcommand*{\something}{\textit{SomEthing}\xspace}
 % \usepackage{titling} % multiple/different title pages
+% \usepackage[blocks]{authblk} \renewcommand\Affilfont{\scriptsize} % multiple authors with affiliations (must import after titling if it's there)
+
+% TODO: to remove, temporary packages
+\usepackage{outlines} % easy nested lists
+\usepackage{pifont} \newcommand{\tick}{\ding{51}} % icons (e.g checkmark)
 
 % custom commands or declarations for this document
 \DeclareSIUnit\angstrom{\text {Å}}
-\newcommand{\blankpage}{\newpage\mbox{}\newpage}
-% "fullref" (especially for printed cause link can't be clicked and it's easier to find with section numbers)
-\newcommand*\fullref[1]{\hyperref[{#1}]{\bfseries\ref*{#1} \nameref*{#1}}}
-
-% TODO: to remove, temporary packages
-\usepackage{lipsum}
-\usepackage{outlines} % easy nested lists
-\usepackage{pifont} \newcommand{\tick}{\ding{51}} % icons (e.g checkmark)
