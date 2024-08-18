@@ -10,52 +10,23 @@ Cryo-ET offered an exciting prospect, promising quasi-native structures, \textit
 My thesis started in October 2020 in the MICA group at the Institute de Biologie Structurale (IBS) in Grenoble, under the supervision of Irina Gutsche and co-supervision of Joanna Timmins, leader of the GenOM team, with the ambitious project of using cryo-ET to understand the 3D structural organization of the highly compact chromatin of the radiation resistant bacterium \textit{Deinococcus radiodurans}.
 
 During the first year of my PhD, I confronted the problem of trying to pick and process very small proteins (the nucleoid associated protein HU) in single particle cryo-EM data collected by my supervisors, with nothing but DNA filaments as a guide, while learning the workflows and intricacies of cryo-EM and cryo-ET data processing.
-In the first part of this manuscript, I lay out the theoretical foundations of cryo-electron microscopy and single particle analysis in \fullref{em}, as well as tomography and subtomogram averaging in \fullref{et}, contextualized within typical data collection and processing workflows.
+In the first part of this manuscript, I lay out the theoretical foundations of cryo-electron microscopy and single particle analysis (\fullref{em}), as well as tomography and subtomogram averaging (\fullref{et}), contextualized within typical data collection and processing workflows.
 
 After a year of working on bacterial chromatin, my thesis committee and I concluded that this project required more work and careful design on the sample preparation side in order to be feasible in single particle, let alone in cryo-ET.
 The goal of my thesis thus shifted: I started contributing to a few other projects within the group, while focusing more intently on the continued development of various software tools I had been working on.
 
 One of such tools was blik, a cryo-ET-oriented plugin for napari, a rapidly growing scientific visualization tool designed for interactivity, ease of use, and customizability.
-Blik was born out of the need to not only visualize cryo-ET data in its native 3D space, but also to be able to create custom tools to annotate, select, or otherwise manipulate the data in a way that acted less like a black-box and more like an exploratory experience.
+blik was born out of the need to not only visualize cryo-ET data in its native 3D space, but also to be able to create custom tools to annotate, select, or otherwise manipulate the data in a way that acted less like a black-box and more like an exploratory experience.
+In particular, blik is aimed at the study of superstructural complexes --- such as membrane lattices and filaments --- whose investigation is often the reason why researchers turn to cryo-ET.
 With my growing contributions to napari, I was soon asked to join the core-developers of the project, whose development and maintenance I continued throughout my PhD, and which is now used by hundreds of researchers from several different fields.
-The publication that resulted from this work is presented in \fullref{blik}.
+The work on blik resulted in a publication, which is included and contextualized within this thesis (\fullref{blik}).
 
 While the original thesis project about bacterial chromatin went to the back burner, together with the GenOM group we continued to study \textit{D. radiodurans}, fascinated by its incredible radiation resistance and its odd cellular structure which sets it apart from most bacteria.
-In my second year, I spent three months with my supervisor visiting Linda Sandblad's group at the Centre for Electron Microscopy in Umeå, where we collected the first set of tilt-series of the bacterium from FIB-milled samples, revealing a host of new interesting features that we hadn't seen before.
+In my second year, I spent three months with my supervisor visiting Linda Sandblad's group at the Centre for Electron Microscopy in Umeå, where we collected the first set of tomograms of the bacterium from FIB-milled samples, revealing a host of new interesting features that we hadn't seen before.
 Among many, two captured our interest and became the main focus of my subsequent data analysis work: the distinctive arch-shaped FtsZ --- a protein involved in bacterial septation that we were already working on using single particle analysis --- and the multi-layered cell walls and septa --- already under investigation by the GenOM team with fluorescence microscopy and other techniques.
-A publication about our work on the cell wall and septation mechanism of \textit{D. radiodurans} is underway, and is attached in its current form in \fullref{drad}.
+A publication about our work on the cell wall and septation mechanism of \textit{D. radiodurans} is underway, and is attached to this manuscript in its current form (\fullref{drad}).
+Our work on FtsZ --- though not yet coalesced into a paper --- is also presented here (\fullref{ftsz}), combining the use of single particle cryo-EM on purified samples and of subtomogram averaging on the aforementioned tomograms.
 
-TODO: ftsz....
+Throughout the years of my PhD, several smaller projects and collaborations materialized, some of which gave birth to scripts and tools that may yet benefit others (\fullref{other_projects}).
 
-Several smaller projects and collaborations materialized during this thesis, giving birth to scripts and tools that may yet benefit others; some of these are presented in \fullref{other_projects}. 
-
-TODO Excuse/opportunity to work on development of stuff
-
-TODO: dunno where this next stuff goes...
-
-\begin{outline}
-\1 Importance of understanding 3D structure of molecules
-    \2 Cryo-em's contribution to this, resolution revolution
-    \2 some review, examples of breakthroughs thanks to structure findings (covid mention might be nice)
-\1 Importance of context, mesoscale and superstructures
-    \2 examples of SPA that cannot give insights due to lack of mesoscale/context
-    \2 Cryo-et and its power for this at both lower and higher res
-\1 Importance of visualization in interpreting complex data
-    \2 hypothesis generation, testing
-    \2 challenges due to complexity/dimensionality of data
-    \2 need for real-time interaction
-    \2 what I set out to do about it (napari, blik)
-\1 D. radiodurans
-    \2 why it's interesting
-        \3 radiation resistance, dna repair
-        \3 different from typical (gram+/-)
-        \3 relatively simple systems for stuff we were interested in (HU)
-    \2 what we hope to learn (DNA repair, protection via wall, etc)
-\1 in short, goals of this thesis
-    \2 enable people to do powerful tomo on superstructures
-    \2 apply these methods on biological system
-    \2 Understand mechanisms of Deinococcus
-\1 what each chapter is about (either in brief here at the end, or spread out trhough the previous bullet points with references to each chapter)
-\1 nature of thesis (open source dev, collaborative work, less focus on single project/structure). Not sure if/how/where to do this, but it feels important to mention
-\1 publications, projects, collaborations resulted from this work
-\end{outline}
+In the final chapters of these thesis, I discuss the state of the cryo-ET software ecosystem in academia (\fullref{software}), and the future of the projects in this thesis and of cryo-ET as a whole (\fullref{future}).

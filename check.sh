@@ -19,6 +19,9 @@ echo === Checking for space before \\cite commands
 rg --vimgrep ' \\cite\{' $FILES
 echo
 
+echo === open-source ===
+rg --vimgrep -s '(O|o)pen source' $FILES
+
 # echo === Style checking with Vale
 # vale --output vale_template.tmpl $FILES
 # vale --output line $FILES

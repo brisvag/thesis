@@ -9,9 +9,11 @@ On the other hand, NMR allows to gather some information on the dynamics of the 
 
 All these techniques, however, rely on drawing information about an ensemble of molecules, typically with a purified sample prepared \textit{in vitro}.
 Often, macromolecular systems can only be fully understood by accounting for their biological context, which is partly or fully lost in the expression and purification process.
-When studying biological systems that form larger mesoscale and dynamic complexes, having a three-dimensional understanding of invididual events within their cellular context becomes paramount.
+When studying biological systems that form larger mesoscale and dynamic complexes --- often called superstructures --- having a three-dimensional understanding of invididual events within their cellular context becomes paramount.
 
-A method that promises to solve these problems is cryo-electron tomography: a technique that can look not only at purified macromolecules, but at entire cells and tissues, \textit{in situ} in near-native conditions, with the ability to reach higher resolutions via subtomogram averaging, while retaining contextual information and providing a 3D view into single events.
+While ML tools such as AlphaFold3~\cite{abramsonAccurateStructurePrediction2024} have recently become powerful enough to accurately predict even large protein complexes, they still suffer from the same decontextualization problem as all these experimental techniques.
+
+A method that promises to solve these problems is cryo-electron tomography (cryo-ET): a technique that can look not only at purified macromolecules, but at entire cells and tissues, \textit{in situ} in near-native conditions, with the ability to reach higher resolutions via subtomogram averaging, while retaining contextual information and providing a 3D view into single events.
 
 Tomographic reconstruction is not a recent invention: the first appearance goes back more than a century~\cite{jDeterminationFunctionsTheir1917}; its successful application to cryo-EM, however, is only a recent development closely linked to the resolution revolution, which allowed to finally overcome the biggest overarching limitation of cryo-ET --- poor signal-to-noise ratio --- enough to reach sub-nanometer resolutions~\cite{lucicCryoelectronTomographyChallenge2013,turkPromiseChallengesCryoelectron2020}.
 
@@ -41,7 +43,7 @@ Preparing lamellae via FIB milling is becoming standard procedure in cryo-ET, bu
     \label{fig:et_fib_milling}
 \end{figure}
 
-TODO: CLEM perspectives?
+TODO: CLEM perspectives? where to put?
 
 \subsection{Fiducials}\label{fiducials}
 During data collection, despite vitrification, samples undergo different kinds of deformations.
@@ -100,7 +102,9 @@ If fiducials (or other high-contrast objects of no real interest) are present in
     \label{fig:et_missing_wedge}
 \end{figure}
 
-TODO: missing wedge correction (isonet)
+The high contrast artifacts and information void caused by the missing wedge can make visualisation and annotation of the data difficult.
+For this reason, ML tools have been developed that are able to "fill in" the missing information, improving the visual quality of the tomograms~\cite{liuIsotropicReconstructionElectron2021,zhangMethodRestoringSignals2023}.
+While such tools may drastically improve the experience when visualising or annotating data, it's important to not over-interpret the outputs or use them for later steps, lest introducing generated data into the processing.
 
 \section{Annotation and segmentation}\label{et_annotation_segmentation}
 Thanks to the \textit{in situ} and quasi-native nature of tomography data, it is often useful to annotate or segment tomograms in order to get a better view of the morphology of the sample, or to find areas and particles of interest more easily.
@@ -114,11 +118,12 @@ Where high resolution molecular structures are the goal, segmentations and other
 
 \section{Particle picking}\label{et_particle_picking}
 Picking particles in tomograms is not so different from picking particles from 2D micrographs, other than having an extra dimension.
-Manual picking and template matching are still the preferred methods, though more and more software is developed for ML-based or hybrid methods (CITE cryolo, ...).
-
-TODO: manual picking harder cause 3rd dimension (filaments...), crowding, missing wedge
+Manual picking and template matching are still the preferred methods, though more and more software is developed for ML-based or hybrid methods~\cite{wagnerSPHIREcrYOLOFastAccurate2019,wagnerEvolutionSPHIREcrYOLOParticle2020,riceTomoTwinGeneralized3D2023,liuDeepETPickerFastAccurate2024}.
 
 As with most things in cryo-ET, low SNR is the main obstacle to overcome; this is why some picking tools --- such as the one developed during this thesis (\fullref{blik}) --- attempt to use as much prior knowledge about the system as possible in order to limit the degrees of freedom when searching for particles~\cite{castano-diezDynamoCatalogueGeometrical2017,wagnerEvolutionSPHIREcrYOLOParticle2020,gaifasBlikExtensible3D2024}.
+
+Having a 3rd dimension also contributes to making visualisation and annotation harder: particles and structures don't simply lay on a flat plane, and the user interface in software becomes trickier.
+Additionally, the missing wedge constitutes an obstacle to annotation, especially for features that are oriented along the microscope axis.
 
 Whenever possible, segmentation or other kinds of annotation can be used as baseline for particle picking: either by masking areas of interest --- such as picking only inside a certain cellular structure --- or by seeding particle picks based on the annotation geometry --- such as distributing particles on the surface of a membrane.
 Such information may also be used to initialize the particle orientation to something self-consistent (e.g: all perpendicular to the membrane); this can affect drastically the initial model generation and subsequent refinement, where 3D rotational search may otherwise not overcome the SNR.
@@ -128,7 +133,7 @@ In cryo-ET, the equivalent to SPA's 2D classificatin and 3D refinement is subtom
 The idea at the core is the same: by combining the data from many subvolumes extracted from the tomogram (subtomograms) which contain copies of the same object, the SNR can be drastically improved.
 The basic procedure is also very similiar to SPA, only in 3D: subtomograms are extracted from the full reconstructed tomogram based on the positions of the particle picks; then, rounds of cross-correlation and refinement (and/or classification) improve the model until convergence (\fullref{em_classification}).
 
-In recent years, however, the field is moving away from this naive approach where "rigid" subtomograms are extracted from a full 3D reconstruction, in favor of what is sometimes called \textbf{per-particle tilt series}~\cite{zivanovBayesianApproachSingleparticle2022,tegunovRealtimeCryoelectronMicroscopy2019,chenCompleteDataProcessing2019}.
+In recent years, however, the field is moving away from this naive approach where "rigid" subtomograms are extracted from a full 3D reconstruction, in favor of what is sometimes called \textbf{per-particle tilt series}~\cite{himesEmClaritySoftwareHighresolution2018,zivanovBayesianApproachSingleparticle2022,tegunovRealtimeCryoelectronMicroscopy2019,chenCompleteDataProcessing2019}.
 Differently from the naive method, subtomograms are reconstructed on-the-fly directly from the 2D data, using spatio-temporally adjusted parameters (such as CTF and tilt-series alignment) at the subtomogram level.
 This opens up many avenues for optimization --- such as 3D-CTF correction (\fullref{et_tomo_reconstruction})~\cite{turonovaEfficient3DCTFCorrection2017}, multi-particle refinement~\cite{tegunovMultiparticleCryoEMRefinement2021} or bayesian polishing~\cite{zivanovBayesianApproachSingleparticle2022} --- by not allowing the subtomogram reconstruction parameters to be tweaked after the first reconstruction (\fullref{em_refinement}).
 

@@ -1,14 +1,19 @@
 \chapter[Cryo-EM and SPA]{Cryo-electron microscopy and single particle analysis}\label{em}
 
-Structural biologists employ several techinques to understand the structure and function of biomolecular systems, typically proteins, nucleic acids and their ligands.
+Knowing the structure of macromolecular complexes is often crucial to understand --- and potentially take control of --- the function and behavior of biological systems.
+To this end, structural biologists employ several techinques to unveil the structure of biomolecules and their complexes: typically proteins, nucleic acids and their ligands.
+
 Arguably, the three giants in the field are X-ray crystallography, Nuclear Magnetic Resonance (NMR) and cryo-electron microscopy (cryo-EM), with several other techniques playing complementary, more specialized or niche roles (such as mass spectroscopy, neutron scattering or small-angle scattering).
+In recent years, machine-learning (ML) tools such as AlphaFold~\cite{jumperHighlyAccurateProtein2021,abramsonAccurateStructurePrediction2024} and RoseTTAFold~\cite{baekAccuratePredictionProtein2021} have also conquered their way into the forefront of structure determination techniques, computationally predicting protein structures with unprecedented precision and without the wait and costs of experimental approaches.
 Each technique has pros and cons, making it suited to different samples and applications.
 
-In X-ray crystallography --- in many ways the predecessor to cryo-EM as all-purpose structural biology technique --- crystals are grown from the sample of interest; the crystals are then illuminated by an X-ray beam, and the diffraction pattern thus created can be detected and used to reconstruct the three-dimensional (3D) structure of the sample.
+In X-ray crystallography --- in many ways the predecessor to cryo-EM as the all-purpose structural biology technique --- crystals are grown from the sample of interest; the crystals are then illuminated by an X-ray beam, and the diffraction pattern thus created can be detected and used to reconstruct the three-dimensional (3D) structure of the sample.
 Thanks to the short wavelength of X-rays --- as opposed to visible light --- it is possible to localize the positions of atoms with sub-angstrom precision.
 X-ray crystallography has played a major role in the development of structural biology, and is still the primary source of protein structures on the Protein Data Bank~\cite{bermanProteinDataBank2000,bermanAnnouncingWorldwideProtein2003}.
 However, the need for crystallization constitutes a major bottleneck: it requires very pure and homogeneous samples, and the procedure is often hard to devise and reproduce, requiring time, resources and some luck.
 Moreover, the protein is forced into a specific crystalline lattice, restricting the conformational freedom of the molecule and potentially limiting the biological significance of the obtained structures~\cite{ravikumarComparisonSidechainDispersion2022}.
+
+% TODO: somewhere here mention like covid spikes to show how important structures are?
 
 \localtableofcontents
 
@@ -51,7 +56,7 @@ However, too-thin ice can crack and increase issues with preferential orientatio
     \label{fig:em_plunge_freezing}
 \end{figure}
 
-TODO: talk about tilted data collection and/or easy-grid, chameleon and vitrojet (but later)
+Novel approaches are beginning to use jets, sprays and microfluidics in order to obtain uniform, thin and more rapidly vitrified samples~\cite{geminEasyGridVersatilePlatform2024}.
 
 \subsection{Preferential orientation}
 A common issue with sample preparation for cryo-EM is non-uniform orientation distribution of the protein in the vitrified sample, often due to particles being adsorbed to the air-water interface~\cite{nobleRoutineSingleParticle2018}.
@@ -60,6 +65,9 @@ Strong preferential orientation may completely preclude the ability to do a 3D r
 When this problem arises, there are a few ways to tackle it during sample preparation.
 The most common is the addition of small amounts of detergents to occupy the air-water interface and prevent particles from preferentially orienting hydrophobic surfaces out of the water.
 Other methods are a bit more involved, such as the use of functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022}, streptavidin-coated affinity support grids~\cite{crucifixImmobilizationBiotinylatedDNA2004,hanLongShelflifeStreptavidin2016}, but can offer more control over the orientation of the particles in the sample.
+
+Alternatively, preferential orientation can be partially dealt with by collecting a tilted dataset, effectively forcing the target object into a different orientation.
+This method comes at the cost of worse SNR due to the thicker sample, and cannot provide full orientation coverage due to the limited tilt angle achievable, so the aforementioned approaches are generally preferred.
 
 \section{Data collection}
 The vitrified sample is loaded into the electron microscope (under cryogenic conditions and vacuum, in order to maintain the sample vitrified and uncontaminated), and suitable positions on the grid are chosen for imaging, prioritizing for: presence of the target protein or complex, fewer contaminations, and lower ice thickness.
@@ -221,7 +229,7 @@ In practice, this is often used to remove high-frequency components (low-pass fi
     % TODO: made with filter.py
 \end{figure}
 
-In the last few years, denoising using machine learning (ML) tools has become standard practice, with algorithms such as noise2noise and noise2void~\cite{lehtinenNoise2NoiseLearningImage2018,krullNoise2VoidLearningDenoising2019} being implemented in several cryo-EM software suites~\cite{beplerTopazDenoiseGeneralDeep2020,tegunovRealtimeCryoelectronMicroscopy2019,buchholzCryoCAREContentAwareImage2018}.
+In the last few years, denoising using ML tools has become standard practice, with algorithms such as noise2noise and noise2void~\cite{lehtinenNoise2NoiseLearningImage2018,krullNoise2VoidLearningDenoising2019} being implemented in several cryo-EM software suites~\cite{beplerTopazDenoiseGeneralDeep2020,tegunovRealtimeCryoelectronMicroscopy2019,buchholzCryoCAREContentAwareImage2018}.
 
 \subsection{Dataset cleaning}
 The dataset often contains bad images for various reasons: bad CTF estimation, too high motion, issues with autofocus, too thick or cracked ice, etc.
@@ -238,12 +246,17 @@ Manual picking is generally more intuitive and can be very precise, but is also 
 Data may also be too noisy for humans to distinguish particles from one another and from the background, leading to missed particles or wrong picks.
 To aid with manual picking, preprocessed micrographs are often filtered and denoised to improve the contrast (\fullref{em_filtering_and_denoising}).
 
-To improve the picking speed and precision, template matching is often used to automate searching for a recognizable object.
+To improve the picking speed and precision, template matching is often used to automate searching for a recognizable object (\autoref{fig:em_template}).
 This picking method requires a template, a small image of a 2D projection of the object of interest.
 This can be obtained in a few ways: synthetically (by using a generated shape), by projecting a known map or model from previous work, or by using the results of a first round of 2D classification (\fullref{em_classification}) from a preliminary manual picking.
 While the exact details of the algorithm may vary, at its core template matching relies on calculating the CC (\fullref{em_cross_correlation}) function between the template and the micrographs in order to locate putative particles positions in the whole dataset.
 
-TODO: figure with template and picks on the micrograph?
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \caption{TODO: templates and picks on micrograph}
+    \label{fig:em_template}
+\end{figure}
 
 More recently, template matching is often being replaced with machine learning, which serves a similar purpose but can have a more nuanced understanding of surrounding context which helps reduce the false negatives and positives that are intrinsically present with template matching of noisy data.
 
