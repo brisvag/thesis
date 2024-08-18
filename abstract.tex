@@ -1,46 +1,22 @@
 \section*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}  % this combined with section*s makes sure tocs are good
 
-\begin{outline}
-\1 Cryo-et is powerful structural bio technique: enables in situ, context-aware, mesoscale insights
-\1 Software is not yet mature and fragmented, often limits researchers
-\1 visualisation, interactivity, hackability are iportant
-\1 developed blik and tools as part of this thesis to address the above problems
-    \2 probably briefly mention napari/hackability/modularity...
-\1 used them on drad to understand septation mechanism and ftsz
-    \2 wall profiles and changes over cell cycle
-    \2 mesosomes (probably not worth mentioning here)
-    \2 ftsz (and brief mention of SPA as well?)
-\1 mention here papers included in the thesis and what they are about? Or is this just Preface material?
-\end{outline}
+Cryo-electron tomography (cryo-ET) is an imaging technique that allows to reconstruct the three-dimensional volume of whole biological samples --- such as cells and tissues --- \textit{in situ}, in near-native conditions and within their biological context.
+With the development of direct electron detectors and increased computing power, in recent years cryo-ET has rapidly become a powerful and ubiquitous tool in the arsenals of structural biologists, sometimes capable of reaching sub-nanometer resolution.
+Due to the yet immature software ecosystem and the complexity of the workflows, working with cryo-ET data is still error-prone and requires constant human supervision, especially when it comes to subtomogram averaging pipelines attempting to reach high resolution reconstructions.
+This thesis presents the development of blik, a tool aimed at simplifying working cryo-ET data by providing interactive visualisation, analysis and annotation that are both powerful and customizable, with a focus on the analysis of superstructural systems such as filaments and membranes.
+Using blik and other tools, we investigate the cell wall composition and septation mechanism in the radiation resistant bacterium \textit{Deinococcus radiodurans}, and study the structure and role of FtsZ, a tubulin homologue which plays a key role in cell division.
 
-
-Since its inception, cryo-electron microscopy (cryo-EM) promised to become high resolution structural biology
-
-played a key role in the field of structural biology.
-
-% Random chatgpt draft
-%
-% Cryo-electron microscopy (cryo-EM) and cryo-electron tomography (cryo-ET) are transformative technologies in structural biology, enabling high-resolution visualization of biological macromolecules and cellular structures. This thesis explores the development and application of novel interactive visualization software, Blik, designed to enhance the analysis and annotation of cryo-ET data. Additionally, it investigates the septation mechanism in the extremophilic bacterium Deinococcus radiodurans using both cryo-EM and cryo-ET.
-%
-% The first section provides an extensive review of cryo-EM and cryo-ET methodologies, highlighting recent advancements and ongoing challenges. The need for advanced visualization tools is addressed through the development of Blik, an innovative software solution that facilitates interactive data analysis, annotation, and particle picking in cryo-ET datasets. This tool is critically evaluated against existing software, demonstrating superior performance in usability and accuracy through user feedback and case studies.
-%
-% The biological focus of this thesis is the study of D. radiodurans, known for its extraordinary resistance to DNA-damaging conditions. Using cryo-EM and cryo-ET, this research elucidates the cellular structures and mechanisms underpinning its robust septation process. Detailed methodologies for sample preparation, imaging, and data processing are described, ensuring reproducibility and transparency in the experimental approach.
-%
-% Two key papers are incorporated into the thesis: the first detailing the development and capabilities of Blik, and the second presenting new insights into the septation mechanism of D. radiodurans. These papers are contextualized within the broader scope of the thesis, emphasizing their contributions to the fields of structural biology and microbial physiology.
-%
-% The discussion synthesizes findings from both the technological and biological investigations, proposing future research directions and potential advancements in cryo-EM and cryo-ET techniques. Limitations encountered during the research are critically examined, with suggestions for overcoming these challenges in subsequent studies.
-%
-% In conclusion, this thesis presents significant contributions to both the development of interactive visualization tools and the understanding of bacterial septation mechanisms. Blik stands as a valuable resource for researchers in cryo-ET, and the insights into D. radiodurans offer promising avenues for further microbiological research. This work underscores the interplay between technological innovation and biological discovery, fostering advancements in the visualization and interpretation of complex biological systems.
-%
-
-\paragraph{Keywords}
-Cryo-electron tomography, ...
+\subsection*{Keywords}
+Cryo-electron tomography, superstructure, blik, \textit{D. radiodurans}, FtsZ
 
 \newpage
-\section*{Résumé}
+\section*{Résumé} % TODO: keep up to date
+La tomographie cryo-électronique (cryo-ET) est une technique d'imagerie qui permet de reconstruire le volume tridimensionnel d'échantillons biologiques entiers --- tels que les cellules et les tissus --- \textit{in situ}, dans des conditions proches de l'état naturel et dans leur contexte biologique.
+Avec le développement de détecteurs d'électrons directs et l'augmentation de la puissance de calcul des ordinateurs, la cryo-ET est rapidement devenue, ces dernières années, un outil puissant et omniprésent dans l'arsenal des biologistes structuraux, parfois capable d'atteindre une résolution inférieure au nanomètre.
+En raison de l'écosystème logiciel encore immature et de la complexité des flux de travail, travailler avec des données cryo-ET est encore sujet à des erreurs et nécessite une supervision humaine constante, en particulier lorsqu'il s'agit de pipelines de moyennage de sous-tomogrammes qui tentent d'atteindre des reconstructions à haute résolution.
+Cette thèse présente le développement de blik, un outil visant à simplifier le travail sur les données cryo-ET en fournissant une visualisation interactive, une analyse et une annotation qui sont à la fois puissantes et personnalisables, en se concentrant sur l'analyse des systèmes superstructurels tels que les filaments et les membranes.
+En utilisant blik et d'autres outils, nous étudions la composition de la paroi cellulaire et le mécanisme de septation dans la bactérie résistante aux radiations \textit{Deinococcus radiodurans}, et nous étudions la structure et le rôle de FtsZ, un homologue de la tubuline qui joue un rôle clé dans la division cellulaire.
 
-Le même mais en français.
-
-\paragraph{Mots clés}
-Tomographie cryoélectronique, ...
+\subsection*{Mots clés}
+Tomographie cryo-électronique, superstructure, blik, \textit{D. radiodurans}, FtsZ
