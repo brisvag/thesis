@@ -6,37 +6,64 @@ This chapter presents a few other mention-worthy projects and tools that I worke
 
 \section{Bacterial chromatin and HU}
 
-Initially intended to be the main project of my PhD, the study of bacterial chromatin compaction by cryo-EM and cryo-ET is an ongoing project in the MICA group, which builds upon previous fluorescence imaging done by the GenOM team on \textit{D. radiodurans} nucleoids.
+Initially the main project of my PhD, the study of bacterial chromatin compaction by cryo-EM and cryo-ET is an ongoing project in the MICA group, which builds upon previous fluorescence imaging done by the GenOM team on \textit{D. radiodurans} nucleoids.
 The main protein of interest is HU, a nucleoid-associated protein (NAP) present in many bacteria (including \textit{E. coli} and \textit{D. radiodurans}) which is known to be a key player in chromatin compaction and nucleoid morphology throughout the cell cycle.
+The structure of monomeric HU has been solved in multiple occasions (\autoref{fig:hu}), but the literature is inconclusive about the structure of its complex with DNA.
+Indeed, while HU is expected to have a histone-like function --- and some molecular dynamics studies support this hypothesis CITE --- other modes of interaction between HU monomers and the DNA have been identified by X-ray crystallography CITE.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{sample-image.png}
+    \includegraphics[width=.5\textwidth]{example-image.png}
     \caption{TODO: hu and some nucleoids}
     \label{fig:hu}
 \end{figure}
 
+Moving towards investigating HU in a more native context, we collected single particle cryo-EM data of an \textit{in vitro} preparation of plasmid DNA and HU, in order to observe the interaction in a free acqueous environment.
+Within a small range of relative concentrations, intriguing spirals (\autoref{fig:hu_spirals}) were formed by the DNA, suggesting a certain folding was caused by HU.
+
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{sample-image.png}
+    \includegraphics[width=.5\textwidth]{example-image.png}
     \caption{TODO: spirals}
     \label{fig:hu_spirals}
 \end{figure}
 
-\section{Teamtomo}
+The very small molecular weight of HU (\sim\qty{12.5}{\kilo\dalton}) meant that picking and processing these particles (even in the expected dimeric or tetrameric forms) would be practically impossible in cryo-EM (see \autoref{fig:et_smallest_particle} for the theoretical limits).
+However, it should be possible to work around this limitation by using a supporting geometry --- such as the DNA filament --- to do the picking and guide refinement.
 
-\section{cryosparc, cs2star}
+This, unfortunately, proved unsuccessful; while we were able to pick and classify several objects (\autoref{}), we could never identify them or reach high resolution.
 
-\section{stemia}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \caption{TODO: some classes of HU}
+    \label{fig:hu_classes}
+\end{figure}
+
+This is likely due to the dynamic nature of the HU-DNA complex, which seems to have TODO
 
 \section{waretomo}
 
+\href{https://gihub.com/brisvag/waretomo}{waretomo}
+
+\section{emscan}
+
+\href{https://gihub.com/brisvag/emscan}{emscan}
+
+\section{Teamtomo}
+
+\href{https://teamtomo.org}{teamtomo}
 \section{napari tools}
 molecular viewer
 fourier transform simulator
 euler angle playground
 
-surforama?
+\section{Surforama}
+
+\section{cryosparc, cs2star}
+
+\section{stemia}
+
 
 
 \begin{outline}
@@ -58,7 +85,5 @@ surforama?
 \1 waretomo
     \2 some suites exist that do the "whole" procedure, but they are monolithic and hard to get in/out for special cases, which occurs frequently in cryoet
     \2 difficulties with metadata wrangling
-    \2 ...
 \1 molecular viewer napari
-\1 would be cool to link here somehow to my CTF simulator in napari... Though probably not worth discussing CTF so in depth that we explain fourier transforms and how they combine to form an image?)
 \end{outline}

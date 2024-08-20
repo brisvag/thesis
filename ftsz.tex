@@ -4,10 +4,10 @@ As mentioned in \fullref{drad_ftsz}, FtsZ is an extremely well conserved prokary
 It polymerizes in a GTP-dependent fashion to form filaments and bundles, anchoring to the membrane via its partner FtsA, and interacting with several other partners in the cytokinesis and peptidoglycan (PG) synthesis machinery.
 
 Based on crystal structures, filaments have been shown to form through head-to-tail stacking of monomers CITE.
-However, there is no information regarding the flexible C-terminal region, which is responsible for regulating its activity and interaction with its cellular partners, including FtsA.
+However, there is no structural information regarding the flexible C-terminal region, which is responsible for regulating its activity and interaction with its cellular partners, including FtsA.
 It's also unclear how multiple filaments may assemble to form bundles at the structural level and even less so in vivo.
 Thus --- while its key role in cell division is undisputed --- the exact mechanism and function of FtsZ are still unclear.
-There is no consensus model, as the current evidence is inconclusive, sometimes presenting significant variations between species --- likely ascribable to different shapes or membrane compositions between bacteria.
+There is no consensus model, as the current evidence is inconclusive, sometimes presenting significant variations between species --- likely ascribable to different shapes or membrane compositions between bacteria~\cite{barrowsFtsZDynamicsBacterial2021,mcquillenInsightsStructureFunction2020}.
 
 \begin{figure}[ht]
     \centering
@@ -36,6 +36,14 @@ However, it does not appear to affect the rate of PG synthesis, as opposed to wh
 Indeed, in \textit{E. coli}, some additional proteins may help with a timely invagination of the outer membrane, although they are not needed for septation to occur~\cite{gerdingTransenvelopeTolPal2007}.
 This is intriguing for \textit{D. radiodurans} which, despite staining gram-positive, presents an outer membrane.
 
+The disordered C-terminal domain of FtsZ was found the be necessary both for the anchorage to the membrane via FtsA, and to regulate oligomerization as well as bundling with neighboring filaments~\cite{barrowsFtsZDynamicsBacterial2021}.
+
+Collectively, the literature hints that FtsZ treadmilling is likely not the only factor that controls the dynamics of FtsZ and the Z-ring, and that variations across species may be explained by different divergent mechanisms, or some underlying behavior not yet discovered~\cite{barrowsFtsZDynamicsBacterial2021}.
+
+TODO: question, in ~\cite{mcquillenInsightsStructureFunction2020}, it says that the Z-ring is a torus 80-100nm wide, 13-16nm below the membrane. Does this make sense with our data? --- the arc seems to be about 50 nm wide in good cases, but the distance from the membrane makes sense. Also, not sure if "torus" makes sense, because it's flat? Maybe mention after
+
+TODO: question: what about the open conformation thing?
+
 \section{Structural information}
 
 There are a number of structural studies on FtsZ and its partners, using a variety of techniques and model organisms.
@@ -56,9 +64,21 @@ Problem of preferential orientation... solution I came up with. No work. stuff.
 
 work so far, classes
 
+detergent + other tricks = now better angular distribution
+
+width
+
 \subsection{STA}
 
 (TODO: already in paper, no need to talk about this probably. other papers used tomography to look into D.rad and also saw what they called ftsz and ftsa ~\cite{sextonSuperresolutionConfocalCryoCLEM2022})
+
+also pref orientation
+
+mention distance between filaments in bundles in SPA vs what we see in Tomos: compatible?
+
+\subsection{Discussion}
+
+Ice thickness should be negligible if we do proper CTF and motion correction (iteratively) ~\cite{aiyerOvercomingResolutionAttenuation2024}.
 
 \begin{outline}
 \1 Background on FtsZ

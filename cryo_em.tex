@@ -22,11 +22,10 @@ Moreover, the protein is forced into a specific crystalline lattice, restricting
 Cryo-EM improves on these aspects by forgoing crystallization in favor of sample vitrification, which allows to capture the sample in a near-native state. This requires analysing many individual particles in different orientations, in a procedure known as single particle analysis (SPA).
 
 In simple terms, the electron microscope works by shooting a coherent electron beam at the sample, and using a camera to detect the scattered electrons and form an image.
-Thanks to the small wavelength of electrons, cryo-EM can reach much higher resolution than light microscopy; however, it presents unique challenges and limitations that its more familiar light-based counterpart does not.
-
+Thanks to the small wavelength of electrons, cryo-EM can reach much higher resolution than light microscopy.
 In the last decade, the development of direct electron detectors made it possible to reach atomic resolutions, jump-starting to the so-called resolution revolution and the rise of cryo-EM as one of the primary methods for high resolution structure determination~\cite{faruqiCCDDetectorsHighresolution2000}.
 
-Differently from light-microscopy, which relies on amplitude contrast for image formation, the electron microscope uses phase contrast, which is caused by elastic scattering events affecting the electrons traversing the sample.
+Instead of relying on amplitude contrast for image formation, the electron microscope uses phase contrast, which is caused by elastic scattering events affecting the electrons traversing the sample.
 Some electrons, however, are inelastically scattered; these electrons are no longer coherent, and therefore add to the noise of the image.
 Increasing the electron dose can help improve the signal-to-noise ratio (SNR), but comes at the cost of radiation damage, which denatures the sample and rapidly destroys high-resolution information.
 For these reasons, a significant limitation --- and thus optimization target --- of cryo-EM is the low SNR.
@@ -67,13 +66,14 @@ The most common is the addition of small amounts of detergents to occupy the air
 Other methods are a bit more involved, such as the use of functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022}, streptavidin-coated affinity support grids~\cite{crucifixImmobilizationBiotinylatedDNA2004,hanLongShelflifeStreptavidin2016}, but can offer more control over the orientation of the particles in the sample.
 
 Alternatively, preferential orientation can be partially dealt with by collecting a tilted dataset, effectively forcing the target object into a different orientation.
-This method comes at the cost of worse SNR due to the thicker sample, and cannot provide full orientation coverage due to the limited tilt angle achievable, so the aforementioned approaches are generally preferred.
+This method comes at the cost of worse SNR due to the thicker sample, increased motion due to doming, and worse CTF estimation.
+However, it was recently shown that the effect of these issues on the final resolution can be rendered negligible with careful preprocessing~\cite{aiyerOvercomingResolutionAttenuation2024}.
 
 \section{Data collection}
 The vitrified sample is loaded into the electron microscope (under cryogenic conditions and vacuum, in order to maintain the sample vitrified and uncontaminated), and suitable positions on the grid are chosen for imaging, prioritizing for: presence of the target protein or complex, fewer contaminations, and lower ice thickness.
-In modern workflows and software, this step and the subsequent data collection are increasingly automated, allowing for higher throughput (up to several thousand images per day) and lower human intervention~\cite{schorbSoftwareToolsAutomated2019}.
+In modern workflows and software, this step and the subsequent data collection are increasingly automated, allowing for higher throughput (up to a dozen-thousand images per day) and lower human intervention~\cite{schorbSoftwareToolsAutomated2019}.
 
-During collection, the sample stage and electron beam are moved to each position to collect micrographs.
+During collection, the sample stage and/or electron beam are moved to each position to collect micrographs.
 At each position, a short movie is recorded, consisting of a few low-dose, short-exposure frames: this allows to reduce the blur caused by intra-frame motion (induced by external factors among which the electron beam itself); the frames will later be aligned and averaged to produce a single higher-contrast image.
 Direct detectors are therefore crucial not only for their raw improvement in achievable resolution, but also for their high speed, contributing to the reduction of yet another source of noise.
 
@@ -201,7 +201,7 @@ Both motion correction and CTF estimation --- as well as many other steps and te
 
 The CC of two signals (such as two images) is a measure of how similar the two signals are at all possible relative shifts.
 The CC function of two signals will be higher for signals that present more similar features, and have a peak at the relative shift where the signals present strongest similarity (\autoref{fig:em_cross_correlation}).
-This is a useful feature for most applications, because we often care about where exactly the similarity is high (e.g. for motion correction and particle picking (\fullref{em_particle_picking})).
+This is a useful feature for most applications, because we often care about where exactly the similarity is high (e.g. for motion correction, particle picking and alignment (\fullref{em_particle_picking})).
 
 \begin{figure}[ht]
     \centering
@@ -246,17 +246,10 @@ Manual picking is generally more intuitive and can be very precise, but is also 
 Data may also be too noisy for humans to distinguish particles from one another and from the background, leading to missed particles or wrong picks.
 To aid with manual picking, preprocessed micrographs are often filtered and denoised to improve the contrast (\fullref{em_filtering_and_denoising}).
 
-To improve the picking speed and precision, template matching is often used to automate searching for a recognizable object (\autoref{fig:em_template}).
+To improve the picking speed and precision, template matching is often used to automate searching for a recognizable object.
 This picking method requires a template, a small image of a 2D projection of the object of interest.
 This can be obtained in a few ways: synthetically (by using a generated shape), by projecting a known map or model from previous work, or by using the results of a first round of 2D classification (\fullref{em_classification}) from a preliminary manual picking.
 While the exact details of the algorithm may vary, at its core template matching relies on calculating the CC (\fullref{em_cross_correlation}) function between the template and the micrographs in order to locate putative particles positions in the whole dataset.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
-    \caption{TODO: templates and picks on micrograph}
-    \label{fig:em_template}
-\end{figure}
 
 More recently, template matching is often being replaced with machine learning, which serves a similar purpose but can have a more nuanced understanding of surrounding context which helps reduce the false negatives and positives that are intrinsically present with template matching of noisy data.
 
@@ -267,7 +260,7 @@ Regardless of the picking method, it is important to ensure that the target obje
 
 \section{2D classification}\label{em_classification}
 
-Even with the best data and most advanced methods, picked particles typically contain a variety of several different objects, conformations, and spurious background picks; before moving on to reconstruction, the wheat should be separated from the chaff.
+Even with the best data and most advanced methods, picked particles typically contain a variety of several different objects, conformations, and spurious background or contamination picks; before moving on to reconstruction, the wheat should be separated from the chaff.
 To do so, particles are split into groups based on similarity, in a process called 2D classification.
 
 Once again, some form of cross-correlation (\fullref{em_cross_correlation}) is involved in the process, since the goal is to cluster together similar particles and separate different ones.
@@ -285,9 +278,9 @@ Class averages are used to calculate the CC at each iteration, and used at the e
 With this information, particle classes can be split into groups for further processing or discarded.
 This is typically done manually by inspecting class averages and assigning each class to a group, depending on the goals of the project and the following processing steps.
 For a uniform purified dataset, classification might only serve the purpose of discarding spurious picks.
-For trickier samples (protein complexes, high conformational variability, non-uniform orientation distribution, "shotgun" cryo-EM~\cite{suBuildRetrieveMethodology2021,kyrilisIntegrativeBiologyNative2019}), multiple groupings and several rounds of classification may be necessary to isolate each relevant state.
+For trickier samples (protein complexes, high conformational variability, non-uniform orientation distribution, cell-extract cryo-EM~\cite{suBuildRetrieveMethodology2021,kyrilisIntegrativeBiologyNative2019}), multiple groupings and several rounds of classification may be necessary to isolate each relevant state.
 
-Once reasonably sure that each group contains only particles representing projections of different orientations of copies of the same object, the 3D map of this object can be reconstructed.
+Once reasonably sure that each group contains only particles representing projections of different orientations of copies of the same object the 3D map of this object can be reconstructed --- though conformational variability might still be present and will need to be dealt with at a later stage.
 
 \section{3D reconstruction}\label{em_reconstruction}
 
@@ -329,7 +322,7 @@ Once there is no longer significant improvement (\fullref{em_fsc}), the process 
 In some cases, it might be useful to go one step further and do 3D classification; this is essentially the same procedure, but using multiple 3D models at the same time to not only assign orientations, but also split particles into different classes.
 This may be useful --- especially combined with some kind of mask to isolate areas of interest --- in cases where 2D classification was unable to separate out very similar objects.
 
-When classification is too categorical to capture nuanced systems (such as heterogeneous conformational ensembles), other kinds of procedures able to capture more variability may be used, such as principal component analysis (PCA)~\cite{castano-diezDynamoFlexibleUserfriendly2012,punjani3DVariabilityAnalysis2021}, multibody refinement~\cite{nakaneMultibodyRefinementCryoEM2021}, 3D flexible refinement~\cite{punjani3DFlexibleRefinement2022}, etc.
+When classification is too categorical to capture nuanced systems (such as continuous conformational ensembles), other kinds of procedures able to capture more variability may be used, such as principal component analysis (PCA)~\cite{castano-diezDynamoFlexibleUserfriendly2012,punjani3DVariabilityAnalysis2021}, multibody refinement~\cite{nakaneMultibodyRefinementCryoEM2021}, 3D flexible refinement~\cite{punjani3DFlexibleRefinement2022}, etc.
 
 \subsection{FSC and gold standard}\label{em_fsc}
 For most procedures that attempt to refine parameters in order to improve a 3D classification or reconstruction, a method is needed to estimate the quality (resolution) of the current model.
@@ -356,15 +349,16 @@ Reconstructed maps are normally post-processed to improve interpretability and u
 
 Different types of masking, filtering, and denoising can be applied, depending on the downstream steps.
 
-TODO: feels like I should expand, but it's also not very important here. Sharpening?
+% TODO: feels like I should expand, but it's also not very important here. Sharpening?
 
 \section{Refinement}\label{em_refinement}
-Once a 3D model is obtained, several state of the art software pipelines offer the ability to refine previously-defined parameters, using the estimated resolution of the 3D reconstruction to validate the improvements.
+Once a 3D model is obtained, several state of the art software pipelines offer the ability to refine previously-defined parameters.
 The parameters that can be refined range from particle positions and orientations, to CTF estimation and motion correction, to more complex artifact-inducing factors such as lens aberrations and Ewald sphere curvature~\cite{tegunovMultiparticleCryoEMRefinement2021,punjaniCryoSPARCAlgorithmsRapid2017,scheresRELIONImplementationBayesian2012}.
+While resolution of the resulting 3D reconstruction is the most obvious parameter used to validate the improvements, there are several other criteria that may be considered, such as local resolution, angular distribution of views, map continuity, etc.
 
 The implementation details of refinement procedures are often quite different between software, but are generally based on an iterative process where parameters are adjusted on a per-particle basis, and a new 3D reconstruction is generated and validated via FSC to estimate the effects of the correction applied.
 
-These procedures can have dramatic effects on the final resolution of a map, especially when pushing for near-atomic resolution where small aberrations and artifacts can have significant effects on the achievable resolution.
+These procedures can have dramatic effects on the final resolution of a map, especially when pushing for sub-nanometer resolution where small aberrations and artifacts can have significant effects on the achievable resolution.
 
 \section{Model building}
 
