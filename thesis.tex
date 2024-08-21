@@ -9,11 +9,10 @@
 }{}
 
 % smart caption that uses TOC title to add in bold at beginning, if given
-\let\oldcaption\caption
-\renewcommand\caption[2][]{
+\newcommand\titledcaption[2][]{
     \ifthenelse{\isempty{#1}}
-        {\oldcaption{#2}}
-        {\oldcaption[#1]{\textbf{#1.} #2}}
+        {\caption{#2}}
+        {\caption[#1]{\textbf{#1.} #2}}
 }
 
 
@@ -71,3 +70,4 @@
 % TODO: don't forget to keep the resume up to date in french
 % TODO: update thesis title on ADUM (and french version...)
 % TODO: remove list of tables if nothing's there...
+% TODO: make sure all figs use \titledcaption and not just \caption (except subfigures)

@@ -36,7 +36,7 @@ This section describes such typical workflow, expanding on the theoretical bases
 \begin{figure}[ht]
     \centering
     \includegraphics[width=.5\textwidth]{example-image.png}
-    \caption[Cryo-EM workflow]{TODO: typical cryoem workflow}
+    \titledcaption[Cryo-EM workflow]{TODO: typical cryoem workflow}
     \label{fig:em_workflow}
 \end{figure}
 
@@ -51,7 +51,7 @@ However, too-thin ice can crack and increase issues with preferential orientatio
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/plunge_freezing.png}
-    \caption[Vitrification via plunge freezing]{Typical vitrification procedure via plunge freezing. A drop of sample is placed on the grid, blotted with a filter paper to reduce its thickness to a thin layer, and then plunged into liquid ethane. Figure adapted from \citet{chungNobelPrizeChemistry2017}.}
+    \titledcaption[Vitrification via plunge freezing]{Typical vitrification procedure via plunge freezing. A drop of sample is placed on the grid, blotted with a filter paper to reduce its thickness to a thin layer, and then plunged into liquid ethane. Figure adapted from \citet{chungNobelPrizeChemistry2017}.}
     \label{fig:em_plunge_freezing}
 \end{figure}
 
@@ -98,7 +98,7 @@ Additionally, a thicker sample may result in multiple elastic scattering events,
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/scattering.png}
-    \caption[Image formation]{Electron scattering and diffraction are the physical processes at the core of cryo-EM image formation. Electrons can scatter in several different ways (left), but only elastic scattering contributes to image formation via phase contrast with the trasmitted electrons. Features contained in the sample that present different spatial frequencies result in scattering at different angles (right); depending on the difference in path travelled and the wavelength of the electron beam, this results in interference between differently scattered waves. In this figure where wave oscillations are visualized as dashed lines, we can see that the unscattered and low-angle scattered waves result in constructive interference, while the high-angle scattered waves interfere destructively.}
+    \titledcaption[Image formation]{Electron scattering and diffraction are the physical processes at the core of cryo-EM image formation. Electrons can scatter in several different ways (left), but only elastic scattering contributes to image formation via phase contrast with the trasmitted electrons. Features contained in the sample that present different spatial frequencies result in scattering at different angles (right); depending on the difference in path travelled and the wavelength of the electron beam, this results in interference between differently scattered waves. In this figure where wave oscillations are visualized as dashed lines, we can see that the unscattered and low-angle scattered waves result in constructive interference, while the high-angle scattered waves interfere destructively.}
     \label{fig:em_image_formation}
 \end{figure}
 
@@ -133,7 +133,7 @@ The exact shape of the Thon rings depends on several factors, first among which 
         \label{fig:em_ctf_defocus_1d}
     \end{subfigure}%
 
-    \caption[CTF: effect of defocus]{Simulated CTF of two images at different defoci. \textbf{(a)} 2D power spectrum ($CTF^2$). \textbf{(b)} 1D rotational average, highlighting in green the spatial frequency of \qty{0.1}{\angstrom^{-1}}, where the blue line (CTF at defocus \qty{0.5}{\mu{}m}) is close to \num{0}, whereas the orange line (CTF at defocus \qty{0.7}{\mu{}m}) is close to \num{1}. Images generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
+    \titledcaption[CTF: effect of defocus]{Simulated CTF of two images at different defoci. \textbf{(a)} 2D power spectrum ($CTF^2$). \textbf{(b)} 1D rotational average, highlighting in green the spatial frequency of \qty{0.1}{\angstrom^{-1}}, where the blue line (CTF at defocus \qty{0.5}{\mu{}m}) is close to \num{0}, whereas the orange line (CTF at defocus \qty{0.7}{\mu{}m}) is close to \num{1}. Images generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
     % https://ctfsimulation.streamlit.app/?ctf_type=CTF%5E2&ctf_type=CTF%5E2&defocus=0.5&defocus=0.7&over_sample=6&over_sample=6&share_url=1&show_2d=1
     \label{fig:em_ctf_defocus}
 \end{figure}
@@ -148,7 +148,7 @@ While phase plates are in theory the ideal solution to this problem, there are s
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/ctf_phase_shift.png}
-    \caption[CTF: effect of phase shift]{1D rotational average of a simulated CTF of two images at different phase shifts. Note how the phase-shifted CTF (orange) has a peak at spatial fequency \num{0}, boosting low-resolution features. Image generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
+    \titledcaption[CTF: effect of phase shift]{1D rotational average of a simulated CTF of two images at different phase shifts. Note how the phase-shifted CTF (orange) has a peak at spatial fequency \num{0}, boosting low-resolution features. Image generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
     % https://ctfsimulation.streamlit.app/?ctf_type=CTF%5E2&ctf_type=CTF%5E2&defocus=0.5&defocus=0.7&over_sample=6&over_sample=6&share_url=1&show_2d=1&phaseshift=0.0&phaseshift=90.0
     \label{fig:em_ctf_phase_shift}
 \end{figure}
@@ -174,7 +174,7 @@ Importantly, this effect is worse at higher defocus, contributing the worse high
         \caption{1D rotational average.}
         \label{fig:em_ctf_envelope_1d}
     \end{subfigure}%
-    \caption[CTF: effect of the envelope function]{2D power spectrum (left) and 1D rotational average (right) of a simulated CTF, including some envelope function effects (such as beam convergence and energy spread). As a result, higher resolution frequencies are dampened, reducing the signal available for CTF estimation and high resolution reconstruction. Images generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
+    \titledcaption[CTF: effect of the envelope function]{2D power spectrum (left) and 1D rotational average (right) of a simulated CTF, including some envelope function effects (such as beam convergence and energy spread). As a result, higher resolution frequencies are dampened, reducing the signal available for CTF estimation and high resolution reconstruction. Images generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
     % https://ctfsimulation.streamlit.app/?ctf_type=CTF%5E2&defocus=0.5&defocus=0.7&over_sample=3&share_url=1&show_2d=1&phaseshift=0.0&phaseshift=90.0&bfactor=10.0&alpha=0.3&dE=2.0&dI=7.0&dZ=0.1&dXY=0.1
     \label{fig:em_ctf_envelope}
 \end{figure}
@@ -207,7 +207,7 @@ This is a useful feature for most applications, because we often care about wher
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/cross_correlation.png}
-    \caption[Cross-correlation of 1D signals]{Cross-correlation of two 1D signals, \texttt{spike} and \texttt{blob}. The position of the peak of the resulting \texttt{cross-correlation} indicates relative shift at which \texttt{blob} presents maximal similarity with \texttt{spike}. Shifting \texttt{blob} by the same amount shows the best overlap between the two signals.}
+    \titledcaption[Cross-correlation of 1D signals]{Cross-correlation of two 1D signals, \texttt{spike} and \texttt{blob}. The position of the peak of the resulting \texttt{cross-correlation} indicates relative shift at which \texttt{blob} presents maximal similarity with \texttt{spike}. Shifting \texttt{blob} by the same amount shows the best overlap between the two signals.}
     \label{fig:em_cross_correlation}
     % TODO: generated with cc_image.py script. Should add somehow to thesis!
 \end{figure}
@@ -225,7 +225,7 @@ In practice, this is often used to remove high-frequency components (low-pass fi
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/filtering.png}
-    \caption[Fourier filtering]{Examples of how filtering a noisy image (top left image) with different kinds of fourier masks (bottom row) produces different results (top row). From left to right: no filtering, low-pass, band-pass, high-pass. Low-pass filtering can restore interpretability of highly noisy images. As highlighted by the difference between the low-passed (second column) and high-passed (last column) images, a very small range of low spatial frequencies is actually responsible for the majority of our perception of the general shape of an object. Noise, on the other hand, more strongly affects high resolution information.}
+    \titledcaption[Fourier filtering]{Examples of how filtering a noisy image (top left image) with different kinds of fourier masks (bottom row) produces different results (top row). From left to right: no filtering, low-pass, band-pass, high-pass. Low-pass filtering can restore interpretability of highly noisy images. As highlighted by the difference between the low-passed (second column) and high-passed (last column) images, a very small range of low spatial frequencies is actually responsible for the majority of our perception of the general shape of an object. Noise, on the other hand, more strongly affects high resolution information.}
     \label{fig:em_filtering}
     % TODO: made with filter.py
 \end{figure}
@@ -288,7 +288,7 @@ It's worth noting that the algorithms used by reconstruction software, while bas
 \begin{figure}[ht]
     \centering
     \includegraphics[width=.7\textwidth]{introduction/central_slice_theorem.png}
-    \caption[Central slice theorem]{Showcase of how the central slice theorem is used for 3D reconstruction in cryo-EM. \textbf{A.} A 2D projection of a 3D volume in real space at a certain orientation is equivalent to the 2D slice perpendicular to that orientation in fourier space. \textbf{B.} \textbf{C.} \textbf{D.} \textbf{E.}. Figure adapted from \citet{nogalesCryoEMUniqueTool2015}.}
+    \titledcaption[Central slice theorem]{Showcase of how the central slice theorem is used for 3D reconstruction in cryo-EM. \textbf{A.} A 2D projection of a 3D volume in real space at a certain orientation is equivalent to the 2D slice perpendicular to that orientation in fourier space. \textbf{B.} \textbf{C.} \textbf{D.} \textbf{E.}. Figure adapted from \citet{nogalesCryoEMUniqueTool2015}.}
     \label{fig:em_central_slice}
     % generated with fsc.py
 \end{figure}
@@ -309,7 +309,7 @@ Once there is no longer significant improvement (\fullref{em_fsc}), the process 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/projection_matching.png}
-    \caption[Projection matching]{Projection matching in cryo-EM. Particle picks are assigned progressively better orientations that most closely match synthetic 2D projections generated from the current 3D model. By inserting the FT of each particle at the assigned orientation into the 3D fourier space, and then doing the inverse fourier transform to go back to real space, a new updated model is generated. Figure adapted from \citet{nogalesCryoEMUniqueTool2015}.}
+    \titledcaption[Projection matching]{Projection matching in cryo-EM. Particle picks are assigned progressively better orientations that most closely match synthetic 2D projections generated from the current 3D model. By inserting the FT of each particle at the assigned orientation into the 3D fourier space, and then doing the inverse fourier transform to go back to real space, a new updated model is generated. Figure adapted from \citet{nogalesCryoEMUniqueTool2015}.}
     \label{fig:em_projection_matching}
 \end{figure}
 
@@ -333,7 +333,7 @@ The threshold typically used to formally determine the "resolution of the map" i
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/fsc.png}
-    \caption[Fourier shell correlation]{Showcase of a 2D version of fourier shell correlation. Gaussian noise was applied to two identical images, which were then compared by gradually cross-correlating concentric shells (left). The resulting plot (right) is a measure of the similarity as a function of spatial frequency. As spatial frequency increases, noise becomes dominant, degrading correlation and thus the trustworthiness of the data. The threshold of \num{0.143} is used to determine the final resolution, which is higher for the less noisy image.}
+    \titledcaption[Fourier shell correlation]{Showcase of a 2D version of fourier shell correlation. Gaussian noise was applied to two identical images, which were then compared by gradually cross-correlating concentric shells (left). The resulting plot (right) is a measure of the similarity as a function of spatial frequency. As spatial frequency increases, noise becomes dominant, degrading correlation and thus the trustworthiness of the data. The threshold of \num{0.143} is used to determine the final resolution, which is higher for the less noisy image.}
     \label{fig:em_fsc}
     % TODO: made with script fsc.py
 \end{figure}
