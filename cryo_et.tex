@@ -28,9 +28,12 @@ This section describes the theory of cryo-ET, how it deviates from SPA, and the 
 As with SPA, vitrification remains the key step of sample preparation for cryo-ET.
 Due to the intrinsically worse SNR --- caused by the lower electron dose used during data collection, necessary to preserve the sample (\fullref{et_data_collection}) --- cryo-ET sample preparation requires extra care to reduce any possible source of additional noise.
 
-One such source is the thickness of the sample; unfortunately, this is often antithetical to samples such as entire cells or organelles, where cryo-ET \textit{in situ} benefits really shine.
-Initially, this problem was tackled by either preparing smaller model systems \textit{in vitro} --- moving partly away from the native state --- or by cutting thin slices from a thicker sample via cryo-ultramicrotomy~\cite{peaseElectronMicroscopyUltramicrotomy1981}.
-In recent years, focused ion beam (FIB) milling, a technique already well established in material sciences, has found widespread use in cryo-ET sample preparation, allowing to slice thin lamellae from a vitrified sample without incurring in the shear and surface deformations of cryo-ultramicrotomy~\cite{markoFocusedionbeamThinningFrozenhydrated2007}.
+One such source is the thickness of the sample; while this problem can be avoided by preparing thinner model systems \textit{in vitro}, it's otherwise unavoidable for samples such as entire cells or organelles, where the \textit{in situ} benefits of cryo-ET really shine.
+A thick sample poses also another problem: with thickness higher than a few \unit{\mu{}m} (most mammalian cells), plunge freezing does not have a fast enough cooling rate to prevent the formation of crystalline ice.
+For these reasons, a combination of two techniques is often used: high-pressure freezing (HPF) and cryo-ultramicrotomy.
+In HPF, the sample is put under great pressure (>\qty{200}{MPa}) before ultrarapid freezing, preventing expansion and thus lowering the cooling rate needed for vitrification, without the need for potentially cell-disrupting cryoprotectant~\cite{moorInfluenceHighPressure1980,bergerCryoelectronTomographyFocused2023}.
+Then, cryo-ultramicrotomy uses a diamond knife to cut from the sample very thin slices, that are then deposited on a grid for imaging~\cite{peaseElectronMicroscopyUltramicrotomy1981}.
+In recent years, focused ion beam (FIB) milling --- a technique already well established in material sciences --- has found widespread use in cryo-ET sample preparation, allowing to slice thin lamellae from a vitrified sample without incurring in the shear and surface deformations of cryo-ultramicrotomy~\cite{markoFocusedionbeamThinningFrozenhydrated2007}.
 
 \subsection{FIB milling}
 FIB milling typically makes use of a gallium ion beam --- or, more recently, xenon or oxygen plasma --- to ablate thick samples, which can be thus thinned to below \qty{150}{\nano\meter}.
@@ -54,7 +57,7 @@ To help with correcting these errors, it is often useful to add to the sample so
 \section{Data collection}\label{et_data_collection}
 In order to acquire a sequence of images at different tilts (termed \textbf{tilt series}) for tomographic reconstruction, the same area of the sample needs to be imaged multiple times, at a range of different angles.
 During collection, the sample is rotated around a tilt axis perpendicular to the electron beam, in small angular increments so as to expose a different view to the electron beam.
-It's important to position the sample at \textbf{eucentric height} --- the height at which a rotation of the sample does not cause a lateral movement --- so that the area of interest remains at the center of the field of view.
+It's important to position the sample at \textbf{eucentric height} --- the height at which a rotation of the sample no change in focus nor a lateral movement --- so that the area of interest remains at the same focus and at the center of the field of view.
 
 Due to the multiple exposures, in order to preserve the specimen from radiation damage the electron dose must be fractionated to much lower than typical in SPA, but still high enough to capture enough signal to allow motion correction~\cite{mcewenRelevanceDosefractionationTomography1995}.
 
