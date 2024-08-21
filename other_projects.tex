@@ -13,34 +13,50 @@ Indeed, while HU is expected to have a histone-like function --- and some molecu
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
-    \caption{TODO: hu and some nucleoids}
+    \begin{subfigure}[B]{.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{other/dr_nucleoids.png}
+        \caption{\textit{D. radiodurans} nucleoid shape variations throughout the cell cycle. Image taken from \citet{flochCellMorphologyNucleoid2019}.}
+        \label{fig:hu_nucleoids}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[B]{.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{other/hu_struct.png}
+        \caption{Structure of \textit{Borrelia burgdorferi} HU in complex with DNA as predicted by molecular dynamics. Image taken from \citet{hognonMolecularBasesDNA2019}.}
+        \label{fig:hu_structure}
+    \end{subfigure}%
+    \caption[\textit{D. radiodurans} nucleoids and HU structure]{\textbf{(a)} Nucleoid compaction and morphology in \textit{D. radiodurans} is complex and dynamic, with HU being one of the major drivers of chromatin compaction. \textbf{(b)} HU is thought to have a histone-like behaviour, bending the DNA to form a tight kink.}
     \label{fig:hu}
 \end{figure}
 
-Moving towards investigating HU in a more native context, we collected single particle cryo-EM data of an \textit{in vitro} preparation of plasmid DNA and HU, in order to observe the interaction in a free acqueous environment.
+To begin investigating DrHU in complex with the DNA, we collected single particle cryo-EM data of an \textit{in vitro} preparation of plasmid DNA and HU, in order to observe the interaction in a free acqueous environment.
 Within a small range of relative concentrations, intriguing spirals (\autoref{fig:hu_spirals}) were formed by the DNA, suggesting a certain folding was caused by HU.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
-    \caption{TODO: spirals}
+    \includegraphics[width=\textwidth]{other/hu_spirals_no_spirals.png}
+    \caption[HU-induced DNA spirals]{Spiral formations of DNA are formed in presence of HU only at specific concentration ranges.}
     \label{fig:hu_spirals}
 \end{figure}
 
 The very small molecular weight of HU (\sim\qty{12.5}{\kilo\dalton}) meant that picking and processing these particles (even in the expected dimeric or tetrameric forms) would be practically impossible in cryo-EM (see \autoref{fig:et_smallest_particle} for the theoretical limits).
 However, it should be possible to work around this limitation by using a supporting geometry --- such as the DNA filament --- to do the picking and guide refinement.
 
-This, unfortunately, proved unsuccessful; while we were able to pick and classify several objects (\autoref{}), we could never identify them or reach high resolution.
+This, unfortunately, proved unsuccessful; while we were able to pick and classify on the DNA and several interesting "blobs" next to it (\autoref{fig:hu_classes}), we could never identify them or reach high resolution.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
-    \caption{TODO: some classes of HU}
+    \includegraphics[width=\textwidth]{other/hu_classes.png}
+    \caption[HU+DNA: 2D classes]{Representative classification results from generic particle picks from the filament picker (top) and from picks centered on "blobs" next to the DNA (bottom).}
     \label{fig:hu_classes}
 \end{figure}
 
-This is likely due to the dynamic nature of the HU-DNA complex, which seems to have TODO
+Classification and refinement are not only made difficult by the small size of HU, but also by the heterogeneous and dynamic nature of the HU-DNA complex.
+
+\subsection{Future perspectives}
+
+TODO: hari results and maybe a paragraph on irina's ideas
 
 \section{waretomo}
 
@@ -48,7 +64,8 @@ This is likely due to the dynamic nature of the HU-DNA complex, which seems to h
 
 \section{emscan}
 
-\href{https://gihub.com/brisvag/emscan}{emscan}
+This tool --- available at \href{https://gihub.com/brisvag/emscan}{emscan} --- was developed as a contribution to the PhD project of Eymeline Pageot, from MICA group, under the supervision of Ambroise Desfosses.
+
 
 \section{Teamtomo}
 
@@ -64,7 +81,8 @@ euler angle playground
 
 \section{stemia}
 
-
+\subsection{Out-of-plane angle generation}\label{stemia_angles}
+This tool was developed to work on the FtsZ tilted dataset (\fullref{ftsz_tilted}).
 
 \begin{outline}
 \1 HU...
