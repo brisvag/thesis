@@ -8,7 +8,7 @@
     \let\oldhref\href\ \renewcommand\href[2]{\oldhref{#1}{#2}\footnote{\url{#1}}}
 }{}
 
-% smart caption that adds title to TOC and in bold at beginning, if given
+% smart caption that uses TOC title to add in bold at beginning, if given
 \let\oldcaption\caption
 \renewcommand\caption[2][]{
     \ifthenelse{\isempty{#1}}
@@ -70,3 +70,4 @@
 % TODO: in printed version ensure that authors lines, header titles, etc don't go beyond edge
 % TODO: don't forget to keep the resume up to date in french
 % TODO: update thesis title on ADUM (and french version...)
+% TODO: remove list of tables if nothing's there...

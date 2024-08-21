@@ -84,7 +84,7 @@ We attempted to address the issue of preferential orientation in two different w
 We prepared the sample in the same way, but this time the data collection was done with a \ang{35} tilt.
 Assuming a unform distribution of in-plane angles of the filaments (which we observed in the original dataset), a single, relatively high-tilt dataset should cover a higher portion of 3D fourier space during backprojection and thus significantly improve map isotropicity~\cite{tanAddressingPreferredSpecimen2017}.
 
-Following the same approach as with the untilted dataset, we picked, classified and selected particles, obtaining a more promising selection of class averages (\autoref{fig:ftsz_classes_tilted}).
+Following the same workflow as with the untilted dataset, we picked, classified and selected particles, obtaining a more promising selection of class averages (\autoref{fig:ftsz_classes_tilted}).
 
 \begin{figure}[ht]
     \centering
@@ -93,8 +93,22 @@ Following the same approach as with the untilted dataset, we picked, classified 
     \label{fig:ftsz_classes_tilted}
 \end{figure}
 
-TODO: plot of angle distribution?
-\fullref{stemia_angles}
+Despite the better view distribution of 2D classes, our 3D reconstructions had the same anisotropicity issues as the untilted data.
+Upon closer inspection of the picking data, we observed that the out-of-plane angles assigned to each particle showed no correlation with the assigned 2D class (\autoref{fig:ftsz_angle_dist}).
+This
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \caption{Out-of-plane angle plotted against the assigned 2D class. TODO}
+    \label{fig:ftsz_angle_dist}
+\end{figure}
+
+We soon realized that the 3D reconstruction routines of both Relion and CryoSPARC were incapable of properly identifying orientations to each particle, resulting in essentially randomized euler angles for each particle.
+
+---
+
+TODO: worked on \fullref{stemia_angles}...
 
 Issue with seeding angles... angular
 
