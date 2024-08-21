@@ -2,11 +2,19 @@
 
 \begin{document}
 
-% preamble-like things that need to be after \begin{document} because reasons
+% preamble-like things that need to be after \begin{document} because reasons??
 \ifbool{printer-friendly}{
     % convert href (which normally hides url with text) to a footnote so you can see it
     \let\oldhref\href\ \renewcommand\href[2]{\oldhref{#1}{#2}\footnote{\url{#1}}}
 }{}
+
+% smart caption that adds title to TOC and in bold at beginning, if given
+\let\oldcaption\caption
+\renewcommand\caption[2][]{
+    \ifthenelse{\isempty{#1}}
+        {\oldcaption{#2}}
+        {\oldcaption[#1]{\textbf{#1.} #2}}
+}
 
 
 \frontmatter \pagenumbering{Roman}  % versus "roman" which is lowercase numerals
@@ -56,9 +64,9 @@
 % TODO: add color to text in captions where relevant?
 % TODO: change degrees to symbol \ang{}
 % TODO: check that first appearance of acronyms is explained (cryo-et/em, spa, sta, ...)
-% TODO: add authors to papers
 % TODO: check that micro/mu and other weird chars are fine!!!
 % TODO: adjust figures in drad paper if there's time...
 % TODO: make sure figures are appearing at the right place! Resize if necessary, or add float barriers.
-% TODO: in printed version ensure that authors lines don't go beyond edge
+% TODO: in printed version ensure that authors lines, header titles, etc don't go beyond edge
 % TODO: don't forget to keep the resume up to date in french
+% TODO: update thesis title on ADUM (and french version...)

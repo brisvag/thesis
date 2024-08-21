@@ -58,7 +58,7 @@ The use of Python for the development of blik and napari is crucial to further t
 
 This makes blik a convenient entry point for cryo-ET-interested newcomers and lowers the barrier for the creative leveraging of basic programming skills for their everyday research and applications, enabling individuals with varying levels of programming experience to quickly grasp and implement solutions.
 
-Moreover, the scientific Python ecosystem is well-established in many imaging fields, and is becoming a player in the cryo-EM and cryo-ET world. By adhering to the practices and conventions of this ecosystem, blik allows to easily integrate many available field-agnostic tools (e.g: \texttt{scikit-image} and scipy for image and annotation processing, pytorch and the plethora of Python machine-learning (ML) tools for several types of analysis), take advantage of existing solutions and avoid the tendency to ``reinvent the wheel'' that scientific software can often be prone to.
+Moreover, the scientific Python ecosystem is well-established in many imaging fields, and is becoming a player in the cryo-EM and cryo-ET world. By adhering to the practices and conventions of this ecosystem, blik allows to easily integrate many available field-agnostic tools (e.g: \texttt{scikit-image} and scipy for image and annotation processing, pytorch and the plethora of Python machine-learning (ML) tools for several types of analysis), take advantage of existing solutions and avoid the tendency to "reinvent the wheel" that scientific software can often be prone to.
 
 \vspace{\baselineskip}
 
@@ -81,7 +81,7 @@ Images, image stacks and volumes in the most common formats (\texttt{.tif}, \tex
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{blik_paper/image_volume_showcase.png}
-    \caption[Volume visualisations]{\textbf{Volume visualisations.} Showcase of the image visualisation capabilities of napari and blik. Chemoreceptor arrays of the \textit{E. coli} minicells~\cite{burtCompleteStructureChemosensory2020} are used for illustrative purposes throughout the figures. \textbf{A.} 2D slice through a 3D volume. \textbf{B.} Maximum intensity projection of the 3D volume. \textbf{C.} Isosurface. \textbf{D.} Arbitrary 3D plane slicing in 3D view. \textbf{E.} 2D slice through the 3D power spectrum of the volume. \textbf{F.} Segmentation (in semi-transparent brown) of 3D objects.}
+    \caption[Volume visualisations]{Showcase of the image visualisation capabilities of napari and blik. Chemoreceptor arrays of the \textit{E. coli} minicells~\cite{burtCompleteStructureChemosensory2020} are used for illustrative purposes throughout the figures. \textbf{A.} 2D slice through a 3D volume. \textbf{B.} Maximum intensity projection of the 3D volume. \textbf{C.} Isosurface. \textbf{D.} Arbitrary 3D plane slicing in 3D view. \textbf{E.} 2D slice through the 3D power spectrum of the volume. \textbf{F.} Segmentation (in semi-transparent brown) of 3D objects.}
     \label{images-showcase}
 \end{figure}
 
@@ -92,7 +92,7 @@ blik also provides some widgets with extra functionality to complement image vis
     \item A \texttt{power\ spectrum} widget, which quickly computes the power spectra of single images, stacks or volumes (\autoref{images-showcase}E). Power spectra are a fundamental tool for data inspection and validation in cryo-EM, from estimating resolution, to generating hypotheses about symmetry, to finding caveats in the data collection procedure. Like any other computation made by blik or napari, the power spectrum is then available as a normal numpy array for further use from within Python or to export to the available formats.
 \end{itemize}
 
-Additionally, masks and pixel-based segmentations (often called just ``segmentations'', or ``labels'' in napari jargon) are easily displayed (and modified with all the tools provided by napari, such as free-hand painting, even in 3D) by using the napari \texttt{Labels} layer, which is designed specifically to work with segmentation data (binary or integer arrays) (\autoref{images-showcase}F). Label processing is a particularly thriving area of the napari ecosystem, albeit mostly in the field of fluorescence and optical microscopy. This is a great opportunity for knowledge sharing and code reuse between fields that otherwise are typically relegated to separate software pipelines.
+Additionally, masks and pixel-based segmentations (often called just "segmentations", or "labels" in napari jargon) are easily displayed (and modified with all the tools provided by napari, such as free-hand painting, even in 3D) by using the napari \texttt{Labels} layer, which is designed specifically to work with segmentation data (binary or integer arrays) (\autoref{images-showcase}F). Label processing is a particularly thriving area of the napari ecosystem, albeit mostly in the field of fluorescence and optical microscopy. This is a great opportunity for knowledge sharing and code reuse between fields that otherwise are typically relegated to separate software pipelines.
 
 \subsubsection{Particles}\label{particles}
 
@@ -101,7 +101,7 @@ Particle data (coordinates, orientations, and any additional features and metada
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{blik_paper/particle_plot.png}
-    \caption[3D particle visualisation and feature plotting]{\textbf{3D particle visualisation and feature plotting.} Particles are from a Relion 3D classification of chemoreceptor arrays of the \textit{E. coli} minicells~\cite{burtCompleteStructureChemosensory2020}. Orientations are displayed with the three basis vectors in red/blue/green. The properties-plotter widget (bottom) shows a plot of a Relion data column -- in this case, the \texttt{rlnClassNumber} -- as a histogram. By selecting an area of this plot, the corresponding subset of particles is selected. This can be then used for further processing; in this case, selected particles are coloured differently (in magenta), showing that the selected classes contain mostly particles from the core of the chemoreceptor array lattice.}
+    \caption[3D particle visualisation and feature plotting]{Particles are from a Relion 3D classification of chemoreceptor arrays of the \textit{E. coli} minicells~\cite{burtCompleteStructureChemosensory2020}. Orientations are displayed with the three basis vectors in red/blue/green. The properties-plotter widget (bottom) shows a plot of a Relion data column -- in this case, the \texttt{rlnClassNumber} -- as a histogram. By selecting an area of this plot, the corresponding subset of particles is selected. This can be then used for further processing; in this case, selected particles are coloured differently (in magenta), showing that the selected classes contain mostly particles from the core of the chemoreceptor array lattice.}
     \label{particles-showcase}
 \end{figure}
 
@@ -144,7 +144,7 @@ Pixel-based image segmentation is already natively supported in napari through t
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{blik_paper/segmentation_showcase.png}
-    \caption[Interpolated segmentations]{\textbf{Interpolated segmentations.} A tomogram is manually annotated on a few 2D slices using the napari labels painting functionality. These sparsely annotated 2D slices are then interpolated with the label interpolator widget to generate a volumetric segmentation of multiple objects.}
+    \caption[Interpolated segmentations]{A tomogram is manually annotated on a few 2D slices using the napari labels painting functionality. These sparsely annotated 2D slices are then interpolated with the label interpolator widget to generate a volumetric segmentation of multiple objects.}
     \label{interpolator-showcase}
 \end{figure}
 
@@ -172,7 +172,7 @@ Filament picking (\autoref{filament-pick}) uses a relatively simple single-splin
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{blik_paper/filament_pick.png}
-    \caption[Filament-based particle picking]{\textbf{Filament-based particle picking.} Particle picks along a helical filament generated by blik. Starting from simple points picked manually along the desired path (orange points) and using the filament widget (on the right), a spline representation is computed (grey) and used to generate particle poses (cyan spheres with basis vectors) according to the given helical parameters defined in the widget.}
+    \caption[Filament-based particle picking]{Particle picks along a helical filament generated by blik. Starting from simple points picked manually along the desired path (orange points) and using the filament widget (on the right), a spline representation is computed (grey) and used to generate particle poses (cyan spheres with basis vectors) according to the given helical parameters defined in the widget.}
     \label{filament-pick}
 \end{figure}
 
@@ -197,17 +197,17 @@ While this approach is advantageous for relatively regular surfaces, for which t
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{blik_paper/spline_grid_showcase.png}
-    \caption[Surface generation procedure]{\textbf{Surface generation procedure.} \textbf{A.} Step-by-step procedure used by blik to generate surfaces. An initial set of points (magenta) is picked on a few Z-slices following the desired surface. A first set of splines (purple) is generated within each Z-slice, and then used to generate equidistant samples which become the nodes of the next set of splines, perpendicular to the first (yellow). The second set of splines is then resampled with the same spacing, thus generating a final set of grid-like, evenly spaced samples. \textbf{B.} All the steps combined.}
+    \caption[Surface generation procedure]{\textbf{A.} Step-by-step procedure used by blik to generate surfaces. An initial set of points (magenta) is picked on a few Z-slices following the desired surface. A first set of splines (purple) is generated within each Z-slice, and then used to generate equidistant samples which become the nodes of the next set of splines, perpendicular to the first (yellow). The second set of splines is then resampled with the same spacing, thus generating a final set of grid-like, evenly spaced samples. \textbf{B.} All the steps combined.}
     \label{surface-pick}
 \end{figure}
 
 \subsubsection{Resampling}\label{resampling}
-The grid-like, regularly spaced nature of these models can be additionally used to create visualisation aids (meshes and filaments) and to resample the annotated volume along the annotated object. Such volume resampling can be useful for quantitative and spatially consistent volume analysis of otherwise complex 3D objects; density profiles of a complex 3D surface can thus be generated while retaining spatial information. In practice, this can also be used to aid visualisation, by ``straightening'' an otherwise curved surface.
+The grid-like, regularly spaced nature of these models can be additionally used to create visualisation aids (meshes and filaments) and to resample the annotated volume along the annotated object. Such volume resampling can be useful for quantitative and spatially consistent volume analysis of otherwise complex 3D objects; density profiles of a complex 3D surface can thus be generated while retaining spatial information. In practice, this can also be used to aid visualisation, by "straightening" an otherwise curved surface.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{blik_paper/surface_resample.png}
-    \caption[Surface-based volume resampling]{\textbf{Surface-based volume resampling.} \textbf{Top}: a surface is generated using the surface widget, following the shape of a minicell membrane. The tomogram volume is then resampled based on the picked surface and a few parameters set in the widget, such as sample thickness and pixel spacing. \textbf{Bottom}: the result is a 3D volume containing a ``straightened'' version of the picked surface, displayed here averaged along Z into a 2D image.}
+    \caption[Surface-based volume resampling]{\textbf{Top}: a surface is generated using the surface widget, following the shape of a minicell membrane. The tomogram volume is then resampled based on the picked surface and a few parameters set in the widget, such as sample thickness and pixel spacing. \textbf{Bottom}: the result is a 3D volume containing a "straightened" version of the picked surface, displayed here averaged along Z into a 2D image.}
     \label{surface-resample}
 \end{figure}
 
@@ -218,7 +218,7 @@ blik provides a few tools for picking particles for subtomogram averaging. All s
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{blik_paper/surface_particles_mesh.png}
-    \caption[Surface mesh and particle picks]{\textbf{Surface mesh and particle picks.} A surface is generated using the surface widget, starting from the manually picked lines (magenta) which follow the shape of a chemosensory array. The generated surface is displayed as a mesh (green). Particles for subtomogram averaging (cyan spheres and red/green/blue basis vectors) are then generated based on a few parameters set in the surface widget (on the right).}
+    \caption[Surface mesh and particle picks]{A surface is generated using the surface widget, starting from the manually picked lines (magenta) which follow the shape of a chemosensory array. The generated surface is displayed as a mesh (green). Particles for subtomogram averaging (cyan spheres and red/green/blue basis vectors) are then generated based on a few parameters set in the surface widget (on the right).}
     \label{picking-showcase}
 \end{figure}
 
@@ -285,7 +285,7 @@ The data structures and input/output (IO) functions used by blik are extracted i
 
 \begin{itemize}[noitemsep] 
     \item \href{https://github.com/teamtomo/cryotypes/}{cryotypes}: defines simple and extensible data structures for cryo-EM data types and metadata, and provides simple validation and checking functions to ensure a given object conforms to the specification. 
-    \item \href{https://github.com/teamtomo/cryohub/}{cryohub}: provides reading and writing functions for popular image formats and particle data, with both fine-grained controls and a higher level ``magic'' interface (\texttt{cryohub.open(\textless{}anything\textgreater{})}). Data is read to and from cryotypes data structures, easily allowing for conversion between formats and integration in any third-party Python tool.
+    \item \href{https://github.com/teamtomo/cryohub/}{cryohub}: provides reading and writing functions for popular image formats and particle data, with both fine-grained controls and a higher level "magic" interface (\texttt{cryohub.open(\textless{}anything\textgreater{})}). Data is read to and from cryotypes data structures, easily allowing for conversion between formats and integration in any third-party Python tool.
 \end{itemize}
 
 cryohub provides granular I/O functions such as \texttt{read\_star} and \texttt{read\_mrc}, which will all return objects following the cryotypes specification.

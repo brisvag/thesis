@@ -19,8 +19,14 @@ echo === Checking for space before \\cite commands
 rg --vimgrep ' \\cite\{' $FILES
 echo
 
+echo === checking capitalization ===
+rg --vimgrep -s 'fourier' $files
+
 echo === open-source ===
 rg --vimgrep -s '(O|o)pen source' $FILES
+
+echo === captions missing title ===
+rg --vimgrep -s '\\caption\{' $FILES
 
 # echo === Style checking with Vale
 # vale --output vale_template.tmpl $FILES
