@@ -1,7 +1,7 @@
 % different stuff if printer-friendly or not
-\RequirePackage{etoolbox} \newbool{printer-friendly} \setbool{printer-friendly}{false}
+\RequirePackage{xifthen} \newboolean{printer-friendly} \setboolean{printer-friendly}{false}
 
-\ifbool{printer-friendly}{
+\ifthenelse{\boolean{printer-friendly}}{
     \documentclass[8pt,a5paper]{extbook} % extbook to allow smaller font
     \usepackage[twoside=true]{geometry} % twoside for book binding
 }{
@@ -22,7 +22,7 @@
 \def\bibfont{\footnotesize}
 
 % hyperrefs and friends
-\ifbool{printer-friendly}{
+\ifthenelse{\boolean{printer-friendly}}{
     \usepackage[pagebackref,breaklinks,hidelinks]{hyperref}
 }{
     \usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
@@ -35,6 +35,7 @@
 \newcommand*\fullref[1]{\hyperref[{#1}]{\bfseries\ref*{#1} \nameref*{#1}}}
 
 % useful miscellaneous
+\usepackage{xcolor} % colors by name and modifiers to alpha and such
 \usepackage{pdfpages} % include pre-rendered pdfs
 \usepackage{tocbibind} % add lof and lot to toc
 \usepackage[titles]{tocloft} % fix formatting issues with etoc and 3-digit page numbers in TOC
@@ -51,9 +52,8 @@
 
 % figures and captions
 \usepackage{graphicx} \graphicspath{{img/}}
-\usepackage[format=plain,labelfont={bf,it},textfont=it,font=small]{caption}
+\usepackage[format=plain,labelfont={sc,bf},labelsep=endash,textfont={color=black!80},font=footnotesize]{caption}
 \usepackage{subcaption} % subfigures
-\usepackage{xifthen} % provides \isempty \ifthenelse
 
 % code and note boxes and frames
 \usepackage{minted} % syntax highlighting

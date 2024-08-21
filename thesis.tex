@@ -3,7 +3,7 @@
 \begin{document}
 
 % preamble-like things that need to be after \begin{document} because reasons??
-\ifbool{printer-friendly}{
+\ifthenelse{\boolean{printer-friendly}}{
     % convert href (which normally hides url with text) to a footnote so you can see it
     \let\oldhref\href\ \renewcommand\href[2]{\oldhref{#1}{#2}\footnote{\url{#1}}}
 }{}
@@ -19,7 +19,7 @@
 
 \frontmatter \pagenumbering{Roman}  % versus "roman" which is lowercase numerals
     \include{cover_title.tex}
-    \ifbool{printer-friendly}{\newpage\mbox{}\newpage}{} % blank page only in printer-friendly
+    \ifthenelse{\boolean{printer-friendly}}{\newpage\mbox{}\newpage}{} % blank page only in printer-friendly
     \epigraph{-}{-}  % TODO: dedication or cool quote
     \include{abstract.tex}
     \include{acknowledgements.tex}
