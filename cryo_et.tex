@@ -2,7 +2,7 @@
 
 Compared to X-ray crystallography, SPA sample preparation is a strong selling point: it can be much faster and simpler, not requiring crystallization and needing small quantities of sample, and being less sensitive to contamination.
 Thanks to the fast vitrification, SPA is also better for studying the sample at near-native state, and for capturing rare or dynamic states (though the analysis in these cases becomes trickier).
-However, due to the unknown particle orientations and low SNR, SPA data analysis is trickier and more error-prone, especially for small particles (\lesssim\qty{100}{\kilo\dalton}), where X-ray crystallography is usually the better choice.
+However, due to the unknown particle orientations and low SNR, SPA data analysis is trickier and more error-prone, especially for small particles (\lesssim100 kDa), where X-ray crystallography is usually the better choice.
 
 On the other hand, bigger particles or complexes are usually better handled by cryo-EM: with larger molecular size, crystallization gets increasingly difficult, and NMR can no longer be effectively used for structural determination.
 On the other hand, NMR allows to gather some information on the dynamics of the sample, even large ones and even directly in solution, since there's no need for crystallization or vitrification.
@@ -29,20 +29,20 @@ As with SPA, vitrification remains the key step of sample preparation for cryo-E
 Due to the intrinsically worse SNR --- caused by the lower electron dose used during data collection, necessary to preserve the sample (\fullref{et_data_collection}) --- cryo-ET sample preparation requires extra care to reduce any possible source of additional noise.
 
 One such source is the thickness of the sample; while this problem can be avoided by preparing thinner model systems \textit{in vitro}, it's otherwise unavoidable for samples such as entire cells or organelles, where the \textit{in situ} benefits of cryo-ET really shine.
-A thick sample poses also another problem: with thickness higher than a few \unit{\mu{}m} (most mammalian cells), plunge freezing does not have a fast enough cooling rate to prevent the formation of crystalline ice.
+A thick sample poses also another problem: with thickness higher than a few μm (most mammalian cells), plunge freezing does not have a fast enough cooling rate to prevent the formation of crystalline ice.
 For these reasons, a combination of two techniques is often used: high-pressure freezing (HPF) and cryo-ultramicrotomy.
-In HPF, the sample is put under great pressure (>\qty{200}{MPa}) before ultrarapid freezing, preventing expansion and thus lowering the cooling rate needed for vitrification, without the need for potentially cell-disrupting cryoprotectant~\cite{moorInfluenceHighPressure1980,bergerCryoelectronTomographyFocused2023}.
+In HPF, the sample is put under great pressure (>200 MPa) before ultrarapid freezing, preventing expansion and thus lowering the cooling rate needed for vitrification, without the need for potentially cell-disrupting cryoprotectant~\cite{moorInfluenceHighPressure1980,bergerCryoelectronTomographyFocused2023}.
 Then, cryo-ultramicrotomy uses a diamond knife to cut from the sample very thin slices, that are then deposited on a grid for imaging~\cite{peaseElectronMicroscopyUltramicrotomy1981}.
 In recent years, focused ion beam (FIB) milling --- a technique already well established in material sciences --- has found widespread use in cryo-ET sample preparation, allowing to slice thin lamellae from a vitrified sample without incurring in the shear and surface deformations of cryo-ultramicrotomy~\cite{markoFocusedionbeamThinningFrozenhydrated2007}.
 
 \subsection{FIB milling}
-FIB milling typically makes use of a gallium ion beam --- or, more recently, xenon or oxygen plasma --- to ablate thick samples, which can be thus thinned to below \qty{150}{\nano\meter}.
+FIB milling typically makes use of a gallium ion beam --- or, more recently, xenon or oxygen plasma --- to ablate thick samples, which can be thus thinned to below 150 nm.
 Preparing lamellae via FIB milling is becoming standard procedure in cryo-ET, and many cryo-ET facilities are automating much of the process, increasing reliability, speed and reproducibility.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/fib.png}
-    \titledcaption[FIB milling]{Microscope snapshots from FIB milling procedure on \textit{Deinococcus radiodurans}. A cluster of cells, visible as a bump on the SEM, is selected from the grid (top left). From a shallow angle of around \ang{15} from the grid (top right) the FIB is used to ablate material above and below the area of interest. This leaves a thin lamellae suitable for cryo-ET (bottom). Milled cell drawing (bottom left) taken from \citet{villaOpeningWindowsCell2013}.}
+    \titledcaption[FIB milling]{Microscope snapshots from FIB milling procedure on \textit{Deinococcus radiodurans}. A cluster of cells, visible as a bump on the SEM, is selected from the grid (top left). From a shallow angle of around 15° from the grid (top right) the FIB is used to ablate material above and below the area of interest. This leaves a thin lamellae suitable for cryo-ET (bottom). Milled cell drawing (bottom left) taken from \citet{villaOpeningWindowsCell2013}.}
     \label{fig:et_fib_milling}
 \end{figure}
 
@@ -52,7 +52,7 @@ Preparing lamellae via FIB milling is becoming standard procedure in cryo-ET, an
 During data collection, despite vitrification, samples undergo different kinds of deformations.
 Moreover, due to the intrinsic imprecision of controlling the hardware of the microscope, there will always be some shift and angle mismatch between different tilts during a tilt series collection (\fullref{et_data_collection}).
 
-To help with correcting these errors, it is often useful to add to the sample some fiducials: small high-contrast, round objects (typically \qty{10}{nm} gold beads) that can be easily located in the images and later used to estimate sample shift, rotation, and deformations (\fullref{et_tilt_series_alignment}).
+To help with correcting these errors, it is often useful to add to the sample some fiducials: small high-contrast, round objects (typically 10 nm gold beads) that can be easily located in the images and later used to estimate sample shift, rotation, and deformations (\fullref{et_tilt_series_alignment}).
 
 \section{Data collection}\label{et_data_collection}
 In order to acquire a sequence of images at different tilts (termed \textbf{tilt series}) for tomographic reconstruction, the same area of the sample needs to be imaged multiple times, at a range of different angles.
@@ -63,14 +63,14 @@ Due to the multiple exposures, in order to preserve the specimen from radiation 
 
 Each subsequent exposure further damages the sample, which degrades the high resolution information first.
 This, in combination with the fact that in cryo-ET the electron beam has to traverse a thicker sample at high tilts --- leading to worse SNR --- created the need for optimized collection schemes.
-The most commonly used nowadays is the Hagen (or dose-symmetric)  scheme~\cite{hagenImplementationCryoelectronTomography2017}: it collects the first image at \ang{0} tilt, and then alternates between negative and positive tilts until it reaches the maximum tilt.
+The most commonly used nowadays is the Hagen (or dose-symmetric)  scheme~\cite{hagenImplementationCryoelectronTomography2017}: it collects the first image at 0° tilt, and then alternates between negative and positive tilts until it reaches the maximum tilt.
 This minimizes the radiation damage when SNR is best, allowing to capture high resolution information at its prime, before it is degraded by cumulative exposures.
 
 Due to the geometry of the sample and its support within the microscope, there is a limit to how high an angle can be reached when tilting the sample.
-This angle is typically around \ang{60}-\ang{70}, beyond which the sample becomes too thick for imaging at such low doses, and the grid bars come into view obscuring part of the sample.
+This angle is typically around 60-70°, beyond which the sample becomes too thick for imaging at such low doses, and the grid bars come into view obscuring part of the sample.
 This will result in a \textbf{missing wedge} of information in Fourier space during tomographic reconstruction (\fullref{et_tomo_reconstruction}).
 
-Conventional wisdom sets the interval between subsequent tilts at around \ang{3} to ensure enough fourier space filling while limiting radiation damage, though depending on the application --- especially where certain spatial frequencies are considered important or over-represented in the sample --- it might be worth considering smaller, wider, or non-linear increments~\cite{copeCryoElectronTomographyStructural2011}.
+Conventional wisdom sets the interval between subsequent tilts at around 3° to ensure enough fourier space filling while limiting radiation damage, though depending on the application --- especially where certain spatial frequencies are considered important or over-represented in the sample --- it might be worth considering smaller, wider, or non-linear increments~\cite{copeCryoElectronTomographyStructural2011}.
 
 \section{Preprocessing}
 Cryo-ET data undergoes similar preprocessing steps as SPA data (\fullref{em_preprocessing}), albeit with less precision due to the low electron dose.

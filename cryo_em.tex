@@ -107,7 +107,7 @@ The shift induced in the phase of the electron wave by elastic scattering events
 Depending on the angle, the interference at the image plane will be constructive or destructive, resulting in certain spatial frequencies being dampened or lost.
 
 The CTF is a function that describes exactly this: how signal is transmitted through the sample and onto the image, as a function of spatial frequency.
-Where the CTF reaches a value of \num{0}, no signal is transferred; a value of \num{1}, on the other hand, is a perfect signal transfer.
+Where the CTF reaches a value of 0, no signal is transferred; a value of 1, on the other hand, is a perfect signal transfer.
 
 The CTF has a close relationship with the fourier transform (FT) of a micrograph: the 1D rotational average of the power spectrum (PS) of the image (the square of the amplitude of the FT of the image) forms the curve used to estimate the CTF (\autoref{fig:em_ctf_defocus}).
 An ideal sample with a uniform distribution of spatial frequencies would produce a 1D PS identical to its theoretical CTF.
@@ -133,22 +133,22 @@ The exact shape of the Thon rings depends on several factors, first among which 
         \label{fig:em_ctf_defocus_1d}
     \end{subfigure}%
 
-    \titledcaption[CTF: effect of defocus]{Simulated CTF of two images at different defoci. \textbf{(a)} 2D power spectrum ($CTF^2$). \textbf{(b)} 1D rotational average, highlighting in green the spatial frequency of \qty{0.1}{\angstrom^{-1}}, where the blue line (CTF at defocus \qty{0.5}{\mu{}m}) is close to \num{0}, whereas the orange line (CTF at defocus \qty{0.7}{\mu{}m}) is close to \num{1}. Images generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
+    \titledcaption[CTF: effect of defocus]{Simulated CTF of two images at different defoci. \textbf{(a)} 2D power spectrum ($CTF^2$). \textbf{(b)} 1D rotational average, highlighting in green the spatial frequency of 0.1 Å$^{-1}$, where the blue line (CTF at defocus 0.5 μm) is close to 0, whereas the orange line (CTF at defocus 0.7 μm) is close to 1. Images generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
     % https://ctfsimulation.streamlit.app/?ctf_type=CTF%5E2&ctf_type=CTF%5E2&defocus=0.5&defocus=0.7&over_sample=6&over_sample=6&share_url=1&show_2d=1
     \label{fig:em_ctf_defocus}
 \end{figure}
 
 To ensure all spatial frequencies are sampled, a data collection must include many images collected at a range of different defoci.
 
-Of note is that since the CTF starts at \num{0}, low spatial frequencies are always dampened; in pratical terms, this results in images where low resolution features (such as membranes and big objects) are harder to see, making it harder to distinguish objects from the noise, pick particles (\fullref{em_particle_picking}) and do further processing.
+Of note is that since the CTF starts at 0, low spatial frequencies are always dampened; in pratical terms, this results in images where low resolution features (such as membranes and big objects) are harder to see, making it harder to distinguish objects from the noise, pick particles (\fullref{em_particle_picking}) and do further processing.
 For this reason, a certain amount of defocus is always used, unfortunately at the cost of jumbling up the high frequency information with more CTF oscillation.
-Alternatively, a phase plate can be used to shift the phase of the electrons by \ang{90} and acquire images on focus (\autoref{fig:em_ctf_phase_shift}).
+Alternatively, a phase plate can be used to shift the phase of the electrons by 90° and acquire images on focus (\autoref{fig:em_ctf_phase_shift}).
 While phase plates are in theory the ideal solution to this problem, there are still some engineering and physical limitations that limit their use; several groups are currently working to overcome such hurdles~\cite{danevExpandingBoundariesCryoEM2017,schwartzLaserPhasePlate2019}.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/ctf_phase_shift.png}
-    \titledcaption[CTF: effect of phase shift]{1D rotational average of a simulated CTF of two images at different phase shifts. Note how the phase-shifted CTF (orange) has a peak at spatial fequency \num{0}, boosting low-resolution features. Image generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
+    \titledcaption[CTF: effect of phase shift]{1D rotational average of a simulated CTF of two images at different phase shifts. Note how the phase-shifted CTF (orange) has a peak at spatial fequency 0, boosting low-resolution features. Image generated with: \url{https://ctfsimulation.streamlit.app/}~\cite{jiangWebbasedSimulationContrast2001}.}
     % https://ctfsimulation.streamlit.app/?ctf_type=CTF%5E2&ctf_type=CTF%5E2&defocus=0.5&defocus=0.7&over_sample=6&over_sample=6&share_url=1&show_2d=1&phaseshift=0.0&phaseshift=90.0
     \label{fig:em_ctf_phase_shift}
 \end{figure}
@@ -156,7 +156,7 @@ While phase plates are in theory the ideal solution to this problem, there are s
 The second component of the CTF is broadly called "envelope function", a dampening effect which attenuates the signal at higher resolutions.
 It depends on many factors, such as lens aberrations, limitations of the electron gun, frame alignment imprecision, etc.
 This effect is visible in the PS as an attenuation of the signal at higher resolutions (\autoref{fig:em_ctf_envelope}).
-Since the PS (what we actually measure) is equivalent to the $CTF^2$, the dampening is exacerbated because values closer to \num{0} become even smaller and harder to detect.
+Since the PS (what we actually measure) is equivalent to the $CTF^2$, the dampening is exacerbated because values closer to 0 become even smaller and harder to detect.
 Importantly, this effect is worse at higher defocus, contributing the worse high-resolution information transfer of higher defocus images.
 
 \begin{figure}[ht]
@@ -328,12 +328,12 @@ At the beginning of the process, the dataset (which in the case of 3D reconstruc
 At each iteration of the refinement, each half is used to generate an independent 3D reconstruction.
 The fourier transforms of the two maps are then cross-correlated as a function of spatial frequency, giving a plot such as the one in \autoref{fig:em_fsc}.
 A high correlation between fourier shell at the same spatial frequency indicates a high degree of reproducibility of those frequency components: that is, up to that resolution, the map can be trusted.
-The threshold typically used to formally determine the "resolution of the map" is \num{0.143}, for both mathematical and historical reasons related to the interpretability of X-ray crystallography maps~\cite{rosenthalOptimalDeterminationParticle2003}.
+The threshold typically used to formally determine the "resolution of the map" is 0.143, for both mathematical and historical reasons related to the interpretability of X-ray crystallography maps~\cite{rosenthalOptimalDeterminationParticle2003}.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/fsc.png}
-    \titledcaption[Fourier shell correlation]{Showcase of a 2D version of fourier shell correlation. Gaussian noise was applied to two identical images, which were then compared by gradually cross-correlating concentric shells (left). The resulting plot (right) is a measure of the similarity as a function of spatial frequency. As spatial frequency increases, noise becomes dominant, degrading correlation and thus the trustworthiness of the data. The threshold of \num{0.143} is used to determine the final resolution, which is higher for the less noisy image.}
+    \titledcaption[Fourier shell correlation]{Showcase of a 2D version of fourier shell correlation. Gaussian noise was applied to two identical images, which were then compared by gradually cross-correlating concentric shells (left). The resulting plot (right) is a measure of the similarity as a function of spatial frequency. As spatial frequency increases, noise becomes dominant, degrading correlation and thus the trustworthiness of the data. The threshold of 0.143 is used to determine the final resolution, which is higher for the less noisy image.}
     \label{fig:em_fsc}
     % TODO: made with script fsc.py
 \end{figure}
@@ -360,4 +360,4 @@ If a map reaches high enough resolution, it is possible to build an atomic model
 This process is called model building, and is typically done with a mix of manual and automated tools.
 
 Models are built by placing amino acids (or other structural components) so that their electron occupancy matches the density map obtained from 3D reconstruction.
-Some recent tools manage to fully automate this process for maps of high enough resolution (\lesssim\qty{4}{\angstrom}), even without knowing the protein's sequence~\cite{jamaliAutomatedModelBuilding2024}.
+Some recent tools manage to fully automate this process for maps of high enough resolution (\lesssim4 Å), even without knowing the protein's sequence~\cite{jamaliAutomatedModelBuilding2024}.

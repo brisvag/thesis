@@ -13,7 +13,7 @@
 \usepackage[english]{babel}
 \usepackage{microtype} % fixes some over/under-full box warnings
 \usepackage[T1]{fontenc} % better behaviour for fonts (copy-pasting, etc)
-\usepackage{charter} % font typeface
+\usepackage{XCharter} % font typeface (compared to charter has support for unicode input/output)
 \usepackage{setspace} \onehalfspacing % use stuff like \onehalfspacing and \begin{singlespace}
 
 % bibliography
@@ -46,7 +46,6 @@
 \usepackage[section]{placeins} % float barriers with \FloatBarrier
 \usepackage{enumitem} % remove item separation with [noitemsep]
 \usepackage[perpage, symbol*]{footmisc} % footnotes counters use symbols and reset each page
-\usepackage[separate-uncertainty=true]{siunitx} % proper handling of units and quantities
 \usepackage{amsmath,amssymb} % for better math symbols
 \usepackage{epigraph} % cool quotes
 
@@ -74,6 +73,3 @@
 % TODO: to remove, temporary packages
 \usepackage{outlines} % easy nested lists
 \usepackage{pifont} \newcommand{\tick}{\ding{51}} % icons (e.g checkmark)
-
-% custom commands or declarations for this document
-\DeclareSIUnit\angstrom{\text {Å}}
