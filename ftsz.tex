@@ -1,11 +1,14 @@
 \chapter{FtsZ: function and structure}\label{ftsz}
 
-As mentioned in \fullref{drad_ftsz}, FtsZ is an extremely well conserved prokaryotic tubulin homologue, known to form ring-like structures (the Z-ring) at the septation site in most bacteria.
-It polymerizes in a GTP-dependent fashion to form filaments and bundles, anchoring to the membrane via its partner FtsA, and interacting with several other partners in the cytokinesis and peptidoglycan (PG) synthesis machinery~\cite{barrowsFtsZDynamicsBacterial2021,mcquillenInsightsStructureFunction2020}.
+To better understand the role of FtsZ in the septation of \textit{D. radiodurans}, we investigated its structure and superstructure using both single particle cryo-EM and \textit{in situ} cryo-ET.
+This work is ongoing and not yet consolidated into a manuscript for publication.
 
 \localtableofcontents
 
-\section{State of the art}
+\section{Introduction}
+
+As mentioned in \fullref{drad_ftsz}, FtsZ is an extremely well conserved prokaryotic tubulin homologue, known to form ring-like structures (the Z-ring) at the septation site in most bacteria.
+It polymerizes in a GTP-dependent fashion to form filaments and bundles, anchoring to the membrane via its partner FtsA, and interacting with several other partners in the cytokinesis and peptidoglycan (PG) synthesis machinery~\cite{barrowsFtsZDynamicsBacterial2021,mcquillenInsightsStructureFunction2020}.
 
 Based on crystal structures, filaments have been shown to form through head-to-tail stacking of monomers CITE.
 However, there is no structural information regarding the flexible C-terminal region, which is responsible for regulating its activity and interaction with its cellular partners, including FtsA.
@@ -40,11 +43,16 @@ The disordered C-terminal domain of FtsZ was found the be necessary both for the
 
 Collectively, the literature hints that FtsZ treadmilling is likely not the only factor that controls the dynamics of FtsZ and the Z-ring, and that variations across species may be explained by different divergent mechanisms, or some other underlying behavior not yet discovered~\cite{barrowsFtsZDynamicsBacterial2021}.
 
-\section{Structural study by SPA}
+\section{Results}
 
-To begin our investigation of the structure of DrFtsZ, we collected a dataset for SPA from \textit{in vitro} purified FtsZ... TODO: how was it prepared exactly? concentrations, wait time for polymerization, ...
+\subsection{Structural study by SPA}
 
-The preparation we selected resulted in FtsZ filaments long enough to allow filament picking and helical reconstruction, while avoiding an excess of filament bundles which make picking and refinement more difficult (\autoref{fig:ftsz_micrographs}).
+To begin our investigation of the structure of DrFtsZ, prepared a sample for SPA from \textit{in vitro} purified FtsZ.
+The preparation we selected (\fullref{ftsz_methods}) resulted in FtsZ filaments long enough to allow filament picking and helical reconstruction, while avoiding an excess of filament bundles which make picking and refinement more difficult (\autoref{fig:ftsz_micrographs}).
+It was tricky to strike the balance between 
+
+.. TODO: how was it prepared exactly? concentrations, wait time for polymerization, ...
+
 
 \begin{figure}[ht]
     \centering
@@ -53,8 +61,8 @@ The preparation we selected resulted in FtsZ filaments long enough to allow fila
     \label{fig:ftsz_micrographs}
 \end{figure}
 
-We used CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} for filament picking, which gave us a large amount of particles (>\qty{4}{M}) to classify and clean up from spurious picks.
-After cleaning, we ended up with about \qty{2}{M} particles, and very uniform classes with little variation (\autoref{fig:ftsz_classes}).
+We used CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} for filament picking, which gave us a large amount of particles (>4M) to classify and clean up from spurious picks.
+After cleaning, we ended up with about 2M particles, and very uniform classes with little variation (\autoref{fig:ftsz_classes}).
 This is a typical symptom of strong preferential orientation due to the air-water interface (\fullref{em_pref_ori}), leading to a very limited range of views in the particle projections.
 Though we saw hints of different views in the bundled filaments, they proved impossible to disentangle enough to obtain well-resolved classes.
 
@@ -65,26 +73,24 @@ Though we saw hints of different views in the bundled filaments, they proved imp
     \label{fig:ftsz_classes}
 \end{figure}
 
-Given the strong preferential orientation, it's unsurprising that 3D reconstructions from these particles showed very strong resolution anisotropicity (while reporting \sim\qty{4}{\angstrom} global resolution), so much so that we couldn't convincingly fit the monomeric model in the map (\autoref{fig:ftsz_map_bad}).
+Given the strong preferential orientation, it's unsurprising that 3D reconstructions from these particles showed very strong resolution anisotropicity (while reporting \sim4 Å global resolution), so much so that we couldn't convincingly fit the monomeric model in the map (\autoref{fig:ftsz_map_bad}).
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{other/ftsz_map_bad.png}
-    \titledcaption[FtsZ filament: anisotropic map]{FtsZ filament map affected by preferential orientation, viewed from the same direction as most 2D classes (top) and rotated by \ang{90} (bottom) to highlight the streaking artifacts due to anisotropic orientation sampling.}
+    \titledcaption[FtsZ filament: anisotropic map]{FtsZ filament map affected by preferential orientation, viewed from the same direction as most 2D classes (top) and rotated by 90° (bottom) to highlight the streaking artifacts due to anisotropic orientation sampling.}
     \label{fig:ftsz_map_bad}
     % TODO: add pref orientation proof (orientation map or so)
 \end{figure}
 
-The best map available of FtsZ filaments (from \textit{Klebsiella pneumoniae}) also suffered from similar issues, despite high reported resolution (\sim\qty{3}{\angstrom})~\cite{fujitaStructuresFtsZSingle2023}.
+The best map available of FtsZ filaments (from \textit{Klebsiella pneumoniae}) also suffered from similar issues, despite high reported resolution (\sim3 Å)~\cite{fujitaStructuresFtsZSingle2023}.
 
 We attempted to address the issue of preferential orientation in two different ways: collecting a tilted dataset of the same samples, and preparing a new sample with methods that combat air-water interface effects.
 
-\subsection{Tilted dataset}\label{ftsz_tilted}
+\subsubsection{Tilted dataset}\label{ftsz_tilted}
 
-We prepared the sample in the same way, but this time the data collection was done with a \ang{35} tilt.
-Assuming a unform distribution of in-plane angles of the filaments (which we observed in the original dataset), a single, relatively high-tilt dataset should cover a higher portion of 3D fourier space during backprojection and thus significantly improve map isotropicity~\cite{tanAddressingPreferredSpecimen2017}.
-
-Following the same workflow as with the untilted dataset, we picked, classified and selected particles, obtaining a more promising selection of class averages (\autoref{fig:ftsz_classes_tilted}).
+We prepared the sample in the same way, but this time the data collection was done with a 35° tilt.
+Following the same workflow as with the untilted dataset, we then picked, classified and selected particles, obtaining a more promising selection of class averages (\autoref{fig:ftsz_classes_tilted}).
 
 \begin{figure}[ht]
     \centering
@@ -94,8 +100,10 @@ Following the same workflow as with the untilted dataset, we picked, classified 
 \end{figure}
 
 Despite the better view distribution of 2D classes, our 3D reconstructions had the same anisotropicity issues as the untilted data.
-Upon closer inspection of the picking data, we observed that the out-of-plane angles assigned to each particle showed no correlation with the assigned 2D class (\autoref{fig:ftsz_angle_dist}).
-This
+Assuming a unform distribution of in-plane angles of the filaments (which we observed in the original dataset), a single, relatively high-tilt dataset should cover a higher portion of 3D fourier space during backprojection and thus significantly improve map isotropicity~\cite{tanAddressingPreferredSpecimen2017}.
+
+With preferentially oriented filament collected at a fixed tilt angle, there should be a strong correlation between in-plane angle (easily identifiable from the micrograph) and the projection view (which is identified by classification). % TODO: show with synthetic dataset? Also, could it be that multiple euler combinations are redundant and correlation was just bad? How did I do this thing again?
+Upon closer inspection of the picking data, however, we observed that the out-of-plane angles assigned to each particle showed no correlation with the assigned 2D class (\autoref{fig:ftsz_angle_dist}).
 
 \begin{figure}[ht]
     \centering
@@ -104,19 +112,16 @@ This
     \label{fig:ftsz_angle_dist}
 \end{figure}
 
-We soon realized that the 3D reconstruction routines of both Relion and CryoSPARC were incapable of properly identifying orientations to each particle, resulting in essentially randomized euler angles for each particle.
+We soon realized that the 3D reconstruction routines of both Relion and CryoSPARC were struggling with assigning orientations, resulting in practically random orientations.
+To impose more constraints on the refinement based on this prior knowledge on the geometry of the system, we calculated the theoretical orientation of each particle based on the in-plane angle (and assuming perfect preferential orientation), which we then used to initialize the particle poses (\fullref{stemia_angles}).
+
+
 
 ---
 
-TODO: worked on \fullref{stemia_angles}...
-
-Issue with seeding angles... angular
-
-Problem of preferential orientation... solution I came up with. No work. stuff.
-
 %However, it was recently shown that the effect of these issues on the final resolution can be rendered negligible with careful preprocessing~\cite{aiyerOvercomingResolutionAttenuation2024}.
 
-\subsection{Detergent and other methods}
+\subsubsection{Detergent and other methods}
 
 % Other methods are a bit more involved, such as the use of functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022}, streptavidin-coated affinity support grids~\cite{crucifixImmobilizationBiotinylatedDNA2004,hanLongShelflifeStreptavidin2016}, but can offer more control over the orientation of the particles in the sample.
 
@@ -128,8 +133,6 @@ detergent + other tricks = now better angular distribution
 
 width
 
-\subsection{Methods}
-
 filament picking...
 
 \section{Tomography and STA}
@@ -140,11 +143,18 @@ also pref orientation
 
 mention distance between filaments in bundles in SPA vs what we see in Tomos: compatible?
 
-TODO: question, in ~\cite{mcquillenInsightsStructureFunction2020}, it says that the Z-ring is a torus 80-100nm wide, 13-16nm below the membrane. Does this make sense with our data? --- the arc seems to be about 50 nm wide in good cases, but the distance from the membrane makes sense. Also, not sure if "torus" makes sense, because it's flat? Maybe mention after
+TODO: question, in ~\cite{mcquillenInsightsStructureFunction2020}, it says that the Z-ring is a torus 80-100 nm wide, 13-16 nm below the membrane. Does this make sense with our data? --- the arc seems to be about 50 nm wide in good cases, but the distance from the membrane makes sense. Also, not sure if "torus" makes sense, because it's flat? Maybe mention after
 
-\subsection{Discussion}
+\section{Materials and Methods}\label{ftsz_methods}
+
+exa
+
+
+\section{Discussion}
 
 Ice thickness should be negligible if we do proper CTF and motion correction (iteratively) ~\cite{aiyerOvercomingResolutionAttenuation2024}.
+
+... Encountered a major obstacle in the preferential orientation of filaments both in SPA and STA; the project is still ongoing and new data 
 
 \begin{outline}
 \1 Background on FtsZ
