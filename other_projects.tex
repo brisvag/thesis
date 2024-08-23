@@ -16,14 +16,14 @@ Indeed, while HU is expected to have a histone-like function --- and some molecu
     \begin{subfigure}[B]{.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{other/dr_nucleoids.png}
-        \caption{\textit{D. radiodurans} nucleoid shape variations throughout the cell cycle. Image taken from \citet{flochCellMorphologyNucleoid2019}.}
+        \caption{\textit{D. radiodurans} heterogeneous and dynamic nucleoid shows variations throughout the cell cycle. Image taken from \citet{flochCellMorphologyNucleoid2019}.}
         \label{fig:hu_nucleoids}
     \end{subfigure}%
     \hfill
     \begin{subfigure}[B]{.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{other/hu_struct.png}
-        \caption{Structure of \textit{Borrelia burgdorferi} HU in complex with DNA as predicted by molecular dynamics. Image taken from \citet{hognonMolecularBasesDNA2019}.}
+        \caption{\textit{Borrelia burgdorferi} HU showing histon-like behavior in complex with DNA, as predicted by molecular dynamics. Image taken from \citet{hognonMolecularBasesDNA2019}.}
         \label{fig:hu_structure}
     \end{subfigure}%
     \titledcaption[\textit{D. radiodurans} nucleoids and HU structure]{\textbf{(a)} Nucleoid compaction and morphology in \textit{D. radiodurans} is complex and dynamic, with HU being one of the major drivers of chromatin compaction. \textbf{(b)} HU is thought to have a histone-like behaviour, bending the DNA to form a tight kink.}
@@ -48,7 +48,7 @@ This, unfortunately, proved unsuccessful; while we were able to pick and classif
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{other/hu_classes.png}
-    \titledcaption[HU+DNA: 2D classes]{Representative classification results from generic particle picks from the filament picker (top) and from picks centered on "blobs" next to the DNA (bottom).}
+    \titledcaption[HU+DNA: representative 2D classes]{Representative classification results from generic particle picks from the filament picker (top) and from picks centered on "blobs" next to the DNA (bottom).}
     \label{fig:hu_classes}
 \end{figure}
 
@@ -56,16 +56,31 @@ Classification and refinement are not only made difficult by the small size of H
 
 \subsection{Future perspectives}
 
-TODO: hari results and maybe a paragraph on irina's ideas
+To increase our chances to identify and pick HU, a new dataset was collected with a phase plate, which allows to collect data closer to focus while improving the contrast of low spacial fequency information (\fullref{em_ctf}).
+
+Preliminary results on this data showed more classes containing what could HU in a similar conformation to what seen in \autoref{fig:hu_structure} (\autoref{fig:hu_blobs}).
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{other/hu_blobs.png}
+    \titledcaption[HU+DNA: promising 2D classes]{Promising 2D classes from the phase plate dataset, potentially showcasing DNA in complex with HU.}
+    \label{fig:hu_blobs}
+\end{figure}
+
+TODO: some hint on irina's ideas?
 
 \section{waretomo}
 
-\href{https://gihub.com/brisvag/waretomo}{waretomo}
+As most cryo-ET users, over time I kept tweaking and improving my processing pipeline.
+At present, it consists of three main elements: Warp~\cite{tegunovRealtimeCryoelectronMicroscopy2019} for preprocessing and tomogram and subtomogram reconstruction, AreTomo~\cite{zhengAreTomoIntegratedSoftware2022} for tilt series alignment, and Relion~\cite{scheresRELIONImplementationBayesian2012,zivanovBayesianApproachSingleparticle2022,burtImageProcessingPipeline2024} for STA.
+
+To facilitate batch processing and remove most needs for manual intervention (and potential points of failure), I developed an automated tool which connects Warp to AreTomo: \href{https://gihub.com/brisvag/waretomo}{waretomo}~\cite{gaifasWaretomoV02024}.
 
 \section{emscan}
 
-This tool --- available at \href{https://gihub.com/brisvag/emscan}{emscan} --- was developed as a contribution to the PhD project of Eymeline Pageot, from MICA group, under the supervision of Ambroise Desfosses.
+This tool was developed as a contribution to the PhD project of Eymeline Pageot, from the MICA group, under the supervision of Ambroise Desfosses.
 
+\href{https://gihub.com/brisvag/emscan}{emscan}
 
 \section{Teamtomo}
 

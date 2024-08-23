@@ -7,7 +7,7 @@ This work is ongoing and not yet consolidated into a manuscript for publication.
 
 \section{Introduction}
 
-As mentioned in \fullref{drad_ftsz}, FtsZ is an extremely well conserved prokaryotic tubulin homologue, known to form ring-like structures (the Z-ring) at the septation site in most bacteria.
+FtsZ is an extremely well conserved prokaryotic tubulin homologue, known to form ring-like structures (the Z-ring) at the septation site in most bacteria.
 It polymerizes in a GTP-dependent fashion to form filaments and bundles, anchoring to the membrane via its partner FtsA, and interacting with several other partners in the cytokinesis and peptidoglycan (PG) synthesis machinery~\cite{barrowsFtsZDynamicsBacterial2021,mcquillenInsightsStructureFunction2020}.
 
 Based on crystal structures, filaments have been shown to form through head-to-tail stacking of monomers CITE.
@@ -49,10 +49,6 @@ Collectively, the literature hints that FtsZ treadmilling is likely not the only
 
 To begin our investigation of the structure of DrFtsZ, prepared a sample for SPA from \textit{in vitro} purified FtsZ.
 The preparation we selected (\fullref{ftsz_methods}) resulted in FtsZ filaments long enough to allow filament picking and helical reconstruction, while avoiding an excess of filament bundles which make picking and refinement more difficult (\autoref{fig:ftsz_micrographs}).
-It was tricky to strike the balance between 
-
-.. TODO: how was it prepared exactly? concentrations, wait time for polymerization, ...
-
 
 \begin{figure}[ht]
     \centering
@@ -87,7 +83,7 @@ The best map available of FtsZ filaments (from \textit{Klebsiella pneumoniae}) a
 
 We attempted to address the issue of preferential orientation in two different ways: collecting a tilted dataset of the same samples, and preparing a new sample with methods that combat air-water interface effects.
 
-\subsubsection{Tilted dataset}\label{ftsz_tilted}
+\subsubsection{Tilted data collection}\label{ftsz_tilted}
 
 We prepared the sample in the same way, but this time the data collection was done with a 35° tilt.
 Following the same workflow as with the untilted dataset, we then picked, classified and selected particles, obtaining a more promising selection of class averages (\autoref{fig:ftsz_classes_tilted}).
@@ -103,70 +99,152 @@ Despite the better view distribution of 2D classes, our 3D reconstructions had t
 Assuming a unform distribution of in-plane angles of the filaments (which we observed in the original dataset), a single, relatively high-tilt dataset should cover a higher portion of 3D fourier space during backprojection and thus significantly improve map isotropicity~\cite{tanAddressingPreferredSpecimen2017}.
 
 With preferentially oriented filament collected at a fixed tilt angle, there should be a strong correlation between in-plane angle (easily identifiable from the micrograph) and the projection view (which is identified by classification). % TODO: show with synthetic dataset? Also, could it be that multiple euler combinations are redundant and correlation was just bad? How did I do this thing again?
-Upon closer inspection of the picking data, however, we observed that the out-of-plane angles assigned to each particle showed no correlation with the assigned 2D class (\autoref{fig:ftsz_angle_dist}).
+Upon closer inspection of the picking data, however, we observed that the out-of-plane angles assigned to each particle showed no correlation with the assigned 2D class (\autoref{fig:ftsz_class_angles}).
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=.5\textwidth]{example-image.png}
     \titledcaption{Out-of-plane angle plotted against the assigned 2D class. TODO}
-    \label{fig:ftsz_angle_dist}
+    \label{fig:ftsz_class_angles}
 \end{figure}
 
 We soon realized that the 3D reconstruction routines of both Relion and CryoSPARC were struggling with assigning orientations, resulting in practically random orientations.
 To impose more constraints on the refinement based on this prior knowledge on the geometry of the system, we calculated the theoretical orientation of each particle based on the in-plane angle (and assuming perfect preferential orientation), which we then used to initialize the particle poses (\fullref{stemia_angles}).
 
+Unfortunately, this approach did not yet bear fruits: CryoSPARC does not provide fine control over angle priors and search patterns, and Relion parameter selection .... TODO (\autoref{fig:ftsz_angle_dist}).
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \titledcaption{TODO: angle distribution plot}
+    \label{fig:ftsz_angle_dist}
+\end{figure}
 
----
+\subsubsection{Addition of detergent}
 
-%However, it was recently shown that the effect of these issues on the final resolution can be rendered negligible with careful preprocessing~\cite{aiyerOvercomingResolutionAttenuation2024}.
+Detergent has long been used as a way to address preferential orientation and aggregation of proteins in the sample.
+In our case, while id did not affect the orientation problem, it allowed FtsZ to polymerize in longer filaments without creating large bundles (\autoref{fig:ftsz_ddm_mics}).
 
-\subsubsection{Detergent and other methods}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \caption{TODO: longer filaments}
+    \label{fig:ftsz_ddm_mics}
+\end{figure}
 
-% Other methods are a bit more involved, such as the use of functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022}, streptavidin-coated affinity support grids~\cite{crucifixImmobilizationBiotinylatedDNA2004,hanLongShelflifeStreptavidin2016}, but can offer more control over the orientation of the particles in the sample.
+The longer filaments and the very small helical twist (estimated at <1° with the previous samples), should result in different side views of the monomers being visible in the dataset.
+Indeed, we observe a higher diversity in classification results (\autoref{fig:ftsz_ddm_classes})
 
-Strong pref. orientation, map doesn't look better/worse than ~\cite{fujitaStructuresFtsZSingle2023}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \caption{TODO: ftsz ddm classes}
+    \label{fig:ftsz_ddm_classes}
+\end{figure}
 
-work so far, classes
+Preliminary data showed an improvement in the map interpretability, although the anisotropicity due to preferential orientation is still present (\autoref{fig:ftsz_ddm_map}).
 
-detergent + other tricks = now better angular distribution
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \caption{TODO: best ftsz map so far}
+    \label{fig:ftsz_ddm_map}
+\end{figure}
 
-width
+\section{Tomography}
 
-filament picking...
+In parallel to the study of \textit{in vitro} FtsZ filament by SPA, we also investigated the FtsZ \textit{in situ} in the tomograms of \textit{D. radiodurans} lamellae.
+Some of our findings and speculations about the 3D morphology of FtsZ are included in the \textit{D. radiodurans} manuscript (\fullref{drad_ftsz} and \fullref{ftsz_discussion}).
 
-\section{Tomography and STA}
+Our observations on the reconstructed tomograms matched those by \citet{sextonSuperresolutionConfocalCryoCLEM2022}, who also used tomography to look into D.rad and identified FtsZ and FtsA forming filaments just below the inner membrane (\autoref{fig:ftsz_tomo_slice}).
 
-(TODO: already in paper, no need to talk about this probably. other papers used tomography to look into D.rad and also saw what they called ftsz and ftsa ~\cite{sextonSuperresolutionConfocalCryoCLEM2022})
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.5\textwidth]{example-image.png}
+    \titledcaption{TODO: ftsz top and side view}
+    \label{fig:ftsz_tomo_slice}
+\end{figure}
 
-also pref orientation
+The size and spacing between FtsZ filaments is consistent with crystal structures and SPA studies on FtsZ filaments CITE.
 
-mention distance between filaments in bundles in SPA vs what we see in Tomos: compatible?
+The distance between FtsZ+FtsA filaments and the membrane in our tomograms is TODO, consistent with the expected \sim13-16~\cite{mcquillenInsightsStructureFunction2020}.
+However, the width of the bundle appears to be smaller than the previously found 80-100 nm~\cite{mcquillenInsightsStructureFunction2020}, at around 50 nm.
+TODO: difference between bacteria?
 
-TODO: question, in ~\cite{mcquillenInsightsStructureFunction2020}, it says that the Z-ring is a torus 80-100 nm wide, 13-16 nm below the membrane. Does this make sense with our data? --- the arc seems to be about 50 nm wide in good cases, but the distance from the membrane makes sense. Also, not sure if "torus" makes sense, because it's flat? Maybe mention after
+\subsubsection{Subtomogram averaging}
+
+While it is clear that FtsZ and FtsA are forming filaments and bundles in vitro, and that they localize to the Z-ring in a bundle-like fashion, the details of this superstructural assembly are unknown.
+To get a higher resolution view of this complex \textit{in situ}, we performed STA on particles picked from the FtsZ arches at the tips of the septa (\autoref{fig:ftsz_tomo_slice}).
+
+Given the apparent regularity of the bundles (whose morphology appears unchanged across their length), we used blik's surface picking tool~\cite{gaifasBlikExtensible3D2024,gaifasBlikPythonTool2024}, which allows us to distribute regularly spaced particles on the sheet-like FtsZ bundles (\autoref{fig:ftsz_tomo_picks_surface}).
+The inter-particle distance was chosen based on the smallest distance in the regular comb-like dark/light pattern pattern along the FtsZ arches.
+Two different sets of particles were thus generated: with exact inter-particle distance, and twice oversampled  (\autoref{fig:ftsz_tomo_picks_particles}).
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[B]{.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{example-image.png}
+        \caption{TODO: surface of ftsz sheet}
+        \label{fig:ftsz_tomo_picks_surface}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[B]{.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{example-image.png}
+        \caption{TODO: particle picks}
+        \label{fig:ftsz_tomo_picks_particles}
+    \end{subfigure}%
+    \caption{TODO: surface picked with blik and particles generated on it (different spacings)}
+    \label{fig:ftsz_tomo_picks}
+\end{figure}
+
+TODO
 
 \section{Materials and Methods}\label{ftsz_methods}
 
-exa
+\subsection{Sample preparation for SPA}
 
+\subsubsection{FtsZ only}
+5μl FtsZ at 12.5 mg/ml were diluted in 4 μl buffer (50 mM Tris-HCl pH 8.0, 200 mM NaCl), and 1 μl GpCpp at 10 mM.
+Mix was then incubated at 25°C for 75 min to allow for filament elongation.
+4μl of mix was then diluted in 16 μl of buffer (50 mM Tris-HCl pH 8.0, 200 mM NaCl), and 1 μl GpCpp at 10 mM.
+The sample was then immediately frozen on R2/1 300mesh EM grids (blot time: 3.5 s).
 
-\section{Discussion}
+\subsubsection{FtsZ+DDM}
+2μl FtsZ at 12.5 mg/ml were diluted in 16 μl buffer (50 mM Tris-HCl pH 8.0, 200 mM NaCl), and 2 μl GpCpp at 10 mM.
+Mix was then incubated at 25°C for 30 min to allow for filament elongation, after which 2μl DDM at 0.09\% was added.
+Grids were frozen with and without further 5x dilution in buffer (50 mM Tris-HCl pH 8.0, 200 mM NaCl, 1 mM GpCpp, 0.009\% DDM: 2 μl mix + 8 μl buffer)
 
-Ice thickness should be negligible if we do proper CTF and motion correction (iteratively) ~\cite{aiyerOvercomingResolutionAttenuation2024}.
+TODO: should we include details about reproducibility/elongation?
 
-... Encountered a major obstacle in the preferential orientation of filaments both in SPA and STA; the project is still ongoing and new data 
+TODO: graphene and streptavidin grids
 
-\begin{outline}
-\1 Background on FtsZ
-    \2 various structures and how the align with models
-\1 structural work
-    \2 our work on SPA and filaments
-        \3 technical difficulties: where to expand? (pref. orientation, filament picking, angles, classification, 3D rec...)
-    \2 how this fits in with the rest
-    \2 tomography + fluo from paper (depending on how much we already talk about this there)
+\subsection{Data Collection for SPA}
 
-\1 future perspective (probably go in discussion)
-    \2 new data acquisitions
-    \2 solving pref orientation
-    \2 ideas for picking
-\end{outline}
+TODO: I need help here for the technical microscopy details...
+
+\subsection{SPA processing}
+
+filament picking (parameters, issues with length)
+
+link to \fullref{stemia_angles}.
+
+\subsection{\textit{D. radiodurans} lamellae and tomography data collection}
+
+See \fullref{drad_lamellae_method} and \fullref{drad_tomo_method}.
+
+\subsection{STA data processing}
+
+blik, relion
+
+\section{Discussion and future perspectives}
+
+Ice thickness should be negligible if we do proper CTF and motion correction (iteratively)~\cite{aiyerOvercomingResolutionAttenuation2024}.
+
+We encountered a major obstacle in the preferential orientation of filaments both in SPA and STA; the project is still ongoing and the new detergent data is currently being processed.
+
+\subsection{Graphene and streptavidin-coated grids}
+
+We also attempted to address the preferential orientation problem by using functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022}, and streptavidin-coated affinity support grids~\cite{crucifixImmobilizationBiotinylatedDNA2004,hanLongShelflifeStreptavidin2016}.
+While these approaches have been shown to work, we struggled to obtain usable grids; in the meantime, the sample prepared with the addition of detergent showed promising results, so we moved forward with it instead.
