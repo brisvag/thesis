@@ -7,31 +7,35 @@ This chapter presents a few other mention-worthy projects and tools that I worke
 \section{Bacterial chromatin and HU}
 
 Initially the main project of my PhD, the study of bacterial chromatin compaction by cryo-EM and cryo-ET is an ongoing project in the MICA group, which builds upon previous fluorescence imaging done by the GenOM team on \textit{D. radiodurans} nucleoids.
-The main protein of interest is HU, a nucleoid-associated protein (NAP) present in many bacteria (including \textit{E. coli} and \textit{D. radiodurans}) which is known to be a key player in chromatin compaction and nucleoid morphology throughout the cell cycle.
-The structure of monomeric HU has been solved in multiple occasions (\autoref{fig:hu}), but the literature is inconclusive about the structure of its complex with DNA.
-Indeed, while HU is expected to have a histone-like function --- and some molecular dynamics studies support this hypothesis CITE --- other modes of interaction between HU monomers and the DNA have been identified by X-ray crystallography CITE.
+The main protein of interest is HU, a nucleoid-associated protein (NAP) present in most bacteria (including \textit{E. coli} and \textit{D. radiodurans}) which is known to be a key player in chromatin compaction and nucleoid morphology throughout the cell cycle.
+The structure of dimeric HU has been solved from various bacterial species in either its apo- or DNA-bound forms (\autoref{fig:hu}).
+HU is thought to have a histone-like function --- with molecular dynamics simulations supporting the evidence to this binding mode~\cite{hognonMolecularBasesDNA2019} --- but it was also observed forming stacks of dimers that lay parallel to the DNA duplex, suggesting the possibility of multiple modes of interaction between HU dimers and the DNA~\cite{hammelHUMultimerizationShift2016}.
+These different modes may explain
 
 \begin{figure}[ht]
     \centering
     \begin{subfigure}[B]{.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{other/dr_nucleoids.png}
-        \caption{\textit{D. radiodurans} heterogeneous and dynamic nucleoid shows variations throughout the cell cycle. Image taken from \citet{flochCellMorphologyNucleoid2019}.}
+        \caption{\textit{D. radiodurans} heterogeneous and dynamic nucleoid morphology shows variations throughout the cell cycle. Image taken from \citet{flochCellMorphologyNucleoid2019}.}
         \label{fig:hu_nucleoids}
     \end{subfigure}%
     \hfill
     \begin{subfigure}[B]{.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{other/hu_struct.png}
-        \caption{\textit{Borrelia burgdorferi} HU showing histon-like behavior in complex with DNA, as predicted by molecular dynamics. Image taken from \citet{hognonMolecularBasesDNA2019}.}
+        \caption{\textit{Borrelia burgdorferi} HU structure determined by X-ray crystallography. Its DNA-kinking histone-like behavior was replicated by molecular dynamics simulations. Image taken from \citet{hognonMolecularBasesDNA2019}.}
         \label{fig:hu_structure}
     \end{subfigure}%
     \titledcaption[\textit{D. radiodurans} nucleoids and HU structure]{\textbf{(a)} Nucleoid compaction and morphology in \textit{D. radiodurans} is complex and dynamic, with HU being one of the major drivers of chromatin compaction. \textbf{(b)} HU is thought to have a histone-like behaviour, bending the DNA to form a tight kink.}
     \label{fig:hu}
 \end{figure}
 
-To begin investigating DrHU in complex with the DNA, we collected single particle cryo-EM data of an \textit{in vitro} preparation of plasmid DNA and HU, in order to observe the interaction in a free acqueous environment.
-Within a small range of relative concentrations, intriguing spirals (\autoref{fig:hu_spirals}) were formed by the DNA, suggesting a certain folding was caused by HU.
+To begin investigating DrHU in complex with the DNA, we collected single particle cryo-EM data of an \textit{in vitro} preparation of plasmid DNA and HU, in order to observe the interaction in a free aqueous environment.
+The bacterial genomic DNA is large, circular and supercoiled; where previous structural studies used short DNA segments, we opted for a circular dsDNA plasmid as it would be a more appropriate stand-in that would allows us to evaluate how circularity, supercoiling and DNA topology affect HU binding and assembly on DNA.
+HU and plasmid DNA were mixed at different ratios, and within a small range of relative concentration (\sim100 HU/plasmid) intriguing spirals (\autoref{fig:hu_spirals}) were formed by the DNA.
+Notably, these spirals were never observed in the absence of HU, and were also not observed when using older batches of the plasmid. % TODO: what does this mean? What older batch?
+
 
 \begin{figure}[ht]
     \centering
@@ -40,10 +44,12 @@ Within a small range of relative concentrations, intriguing spirals (\autoref{fi
     \label{fig:hu_spirals}
 \end{figure}
 
-The very small molecular weight of HU (\sim12.5 kDa) meant that picking and processing these particles (even in the expected dimeric or tetrameric forms) would be practically impossible in cryo-EM (see \autoref{fig:et_smallest_particle} for the theoretical limits).
-However, it should be possible to work around this limitation by using a supporting geometry --- such as the DNA filament --- to do the picking and guide refinement.
+The very small molecular weight of HU (\sim25 kDa in its dimeric form) meant that picking and processing these particles (even in the expected dimeric or tetrameric forms) would be practically impossible in cryo-EM (see \autoref{fig:et_smallest_particle} for the theoretical limits).
+However, due to the relatively high concentration of HU --- \sim100 HU/plasmid corresponds to approximately 1 HU for every 26bp --- the DNA should be densely decorated by HU, unless the protein distribution on the grid is not uniform or big aggregates are forming.
+It should therefore be possible to work around the particle size limitation by using the supporting geometry of the DNA filament to do the picking and guide refinement.
 
-This, unfortunately, proved unsuccessful; while we were able to pick and classify on the DNA and several interesting "blobs" next to it (\autoref{fig:hu_classes}), we could never identify them or reach high resolution.
+This, unfortunately, proved unsuccessful; while we were able to pick and classify on the DNA and several interesting "blobs" next to it (\autoref{fig:hu_classes}), we could never reach resolutions high enough to convincingly identify them as HU.
+% TODO: show unsuccessful picking strategies...
 
 \begin{figure}[ht]
     \centering
@@ -56,9 +62,9 @@ Classification and refinement are not only made difficult by the small size of H
 
 \subsection{Future perspectives}
 
-To increase our chances to identify and pick HU, a new dataset was collected with a phase plate, which allows to collect data closer to focus while improving the contrast of low spacial fequency information (\fullref{em_ctf}).
+To increase our chances to identify and pick HU, a new dataset was collected with a phase plate, which allows to collect data closer to focus while improving the contrast of low spatial fequency information (\fullref{em_ctf}).
 
-Preliminary results on this data showed more classes containing what could HU in a similar conformation to what seen in \autoref{fig:hu_structure} (\autoref{fig:hu_blobs}).
+Preliminary results on this data --- now being processed by Harald Bernhard, a postdoc in the MICA group --- showed more classes containing what could be HU in a similar conformation to what seen in \autoref{fig:hu_structure} (\autoref{fig:hu_blobs}).
 
 \begin{figure}[ht]
     \centering
@@ -74,7 +80,7 @@ TODO: some hint on irina's ideas?
 As most cryo-ET users, over time I kept tweaking and improving my processing pipeline.
 At present, it consists of three main elements: Warp~\cite{tegunovRealtimeCryoelectronMicroscopy2019} for preprocessing and tomogram and subtomogram reconstruction, AreTomo~\cite{zhengAreTomoIntegratedSoftware2022} for tilt series alignment, and Relion~\cite{scheresRELIONImplementationBayesian2012,zivanovBayesianApproachSingleparticle2022,burtImageProcessingPipeline2024} for STA.
 
-To facilitate batch processing and remove most needs for manual intervention (and potential points of failure), I developed an automated tool which connects Warp to AreTomo: \href{https://gihub.com/brisvag/waretomo}{waretomo}~\cite{gaifasWaretomoV02024}.
+To facilitate batch processing and remove most needs for manual intervention (and potential points of failure), I developed an automated tool which connects Warp to AreTomo: \href{https://gihub.com/brisvag/waretomo}{waretomo}~\cite{gaifasWaretomo2024}.
 
 \section{emscan}
 

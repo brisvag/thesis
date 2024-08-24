@@ -14,7 +14,7 @@ Based on crystal structures, filaments have been shown to form through head-to-t
 However, there is no structural information regarding the flexible C-terminal region, which is responsible for regulating its activity and interaction with its cellular partners, including FtsA.
 It's also unclear how multiple filaments may assemble to form bundles at the structural level and even less so in vivo.
 Thus --- while its key role in cell division is undisputed --- the exact mechanism and function of FtsZ are still unclear.
-There is no consensus model, as the current evidence is inconclusive, sometimes presenting significant variations between species --- likely ascribable to different shapes or membrane compositions between bacteria~\cite{barrowsFtsZDynamicsBacterial2021,mcquillenInsightsStructureFunction2020}.
+There is currently no consensus model that fully explains the function and mode of action of FtsZ in the division process in bacteria, as the current evidence is inconclusive, sometimes presenting significant variations between species --- likely ascribable to different shapes or membrane compositions between bacteria~\cite{barrowsFtsZDynamicsBacterial2021,mcquillenInsightsStructureFunction2020}.
 
 \begin{figure}[ht]
     \centering
@@ -39,7 +39,7 @@ However, it does not appear to affect the rate of PG synthesis, as opposed to wh
 Indeed, in \textit{E. coli}, some additional proteins may help with a timely invagination of the outer membrane, although they are not needed for septation to occur~\cite{gerdingTransenvelopeTolPal2007}.
 This is intriguing for \textit{D. radiodurans} which, despite staining gram-positive, presents an outer membrane.
 
-The disordered C-terminal domain of FtsZ was found the be necessary both for the anchorage to the membrane via FtsA, and to regulate oligomerization as well as bundling with neighboring filaments~\cite{barrowsFtsZDynamicsBacterial2021}.
+The disordered C-terminal domain of FtsZ was found to be necessary both for the anchorage to the membrane via FtsA, and to regulate oligomerization as well as bundling with neighboring filaments~\cite{barrowsFtsZDynamicsBacterial2021}.
 
 Collectively, the literature hints that FtsZ treadmilling is likely not the only factor that controls the dynamics of FtsZ and the Z-ring, and that variations across species may be explained by different divergent mechanisms, or some other underlying behavior not yet discovered~\cite{barrowsFtsZDynamicsBacterial2021}.
 
@@ -47,16 +47,19 @@ Collectively, the literature hints that FtsZ treadmilling is likely not the only
 
 \subsection{Structural study by SPA}
 
-To begin our investigation of the structure of DrFtsZ, prepared a sample for SPA from \textit{in vitro} purified FtsZ.
-The preparation we selected (\fullref{ftsz_methods}) resulted in FtsZ filaments long enough to allow filament picking and helical reconstruction, while avoiding an excess of filament bundles which make picking and refinement more difficult (\autoref{fig:ftsz_micrographs}).
+We began our investigation of the structure of DrFtsZ by doing SPA on \textit{in vitro} purified FtsZ.
+Irina and Joanna tested a variety of conditions in order to trigger filament formation using purified, monomeric FtsZ from \textit{D. radiodurans}.
+% TODO: brief description of: Different conditions tested, the use of both negative stain and cryoEM to optimise the process, and the difficulties encountered during sample preparation (due to polymerisation being highly sensitive to FtsZ concentration, temperature, concentration and nature of bound nucleotide etc. could be briefly described at the start of the results section or in the introductory paragraph of this chapter. this way as for the previous chapter, you can briefly explain who did what on this project.
+The selected preparation(\fullref{ftsz_methods}) resulted in FtsZ filaments long enough to allow filament picking and helical reconstruction, while avoiding an excess of filament bundles which make picking and refinement more difficult (\autoref{fig:ftsz_micrographs}).
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{other/ftsz_mics.png}
-    \titledcaption[Micrographs of FtsZ filaments]{Micrographs containing FtsZ filaments. When filaments are well separated (left) they are ideal for picking and refinement. In some cases, FtsZ filaments form bundles (right) which are harder to pick, refine and classify due to the overlapping particles.}
+    \titledcaption[Micrographs of FtsZ filaments]{Micrographs containing FtsZ filaments. When filaments are individual and well separated (left) they are ideal for picking and refinement. In some cases, FtsZ filaments form bundles (right) which are harder to pick, refine and classify due to the overlapping particles.}
     \label{fig:ftsz_micrographs}
 \end{figure}
 
+% TODO: data collection...?
 We used CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} for filament picking, which gave us a large amount of particles (>4M) to classify and clean up from spurious picks.
 After cleaning, we ended up with about 2M particles, and very uniform classes with little variation (\autoref{fig:ftsz_classes}).
 This is a typical symptom of strong preferential orientation due to the air-water interface (\fullref{em_pref_ori}), leading to a very limited range of views in the particle projections.
@@ -69,7 +72,7 @@ Though we saw hints of different views in the bundled filaments, they proved imp
     \label{fig:ftsz_classes}
 \end{figure}
 
-Given the strong preferential orientation, it's unsurprising that 3D reconstructions from these particles showed very strong resolution anisotropicity (while reporting \sim4 Å global resolution), so much so that we couldn't convincingly fit the monomeric model in the map (\autoref{fig:ftsz_map_bad}).
+Given the strong preferential orientation, it's unsurprising that 3D reconstructions from these particles showed very strong resolution anisotropy (while reporting \sim4 Å global resolution), so much so that we couldn't convincingly fit the monomeric model in the map (\autoref{fig:ftsz_map_bad}).
 
 \begin{figure}[ht]
     \centering
@@ -83,10 +86,15 @@ The best map available of FtsZ filaments (from \textit{Klebsiella pneumoniae}) a
 
 We attempted to address the issue of preferential orientation in two different ways: collecting a tilted dataset of the same samples, and preparing a new sample with methods that combat air-water interface effects.
 
+\subsection{Graphene and streptavidin-coated grids}
+
+We attempted to address the preferential orientation problem by using functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022}, and streptavidin-coated affinity support grids~\cite{crucifixImmobilizationBiotinylatedDNA2004,hanLongShelflifeStreptavidin2016}.
+While these approaches have been shown to work, we struggled to obtain usable grids; in the meantime, the sample prepared with the addition of detergent showed promising results, so we moved forward with it instead.
+
 \subsubsection{Tilted data collection}\label{ftsz_tilted}
 
 We prepared the sample in the same way, but this time the data collection was done with a 35° tilt.
-Following the same workflow as with the untilted dataset, we then picked, classified and selected particles, obtaining a more promising selection of class averages (\autoref{fig:ftsz_classes_tilted}).
+Following the same workflow as with the untilted dataset, we then picked, classified and selected particles, obtaining a more promising selection of class averages (\autoref{fig:ftsz_classes_tilted}). % TODO: explain why these classes where better, did we get more, explain figure, what we were looking for, etc
 
 \begin{figure}[ht]
     \centering
@@ -95,10 +103,10 @@ Following the same workflow as with the untilted dataset, we then picked, classi
     \label{fig:ftsz_classes_tilted}
 \end{figure}
 
-Despite the better view distribution of 2D classes, our 3D reconstructions had the same anisotropicity issues as the untilted data.
-Assuming a unform distribution of in-plane angles of the filaments (which we observed in the original dataset), a single, relatively high-tilt dataset should cover a higher portion of 3D fourier space during backprojection and thus significantly improve map isotropicity~\cite{tanAddressingPreferredSpecimen2017}.
+Despite the better view distribution of 2D classes, our 3D reconstructions had the same anisotropy issues as the untilted data.
+Assuming a unform distribution of in-plane angles of the filaments (which we observed in the original dataset), a single, relatively high-tilt dataset should cover a higher portion of 3D fourier space during backprojection and thus significantly improve map isotropy~\cite{tanAddressingPreferredSpecimen2017}.
 
-With preferentially oriented filament collected at a fixed tilt angle, there should be a strong correlation between in-plane angle (easily identifiable from the micrograph) and the projection view (which is identified by classification). % TODO: show with synthetic dataset? Also, could it be that multiple euler combinations are redundant and correlation was just bad? How did I do this thing again?
+With preferentially oriented filaments collected at a fixed tilt angle, there should be a strong correlation between in-plane angle (easily identifiable from the micrograph) and the projection view (which is identified by classification). % TODO: show with synthetic dataset? Also, could it be that multiple euler combinations are redundant and correlation was just bad? How did I do this thing again?
 Upon closer inspection of the picking data, however, we observed that the out-of-plane angles assigned to each particle showed no correlation with the assigned 2D class (\autoref{fig:ftsz_class_angles}).
 
 \begin{figure}[ht]
@@ -123,7 +131,7 @@ Unfortunately, this approach did not yet bear fruits: CryoSPARC does not provide
 \subsubsection{Addition of detergent}
 
 Detergent has long been used as a way to address preferential orientation and aggregation of proteins in the sample.
-In our case, while id did not affect the orientation problem, it allowed FtsZ to polymerize in longer filaments without creating large bundles (\autoref{fig:ftsz_ddm_mics}).
+In our case, while it did not affect the orientation problem, it allowed FtsZ to polymerize into longer filaments without creating large bundles (\autoref{fig:ftsz_ddm_mics}).
 
 \begin{figure}[ht]
     \centering
@@ -142,7 +150,7 @@ Indeed, we observe a higher diversity in classification results (\autoref{fig:ft
     \label{fig:ftsz_ddm_classes}
 \end{figure}
 
-Preliminary data showed an improvement in the map interpretability, although the anisotropicity due to preferential orientation is still present (\autoref{fig:ftsz_ddm_map}).
+Preliminary data --- now being processed by Harald Bernhard, a postdoc in the MICA group --- showed an improvement in the map interpretability, although the anisotropy due to preferential orientation is still present (\autoref{fig:ftsz_ddm_map}).
 
 \begin{figure}[ht]
     \centering
@@ -156,7 +164,7 @@ Preliminary data showed an improvement in the map interpretability, although the
 In parallel to the study of \textit{in vitro} FtsZ filament by SPA, we also investigated the FtsZ \textit{in situ} in the tomograms of \textit{D. radiodurans} lamellae.
 Some of our findings and speculations about the 3D morphology of FtsZ are included in the \textit{D. radiodurans} manuscript (\fullref{drad_ftsz} and \fullref{ftsz_discussion}).
 
-Our observations on the reconstructed tomograms matched those by \citet{sextonSuperresolutionConfocalCryoCLEM2022}, who also used tomography to look into D.rad and identified FtsZ and FtsA forming filaments just below the inner membrane (\autoref{fig:ftsz_tomo_slice}).
+Our observations on the reconstructed tomograms matched those by \citet{sextonSuperresolutionConfocalCryoCLEM2022}, who also used tomography to look into D.rad and identified FtsZ and FtsA forming filaments just below the inner membrane of the septal tips (\autoref{fig:ftsz_tomo_slice}). % TODO: show more examples of this, how many have it, etc...
 
 \begin{figure}[ht]
     \centering
@@ -169,7 +177,9 @@ The size and spacing between FtsZ filaments is consistent with crystal structure
 
 The distance between FtsZ+FtsA filaments and the membrane in our tomograms is TODO, consistent with the expected \sim13-16~\cite{mcquillenInsightsStructureFunction2020}.
 However, the width of the bundle appears to be smaller than the previously found 80-100 nm~\cite{mcquillenInsightsStructureFunction2020}, at around 50 nm.
-TODO: difference between bacteria?
+
+TODO: double check )
+TODO: difference between bacteria? (I guess this thickness reflects the thickness of the septum and thus the cell wall composition and mode of septation (constriction vs septation)
 
 \subsubsection{Subtomogram averaging}
 
@@ -177,7 +187,7 @@ While it is clear that FtsZ and FtsA are forming filaments and bundles in vitro,
 To get a higher resolution view of this complex \textit{in situ}, we performed STA on particles picked from the FtsZ arches at the tips of the septa (\autoref{fig:ftsz_tomo_slice}).
 
 Given the apparent regularity of the bundles (whose morphology appears unchanged across their length), we used blik's surface picking tool~\cite{gaifasBlikExtensible3D2024,gaifasBlikPythonTool2024}, which allows us to distribute regularly spaced particles on the sheet-like FtsZ bundles (\autoref{fig:ftsz_tomo_picks_surface}).
-The inter-particle distance was chosen based on the smallest distance in the regular comb-like dark/light pattern pattern along the FtsZ arches.
+The inter-particle distance was chosen based on the smallest distance in the regular comb-like dark/light pattern along the FtsZ arches. % TODO: how many particles?
 Two different sets of particles were thus generated: with exact inter-particle distance, and twice oversampled  (\autoref{fig:ftsz_tomo_picks_particles}).
 
 \begin{figure}[ht]
@@ -243,8 +253,3 @@ blik, relion
 Ice thickness should be negligible if we do proper CTF and motion correction (iteratively)~\cite{aiyerOvercomingResolutionAttenuation2024}.
 
 We encountered a major obstacle in the preferential orientation of filaments both in SPA and STA; the project is still ongoing and the new detergent data is currently being processed.
-
-\subsection{Graphene and streptavidin-coated grids}
-
-We also attempted to address the preferential orientation problem by using functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022}, and streptavidin-coated affinity support grids~\cite{crucifixImmobilizationBiotinylatedDNA2004,hanLongShelflifeStreptavidin2016}.
-While these approaches have been shown to work, we struggled to obtain usable grids; in the meantime, the sample prepared with the addition of detergent showed promising results, so we moved forward with it instead.
