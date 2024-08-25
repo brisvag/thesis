@@ -20,7 +20,7 @@ There is currently no consensus model that fully explains the function and mode 
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{other/ftsz_ring.png}
+    \includegraphics[width=\textwidth]{other/ftsz_ring.png}
     \titledcaption[FtsZ forms a ring \textit{in vivo} and filaments \textit{in vitro}]{During cell division, FtsZ is known to localize on a ring (termed Z-ring) corresponding to the tips of the septa (left, figure adapted from \autoref{drad_fig6}). Many structural studies were done on FtsZ, identifying the formation of protofilament via head-to-tail stacking (right, figure adapted from \citet{olivaStructuralInsightsFtsZ2004}.}
     \label{fig:ftsz_ring}
 \end{figure}
@@ -111,22 +111,24 @@ Upon closer inspection of the picking data, however, we observed that the out-of
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
+    \includegraphics[width=\textwidth]{example-image.png}
     \titledcaption[Out-of-plane angle by class in FtsZ titled dataset]{Out-of-plane angle plotted against the assigned 2D class. TODO}
     \label{fig:ftsz_class_angles}
 \end{figure}
 
-We soon realized that the 3D reconstruction routines of both Relion and CryoSPARC were struggling with assigning orientations, resulting in practically random orientations.
+We soon realized that the 3D reconstruction routines of both Relion~\cite{scheresRELIONImplementationBayesian2012} and CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} were struggling with assigning Euler angles, resulting in practically random orientations.
 To impose more constraints on the refinement based on this prior knowledge on the geometry of the system, we calculated the theoretical orientation of each particle based on the in-plane angle (and assuming perfect preferential orientation), which we then used to initialize the particle poses (\fullref{stemia_angles}).
 
-Unfortunately, this approach did not yet bear fruits: CryoSPARC does not provide fine control over angle priors and search patterns, and Relion parameter selection .... TODO (\autoref{fig:ftsz_angle_dist}).
+Unfortunately, this approach did not yet bear fruits: CryoSPARC does not provide fine control over angle priors and search patterns, and Relion's parameters for angle refinement proved tricky to control and resulted in orientations being either stuck in local minima, or fully randomized again (\autoref{fig:ftsz_angle_dist}).
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
+    \includegraphics[width=\textwidth]{example-image.png}
     \titledcaption[Angle distribution after 3D reconstruction in FtsZ tilted dataset]{TODO: angle distribution plot}
     \label{fig:ftsz_angle_dist}
 \end{figure}
+
+
 
 \subsection{Addition of detergent}
 
@@ -135,7 +137,7 @@ In our case, while it did not affect the orientation problem, it allowed FtsZ to
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{other/ftsz_mics_ddm.png}
+    \includegraphics[width=\textwidth]{other/ftsz_mics_ddm.png}
     \titledcaption[Micrographs of FtsZ with detergent]{The addition of detergent allowed the FtsZ filaments to elongate further, without resulting in dense bundles (left). When bundles formed (right), they were often less densely packed than without detergent, opening up the possibility to pick bundled filaments in order to investigate side interactions.}
     \label{fig:ftsz_ddm_mics}
 \end{figure}
@@ -145,7 +147,7 @@ Indeed, we observe a higher diversity in classification results, including class
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
+    \includegraphics[width=\textwidth]{example-image.png}
     \titledcaption[2D classes of FtsZ with detergent]{TODO: ftsz ddm classes}
     \label{fig:ftsz_ddm_classes}
 \end{figure}
@@ -154,7 +156,7 @@ Preliminary data showed an improvement in the map interpretability, although the
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{example-image.png}
+    \includegraphics[width=\textwidth]{example-image.png}
     \titledcaption[Preliminary 3D reconstruction of FtsZ]{TODO: my best ftsz map so far}
     \label{fig:ftsz_ddm_map}
 \end{figure}
@@ -180,8 +182,8 @@ Our observations on the reconstructed tomograms matched those by \citet{sextonSu
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=.5\textwidth]{other/ftsz_slices.png}
-    \titledcaption[FtsZ: tomogram slices from top and side view]{When viewing a cross-section of the bundle at the tip of the septa of \textit{D. radiodurans} (left), FtsZ is visible as a double arch separated by a gridded pattern. This is likely the result of a layer of FtsA bridging between the membrane and a layer of FtsZ filaments. (figure adapted from \autoref{ftsz_fig4}).}
+    \includegraphics[width=\textwidth]{other/ftsz_slices.png}
+    \titledcaption[FtsZ: tomogram slices from top and side view]{When viewing a cross-section of the bundle at the tip of the septa of \textit{D. radiodurans} (left), FtsZ is visible as a double arch separated by a gridded pattern. This is likely the result of a layer of FtsA bridging between the membrane and a layer of FtsZ filaments. (figure adapted from \autoref{drad_fig4}).}
     \label{fig:ftsz_tomo_slice}
 \end{figure}
 
@@ -194,32 +196,59 @@ However, the width of the bundle appears to be smaller than the previously found
 While it is clear that FtsZ and FtsA are forming filaments and bundles in vitro, and that they localize to the Z-ring in a bundle-like fashion, the details of this superstructural assembly are unknown.
 To get a higher resolution view of this complex \textit{in situ}, we performed STA on particles picked from the FtsZ arches at the tips of the septa (\autoref{fig:ftsz_tomo_slice}).
 
-Given the apparent regularity of the bundles (whose morphology appears unchanged across their length), we used blik's surface picking tool~\cite{gaifasBlikExtensible3D2024,gaifasBlikPythonTool2024}, which allows us to distribute regularly spaced particles on the sheet-like FtsZ bundles (\autoref{fig:ftsz_tomo_picks_surface}).
+Given the apparent regularity of the bundles (whose morphology appears unchanged across their length), we used blik's surface picking tool~\cite{gaifasBlikExtensible3D2024,gaifasBlikPythonTool2024}, which allows us to distribute regularly spaced particles on the sheet-like FtsZ bundles.
 The inter-particle distance was chosen based on the smallest distance in the regular comb-like dark/light pattern along the FtsZ arches. % TODO: how many particles?
-Two different sets of particles were thus generated: with exact inter-particle distance, and twice oversampled  (\autoref{fig:ftsz_tomo_picks_particles}).
+Two different sets of particles were thus generated: with inter-particle distance matching the visible pattern (\sim50 Å), and twice oversampled (\sim25 Å) (\autoref{fig:ftsz_tomo_picks}).
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}[B]{.5\textwidth}
+    \begin{subfigure}[B]{.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{example-image.png}
-        \caption{TODO: surface of ftsz sheet}
-        \label{fig:ftsz_tomo_picks_surface}
+        \includegraphics[width=\textwidth]{other/ftsz_particles_50A.png}
+        \caption{Particle picks at 50 Å spacing.}
+        \label{fig:ftsz_tomo_picks_50}
     \end{subfigure}%
     \hfill
-    \begin{subfigure}[B]{.5\textwidth}
+    \begin{subfigure}[B]{.49\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{example-image.png}
-        \caption{TODO: particle picks}
-        \label{fig:ftsz_tomo_picks_particles}
+        \includegraphics[width=\textwidth]{other/ftsz_particles_25A.png}
+        \caption{Particle picks at 25 Å spacing.}
+        \label{fig:ftsz_tomo_picks_25}
     \end{subfigure}%
-    \caption{TODO: surface picked with blik and particles generated on it (different spacings)}
+    \titledcaption[Surface-based FtsZ particle picks for STA]{Particle picks on FtsZ at the tip of the septa in \textit{D. radiodurans} tomograms, generated with surface-based picking in blik~\cite{gaifasNaparipropertiesplotter2021,gaifasBlikPythonTool2024} at two different inter-particle spacings.}
     \label{fig:ftsz_tomo_picks}
 \end{figure}
 
-TODO
+Subtomograms were reconstructed in Warp~\cite{tegunovRealtimeCryoelectronMicroscopy2019} using these particle picks, at different resolutions and with varying box sizes.
+Using Relion~\cite{scheresRELIONImplementationBayesian2012,zivanovBayesianApproachSingleparticle2022,burtImageProcessingPipeline2024}, we performed subtomogram averaging and 3D classification to refine the positions and obtain a 3D map of the particles.
+Due to the low magnification of the dataset (Nyquist \simeq9 Å), Relion was in most cases struggling to assign orientations.
+The only refinement that resulted in consistent orientations and a reasonable map was with particles picked at 50 Å spacing, and subtomograms reconstructed at the highest resolution (4.346 Å/px) and with a large box size of 64 pixels, corresponding to \sim28 nm (\autoref{fig:ftsz_subtomo}).
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[B]{.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{other/ftsz_subtomo_slice.png}
+        \caption{Z-slice through the best FtsZ subtomogram.}
+        \label{fig:ftsz_subtomo_slice}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[B]{.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{other/ftsz_subtomo_iso.png}
+        \caption{Isosurface of the best FtsZ subtomogram.}
+        \label{fig:ftsz_subtomo_iso}
+    \end{subfigure}%
+    \titledcaption[FtsZ STA preliminary results]{Subtomogram averaging results of the particle picks on FtsZ at the tip of the septa in \textit{D. radiodurans}. The grid-like pattern visible in the tomogram slices is captured by the subtomograms, but the resolution is too low for further interpretation.}
+    \label{fig:ftsz_subtomo}
+\end{figure}
+
+It's worth noting that due to the nature of the division cycle of \textit{D. radiodurans}, the bacterium is generally found as a tetrad laying flat on the grid, which leads to a preferential orientation of the septa (and therefore the FtsZ filaments) along the Z axis on the tomograms.
+Due to the missing wedge (\fullref{et_tomo_reconstruction}), along which the filaments are aligned, the information is blurred along the FtsZ filament axis, limiting for example the ability to distinguish individual FtsZ monomers.
 
 \section{Discussion and future perspectives}
+
+TODO
 
 Ice thickness should be negligible if we do proper CTF and motion correction (iteratively)~\cite{aiyerOvercomingResolutionAttenuation2024}.
 

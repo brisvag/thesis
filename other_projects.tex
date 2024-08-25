@@ -74,43 +74,67 @@ Preliminary results on this data --- now being processed by Harald Bernhard, a p
 
 TODO: some hint on irina's ideas?
 
-\section{waretomo}
+\section{waretomo}\label{waretomo}
 
 As most cryo-ET users, over time I kept tweaking and improving my processing pipeline.
 At present, it consists of three main elements: Warp~\cite{tegunovRealtimeCryoelectronMicroscopy2019} for preprocessing and tomogram and subtomogram reconstruction, AreTomo~\cite{zhengAreTomoIntegratedSoftware2022} for tilt series alignment, and Relion~\cite{scheresRELIONImplementationBayesian2012,zivanovBayesianApproachSingleparticle2022,burtImageProcessingPipeline2024} for STA.
 
 To facilitate batch processing and remove most needs for manual intervention (and potential points of failure), I developed an automated tool which connects Warp to AreTomo: \href{https://gihub.com/brisvag/waretomo}{waretomo}~\cite{gaifasWaretomo2024}.
 
+Specifically, waretomo:
+\begin{enumerate}[noitemsep]
+    \item automates parsing \texttt{.mdoc} files to provide appropriate inputs to AreTomo
+    \item ensures that tilts skipped in Warp are properly handled
+    \item adjusts tilt angles in Warp based the otuput of AreTomo to untilt tilted samples (such as lamellae)
+    \item optionally reconstructs preliminary tomograms with AreTomo and denoises them with Topaz~\cite{beplerTopazDenoiseGeneralDeep2020}
+\end{enumerate}
+
+When possible, each step is performed in parallel (and on GPUs) to maximize resource usage and minimize idle time.
+While this tool is available and open source, it's not yet publication-ready and still in alpha, so bugs are expected.
+
 \section{emscan}
 
-This tool was developed as a contribution to the PhD project of Eymeline Pageot, from the MICA group, under the supervision of Ambroise Desfosses.
+In cell-extract cryo-EM~\cite{suBuildRetrieveMethodology2021,kyrilisIntegrativeBiologyNative2019}, a dataset may contain a large variety of proteins and complexes, many of which unknown.
+In these non-purified datasets, automating parts of the selection and protein identification processes is essential for practical applications such as structural proteomics of a novel organism.
 
-\href{https://gihub.com/brisvag/emscan}{emscan}
+As a contribution to the PhD project of Eymeline Pageot --- another PhD student in the MICA group under the supervision of Ambroise Desfosses --- I developed \href{https://gihub.com/brisvag/emscan}{emscan}, a napari~\cite{thenaparicommunityNapariMultidimensionalImage2024}-based tool that searches the EMDB database~\cite{thewwpdbconsortiumEMDBElectronMicroscopy2024} for maps whose projections have a high similarity with the input 2D classes.
 
-\section{Teamtomo}
+This allows for example to discard classes from already-solved structures, or to identify 2D classes that potentially belong to different views of a protein whose homologues are present on the EMDB.
 
-\href{https://teamtomo.org}{teamtomo}
-\section{napari tools}
-molecular viewer
-fourier transform simulator
-euler angle playground
+% TODO explain how it works
 
-\section{Surforama}
+\section{Teamtomo}\label{teamtomo}
 
-\section{cryosparc, cs2star}
+Early on in my PhD, Alister Burt and I started the \href{https://teamtomo.org}{teamtomo} project, with the goal of creating a shared, open-source resource for cryo-ET developers, and to encourage the community to collaborate on the development of cryo-ET software within the python ecosystem.
+
+At this time, almost 30 people from several different groups around the world have contributed to libraries and tools in the \href{https://github.com/teamtomo}{teamtomo repositories}, and more are joining our montly meetings where we plan future concerted efforts.
+
+% TODO: expand a bit?
+
+\section{Other napari tools}
+
+During my thesis, napari proved time and time again a powerful library for creating custom interactive visualisation tools.
+Some smaller napari-based tools and plugins I contributed to that are worthy of mention are:
+
+\begin{enumerate}
+    \item \href{https://github.com/cellcanvas/surforama}{surforama}~\cite{yamauchiSurforamaInteractiveExploration2024}, a tool to explore cryo-ET membrane annotations inspired by membranorama~\cite{tegunovDtegunovMembranorama2024}, fruit of a collaboration with other napari developers and members of the teamtomo community
+    \item \href{https://github.com/brisvag/napari-molecule-reader}{napari-molecule-viewer}, a plugin to open PDB and mmCIF files in napari
+    \item a \href{https://github.com/napari/napari/blob/main/examples/fourier_transform_playground.py}{fourier transform playground} to interactively explore the relationship between images and their FTs
+    \item a \href{https://gist.github.com/brisvag/d6394d05b2f994e083ec279d6976484f}{Euler angle playground} to build an intuition on the various Euler angle conventions and their effects on particle orientations
+\end{enumerate}
+
+\section{cs2star}
+
+A small tool, but used widely by our group and others, and later \href{https://sbgrid.org/software/titles/cs2star}{added to SBGrid}~\cite{morinCuttingEdgeCollaboration2013}, \href{https://github.com/brisvag/cs2star}{cs2star}~\cite{gaifasCs2starPy2021} is a small wrapper around the widespread \href{https://github.com/asarnow/pyem}{cryosparc2star.py} which automates a few tedious manual steps normally needed when converting CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} projects to Relion~\cite{scheresRELIONImplementationBayesian2012} ones.
 
 \section{stemia}
 
+\href{Stemia}{https://github.com/brisvag/stemia} is a collection of command-line tools that I developed but that were either too small or too niche to make sense as standalone packages.
+
 \subsection{Out-of-plane angle generation}\label{stemia_angles}
-This tool was developed to work on the FtsZ tilted dataset (\fullref{ftsz_tilted}).
+This tool was developed to work on the FtsZ tilted dataset (\fullref{ftsz_tilted}). % TODO: expand
 
 \begin{outline}
-\1 HU...
-    \2 initial proposition: bacterial chromatin, connect to Dr chapter
-    \2 interesting spiral formations, unexplained, reproducible
-    \2 tricky sample preparation, very small protein
-        \3 attempts as solving using DNA as scaffolding for picking, etc...
-        \3 cryoet proof of concept
 \1 teamtomo!
     \2 goal proposition, community efforts
 \1 projection matching for eymeline's work
@@ -118,10 +142,7 @@ This tool was developed to work on the FtsZ tilted dataset (\fullref{ftsz_tilted
     \2 would be cool to go into some technical details here (cross-correlation, projection, etc)
     \2 optimizing for space and performance
     \2 the issues around cross correlation
-\1 cs2star and cryosparc in general and related tools
-\1 stemia and collection of tools... how to wrap this us in a way that makes sense?
 \1 waretomo
     \2 some suites exist that do the "whole" procedure, but they are monolithic and hard to get in/out for special cases, which occurs frequently in cryoet
     \2 difficulties with metadata wrangling
-\1 molecular viewer napari
 \end{outline}
