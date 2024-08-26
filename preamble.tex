@@ -56,12 +56,11 @@
 \usepackage[format=plain,labelfont={sc,bf},labelsep=endash,textfont={color=black!80},font=footnotesize]{caption}
 \usepackage{subcaption} % subfigures
 
-% code and note boxes and frames
+% code boxes and frames
 \usepackage{minted} % syntax highlighting
 \usepackage[nobreak]{mdframed} % framing minted boxes
 \surroundwithmdframed[backgroundcolor=black!10]{minted}
 % \setminted[python]{linenos} % enable line numbers on all python boxes
-%\usepackage{tcolorbox} % colored titled box (e.g: "NOTE: ...")
 
 % other (order matters...)
 \usepackage[autostyle,english=american]{csquotes} \MakeOuterQuote{"} % normal-er quotes (must be after minted)
@@ -70,6 +69,7 @@
 % \usepackage{xspace} % smart spaces after commands % \newcommand*{\something}{\textit{SomEthing}\xspace}
 % \usepackage{titling} % multiple/different title pages
 % \usepackage[blocks]{authblk} \renewcommand\Affilfont{\scriptsize} % multiple authors with affiliations (must import after titling if it's there)
+% \usepackage{tcolorbox} % colored titled box (e.g: "NOTE: ...")
 
 % TODO: to remove, temporary packages
 \usepackage{outlines} % easy nested lists
