@@ -16,13 +16,68 @@ While ML tools such as AlphaFold3~\cite{abramsonAccurateStructurePrediction2024}
 
 A method that promises to solve these problems is cryo-electron tomography (cryo-ET): a technique that can look not only at purified macromolecules, but at entire cells and tissues, \textit{in situ} in near-native conditions, with the ability to reach higher resolutions via subtomogram averaging, while retaining contextual information and providing a 3D view into single events.
 
+\localtableofcontents
+
+\section{Cryo-ET: basic concepts}
+
 Tomographic reconstruction is not a recent invention: the first appearance goes back more than a century~\cite{jDeterminationFunctionsTheir1917}; its successful application to cryo-EM, however, is only a recent development closely linked to the resolution revolution, which allowed to finally overcome the biggest overarching limitation of cryo-ET --- poor signal-to-noise ratio --- enough to reach sub-nanometer resolutions~\cite{lucicCryoelectronTomographyChallenge2013,turkPromiseChallengesCryoelectron2020}.
 
 At its core, cryo-ET is just cryo-EM with extra steps; they share much of the theory, hardware and software.
 The key difference is that, where single particle cryo-EM uses projections from different \textit{copies} of the same object to reconstruct a 3D map, cryo-ET images the same location from multiple orientations in order to reconstruct a 3D map from multiple projections of the \textit{same} object.
-This section describes the theory of cryo-ET, how it deviates from SPA, and the current state of the art with its limitations and upcoming developments.
+This chapter describes the theory of cryo-ET, how it deviates from SPA in its workflow (\autoref{fig:et_workflow}), and the current state of the art with its limitations and upcoming developments.
 
-\localtableofcontents
+\begin{figure}[ht]
+    \centering
+    \resizebox{\textwidth}{!}{\begin{tikzpicture}[node distance=2ex and 5ex]
+        \node (purif) [node] {Expression/Purification};
+        \node (fid) [opt, below = of purif] {Fiducials};
+        \node (vit) [node, below = of fid] {Vitrification};
+        \node (fib) [opt, below = of vit] {FIB-milling};
+        \node (coll) [node, below = of fib] {Data collection};
+
+        \node (motion) [node, right = of purif, xshift=5ex] {Motion correction};
+        \node (ctf) [node, below = of motion] {CTF estimation};
+        \node (tilt) [node, below = of ctf] {Tilt-series alignment};
+        \node (tomo) [node, below = of tilt] {Tomogram reconstruction};
+        \node (filt) [opt, below = of tomo] {Filtering/Denoising};
+
+        \node (annot) [node, right = of motion, xshift=5ex] {Annotation/Segmentation};
+        \node (pick) [node, below = of annot] {Particle picking};
+        \node (subtomo) [node, below = of pick] {Subtomgram Averaging};
+
+        \node (refine) [node, right = of annot, xshift=4ex] {Refinement};
+        \node (sharp) [node, below = of refine] {Sharpening/Denoising};
+        \node (dummy2) [dummy, below = of sharp] {};
+        \node (build) [node, below = of dummy2] {Model building};
+
+        \draw [arrow] (purif) -- (fid);
+        \draw [arrow] (fid) -- (vit);
+        \draw [arrow] (vit) -- (fib);
+        \draw [arrow] (fib) -- (coll);
+        \draw [arrow] (coll) edge[out=0,in=180] (motion);
+
+        \draw [arrow] (motion) -- (ctf);
+        \draw [arrow] (ctf) -- (tilt);
+        \draw [arrow] (tilt) -- (tomo);
+        \draw [arrow] (tomo) -- (filt);
+        \draw [arrow] (filt) edge[out=0,in=180] (annot);
+
+        \draw [arrow] (annot) -- (pick);
+        \draw [arrow] (pick) -- (subtomo);
+        \draw [arrow] (subtomo) edge[out=0,in=180] (refine);
+
+        \draw [arrow] (refine) -- (sharp);
+        \draw [arrow] (sharp) -- (build);
+
+        \node[draw=red,dotted,fit=(purif) (fid) (vit) (fib),label={[text=red]Sample preparation}] {};
+        \node[draw=cyan,dotted,fit=(motion) (ctf) (tilt) (tomo) (filt),label={[text=cyan]Preprocessing}] {};
+        \node[draw=lime,dotted,fit=(annot) (pick) (subtomo),label={[text=lime]Processing}] {};
+        \node[draw=orange,dotted,fit=(refine) (sharp),label={[text=orange]Postprocessing}] {};
+    \end{tikzpicture}}
+    \titledcaption[Cryo-ET workflow]{Schematic of a typical cryo-ET workflow. Dashed ellipses are situational/optional steps.}
+    \label{fig:et_workflow}
+\end{figure}
+
 
 \section{Sample preparation}
 As with SPA, vitrification remains the key step of sample preparation for cryo-ET.

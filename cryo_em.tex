@@ -31,16 +31,58 @@ Increasing the electron dose can help improve the signal-to-noise ratio (SNR), b
 For these reasons, a significant limitation --- and thus optimization target --- of cryo-EM is the low SNR.
 
 The cryo-EM workflow is well established, and usually consists of the same principal components: sample preparation and vitrification, data collection, preprocessing (cleaning, motion and CTF correction), particle picking and classification, three-dimensional (3D) reconstruction, and model building.
-This section describes such typical workflow, expanding on the theoretical bases underlying each step.
+This chapter describes such typical workflow (\autoref{fig:em_workflow}), expanding on the theoretical bases underlying each step.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{example-image.png}
-    \titledcaption[Cryo-EM workflow]{TODO: typical cryoem workflow}
+    \resizebox{\textwidth}{!}{\begin{tikzpicture}[node distance=2ex and 5ex]
+        \node (purif) [node] {Expression/Purification};
+        \node (vit) [node, below = of purif] {Vitrification};
+        \node (dummy1) [dummy, below = of vit] {};
+        \node (coll) [node, below = of dummy1] {Data collection};
+
+        \node (motion) [node, right = of purif, xshift=2ex] {Motion correction};
+        \node (ctf) [node, below = of motion] {CTF estimation};
+        \node (filt) [node, below = of ctf] {Filtering/Denoising};
+        \node (clean) [node, below = of filt] {Dataset cleaning};
+
+        \node (pick) [node, right = of motion, xshift=3ex] {Particle picking};
+        \node (class) [node, below = of pick] {2D classification};
+        \node (sel) [node, below = of class] {Class selection};
+        \node (recon) [node, below = of sel] {3D reconstruction};
+
+        \node (refine) [node, right = of pick, xshift=7ex] {Refinement};
+        \node (sharp) [node, below = of refine] {Sharpening/Denoising};
+        \node (dummy2) [dummy, below = of sharp] {};
+        \node (build) [node, below = of dummy2] {Model building};
+
+        \draw [arrow] (purif) -- (vit);
+        \draw [arrow] (vit) -- (coll);
+        \draw [arrow] (coll) edge[out=0,in=180] (motion);
+
+        \draw [arrow] (motion) -- (ctf);
+        \draw [arrow] (ctf) -- (filt);
+        \draw [arrow] (filt) -- (clean);
+        \draw [arrow] (clean) edge[out=0,in=180] (pick);
+
+        \draw [arrow] (pick) -- (class);
+        \draw [arrow] (class) -- (sel);
+        \draw [arrow] (sel) -- (recon);
+        \draw [arrow] (recon) edge[out=0,in=180] (refine);
+
+        \draw [arrow] (refine) -- (sharp);
+        \draw [arrow] (sharp) -- (build);
+
+        \node[draw=red,dotted,fit=(purif) (vit),label={[text=red]Sample preparation}] {};
+        \node[draw=cyan,dotted,fit=(motion) (ctf) (filt) (clean),label={[text=cyan]Preprocessing}] {};
+        \node[draw=lime,dotted,fit=(pick) (class) (sel) (recon),label={[text=lime]Processing}] {};
+        \node[draw=orange,dotted,fit=(refine) (sharp),label={[text=orange]Postprocessing}] {};
+    \end{tikzpicture}}
+    \titledcaption[Cryo-EM workflow]{Schematic of a typical cryo-EM workflow.}
     \label{fig:em_workflow}
 \end{figure}
 
-\section{Sample preparation}
+\section{Sample preparation}\label{em_sample_prep}
 Cryo-EM samples for SPA are usually prepared in vitro by expressing ad purifying the protein or complex of interest to create a minimal system.
 Sample concentration and purity are important variables to control, as they will affect vitrification and data processing complexity.
 The sample solution is then deposited on a cryo-EM grid and vitrified via plunge freezing in liquid ethane or other methods (\autoref{fig:em_plunge_freezing})~\cite{dubochetCryoelectronMicroscopyVitrified1988}.

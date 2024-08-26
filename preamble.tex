@@ -67,7 +67,6 @@
 \usepackage[autostyle,english=american]{csquotes} \MakeOuterQuote{"} % normal-er quotes (must be after minted)
 
 % situational but useful or cool
-% \usepackage{tikz} \usetikzlibrary{positioning,shapes,shadows,arrows}
 % \usepackage{xspace} % smart spaces after commands % \newcommand*{\something}{\textit{SomEthing}\xspace}
 % \usepackage{titling} % multiple/different title pages
 % \usepackage[blocks]{authblk} \renewcommand\Affilfont{\scriptsize} % multiple authors with affiliations (must import after titling if it's there)
@@ -75,3 +74,19 @@
 % TODO: to remove, temporary packages
 \usepackage{outlines} % easy nested lists
 \usepackage{pifont} \newcommand{\tick}{\ding{51}} % icons (e.g checkmark)
+
+% tikz stuff
+\usepackage{tikz} \usetikzlibrary{positioning,shapes.geometric,arrows,fit}
+\tikzstyle{node} = [
+    rectangle,
+    rounded corners,
+    minimum width=15ex,
+    minimum height=6ex,
+    text centered,
+    draw=black,
+    fill=brown!20,
+    scale=.7,
+]
+\tikzstyle{opt} = [node, ellipse, dashed]
+\tikzstyle{dummy} = [node, draw=transparent!0, fill=transparent!0]
+\tikzstyle{arrow} = [thick,->,>=stealth]
