@@ -13,7 +13,7 @@ Initially the main project of my PhD, the study of bacterial chromatin compactio
 The main protein of interest is HU, a nucleoid-associated protein (NAP) present in most bacteria (including \textit{E. coli} and \textit{D. radiodurans}) which is known to be a key player in chromatin compaction and nucleoid morphology throughout the cell cycle.
 The structure of dimeric HU has been solved from various bacterial species in either its apo- or DNA-bound forms (\autoref{fig:hu}).
 HU is thought to have a histone-like function --- with molecular dynamics simulations supporting the evidence to this binding mode~\cite{hognonMolecularBasesDNA2019} --- but it was also observed forming stacks of dimers that lay parallel to the DNA duplex, suggesting the possibility of multiple modes of interaction between HU dimers and the DNA~\cite{hammelHUMultimerizationShift2016}.
-Such drastically different modes may explain the heterogeneous highly dynamic nature of the \textit{D. radiodurans} nucleoids despite the relatively low number of players involved --- mostly just HU and a DNA-gyrase~\cite{TODO}.
+Such drastically different modes may explain the heterogeneous highly dynamic nature of the \textit{D. radiodurans} nucleoids despite the relatively low number of players involved --- mostly driven by HU and a DNA-gyrase.
 
 \begin{figure}[ht]
     \centering
@@ -51,8 +51,6 @@ However, due to the relatively high concentration of HU --- \sim100 HU/plasmid c
 It should therefore be possible to work around the particle size limitation by using the supporting geometry of the DNA filament to do the picking and guide refinement.
 
 With this in mind, we devised two picking strategies: a DNA-aligned one (\autoref{fig:hu_picks_ondna}), from which we might be able to isolate picks where HU is decorating the DNA on the side, and one positioned between two DNA strands (\autoref{fig:hu_picks_betweendna}), where we might be able to see tetramer of HU, hypothesized to form a bridge between DNA filaments based on previous biochemical studies by the GenOM team.
-
-, using two different templates: , and .
 
 \begin{figure}[ht]
     \centering
@@ -96,7 +94,7 @@ With these picks and a few rounds of 2D classification and cleaning, we were abl
 
 We attempted also to pick particle manually or using topaz, focusing on each occurrence of a small "blob" of HU-compatible dimensions appearing next to the DNA (\autoref{fig:hu_topaz}).
 
-\begin{figure}[]
+\begin{figure}[ht]
     \centering
     \begin{subfigure}[B]{.5\textwidth}
         \centering
