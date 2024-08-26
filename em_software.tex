@@ -17,7 +17,7 @@ All this leads to regular wheel-reinventing, and abandonware full of great ideas
 In the rare success stories where software becomes adopted widely enough to achieve long term maintenance, it's usually in the form of inscrutable monolithic applications developed by a single group or person with little community collaboration on the development.
 There are of course exceptions, but for young researchers it's generally a safer bet to go the "develop and publish" route than the "design and maintain" one; of course, most research developers struggle with this tension, wishing for their work to be reused and improved, but unable to allocate the time and resources required to do so.
 
-\section{Metadata wrangling}
+\subsection{Metadata wrangling}
 
 A common symptom of such an ecosystem is that significant time and effort is lost in dealing with metadata when setting up a cryo-ET data processing workflow.
 
@@ -28,59 +28,52 @@ Several other formats exist for particle, alignment, and various other parameter
 Currently, there are several attempts at intercommunication between software through converters and pipeline managers.
 Scipion~\cite{delarosa-trevinScipionSoftwareFramework2016} is likely the most effective and prolific, but it fights an uphill battle, integrating wildly different software, languages and approaches that were never built to be collaborate.
 
-\section{Human-in-the-loop}
+
+\section{Good software practices and human-in-the-loop}
 
 These software ecosystem issues are especially problematic for cryo-ET, where custom workflows and unique solutions are routinely required, due the diverse nature of the samples and project goals.
 Developing custom tools is often unfeasible for researchers new to the technique or who lack the necessary programming skills to delve deep in the code of the existing software.
 Monolithic software suites offer user-friendly interfaces and automation --- some of their stronger selling points --- which can often get in the way of custom tool injections and human intervention.
 On the flipside, tools that are standalone and single-purpose provide the flexibility to be used within any workflow, but may be difficult to integrate, especially without well-established conventions.
 
-To move away from this limiting dichotomy, the cryo-ET community needs to move towards a human-in-the-loop (HITL) mentality, where automation and user-friendliness don't get in the way of customizability and control.
-There are a few ways to push for such an ecosystem, but they mostly go against the aforementioned academia-machine:
+To move away from this limiting dichotomy, the cryo-ET community needs to push for an ecosystem where automation and user-friendliness don't get in the way of customizability and control.
+Such an ecosystem, however, is founded upon good software practices, which often go against the academia-machine:
 
 \begin{enumerate}[noitemsep]
     \item build small-scoped, generalized and modular \textbf{libraries} to allow re-use by many, with a low barrier of entry
     \item develop on top of well-established generalized libraries (numpy, pandas, etc.), to minimize wheel-reinventing and lower the learning curve for new users
-    \item engage the community to share maintenance responsibilities and institutional knowledge, in order to prevent abandonware and ensure continued development
-    \item release code quickly and openly, without waiting for the lethargic publication industry, to encourage sharing and expedite exchange of ideas
+    \item write readable code, and document it extensively, to make adoption and contribution easier
     \item develop tools that others would want to use, not tools that only you need
+    \item release code quickly and openly, without waiting for the lethargic publication industry, to encourage sharing and expedite exchange of ideas
+    \item engage the community to share maintenance responsibilities and institutional knowledge, in order to prevent abandonware and ensure continued development
 \end{enumerate}
 
-\section{Interactive visualisation}
+These things require expertise in software development and time to dedicate to non-glamorous tasks, both of which are often missing in academia.
+I was lucky enough to join the napari community --- from which I learned a lot on the former --- and to have supervisors who valued my independence and self-determination in my PhD career.
 
-In the context of this work, the push for HITL materialized as an interactive visualisation tool.
+\subsection{Interactive visualization}
 
-\begin{outline}
-\1 importance of visualisation (human-in-the-loop)
-    \2 issues caused by inability to look at data (wasted work, harder to form hypotheses)
-    \2 importance of interactivity (not just looking, but picking, annotating, etc). Automation is great when it works, but in cryoet it's tricky and it often doesn't
-        \3 problem of automation vs customizability
-\1 annotation, segmentation, picking
-    \2 especially hard in 3D, requires extra attention both in automated and manual procedures, and benefits especially from human-in-the-loop approach
-    \2 existing software (not sure to what extent i should go here, or say to refer to the blik paper chapter)
-\1 I'd like to have a general section about software practices, but not sure where
-    \2 a case for user-friendliness (cryosparc > relion)
-    \2 a case for open-source (relion > cryosparc)
-    \2 a case for domain agnosticism (napari)
-    \2 the benefits of modularity, "clean code", documentation, etc, to the research community
-\end{outline}
+Other than generally good software practices, cryo-ET software would benefit from moving towards a human-in-the-loop model, where automation and human supervision are equally imporant.
 
+This is exactly the goal of a workflow-agnostic and interactive visualization tool such as blik (\fullref{blik}), which allows users and developers to view, explore and manipulate the data in a seamless way at any point during the processing.
 
-\section{napari: powerful interactive visualisation}
+In cryo-ET, it's crucial to have powerful 3D interactivity, as 2D-only views on 3D data can be extremely limiting in understanding the system.
+One visualization tool that lacked particularly when we started working on blik was a quick and interactive way to look at and modify particle poses (positions and orientations) within their context in the tomogram (though nowadays other tools with similar capabilities are available~\cite{ermelArtiaXElectronTomography2022}).
+Similarly, annotation, picking and segmentation tools were (and in large part still are) limited to 2D interactivity; this is a limitation shared across imaging fields, which is why several napari developers are making a concerted effort to address this problem.
 
-This thesis was heavily influenced and shaped by my extended collaboration with the \href{https://napari.org/}{napari}
- project~\cite{thenaparicommunityNapariMultidimensionalImage2024} and its core developers and community~\cite{thenaparicommunityCommunityNapari2024}, whose values and goals for the development of scientific software strongly align with mine.
+\section{napari}
+
+This thesis was heavily influenced and shaped by my extended collaboration with the \href{https://napari.org/}{napari} project~\cite{thenaparicommunityNapariMultidimensionalImage2024} and its core developers and community~\cite{thenaparicommunityCommunityNapari2024}, whose values and goals for the development of scientific software strongly align with mine.
 
 The napari community aims to provide a fast, user-friendly, hackable and reusable library and application for the visualization and annotation of n-dimensional scientific imaging data.
-It's built on top of the well-established and widespread libraries at the core of the scientific python ecosystem (such as numpy and pandas), in order to allow seamless interactive visualisation both programmatically and via graphical user interface.
+It's built on top of the well-established and widespread libraries at the core of the scientific python ecosystem (such as numpy and pandas), in order to allow seamless interactive visualization both programmatically and via graphical user interface.
 Our committed effort to bridge many different imaging field to share knowledge and resources has resulted in a steady influx of new contributors and users from various backgrounds, who ensured napari remains user-friendly, hackable, and powerful.
 
 Due to the distributed and collaborative nature of community-driven open-source development, it's a difficult (and futile) exercise to track down exactly who "authored" a specific features.
-By delocalizing authorship, this often goes against the academia-machine, but on the flip side it ensures continued maintenance by also delocalizing responsibility.
+By delocalizing authorship and responsibility, this often goes against the academia-machine, but it also ensures continued maintenance.
 
-
+TODO: where should I put these? If anywhere? It feels like results material, but also a bit out of place without first talking about napari.
 \begin{outline}
-\1 napari: interactive GUI (human-in-the-loop)
 \1 development: my contributions as part of the thesis (didn't go in depth for blik paper)
     \2 architecture
     \2 slicing
@@ -89,8 +82,19 @@ By delocalizing authorship, this often goes against the academia-machine, but on
     \2 plugins
 \end{outline}
 
-\section{Teamtomo}
+\section{Teamtomo}\label{teamtomo}
 
-TODO: talk about how *I* went about this
+As another effort to go against the academia-machine, early on in my PhD, Alister Burt and I started the \href{https://teamtomo.org}{teamtomo} project, with the goal of creating a shared, open-source resource for cryo-ET developers, and to encourage the community to collaborate on the development of cryo-ET software within the python ecosystem.
 
-TODO: teamtomo, current goals and set up, lots of people involved ...
+While at first we were the only two people involved, at the time of writing almost 30 researchers and developers from several different groups around the world have contributed to libraries and tools in the \href{https://github.com/teamtomo}{teamtomo repositories}, and more are joining our montly meetings where we plan future concerted efforts.
+
+% TODO: expand a bit?
+
+% \1 annotation, segmentation, picking
+%     \2 especially hard in 3D, requires extra attention both in automated and manual procedures, and benefits especially from human-in-the-loop approach
+%     \2 existing software (not sure to what extent i should go here, or say to refer to the blik paper chapter)
+% \1 I'd like to have a general section about software practices, but not sure where
+%     \2 a case for user-friendliness (cryosparc > relion)
+%     \2 a case for open-source (relion > cryosparc)
+%     \2 a case for domain agnosticism (napari)
+%     \2 the benefits of modularity, "clean code", documentation, etc, to the research community
