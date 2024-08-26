@@ -143,11 +143,23 @@ In our case, while it did not affect the orientation problem, it allowed FtsZ to
 \end{figure}
 
 The longer filaments and the very small helical twist (estimated at <1° with the previous samples), should result in different side views of the monomers being visible in the dataset.
-Indeed, we observe a higher diversity in classification results, including classes with two or three filaments interacting side-by-side (\autoref{fig:ftsz_ddm_classes}).
+Indeed, we observe a higher diversity in classification results, including classes with different views of single filaments (\autoref{fig:ftsz_ddm_classes_single}) and classes with two or three filaments interacting side-by-side (\autoref{fig:ftsz_ddm_classes_double}).
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{example-image.png}
+    \begin{subfigure}[B]{.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{other/ftsz_classes_single.png}
+        \caption{Classes with different views on single FtsZ filaments.}
+        \label{fig:ftsz_ddm_classes_single}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[B]{.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{other/ftsz_classes_double.png}
+        \caption{Classes with multiple interacting FtsZ filaments.}
+        \label{fig:ftsz_ddm_classes_double}
+    \end{subfigure}%
     \titledcaption[2D classes of FtsZ with detergent]{TODO: ftsz ddm classes}
     \label{fig:ftsz_ddm_classes}
 \end{figure}
@@ -157,21 +169,22 @@ Preliminary data showed an improvement in the map interpretability, although the
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{example-image.png}
-    \titledcaption[Preliminary 3D reconstruction of FtsZ]{TODO: my best ftsz map so far}
+    \titledcaption[3D map of FtsZ with detergent]{The presence of detergent helped with capturing different views of the filament, improving the orientation distribution.}
     \label{fig:ftsz_ddm_map}
 \end{figure}
 
-This project has now been taken over by Harald Bernhard, a postdoc in the MICA group, who managed to further improve the resolution by careful use of 3D classification to better separate single filaments from bundles, as well as... TODO...
-
+This project has now been taken over by Harald Bernhard, a postdoc in the MICA group, who already managed to further improve the map in a few ways.
+With careful use of 2D and 3D classifications, it's possible to better isolate single filaments, which improves the initial model generation.
+Balancing the different views by number of particles also improves the orientation distribution, reducing map artifacts at the cost of some global resolution.
+Additionally, the use of a bigger box size in particle extraction has improved slightly the quality of the alignements and 2D class averages.
 While the anisotropy issue remains, the new maps are much more interpretable, and match those by \citet{fujitaStructuresFtsZSingle2023} from \textit{K. pneumoniae} FtsZ (\autoref{fig:ftsz_hari_map}).
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{example-image.png}
-    \titledcaption[Our best DrFtsZ map so far]{TODO: map by Harald}
+    \includegraphics[width=\textwidth]{other/ftsz_map_good.png}
+    \titledcaption[Our best DrFtsZ map so far]{Using the FtsZ+DDM dataset, and more careful 2D and 3D classifications to clean the dataset and better balance different views, Harald significantly improved on the FtsZ filament map. Preferential orientation is unfortunately still not fully solved, as evidenced by the streaking artifacts along one direction (bottom view), which are not present in the other (top view).}
     \label{fig:ftsz_hari_map}
 \end{figure}
-
 
 \section{Tomography and STA}
 
