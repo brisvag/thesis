@@ -39,7 +39,6 @@ Such drastically different modes may explain the heterogeneous highly dynamic na
 To begin investigating DrHU in complex with the DNA, my supervisors collected single particle cryo-EM data of an \textit{in vitro} preparation of plasmid DNA and HU, in order to observe the interaction in a free aqueous environment.
 The bacterial genomic DNA is large, circular and supercoiled; where previous structural studies used short DNA segments, we opted for a circular dsDNA plasmid as it would be a more appropriate stand-in that would allows us to evaluate how circularity, supercoiling and DNA topology affect HU binding and assembly on DNA.
 HU and plasmid DNA were mixed at different ratios, and within a small range of relative concentration (\sim100 HU/2686 bp plasmid) intriguing spirals (\autoref{fig:hu_spirals}) were formed by the DNA.
-Notably, these spirals were never observed in the absence of HU, and were also not observed when using older batches of the plasmid. % TODO: what does this mean? What older batch?
 Notably, these spirals were formed by supercoiled DNA only, but not by relaxed or linearized plasmid, and were never observed in the absence of HU.
 Our original idea based on these images was that HU would form tetramers and bind between two neighbouring turns of the DNA spirals to hold them together.
 
@@ -179,7 +178,6 @@ The selected cryo-EM preparation resulted in FtsZ filaments long enough to allow
     \label{fig:ftsz_micrographs}
 \end{figure}
 
-% TODO: data collection...?
 We used CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} for filament picking, which gave us a large amount of particles (>4M) to classify and clean up from spurious picks.
 After cleaning, we ended up with about 2M particles, and very uniform classes with little variation (\autoref{fig:ftsz_classes}).
 This is a typical symptom of strong preferential orientation due to the air-water interface (\fullref{em_pref_ori}), leading to a very limited range of views in the particle projections.
@@ -215,7 +213,7 @@ While these approaches have been shown to work, we struggled to obtain usable gr
 
 We prepared the sample in the same way as originally, but this time the data collection was done with the grid at a 35° tilt.
 Following the same workflow as with the untilted dataset, we then picked, classified and selected particles, obtaining a new set of class averages (\autoref{fig:ftsz_classes_tilted}).
-These classes where immediately more promising than the ones from the untilted datasets, showing multiple views from the first round of classification, even in isolated filaments. % TODO: explain why these classes where better, did we get more, explain figure, what we were looking for, etc
+These classes looked immediately more promising than the ones from the untilted datasets, showing multiple views from the first round of classification, even in isolated filaments. % TODO: explain why these classes where better, did we get more, explain figure, what we were looking for, etc
 
 \begin{figure}[ht]
     \centering
@@ -289,7 +287,7 @@ Preliminary results indeed showed a higher diversity in class averages, includin
 In parallel to the study of \textit{in vitro} FtsZ filament by SPA, we also investigated the FtsZ \textit{in situ} in the tomograms of \textit{D. radiodurans} lamellae.
 Some of our findings and speculations about the 3D morphology of FtsZ are included in the \textit{D. radiodurans} manuscript (\fullref{drad_ftsz} and \fullref{ftsz_discussion}).
 
-Our observations on the reconstructed tomograms matched those by \citet{sextonSuperresolutionConfocalCryoCLEM2022}, who also used tomography to look into D.rad and identified FtsZ and FtsA forming filaments just below the inner membrane of the septal tips (\autoref{fig:ftsz_tomo_slice}). % TODO: show more examples of this, how many have it, etc...
+Our observations on the reconstructed tomograms matched those by \citet{sextonSuperresolutionConfocalCryoCLEM2022}, who also used tomography to look into \textit{D. radiodurans} and identified FtsZ and FtsA forming filaments just inside the inner membrane of the septal tips (\autoref{fig:ftsz_tomo_slice}). % TODO: show more examples of this, how many have it, etc...
 
 \begin{figure}[ht]
     \centering
@@ -308,8 +306,8 @@ While it is clear that FtsZ and FtsA are forming filaments and bundles \textit{i
 To get a higher resolution view of this complex \textit{in situ}, we performed STA on particles picked from the FtsZ arches at the tips of the septa (\autoref{fig:ftsz_tomo_slice}).
 
 Given the apparent regularity of the bundles (whose morphology appears unchanged across their length), we used blik's surface picking tool~\cite{gaifasBlikExtensible3D2024,gaifasBlikPythonTool2024}, which allows us to distribute regularly spaced particles on the sheet-like FtsZ bundles.
-The inter-particle distance was chosen based on the smallest distance in the regular comb-like dark/light pattern along the FtsZ arches. % TODO: how many particles?
-Two different sets of particles were thus generated: with inter-particle distance matching the visible pattern (\sim50 Å), and twice oversampled (\sim25 Å) (\autoref{fig:ftsz_tomo_picks}).
+The inter-particle distance was chosen to be based on the spacing in the regular comb-like pattern along the FtsZ arches.
+Several different different sets of particles were thus generated, with two showing more promising results: with inter-particle distance matching the visible pattern (\sim50 Å), and twice oversampled (\sim25 Å) (\autoref{fig:ftsz_tomo_picks}).
 
 \begin{figure}[ht]
     \centering

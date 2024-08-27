@@ -13,8 +13,6 @@ X-ray crystallography has played a major role in the development of structural b
 However, the need for crystallization constitutes a major bottleneck: it requires very pure and homogeneous samples, and the procedure is often hard to devise and reproduce, requiring time, resources and some luck.
 Moreover, the protein is forced into a specific crystalline lattice, restricting the conformational freedom of the molecule and potentially limiting the biological significance of the obtained structures~\cite{ravikumarComparisonSidechainDispersion2022}.
 
-% TODO: somewhere here mention like covid spikes to show how important structures are?
-
 \localtableofcontents
 
 \section{Cryo-EM: basic concepts}
@@ -151,7 +149,7 @@ The CTF is a function that describes exactly this: how signal is transmitted thr
 Where the CTF reaches a value of 0, no signal is transferred; a value of 1, on the other hand, is a perfect signal transfer.
 
 The CTF has a close relationship with the Fourier transform (FT) of a micrograph: the 1D rotational average of the power spectrum (PS) of the image (the square of the amplitude of the FT of the image) forms the curve used to estimate the CTF (\autoref{fig:em_ctf_defocus}).
-The image of a point source --- which has no sample, no atoms, and therefore no fourier components --- would produce a 1D PS identical to its theoretical CTF.
+The image of a point source --- which has no sample, no atoms, and therefore no Fourier components --- would produce a 1D PS identical to its theoretical CTF.
 
 The CTF is usually described as composed of two main elements.
 The first one is a sinusoidal component caused by the periodicity of destructive and constructive interference of electron phases at different spatial frequencies.
@@ -388,8 +386,6 @@ The threshold typically used to formally determine the "resolution of the map" i
 Reconstructed maps are normally post-processed to improve interpretability and usability in model building procedures.
 
 Different types of masking, filtering, and denoising can be applied, depending on the downstream steps.
-
-% TODO: feels like I should expand, but it's also not very important here. Sharpening?
 
 \section{Refinement}\label{em_refinement}
 Once a 3D model is obtained, several state of the art software pipelines offer the ability to refine previously-defined parameters.

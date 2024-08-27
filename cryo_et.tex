@@ -101,8 +101,6 @@ Preparing lamellae via FIB milling is becoming standard procedure in cryo-ET, an
     \label{fig:et_fib_milling}
 \end{figure}
 
-% TODO: CLEM perspectives? where to put?
-
 \subsection{Fiducials}\label{fiducials}
 During data collection, despite vitrification, samples undergo different kinds of deformations.
 Moreover, due to the intrinsic imprecision of controlling the hardware of the microscope, there will always be some shift and angle mismatch between different tilts during a tilt series collection (\fullref{et_data_collection}).
@@ -198,7 +196,7 @@ This opens up many avenues for optimization --- such as 3D-CTF correction (\full
 
 A significant obstacle during alignment is caused by the missing wedge; it is such a prominent feature that during cross-correlation, it would normally overpower everything else in the subtomograms.
 Because of this, subtomograms would end up being rotationally aligned based on how they are rotated relative to the missing wedge, instead of their relative rotation to each other.
-For this reason, missing wedge compensation is a crucial step for the success of STA procedures~\cite{galaz-montoyaAlignmentAlgorithmsPerparticle2016} (CITE more).
+For this reason, missing wedge compensation is a crucial step for the success of STA procedures~\cite{galaz-montoyaAlignmentAlgorithmsPerparticle2016}.
 
 \section{Pros and Cons}
 
@@ -217,7 +215,6 @@ In recent years, several groups are working on developing new hardware and softw
     \includegraphics[width=\textwidth]{introduction/smallest_particle_plot_russo.png}
     \titledcaption[Particle size limit versus sample thickness]{Theoretical lower limit of particle size that can be resolved from cryo-EM data, depending on the sample thickness. Currently, even the best tomography results are far from the theoretical limits due to lack of optimization in sample preparation and hardware. The current theoretical limits can yet be improved by implementing some additional methods. Figure taken from \citet{russoElectronCryomicroscopeHardware2023}.}
     \label{fig:et_smallest_particle}
-    % TODO: find better version? Ask chris?
 \end{figure}
 
 Another common hurdle, especially for researchers new to cryo-ET or programming, is presented by the budding, messy and fragmented software ecosystem. 
