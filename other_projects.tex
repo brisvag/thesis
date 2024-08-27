@@ -221,7 +221,7 @@ These classes where immediately more promising than the ones from the untilted d
 \end{figure}
 
 Despite the better view distribution of 2D classes, our 3D reconstructions had the same anisotropy issues as the untilted data.
-Assuming a unform distribution of in-plane angles of the filaments (which we observed in the original dataset), a single, relatively high-tilt dataset should cover a higher portion of 3D fourier space during backprojection and thus significantly improve map isotropy~\cite{tanAddressingPreferredSpecimen2017}.
+Assuming a unform distribution of in-plane angles of the filaments (which we observed in the original dataset), a single, relatively high-tilt dataset should cover a higher portion of 3D Fourier space during backprojection and thus significantly improve map isotropy~\cite{tanAddressingPreferredSpecimen2017}.
 
 With preferentially oriented filaments collected at a fixed tilt angle, there should be a strong correlation between in-plane angle (easily identifiable from the micrograph) and the projection view (which is identified by classification). % TODO: show with synthetic dataset? Also, could it be that multiple euler combinations are redundant and correlation was just bad? How did I do this thing again?
 Upon closer inspection of the picking data, however, we observed that the out-of-plane angles assigned to each particle showed no correlation with the assigned 2D class (\autoref{fig:ftsz_class_angles}).
@@ -408,7 +408,7 @@ Specifically, waretomo:
 \end{enumerate}
 
 When possible, each step is performed in parallel (and on GPUs) to maximize resource usage and minimize idle time.
-While this tool is available and open source, it's not yet publication-ready and still in alpha, so bugs are expected.
+While this tool is available and open-source, it's not yet publication-ready and still in alpha, so bugs are expected.
 
 \subsection{emscan}
 
@@ -435,7 +435,7 @@ Some smaller napari-based tools and plugins I contributed to that are worthy of 
 \begin{enumerate}
     \item \href{https://github.com/cellcanvas/surforama}{surforama}~\cite{yamauchiSurforamaInteractiveExploration2024}, a tool to explore cryo-ET membrane annotations inspired by membranorama~\cite{tegunovDtegunovMembranorama2024}, fruit of a collaboration with other napari developers and members of the teamtomo community
     \item \href{https://github.com/brisvag/napari-molecule-reader}{napari-molecule-viewer}, a plugin to open PDB and mmCIF files in napari
-    \item a \href{https://github.com/napari/napari/blob/main/examples/fourier_transform_playground.py}{fourier transform playground} to interactively explore the relationship between images and their FTs
+    \item a \href{https://github.com/napari/napari/blob/main/examples/fourier_transform_playground.py}{Fourier transform playground} to interactively explore the relationship between images and their FTs
     \item a \href{https://gist.github.com/brisvag/d6394d05b2f994e083ec279d6976484f}{Euler angle playground} to build an intuition on the various Euler angle conventions and their effects on particle orientations
 \end{enumerate}
 

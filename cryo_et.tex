@@ -125,7 +125,7 @@ Due to the geometry of the sample and its support within the microscope, there i
 This angle is typically around 60-70°, beyond which the sample becomes too thick for imaging at such low doses, and the grid bars come into view obscuring part of the sample.
 This will result in a \textbf{missing wedge} of information in Fourier space during tomographic reconstruction (\fullref{et_tomo_reconstruction}).
 
-Conventional wisdom sets the interval between subsequent tilts at around 3° to ensure enough fourier space filling while limiting radiation damage, though depending on the application --- especially where certain spatial frequencies are considered important or over-represented in the sample --- it might be worth considering smaller, wider, or non-linear increments~\cite{copeCryoElectronTomographyStructural2011}.
+Conventional wisdom sets the interval between subsequent tilts at around 3° to ensure enough Fourier space filling while limiting radiation damage, though depending on the application --- especially where certain spatial frequencies are considered important or over-represented in the sample --- it might be worth considering smaller, wider, or non-linear increments~\cite{copeCryoElectronTomographyStructural2011}.
 
 \section{Preprocessing}
 Cryo-ET data undergoes similar preprocessing steps as SPA data (\fullref{em_preprocessing}), albeit with less precision due to the low electron dose.
@@ -149,7 +149,7 @@ This allows to bring defocus estimation and CTF correction to the next level: no
 While this idea was around for a long time, only in recent years tools were developed that can run in reasonable time and significantly improve the final resolution~\cite{turonovaEfficient3DCTFCorrection2017,tegunovRealtimeCryoelectronMicroscopy2019}. 
 Depending on the software, 3D-CTF might be estimated and corrected at different levels (tilt image, full tomogram or subtomogram), and may be able to be refined during refinement (\fullref{et_refinement}).
 
-Due to the limited range of tilt angles collected in typical cryo-ET workflows, not all views of the sample are represented; when reconstructing the 3D FT of the sample, this is clearly visible in fourier space as a wedge of missing information (\autoref{fig:et_missing_wedge}).
+Due to the limited range of tilt angles collected in typical cryo-ET workflows, not all views of the sample are represented; when reconstructing the 3D FT of the sample, this is clearly visible in Fourier space as a wedge of missing information (\autoref{fig:et_missing_wedge}).
 The missing wedge introduces several problems in downstream processing: it blurs the tomogram in the Z direction, biases subtomogram alignment, and leads to anisotropic resolution for objects with preferential orientation.
 
 If fiducials (or other high-contrast objects of no real interest) are present in the sample, it is often useful to mask them during reconstruction, in order to avoid the high-contrast artifactual streaks caused by the missing wedge, which can impair the interpretability of the tomogram~\cite{tegunovRealtimeCryoelectronMicroscopy2019,burtTeamtomoFidder2024}.

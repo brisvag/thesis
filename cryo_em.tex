@@ -151,12 +151,12 @@ Depending on the angle, the interference at the image plane will be constructive
 The CTF is a function that describes exactly this: how signal is transmitted through the sample and onto the image, as a function of spatial frequency.
 Where the CTF reaches a value of 0, no signal is transferred; a value of 1, on the other hand, is a perfect signal transfer.
 
-The CTF has a close relationship with the fourier transform (FT) of a micrograph: the 1D rotational average of the power spectrum (PS) of the image (the square of the amplitude of the FT of the image) forms the curve used to estimate the CTF (\autoref{fig:em_ctf_defocus}).
+The CTF has a close relationship with the Fourier transform (FT) of a micrograph: the 1D rotational average of the power spectrum (PS) of the image (the square of the amplitude of the FT of the image) forms the curve used to estimate the CTF (\autoref{fig:em_ctf_defocus}).
 An ideal sample with a uniform distribution of spatial frequencies would produce a 1D PS identical to its theoretical CTF.
 
 The CTF is usually described as composed of two main elements.
 The first one is a sinusoidal component caused by the periodicity of destructive and constructive interference of electron phases at different spatial fequencies.
-It is visible in the PS of cryo-em images as a set of concentric rings called Thon rings (\autoref{fig:em_ctf_defocus_2d}).
+It is visible in the PS of cryo-EM images as a set of concentric rings called Thon rings (\autoref{fig:em_ctf_defocus_2d}).
 The exact shape of the Thon rings depends on several factors, first among which the defocus: changing defocus affects the oscillation frequency, thus shifting the zeros of the CTF and boosting or nullifying different spatial frequencies (\autoref{fig:em_ctf_defocus_1d}).
 
 \begin{figure}[ht]
@@ -223,8 +223,8 @@ Importantly, this effect is worse at higher defocus, contributing the worse high
 
 This signal decay, combined with the low SNR of the images, poses a resolution limit beyond which it is impossible to estimate (and therefore correct) the effect of the CTF on the image.
 
-So far we discussed what happens to the fourier transform or PS of an image, that is in \textbf{fourier space}; in practice, the CTF has visible effects also in \textbf{real space}.
-The signal becomes delocalized, blurring the image; as explained by the convolution theorem~\cite{wikipediaConvolutionTheorem2024}, this delocalization is the result of the convolution of the fourier transform of the CTF (known as Point Spread Function or PSF) with the image.
+So far we discussed what happens to the Fourier transform or PS of an image, that is in \textbf{Fourier space}; in practice, the CTF has visible effects also in \textbf{real space}.
+The signal becomes delocalized, blurring the image; as explained by the convolution theorem~\cite{wikipediaConvolutionTheorem2024}, this delocalization is the result of the convolution of the Fourier transform of the CTF (known as Point Spread Function or PSF) with the image.
 Delocalization of signal directly affects how image processing is performed; for example, particle picking should account for it by extracting bigger image patches to ensure delocalized signal can be deconvolved when CTF correcting (\fullref{em_particle_picking}).
 
 \section{Preprocessing}\label{em_preprocessing}
@@ -261,13 +261,13 @@ In the case of 2D data, calculating the cross-correlation of two images often al
 Due to the low SNR of cryo-EM data, even motion-corrected micrographs can be surprisingly hard to interpret.
 To enhance the contrast of biological features and better judge the quality of the data --- as well as improve the ability to distinguish particles from the background and from one another for the purposes of picking (\fullref{em_particle_picking}) --- micrographs often undergo a round of filtering and/or denoising.
 
-The simplest --- and most commonly used --- type of filtering is fourier masking; by reducing or zeroing the values inside a disc or annulus in fourier space, the respective spatial frequencies are dampened in the image.
+The simplest --- and most commonly used --- type of filtering is Fourier masking; by reducing or zeroing the values inside a disc or annulus in Fourier space, the respective spatial frequencies are dampened in the image.
 In practice, this is often used to remove high-frequency components (low-pass filter), but there are also sometimes benefits to the removal of other ranges of spatial frequencies (\autoref{fig:em_filtering}).
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/filtering.png}
-    \titledcaption[Fourier filtering]{Examples of how filtering a noisy image (top left image) with different kinds of fourier masks (bottom row) produces different results (top row). From left to right: no filtering, low-pass, band-pass, high-pass. Low-pass filtering can restore interpretability of highly noisy images. As highlighted by the difference between the low-passed (second column) and high-passed (last column) images, a very small range of low spatial frequencies is actually responsible for the majority of our perception of the general shape of an object. Noise, on the other hand, more strongly affects high resolution information.}
+    \titledcaption[Fourier filtering]{Examples of how filtering a noisy image (top left image) with different kinds of Fourier masks (bottom row) produces different results (top row). From left to right: no filtering, low-pass, band-pass, high-pass. Low-pass filtering can restore interpretability of highly noisy images. As highlighted by the difference between the low-passed (second column) and high-passed (last column) images, a very small range of low spatial frequencies is actually responsible for the majority of our perception of the general shape of an object. Noise, on the other hand, more strongly affects high resolution information.}
     \label{fig:em_filtering}
     % TODO: made with filter.py
 \end{figure}
@@ -323,14 +323,14 @@ Once reasonably sure that each group contains only particles representing projec
 3D reconstruction is the process by which a volumetric map of an object can be reconstructed from 2D projections.
 This is possible thanks to the central slice theorem~\cite{wikipediaProjectionsliceTheorem2023}, which provides a bidirectional mathematical relationship between a volume and its projections.
 
-The theorem states that the fourier transform of the 2D projection of a volume at a certain orientation, is equal to the central slice through the fourier transform of the volume at the orientation perpendicular to the projection (\autoref{fig:em_central_slice}, panel A).
+The theorem states that the Fourier transform of the 2D projection of a volume at a certain orientation, is equal to the central slice through the Fourier transform of the volume at the orientation perpendicular to the projection (\autoref{fig:em_central_slice}, panel A).
 
-It's worth noting that the algorithms used by reconstruction software, while based on this principle, are often in practice not based on fourier-domain reconstruction, but use different methods such as weighted back-projection or iterative approaches like Simultaneous Algebraic Reconstruction Technique (SART) and Simultaneous Iterative Reconstruction Technique (SIRT)~\cite{andersenSimultaneousAlgebraicReconstruction1984,agulleiroFastTomographicReconstruction2011,wikipediaTomographicReconstruction2024}.
+It's worth noting that the algorithms used by reconstruction software, while based on this principle, are often in practice not based on Fourier-domain reconstruction, but use different methods such as weighted back-projection or iterative approaches like Simultaneous Algebraic Reconstruction Technique (SART) and Simultaneous Iterative Reconstruction Technique (SIRT)~\cite{andersenSimultaneousAlgebraicReconstruction1984,agulleiroFastTomographicReconstruction2011,wikipediaTomographicReconstruction2024}.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=.7\textwidth]{introduction/central_slice_theorem.png}
-    \titledcaption[Central slice theorem]{Showcase of how the central slice theorem is used for 3D reconstruction in cryo-EM. \textbf{A.} A 2D projection of a 3D volume in real space at a certain orientation is equivalent to the 2D slice perpendicular to that orientation in fourier space. \textbf{B.} \textbf{C.} \textbf{D.} \textbf{E.}. Figure adapted from \citet{nogalesCryoEMUniqueTool2015}.}
+    \titledcaption[Central slice theorem]{Showcase of how the central slice theorem is used for 3D reconstruction in cryo-EM. \textbf{A.} A 2D projection of a 3D volume in real space at a certain orientation is equivalent to the 2D slice perpendicular to that orientation in Fourier space. \textbf{B.} \textbf{C.} \textbf{D.} \textbf{E.}. Figure adapted from \citet{nogalesCryoEMUniqueTool2015}.}
     \label{fig:em_central_slice}
     % generated with fsc.py
 \end{figure}
@@ -338,7 +338,7 @@ It's worth noting that the algorithms used by reconstruction software, while bas
 In the case of SPA, the central slice theorem allows us to combine the projection of many different particles, under the assumption that they come from near-identical copies of the same object.
 
 It is crucial in this process that as many different orientations as possible are represented in the dataset.
-This is because, in order to have an isotropically well-resolved reconstruction, we need to fill the 3D fourier space as much as possible with differently oriented central slices.
+This is because, in order to have an isotropically well-resolved reconstruction, we need to fill the 3D Fourier space as much as possible with differently oriented central slices.
 
 Similarly to 2D classification, 3D reconstruction is an iterative process where each particle is correlated to templates to find the best match.
 This time, however, the templates are obtained by projecting a 3D model at different orientations, in a process called projection matching (\autoref{fig:em_projection_matching}).
@@ -351,7 +351,7 @@ Once there is no longer significant improvement (\fullref{em_fsc}), the process 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/projection_matching.png}
-    \titledcaption[Projection matching]{Projection matching in cryo-EM. Particle picks are assigned progressively better orientations that most closely match synthetic 2D projections generated from the current 3D model. By inserting the FT of each particle at the assigned orientation into the 3D fourier space, and then doing the inverse fourier transform to go back to real space, a new updated model is generated. Figure adapted from \citet{nogalesCryoEMUniqueTool2015}.}
+    \titledcaption[Projection matching]{Projection matching in cryo-EM. Particle picks are assigned progressively better orientations that most closely match synthetic 2D projections generated from the current 3D model. By inserting the FT of each particle at the assigned orientation into the 3D Fourier space, and then doing the inverse Fourier transform to go back to real space, a new updated model is generated. Figure adapted from \citet{nogalesCryoEMUniqueTool2015}.}
     \label{fig:em_projection_matching}
 \end{figure}
 
@@ -363,19 +363,19 @@ When classification is too categorical to capture nuanced systems (such as conti
 \subsection{FSC and gold standard}\label{em_fsc}
 For most procedures that attempt to refine parameters in order to improve a 3D classification or reconstruction, a method is needed to estimate the quality (resolution) of the current model.
 
-The established approach is called \textbf{gold standard} and relies on calculating the fourier shell correlation (FSC) of two independent halves of the data.
+The established approach is called \textbf{gold standard} and relies on calculating the Fourier shell correlation (FSC) of two independent halves of the data.
 At the cost of halving the amount of data we can use at once to make a map, we gain the ability to estimate how trustworthy our reconstruction is.
 
 At the beginning of the process, the dataset (which in the case of 3D reconstruction is the ensemble of picked particles) is randomly split in two halves.
 At each iteration of the refinement, each half is used to generate an independent 3D reconstruction.
-The fourier transforms of the two maps are then cross-correlated as a function of spatial frequency, giving a plot such as the one in \autoref{fig:em_fsc}.
-A high correlation between fourier shell at the same spatial frequency indicates a high degree of reproducibility of those frequency components: that is, up to that resolution, the map can be trusted.
+The Fourier transforms of the two maps are then cross-correlated as a function of spatial frequency, giving a plot such as the one in \autoref{fig:em_fsc}.
+A high correlation between Fourier shell at the same spatial frequency indicates a high degree of reproducibility of those frequency components: that is, up to that resolution, the map can be trusted.
 The threshold typically used to formally determine the "resolution of the map" is 0.143, for both mathematical and historical reasons related to the interpretability of X-ray crystallography maps~\cite{rosenthalOptimalDeterminationParticle2003}.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/fsc.png}
-    \titledcaption[Fourier shell correlation]{Showcase of a 2D version of fourier shell correlation. Gaussian noise was applied to two identical images, which were then compared by gradually cross-correlating concentric shells (left). The resulting plot (right) is a measure of the similarity as a function of spatial frequency. As spatial frequency increases, noise becomes dominant, degrading correlation and thus the trustworthiness of the data. The threshold of 0.143 is used to determine the final resolution, which is higher for the less noisy image.}
+    \titledcaption[Fourier shell correlation]{Showcase of a 2D version of Fourier shell correlation. Gaussian noise was applied to two identical images, which were then compared by gradually cross-correlating concentric shells (left). The resulting plot (right) is a measure of the similarity as a function of spatial frequency. As spatial frequency increases, noise becomes dominant, degrading correlation and thus the trustworthiness of the data. The threshold of 0.143 is used to determine the final resolution, which is higher for the less noisy image.}
     \label{fig:em_fsc}
     % TODO: made with script fsc.py
 \end{figure}

@@ -20,7 +20,7 @@ rg --vimgrep ' \\cite\{' $FILES
 echo
 
 echo === checking capitalization ===
-rg --vimgrep -s 'fourier' $files
+rg --vimgrep -s 'fourier' $FILES
 
 echo === open-source ===
 rg --vimgrep -s '(O|o)pen source' $FILES
