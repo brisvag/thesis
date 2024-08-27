@@ -5,10 +5,10 @@ Thanks to the fast vitrification, SPA is also better for studying the sample at 
 However, due to the unknown particle orientations and low SNR, SPA data analysis is trickier and more error-prone, especially for small particles (\lesssim100 kDa), where X-ray crystallography is usually the better choice.
 
 On the other hand, bigger particles or complexes are usually better handled by cryo-EM: with larger molecular size, crystallization gets increasingly difficult, and NMR can no longer be effectively used for structural determination.
-On the other hand, NMR allows to gather some information on the dynamics of the sample, even large ones and even directly in solution, since there's no need for crystallization or vitrification.
+Conversely, NMR allows to gather some information on the dynamics of the sample, even large ones and even directly in solution, since there's no need for crystallization or vitrification.
 This, however, requires appropriate isotope or methyl labeling and very high concentrations, which may cause aggregation or non-native conformations.
 
-All these techniques rely on drawing information about an ensemble of molecules, typically with a purified sample prepared \textit{in vitro}.
+All these techniques rely on drawing information about an ensemble of molecules, typically with an \textit{in vitro} purified sample.
 However, macromolecular systems can often be fully understood only by accounting for their biological context, which is partly or fully lost in the expression and purification process.
 When studying biological systems that form larger, heterogenous mesoscale complexes --- spanning hundreds of nanometers, often called superstructures --- having a three-dimensional understanding of individual events within their cellular context becomes paramount.
 
@@ -112,7 +112,7 @@ To help with correcting these errors, it is often useful to add to the sample so
 \section{Data collection}\label{et_data_collection}
 In order to acquire a sequence of images at different tilts (termed \textbf{tilt series}) for tomographic reconstruction, the same area of the sample needs to be imaged multiple times, at a range of different angles.
 During collection, the sample is rotated around a tilt axis perpendicular to the electron beam, in small angular increments so as to expose a different view to the electron beam.
-It's important to position the sample at \textbf{eucentric height} --- the height at which a rotation of the sample no change in focus nor a lateral movement --- so that the area of interest remains at the same focus and at the center of the field of view.
+It's important to position the sample at \textbf{eucentric height} --- the height at which a rotation of the sample results neither in a change in focus nor a lateral movement --- so that the area of interest remains at the same focus and at the center of the field of view.
 
 Due to the multiple exposures, in order to preserve the specimen from radiation damage the electron dose must be fractionated to much lower than typical in SPA, but still high enough to capture enough signal to allow motion correction~\cite{mcewenRelevanceDosefractionationTomography1995}.
 
@@ -135,7 +135,7 @@ While at this point single particle data is ready for particle picking and other
 To do so, tilt series alignment parameters must first be estimated in order to correct for equipment imprecision and sample deformations, and then used for 3D volume reconstruction.
 
 \subsection{Tilt series alignment}\label{et_tilt_series_alignment}
-The most basic alignment procedures require at least full-frame aligment; similar to motion correction, tilt images are rotated and shifted in order to maximize their CC score.
+The most basic alignment procedures require at least full-frame alignment; similar to motion correction, tilt images are rotated and shifted in order to maximize their CC score.
 Where fiducials are present (\fullref{fiducials}), these can be treated as static points within the sample and used instead as anchors to mathematically estimate the geometric transformation between different tilts~\cite{nicastroMolecularArchitectureAxonemes2006,heumannClusteringVarianceMaps2011,castano-diezDynamoCatalogueGeometrical2017}.
 
 In state of the art software, alignment procedures (with or without fiducials) can also account for spatio-temporal deformations of the sample, either already during tilt series alignment~\cite{zhengAreTomoIntegratedSoftware2022}, or later during refinement~\cite{tegunovMultiparticleCryoEMRefinement2021,burtImageProcessingPipeline2024,galaz-montoyaSingleParticleTomography2015,chenCompleteDataProcessing2019} (\fullref{et_refinement}).
@@ -144,7 +144,7 @@ In state of the art software, alignment procedures (with or without fiducials) c
 Similarly to how 3D reconstructions are obtained from 2D particles in SPA based on the central slice theorem (\fullref{em_reconstruction}), the aligned tilt series can be used to reconstruct the full tomogram.
 Depending on the software suite and workflow, full tomogram reconstructions may be used only for template matching (\fullref{et_particle_picking}) and segmentation purposes, or also to extract subtomograms at small pixel sizes for subtromogram averaging (\fullref{et_sta}).
 
-Differently from SPA, cryo-ET has the advantage of knowing the 3D positioning of features in the tomogram.
+Differently from SPA, cryo-ET has the advantage of knowing the 3D positioning of each point in the tomogram.
 This allows to bring defocus estimation and CTF correction to the next level: not only is CTF locally estimated depending on the in-plane position of features, but also accounting for the defocus difference between the top and bottom of the sample.
 While this idea was around for a long time, only in recent years tools were developed that can run in reasonable time and significantly improve the final resolution~\cite{turonovaEfficient3DCTFCorrection2017,tegunovRealtimeCryoelectronMicroscopy2019}. 
 Depending on the software, 3D-CTF might be estimated and corrected at different levels (tilt image, full tomogram or subtomogram), and may be able to be refined during refinement (\fullref{et_refinement}).
@@ -170,7 +170,7 @@ Thanks to the \textit{in situ} and quasi-native nature of tomography data, it is
 
 One of the most common approaches is to do semantic segmentation (aka labeling), where individual voxels are assigned a type --- "membrane", "ribosome", and so on, though usually in the form of a integer --- either by manually painting over the sample, or automatically via image processing algorithms or ML tools.
 Labeling helps with visualisation by boiling down the sample to its most fundamental components, while also serving as a powerful tool for quantitative and morphological analysis of complex mesoscale objects.
-To this end, segmentations are often used as starting point for other kinds of annotations, such as abstracting membranes or filaments to mathematical objects like splines and skeletons (CITE skan?) in order to calculate properties such as membrane curvature, filament branch length, and so on.
+To this end, segmentations are often used as starting point for other kinds of annotations, such as abstracting membranes or filaments to mathematical objects like splines and skeletons~\cite{nunez-iglesiasNewPythonLibrary2018} in order to calculate properties such as membrane curvature, filament branch length, and so on.
 
 In some projects, morphology is all that matters, with no need to reach high resolution; in such cases, the cryo-ET pipeline can stop after annotation.
 Where high resolution molecular structures are the goal, segmentations and other annotations may also be used as a starting point for particle picking.
@@ -199,10 +199,6 @@ This opens up many avenues for optimization --- such as 3D-CTF correction (\full
 A significant obstacle during alignment is caused by the missing wedge; it is such a prominent feature that during cross-correlation, it would normally overpower everything else in the subtomograms.
 Because of this, subtomograms would end up being rotationally aligned based on how they are rotated relative to the missing wedge, instead of their relative rotation to each other.
 For this reason, missing wedge compensation is a crucial step for the success of STA procedures~\cite{galaz-montoyaAlignmentAlgorithmsPerparticle2016} (CITE more).
-
-\section{Refinement}\label{et_refinement}
-
-TODO: not sure if there's anything else to say here, maybe no need.
 
 \section{Pros and Cons}
 

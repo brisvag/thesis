@@ -28,6 +28,13 @@ rg --vimgrep -s '(O|o)pen source' $FILES
 echo === captions missing title ===
 rg --vimgrep -s '\\caption\{' $FILES
 
+echo === italicized in vitro etc ===
+rg --vimgrep -s '[^\{]in vitro' $FILES
+rg --vimgrep -s '[^\{]in situ' $FILES
+rg --vimgrep -s '[^\{]in vivo' $FILES
+rg --vimgrep -s '[^\{]in cellulo' $FILES
+rg --vimgrep -s '[^\{]in silico' $FILES
+
 # echo === Style checking with Vale
 # vale --output vale_template.tmpl $FILES
 # vale --output line $FILES

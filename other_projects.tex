@@ -1,6 +1,6 @@
 \chapter{Bacterial chromatin, FtsZ, and other projects}\label{other_projects}
 
-My PhD project was originally focused on unraveling the structure and function of the nucleoid-associated protein HU, and its role in chromatin compaction and nucleoid dynamics in \textit{D. radiodurans}.
+My PhD project was originally focused on unraveling the the mechanism of action of the nucleoid-associated protein HU, and its role in chromatin compaction and nucleoid dynamics in \textit{D. radiodurans}.
 The structural study of FtsZ --- both in STA and SPA --- emerged from our exploration of the nucleoid and cell dividion processes of \textit{D. radiodurans} in cryo-ET as part of the septation paper (\fullref{drad})
 Along the way, I contributed to a few other projects and developed several tools.
 This chapter presents these projects and the tools and scripts worthy of mention in this manuscript.
@@ -9,10 +9,12 @@ This chapter presents these projects and the tools and scripts worthy of mention
 
 \section{Bacterial chromatin and HU}\label{hu}
 
-Initially the main project of my PhD, the study of bacterial chromatin compaction by cryo-EM and cryo-ET is an ongoing project in the MICA group, which builds upon previous fluorescence imaging on \textit{D. radiodurans} done by the GenOM team nucleoids and more recent cryo-EM and cryo-ET data collected and prepared by the MICA team.
+Initially the main project of my PhD, the study of bacterial chromatin compaction by cryo-EM and cryo-ET is an ongoing collaborative project between the MICA group and the GenOM team.
+It builds upon previous fluorescence imaging on \textit{D. radiodurans} nucleoids done by the GenOM team and more recent cryo-EM and cryo-ET data collected and analyzed by the MICA group.
+
 The main protein of interest is HU, a nucleoid-associated protein (NAP) present in most bacteria (including \textit{E. coli} and \textit{D. radiodurans}) which is known to be a key player in chromatin compaction and nucleoid morphology throughout the cell cycle.
-The structure of dimeric HU has been solved from various bacterial species in either its apo- or DNA-bound forms (\autoref{fig:hu}).
-HU is thought to have a histone-like function --- with molecular dynamics simulations supporting the evidence to this binding mode~\cite{hognonMolecularBasesDNA2019} --- but it was also observed forming stacks of dimers that lay parallel to the DNA duplex, suggesting the possibility of multiple modes of interaction between HU dimers and the DNA~\cite{hammelHUMultimerizationShift2016}.
+The structure of dimeric HU from various bacterial species has been solved in either its apo- or DNA-bound forms (\autoref{fig:hu}).
+HU is thought to have a histone-like bending function --- with molecular dynamics simulations supporting the evidence to this binding mode~\cite{hognonMolecularBasesDNA2019} --- but it was also observed forming stacks of dimers that lay parallel to the DNA duplex, suggesting the possibility of multiple modes of interaction between HU dimers and the DNA~\cite{hammelHUMultimerizationShift2016}.
 Such drastically different modes may explain the heterogeneous highly dynamic nature of the \textit{D. radiodurans} nucleoids despite the relatively low number of players involved --- mostly driven by HU and a DNA-gyrase.
 
 \begin{figure}[ht]
@@ -34,15 +36,17 @@ Such drastically different modes may explain the heterogeneous highly dynamic na
     \label{fig:hu}
 \end{figure}
 
-To begin investigating DrHU in complex with the DNA, we collected single particle cryo-EM data of an \textit{in vitro} preparation of plasmid DNA and HU, in order to observe the interaction in a free aqueous environment.
+To begin investigating DrHU in complex with the DNA, my supervisors collected single particle cryo-EM data of an \textit{in vitro} preparation of plasmid DNA and HU, in order to observe the interaction in a free aqueous environment.
 The bacterial genomic DNA is large, circular and supercoiled; where previous structural studies used short DNA segments, we opted for a circular dsDNA plasmid as it would be a more appropriate stand-in that would allows us to evaluate how circularity, supercoiling and DNA topology affect HU binding and assembly on DNA.
-HU and plasmid DNA were mixed at different ratios, and within a small range of relative concentration (\sim100 HU/plasmid) intriguing spirals (\autoref{fig:hu_spirals}) were formed by the DNA.
+HU and plasmid DNA were mixed at different ratios, and within a small range of relative concentration (\sim100 HU/2686 bp plasmid) intriguing spirals (\autoref{fig:hu_spirals}) were formed by the DNA.
 Notably, these spirals were never observed in the absence of HU, and were also not observed when using older batches of the plasmid. % TODO: what does this mean? What older batch?
+Notably, these spirals were formed by supercoiled DNA only, but not by relaxed or linearized plasmid, and were never observed in the absence of HU.
+Our original idea based on these images was that HU would form tetramers and bind between two neighbouring turns of the DNA spirals to hold them together.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{other/hu_spirals_no_spirals.png}
-    \titledcaption[HU-induced DNA spirals]{Spiral formations of DNA are formed in presence of HU only at specific concentration ranges.}
+    \titledcaption[HU-induced DNA spirals]{Spiral formations of DNA are formed in presence of HU only at specific concentration ranges.} % TODO: FIGURE ON THE RIGHT IS WRONG!
     \label{fig:hu_spirals}
 \end{figure}
 
@@ -50,7 +54,7 @@ The very small molecular weight of HU (\sim25 kDa in its dimeric form) meant tha
 However, due to the relatively high concentration of HU --- \sim100 HU/plasmid corresponds to approximately 1 HU for every 26bp --- the DNA should be densely decorated by HU, unless the protein distribution on the grid is not uniform or big aggregates are forming.
 It should therefore be possible to work around the particle size limitation by using the supporting geometry of the DNA filament to do the picking and guide refinement.
 
-With this in mind, we devised two picking strategies: a DNA-aligned one (\autoref{fig:hu_picks_ondna}), from which we might be able to isolate picks where HU is decorating the DNA on the side, and one positioned between two DNA strands (\autoref{fig:hu_picks_betweendna}), where we might be able to see tetramer of HU, hypothesized to form a bridge between DNA filaments based on previous biochemical studies by the GenOM team.
+With this in mind, we devised two picking strategies: a DNA-aligned one (\autoref{fig:hu_picks_ondna}), from which we might be able to isolate picks where HU is decorating the DNA on the side, and one positioned between two DNA filaments (\autoref{fig:hu_picks_betweendna}), where we might be able to see tetramer of HU, hypothesized to form a bridge between DNA filaments based on previous biochemical studies by the GenOM team.
 
 \begin{figure}[ht]
     \centering
@@ -71,7 +75,7 @@ With this in mind, we devised two picking strategies: a DNA-aligned one (\autore
     \label{gih:hu_picks}
 \end{figure}
 
-With these picks and a few rounds of 2D classification and cleaning, we were able to obtain 2D in which DNA features were clearly visible; unfortunately, no decoration on the DNA was visible (\autoref{fig:hu_classes}).
+With these picks and a few rounds of 2D classification and cleaning, we were able to obtain 2D classes in which DNA features were clearly visible; unfortunately, no decoration on the DNA was visible (\autoref{fig:hu_classes}).
 
 \begin{figure}[ht]
     \centering
@@ -130,8 +134,8 @@ FtsZ is an extremely well conserved prokaryotic tubulin homologue, known to form
 It polymerizes in a GTP-dependent fashion to form filaments and bundles, anchoring to the membrane via its partner FtsA, and interacting with several other partners in the cytokinesis and peptidoglycan (PG) synthesis machinery~\cite{barrowsFtsZDynamicsBacterial2021,mcquillenInsightsStructureFunction2020}.
 
 Based on crystal structures, filaments have been shown to form through head-to-tail stacking of monomers CITE.
-However, there is no structural information regarding the flexible C-terminal region, which is responsible for regulating its activity and interaction with its cellular partners, including FtsA.
-It's also unclear how multiple filaments may assemble to form bundles at the structural level and even less so in vivo.
+However, there is no structural information regarding the flexible C-terminal region, which is responsible for regulating the FtsZ activity and interaction with its cellular partners, including FtsA.
+It's also unclear how multiple filaments may assemble to form bundles at the structural level and even less so \textit{in vivo}.
 Thus --- while its key role in cell division is undisputed --- the exact mechanism and function of FtsZ are still unclear.
 There is currently no consensus model that fully explains the function and mode of action of FtsZ in the division process in bacteria, as the current evidence is inconclusive, sometimes presenting significant variations between species --- likely ascribable to different shapes or membrane compositions between bacteria~\cite{barrowsFtsZDynamicsBacterial2021,mcquillenInsightsStructureFunction2020}.
 
@@ -164,9 +168,9 @@ Collectively, the literature hints that FtsZ treadmilling is likely not the only
 
 \subsection{Structural study by SPA}
 
-We began our investigation of the structure of DrFtsZ filaments by doing SPA on \textit{in vitro} samples prepared with purified monomeric FtsZ from \textit{D. radiodurans}.
-Since successful polymerization is highly sensitive to FtsZ concentration, temperature, concentration of GTP (or other nucleotide), and elongation time, my supervisors tested a variety of conditions, using both negative stain EM and cryo-EM for screening.
-The selected preparation(\fullref{ftsz_methods}) resulted in FtsZ filaments long enough to allow filament picking and helical reconstruction, while avoiding an excess of filament bundles which make picking and refinement more difficult (\autoref{fig:ftsz_micrographs}).
+We began our investigation of the structure of DrFtsZ filaments by doing SPA on \textit{in vitro} samples prepared from purified monomeric FtsZ from \textit{D. radiodurans}.
+Since successful polymerization is highly sensitive to FtsZ concentration, temperature, concentration of GTP (or other nucleotide), and elongation time, my supervisors screened a variety of conditions.
+The selected cryo-EM preparation resulted in FtsZ filaments long enough to allow filament picking and helical reconstruction, while avoiding an excess of filament bundles which make picking and refinement more difficult (\autoref{fig:ftsz_micrographs}).
 
 \begin{figure}[ht]
     \centering
@@ -205,11 +209,11 @@ We attempted to address the issue of preferential orientation in two different w
 \subsubsection{Graphene and streptavidin-coated grids}
 
 We attempted to address the preferential orientation problem by using functionalized graphene grids~\cite{luFunctionalizedGrapheneGrids2022}, and streptavidin-coated affinity support grids~\cite{crucifixImmobilizationBiotinylatedDNA2004,hanLongShelflifeStreptavidin2016}.
-While these approaches have been shown to work, we struggled to obtain usable grids; in the meantime, the sample prepared with the addition of detergent showed promising results, so we moved forward with it instead.
+While these approaches have been shown to work, we struggled to obtain usable grids; at the very end of my thesis, the sample prepared with the addition of detergent showed promising results, so we moved forward with it instead.
 
 \subsubsection{Tilted data collection}\label{ftsz_tilted}
 
-We prepared the sample in the same way, but this time the data collection was done with the grid at a 35° tilt.
+We prepared the sample in the same way as originally, but this time the data collection was done with the grid at a 35° tilt.
 Following the same workflow as with the untilted dataset, we then picked, classified and selected particles, obtaining a new set of class averages (\autoref{fig:ftsz_classes_tilted}).
 These classes where immediately more promising than the ones from the untilted datasets, showing multiple views from the first round of classification, even in isolated filaments. % TODO: explain why these classes where better, did we get more, explain figure, what we were looking for, etc
 
@@ -220,8 +224,8 @@ These classes where immediately more promising than the ones from the untilted d
     \label{fig:ftsz_classes_tilted}
 \end{figure}
 
-Despite the better view distribution of 2D classes, our 3D reconstructions had the same anisotropy issues as the untilted data.
-Assuming a unform distribution of in-plane angles of the filaments (which we observed in the original dataset), a single, relatively high-tilt dataset should cover a higher portion of 3D Fourier space during backprojection and thus significantly improve map isotropy~\cite{tanAddressingPreferredSpecimen2017}.
+Despite the better view distribution of 2D classes, our 3D reconstructions had similar anisotropy issues as the untilted data.
+Assuming a uniform distribution of in-plane angles of the filaments (which we observed in the original dataset), a single, relatively high-tilt dataset should cover a higher portion of 3D Fourier space during backprojection and thus significantly improve map isotropy~\cite{tanAddressingPreferredSpecimen2017}.
 
 With preferentially oriented filaments collected at a fixed tilt angle, there should be a strong correlation between in-plane angle (easily identifiable from the micrograph) and the projection view (which is identified by classification). % TODO: show with synthetic dataset? Also, could it be that multiple euler combinations are redundant and correlation was just bad? How did I do this thing again?
 Upon closer inspection of the picking data, however, we observed that the out-of-plane angles assigned to each particle showed no correlation with the assigned 2D class (\autoref{fig:ftsz_class_angles}).
@@ -233,8 +237,9 @@ Upon closer inspection of the picking data, however, we observed that the out-of
     \label{fig:ftsz_class_angles}
 \end{figure}
 
-We soon realized that the 3D reconstruction routines of both Relion~\cite{scheresRELIONImplementationBayesian2012} and CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} were struggling with assigning Euler angles, resulting in practically random orientations.
-To impose more constraints on the refinement based on this prior knowledge on the geometry of the system, we calculated the theoretical orientation of each particle based on the in-plane angle (and assuming perfect preferential orientation), which we then used to initialize the particle poses (\fullref{stemia_angles}).
+We soon realized that in this specific case the 3D reconstruction routines of both Relion~\cite{scheresRELIONImplementationBayesian2012} and CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} were struggling with assigning Euler angles, resulting in practically random orientations.
+
+To impose more constraints on the refinement based on the expected angle correlations, we calculated the theoretical orientation of each particle based on the in-plane angle (and assuming perfect preferential orientation), which we then used to initialize the particle poses (\fullref{stemia_angles}).
 
 Unfortunately, this approach did not yet bear fruits: CryoSPARC does not provide fine control over angle priors and search patterns, and Relion's parameters for angle refinement proved tricky to control and resulted in orientations being either stuck in local minima, or fully randomized again (\autoref{fig:ftsz_angle_dist}).
 
@@ -294,12 +299,12 @@ Our observations on the reconstructed tomograms matched those by \citet{sextonSu
 \end{figure}
 
 The size and spacing between FtsZ filaments is generally consistent with crystal structures and SPA studies on FtsZ filaments~\cite{mcquillenInsightsStructureFunction2020}.
-the distance between FtsZ+FtsA filaments and the membrane in our tomograms is consistent with the expected \sim13-16~\cite{mcquillenInsightsStructureFunction2020}.
+The distance between FtsZ+FtsA filaments and the membrane in our tomograms is consistent with the expected \sim13-16 nm~\cite{mcquillenInsightsStructureFunction2020}.
 However, the width of the bundle appears to be smaller than the previously found 80-100 nm~\cite{mcquillenInsightsStructureFunction2020}, typically no wider than around 50-60 nm; this might be caused by differences in the thickess of the septa or modes of septation between different bacteria.
 
 \subsubsection{Subtomogram averaging}
 
-While it is clear that FtsZ and FtsA are forming filaments and bundles in vitro, and that they localize to the Z-ring in a bundle-like fashion, the details of this superstructural assembly are unknown.
+While it is clear that FtsZ and FtsA are forming filaments and bundles \textit{in vitro}, and that they localize to the Z-ring in a bundle-like fashion, the details of this superstructural assembly are unknown.
 To get a higher resolution view of this complex \textit{in situ}, we performed STA on particles picked from the FtsZ arches at the tips of the septa (\autoref{fig:ftsz_tomo_slice}).
 
 Given the apparent regularity of the bundles (whose morphology appears unchanged across their length), we used blik's surface picking tool~\cite{gaifasBlikExtensible3D2024,gaifasBlikPythonTool2024}, which allows us to distribute regularly spaced particles on the sheet-like FtsZ bundles.
@@ -345,49 +350,12 @@ The only refinement that resulted in consistent orientations and a reasonable ma
         \caption{Isosurface of the best FtsZ subtomogram.}
         \label{fig:ftsz_subtomo_iso}
     \end{subfigure}%
-    \titledcaption[FtsZ STA preliminary results]{Subtomogram averaging results of the particle picks on FtsZ at the tip of the septa in \textit{D. radiodurans}. The grid-like pattern visible in the tomogram slices is captured by the subtomograms, but the resolution is too low for further interpretation.}
+    \titledcaption[FtsZ STA preliminary results]{Subtomogram averaging results of the particle picks on FtsZ at the tip of the septa in \textit{D. radiodurans}. The grid-like pattern visible in the tomogram slices is captured by the subtomograms, but the resolution is too low for further interpretation.} % TODO: fit filament...
     \label{fig:ftsz_subtomo}
 \end{figure}
 
 It's worth noting that due to the nature of the division cycle of \textit{D. radiodurans}, the bacterium is generally found as a tetrad laying flat on the grid, which leads to a preferential orientation of the septa (and therefore the FtsZ filaments) along the Z axis on the tomograms.
 Due to the missing wedge (\fullref{et_tomo_reconstruction}), along which the filaments are aligned, the information is blurred along the FtsZ filament axis, limiting for example the ability to distinguish individual FtsZ monomers.
-
-\subsection{Materials and Methods}\label{ftsz_methods}
-
-\subsubsection{Sample preparation for SPA}
-
-\paragraph{FtsZ only}
-5μl FtsZ at 12.5 mg/ml were diluted in 4 μl buffer (50 mM Tris-HCl pH 8.0, 200 mM NaCl), and 1 μl GpCpp at 10 mM.
-Mix was then incubated at 25°C for 75 min to allow for filament elongation.
-4μl of mix was then diluted in 16 μl of buffer (50 mM Tris-HCl pH 8.0, 200 mM NaCl), and 1 μl GpCpp at 10 mM.
-The sample was then immediately frozen on R2/1 300mesh EM grids (blot time: 3.5 s).
-
-\paragraph{FtsZ+DDM}
-2μl FtsZ at 12.5 mg/ml were diluted in 16 μl buffer (50 mM Tris-HCl pH 8.0, 200 mM NaCl), and 2 μl GpCpp at 10 mM.
-Mix was then incubated at 25°C for 30 min to allow for filament elongation, after which 2μl DDM at 0.09\% was added.
-Grids were frozen with and without further 5x dilution in buffer (50 mM Tris-HCl pH 8.0, 200 mM NaCl, 1 mM GpCpp, 0.009\% DDM: 2 μl mix + 8 μl buffer)
-
-TODO: should we include details about reproducibility/elongation? I added some to the text above, but maybe we need more details here.
-
-TODO: graphene and streptavidin grids
-
-\subsubsection{Data Collection for SPA}
-
-TODO: I need help here for the technical microscopy details...
-
-\subsubsection{SPA processing}
-
-TODO: filament picking (parameters, issues with length)
-
-link to \fullref{stemia_angles}.
-
-\subsubsection{\textit{D. radiodurans} lamellae and tomography data collection}
-
-See \fullref{drad_lamellae_method} and \fullref{drad_tomo_method}.
-
-\subsubsection{STA data processing}
-
-TODO: blik, relion
 
 
 \section{Tools and scripts}
@@ -403,7 +371,7 @@ Specifically, waretomo:
 \begin{enumerate}[noitemsep]
     \item automates parsing \texttt{.mdoc} files to provide appropriate inputs to AreTomo
     \item ensures that tilts skipped in Warp are properly handled
-    \item adjusts tilt angles in Warp based the otuput of AreTomo to untilt tilted samples (such as lamellae)
+    \item adjusts tilt angles in Warp based the output of AreTomo to untilt tilted samples (such as lamellae)
     \item optionally reconstructs preliminary tomograms with AreTomo and denoises them with Topaz~\cite{beplerTopazDenoiseGeneralDeep2020}
 \end{enumerate}
 
@@ -415,7 +383,7 @@ While this tool is available and open-source, it's not yet publication-ready and
 In cell-extract cryo-EM~\cite{suBuildRetrieveMethodology2021,kyrilisIntegrativeBiologyNative2019}, a dataset may contain a large variety of proteins and complexes, many of which unknown.
 In these non-purified datasets, automating parts of the selection and protein identification processes is essential for practical applications such as structural proteomics of a novel organism.
 
-As a contribution to the PhD project of Eymeline Pageot --- another PhD student in the MICA group under the supervision of Ambroise Desfosses --- I developed \href{https://gihub.com/brisvag/emscan}{emscan}, a napari~\cite{thenaparicommunityNapariMultidimensionalImage2024}-based tool that searches the EMDB database~\cite{thewwpdbconsortiumEMDBElectronMicroscopy2024} for maps whose projections have a high similarity with the input 2D classes.
+As a contribution to the PhD project of Eymeline Pageot --- another PhD student in the MICA group under the co-supervision of Ambroise Desfosses and Irina Gutche --- I developed \href{https://gihub.com/brisvag/emscan}{emscan}, a napari~\cite{thenaparicommunityNapariMultidimensionalImage2024}-based tool that searches the EMDB database~\cite{thewwpdbconsortiumEMDBElectronMicroscopy2024} for maps whose projections have a high similarity with the input 2D classes.
 
 This allows for example to discard classes from already-solved structures, or to identify 2D classes that potentially belong to different views of a protein whose homologues are present on the EMDB.
 

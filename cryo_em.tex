@@ -1,9 +1,9 @@
 \chapter[Cryo-EM and SPA]{Cryo-electron microscopy and single particle analysis}\label{em}
 
 Knowing the structure of macromolecular complexes is often crucial to understand --- and potentially take control of --- the function and behavior of biological systems.
-To this end, structural biologists employ several techinques to unveil the structure of biomolecules and their complexes: typically proteins, nucleic acids and their ligands.
+To this end, structural biologists employ several techniques to unveil the structure of biomolecules and their complexes: typically proteins, nucleic acids and their ligands.
 
-Arguably, the three giants in the field are X-ray crystallography, Nuclear Magnetic Resonance (NMR) and cryo-electron microscopy (cryo-EM), with several other techniques playing complementary, more specialized or niche roles (such as mass spectroscopy, neutron scattering or small-angle scattering).
+Arguably, the three giants in the field are X-ray crystallography, Nuclear Magnetic Resonance (NMR) and cryo-electron microscopy (cryo-EM), with several other techniques playing complementary, more specialized or niche roles (such as mass spectroscopy and small-angle neutron or X-ray scattering).
 In recent years, machine-learning (ML) structure prediction tools such as AlphaFold~\cite{jumperHighlyAccurateProtein2021,abramsonAccurateStructurePrediction2024} and RoseTTAFold~\cite{baekAccuratePredictionProtein2021} have also conquered their way into the forefront of structural biology techniques, computationally predicting protein structures with unprecedented precision and without the wait and costs of experimental approaches.
 Each technique has pros and cons, making it suited to different samples and applications.
 
@@ -83,7 +83,7 @@ This chapter describes such typical workflow (\autoref{fig:em_workflow}), expand
 \end{figure}
 
 \section{Sample preparation}\label{em_sample_prep}
-Cryo-EM samples for SPA are usually prepared in vitro by expressing ad purifying the protein or complex of interest to create a minimal system.
+Cryo-EM samples for SPA are usually prepared \textit{in vitro} by expressing and purifying the protein or complex of interest to create a minimal system.
 Sample concentration and purity are important variables to control, as they will affect vitrification and data processing complexity.
 The sample solution is then deposited on a cryo-EM grid and vitrified via plunge freezing in liquid ethane or other methods (\autoref{fig:em_plunge_freezing})~\cite{dubochetCryoelectronMicroscopyVitrified1988}.
 Vitrification allows to fix the sample in near-native, hydrated conditions while avoiding the formation of crystalline ice, which would damage the sample.
@@ -112,7 +112,7 @@ This method comes at the cost of worse SNR due to the thicker sample, increased 
 However, it was recently shown that the effect of these issues on the final resolution can be rendered negligible with careful preprocessing~\cite{aiyerOvercomingResolutionAttenuation2024}.
 
 \section{Data collection}
-The vitrified sample is loaded into the electron microscope (under cryogenic conditions and vacuum, in order to maintain the sample vitrified and uncontaminated), and suitable positions on the grid are chosen for imaging, prioritizing for: presence of the target protein or complex, fewer contaminations, and lower ice thickness.
+The vitrified sample is loaded into the electron microscope (under cryogenic conditions and vacuum, in order to maintain the sample vitrified and uncontaminated), and suitable positions on the grid are chosen for imaging, prioritizing for: presence of the target protein or complex, less contamination, and lower ice thickness.
 In modern workflows and software, this step and the subsequent data collection are increasingly automated, allowing for higher throughput (up to a dozen-thousand images per day) and lower human intervention~\cite{schorbSoftwareToolsAutomated2019}.
 
 During collection, the sample stage and/or electron beam are moved to each position to collect micrographs.
@@ -129,12 +129,11 @@ When electrons traverse the sample, they have a chance to undergo elastic scatte
 It's this interference that creates phase contrast, which the camera detects to generate the image.
 Because the fraction of scattered electrons is very low, the resulting beam has nearly the same amplitude as the non scattered beam, resulting in low contrast images.
 
-Some electrons are also inelastically scattered by the electron clouds of the sample: these electrons lose energy and coherence, and are therefore adding to the noise of the image because the lenses no longer focus them to the right place.
-To mitigate this effect, inelastically scattered electrons are filtered out using an energy filter, which removes electrons with energy that differs significantly from the unscattered ones (\autoref{fig:em_image_formation}).
+Some electrons are also inelastically scattered by the electron clouds of the sample: these electrons lose energy --- which is transferred to the sample --- and coherence, and are therefore adding to the noise of the image because the lenses no longer focus them to the right place.
+To mitigate the effect of loss of coherence, inelastically scattered electrons are filtered out using an energy filter, which removes electrons with energy that differs significantly from the unscattered ones (\autoref{fig:em_image_formation}).
+Unfortunately, the energy lost by inelastic scattering events is deposited on the sample, which denatures and deforms during imaging, further affecting the SNR; this process is what we call \textbf{radiation damage}.
 
-Inelastic scattering is also the source of radiation damage: the energy lost by these electrons is transferred to the sample, denaturing and deforming it and thus affecting SRN.
-
-Sample thickness is of crucial importance for image formation: higher thickness results in higher chance for collision, increasing the chance of inelastic scatterings.
+Because of this, control over sample thickness is of crucial importance for image formation: higher thickness results in higher chance for collision, increasing the chance of inelastic scatterings.
 Additionally, a thicker sample may result in multiple elastic scattering events, which further alter the phase but cannot be distinguished from single scattering events, contributing to image noise.
 
 \begin{figure}[ht]
@@ -145,17 +144,17 @@ Additionally, a thicker sample may result in multiple elastic scattering events,
 \end{figure}
 
 \subsection{Contrast Transfer Function}\label{em_ctf}
-The shift induced in the phase of the electron wave by elastic scattering events is closely related to the spatial frequency of features in the sample: smaller details such as the relative positioning of neighboring \alpha-helices, which contain information at higher spatial frequency, will scatter to higher angles; bigger features such as biological membranes will scatter to lower angles.
+The shift induced in the phase of the electron wave by elastic scattering events is closely related to the spatial frequency of features in the sample: smaller details which contain information at higher spatial frequency (such as the relative positioning of neighboring \alpha-helices), will scatter to higher angles; bigger features (such as biological membranes) will scatter to lower angles.
 Depending on the angle, the interference at the image plane will be constructive or destructive, resulting in certain spatial frequencies being dampened or lost.
 
 The CTF is a function that describes exactly this: how signal is transmitted through the sample and onto the image, as a function of spatial frequency.
 Where the CTF reaches a value of 0, no signal is transferred; a value of 1, on the other hand, is a perfect signal transfer.
 
 The CTF has a close relationship with the Fourier transform (FT) of a micrograph: the 1D rotational average of the power spectrum (PS) of the image (the square of the amplitude of the FT of the image) forms the curve used to estimate the CTF (\autoref{fig:em_ctf_defocus}).
-An ideal sample with a uniform distribution of spatial frequencies would produce a 1D PS identical to its theoretical CTF.
+The image of a point source --- which has no sample, no atoms, and therefore no fourier components --- would produce a 1D PS identical to its theoretical CTF.
 
 The CTF is usually described as composed of two main elements.
-The first one is a sinusoidal component caused by the periodicity of destructive and constructive interference of electron phases at different spatial fequencies.
+The first one is a sinusoidal component caused by the periodicity of destructive and constructive interference of electron phases at different spatial frequencies.
 It is visible in the PS of cryo-EM images as a set of concentric rings called Thon rings (\autoref{fig:em_ctf_defocus_2d}).
 The exact shape of the Thon rings depends on several factors, first among which the defocus: changing defocus affects the oscillation frequency, thus shifting the zeros of the CTF and boosting or nullifying different spatial frequencies (\autoref{fig:em_ctf_defocus_1d}).
 
@@ -182,10 +181,11 @@ The exact shape of the Thon rings depends on several factors, first among which 
 
 To ensure all spatial frequencies are sampled, a data collection must include many images collected at a range of different defoci.
 
-Of note is that since the CTF starts at 0, low spatial frequencies are always dampened; in pratical terms, this results in images where low resolution features (such as membranes and big objects) are harder to see, making it harder to distinguish objects from the noise, pick particles (\fullref{em_particle_picking}) and do further processing.
-For this reason, a certain amount of defocus is always used, unfortunately at the cost of jumbling up the high frequency information with more CTF oscillation.
+Of note is that since the CTF value starts at 0, low spatial frequencies are always dampened; in practical terms, this results in images where low resolution features (such as membranes and big objects) are harder to see, making it harder to distinguish objects from the noise, pick particles (\fullref{em_particle_picking}) and do further processing.
+For this reason, a certain amount of defocus is always used, which "compresses" the CTF thus improving the low frequency contrast transfer; this comes unfortunately at the cost of jumbling up the high frequency information with more CTF oscillations, making it harder to correctly estimate the CTF at high resolutions (\autoref{fig:em_ctf_defocus_1d}).
+
 Alternatively, a phase plate can be used to shift the phase of the electrons by 90° and acquire images on focus (\autoref{fig:em_ctf_phase_shift}).
-While phase plates are in theory the ideal solution to this problem, there are still some engineering and physical limitations that limit their use; several groups are currently working to overcome such hurdles~\cite{danevExpandingBoundariesCryoEM2017,schwartzLaserPhasePlate2019}.
+While phase plates are in theory an ideal solution to this problem, there are still some engineering and physical limitations that limit their use; several groups are currently working to overcome such hurdles~\cite{danevExpandingBoundariesCryoEM2017,schwartzLaserPhasePlate2019}.
 
 \begin{figure}[ht]
     \centering
@@ -222,6 +222,10 @@ Importantly, this effect is worse at higher defocus, contributing the worse high
 \end{figure}
 
 This signal decay, combined with the low SNR of the images, poses a resolution limit beyond which it is impossible to estimate (and therefore correct) the effect of the CTF on the image.
+
+In all the examples above, we assumed the CTF to be rotationally invariant.
+However, a small amount of astigmatism --- which causes the PS to be stretched in one direction, resulting in elliptical Thon rings --- is typically present in all cryo-EM images, due to the imprecisions of microscope lens adjustement.
+For this reason, astigmatism must be estimated and corrected, before a 1D rotational average can be computed for CTF estimation, and later accounted for during correction.
 
 So far we discussed what happens to the Fourier transform or PS of an image, that is in \textbf{Fourier space}; in practice, the CTF has visible effects also in \textbf{real space}.
 The signal becomes delocalized, blurring the image; as explained by the convolution theorem~\cite{wikipediaConvolutionTheorem2024}, this delocalization is the result of the convolution of the Fourier transform of the CTF (known as Point Spread Function or PSF) with the image.
@@ -308,7 +312,7 @@ To do so, particles are split into groups based on similarity, in a process call
 
 Once again, some form of cross-correlation (\fullref{em_cross_correlation}) is involved in the process, since the goal is to cluster together similar particles and separate different ones.
 The algorithm is typically iterative: after generating an initial set of classes by averaging random particles, particle poses are progressively refined to find the best CC score.
-Based on this score, each particle is assigned to a class (or a score for each class, in probabilistic models~\cite{scheresRELIONImplementationBayesian2012}), and for each class a class average is computed, combining the signal from all the particles belonging to that class. The more poses are refined, the more the signal that's shared by similar particles is boosted, improving the SRN of the class average.
+Based on this score, each particle is assigned to a class (or a score for each class, in probabilistic models~\cite{scheresRELIONImplementationBayesian2012}), and for each class a class average is computed, combining the signal from all the particles belonging to that class. The more poses are refined, the more the signal that's shared by similar particles is boosted, improving the SNR of the class average.
 Class averages are used to calculate the CC at each iteration, and used at the end of the process to inspect the dataset and select only the useful particles.
 
 With this information, particle classes can be split into groups for further processing or discarded.
@@ -338,12 +342,12 @@ It's worth noting that the algorithms used by reconstruction software, while bas
 In the case of SPA, the central slice theorem allows us to combine the projection of many different particles, under the assumption that they come from near-identical copies of the same object.
 
 It is crucial in this process that as many different orientations as possible are represented in the dataset.
-This is because, in order to have an isotropically well-resolved reconstruction, we need to fill the 3D Fourier space as much as possible with differently oriented central slices.
+This is because, in order to have an isotropically well-resolved reconstruction, we need to fill the 3D Fourier space as much as possible (or, as needed according to the Crowther criterion~\cite{crowtherReconstructionThreedimensionalStructure1997}) with differently oriented central slices.
 
 Similarly to 2D classification, 3D reconstruction is an iterative process where each particle is correlated to templates to find the best match.
 This time, however, the templates are obtained by projecting a 3D model at different orientations, in a process called projection matching (\autoref{fig:em_projection_matching}).
 Instead of assigning classes, projection matching refines the relative (3D) orientations of each particle relative to the original 3D object.
-The 3D model is initally either derived from previous work, or generated \textit{ab initio} from the particles themselves.
+The 3D model is initially either derived from previous work, or generated \textit{ab initio} from the particles themselves.
 During each iteration, particles' FTs are used to fill a 3D FT according to central slice theorem, which allows to generate a new 3D model.
 The assigned orientations are progressively refined in order to improve the model resolution.
 Once there is no longer significant improvement (\fullref{em_fsc}), the process stops, and the final 3D map is generated.
@@ -401,5 +405,5 @@ These procedures can have dramatic effects on the final resolution of a map, esp
 If a map reaches high enough resolution, it is possible to build an atomic model based on the volume density.
 This process is called model building, and is typically done with a mix of manual and automated tools.
 
-Models are built by placing amino acids (or other structural components) so that their electron occupancy matches the density map obtained from 3D reconstruction.
+Models are built by placing amino acids (or other structural components) so that their theoretical electron scattering matches the density map obtained from 3D reconstruction.
 Some recent tools manage to fully automate this process for maps of high enough resolution (\lesssim4 Å), even without knowing the protein's sequence~\cite{jamaliAutomatedModelBuilding2024}.
