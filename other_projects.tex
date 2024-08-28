@@ -38,15 +38,27 @@ Such drastically different modes may explain the heterogeneous highly dynamic na
 
 To begin investigating DrHU in complex with the DNA, my supervisors collected single particle cryo-EM data of an \textit{in vitro} preparation of plasmid DNA and HU, in order to observe the interaction in a free aqueous environment.
 The bacterial genomic DNA is large, circular and supercoiled; where previous structural studies used short DNA segments, we opted for a circular dsDNA plasmid as it would be a more appropriate stand-in that would allows us to evaluate how circularity, supercoiling and DNA topology affect HU binding and assembly on DNA.
-HU and plasmid DNA were mixed at different ratios, and within a small range of relative concentration (\sim100 HU/2686 bp plasmid) intriguing spirals (\autoref{fig:hu_spirals}) were formed by the DNA.
+HU and plasmid DNA were mixed at different ratios, and within a small range of relative concentration (\sim100 HU/2686 bp plasmid) intriguing spirals (\autoref{fig:hu_spirals_all}) were formed by the DNA.
 Notably, these spirals were formed by supercoiled DNA only, but not by relaxed or linearized plasmid, and were never observed in the absence of HU.
 Our original idea based on these images was that HU would form tetramers and bind between two neighbouring turns of the DNA spirals to hold them together.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{other/hu_spirals_no_spirals.png}
-    \titledcaption[HU-induced DNA spirals]{Spiral formations of DNA are formed in presence of HU only at specific concentration ranges.} % TODO: FIGURE ON THE RIGHT IS WRONG!
-    \label{fig:hu_spirals}
+    \begin{subfigure}[B]{.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{other/hu_spirals.png}
+        \caption{DNA spirals formed in presence of HU.}
+        \label{fig:hu_spirals}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[B]{.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{other/hu_no_spirals.png}
+        \caption{In absence of HU no spirals are formed.}
+        \label{fig:hu_no_spirals}
+    \end{subfigure}%
+    \titledcaption[HU-induced DNA spirals]{Spiral formations of supercoiled plasmid DNA are formed in presence of HU only at specific concentration ranges.}
+    \label{fig:hu_spirals_all}
 \end{figure}
 
 The very small molecular weight of HU (\sim25 kDa in its dimeric form) meant that picking and processing these particles (even in the expected dimeric or tetrameric forms) would be practically impossible in cryo-EM (see \autoref{fig:et_smallest_particle} for the theoretical limits).
@@ -99,14 +111,14 @@ We attempted also to pick particle manually or using topaz, focusing on each occ
 
 \begin{figure}[ht]
     \centering
-    \begin{subfigure}[B]{.5\textwidth}
+    \begin{subfigure}[B]{.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{other/hu_topaz_classes.png}
         \caption{2D classes from Topaz picking.}
         \label{fig:hu_topaz_classes}
     \end{subfigure}%
     \hfill
-    \begin{subfigure}[B]{.5\textwidth}
+    \begin{subfigure}[B]{.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{other/hu_topaz_picks.png}
         \caption{Particle picks from Topaz.}
@@ -129,10 +141,12 @@ Data processing on the single particle and tomography data, and software tool de
 
 \subsection{State of the art}
 
+% TODO: maybe I should just remove all this intro...
+
 FtsZ is an extremely well conserved prokaryotic tubulin homologue, known to form ring-like structures (the Z-ring) at the septation site in most bacteria.
 It polymerizes in a GTP-dependent fashion to form filaments and bundles, anchoring to the membrane via its partner FtsA, and interacting with several other partners in the cytokinesis and peptidoglycan (PG) synthesis machinery~\cite{barrowsFtsZDynamicsBacterial2021,mcquillenInsightsStructureFunction2020}.
 
-Based on crystal structures, filaments have been shown to form through head-to-tail stacking of monomers CITE.
+Based on crystal structures, filaments have been shown to form through head-to-tail stacking of monomers~\cite{olivaStructuralInsightsFtsZ2004,barrowsFtsZDynamicsBacterial2021,mcquillenInsightsStructureFunction2020}.
 However, there is no structural information regarding the flexible C-terminal region, which is responsible for regulating the FtsZ activity and interaction with its cellular partners, including FtsA.
 It's also unclear how multiple filaments may assemble to form bundles at the structural level and even less so \textit{in vivo}.
 Thus --- while its key role in cell division is undisputed --- the exact mechanism and function of FtsZ are still unclear.
@@ -222,31 +236,37 @@ These classes looked immediately more promising than the ones from the untilted 
     \label{fig:ftsz_classes_tilted}
 \end{figure}
 
-Despite the better view distribution of 2D classes, our 3D reconstructions had similar anisotropy issues as the untilted data.
+Despite the better view distribution of 2D classes, our 3D reconstructions had similar anisotropy issues as the untilted data, and we seemed to hit a resolution plateau.
 Assuming a uniform distribution of in-plane angles of the filaments (which we observed in the original dataset), a single, relatively high-tilt dataset should cover a higher portion of 3D Fourier space during backprojection and thus significantly improve map isotropy~\cite{tanAddressingPreferredSpecimen2017}.
 
-With preferentially oriented filaments collected at a fixed tilt angle, there should be a strong correlation between in-plane angle (easily identifiable from the micrograph) and the projection view (which is identified by classification). % TODO: show with synthetic dataset? Also, could it be that multiple euler combinations are redundant and correlation was just bad? How did I do this thing again?
-Upon closer inspection of the picking data, however, we observed that the out-of-plane angles assigned to each particle showed no correlation with the assigned 2D class (\autoref{fig:ftsz_class_angles}).
+With preferentially oriented filaments collected at a fixed tilt angle, there should be a strong correlation between in-plane angle (easily identifiable from the micrograph) and the projection view (which is identified by classification).
+Indeed, this is what we see when plotting the in-plane angle distribution per class from the filament picking;
+however, in the angle distribution after 3D helical reconstruction, we no longer saw any correlation, suggesting that the refinement procedure was unable to properly assign in- and out-of-plane angles to each particle (\autoref{fig:ftsz_filament_angles_bad}).
+Unfortunately, we recently discovered we made a mistake in our calculations --- likely due to the (undocumented) angle conversions from CryoSPARC data to Relion Euler angles (\fullref{metadata}) --- which, once fixed, revealed that correlation was still present and angular assignment was probably not the source of our resolution plateau (\autoref{fig:ftsz_filament_angles_good}).
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{example-image.png}
-    \titledcaption[Out-of-plane angle by class in FtsZ titled dataset]{Out-of-plane angle plotted against the assigned 2D class. TODO}
-    \label{fig:ftsz_class_angles}
+    \begin{subfigure}[B]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{other/ftsz_angle_dist_bad.png}
+        \caption{Original in-plane angle versus 2D class plot. On the left, a correlation is clear between the filament picking in-plane angle and class; on the right, correlation appears to be lost.}
+        \label{fig:ftsz_filament_angles_bad}
+    \end{subfigure}
+    \begin{subfigure}[B]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{other/ftsz_angle_dist_good.png}
+        \caption{Updated angle vs class plot. The correlation is now evidently retained after 3D helical refinement.}
+        \label{fig:ftsz_filament_angles_good}
+    \end{subfigure}%
+    \titledcaption[Correlation between in-plane angle and 2D class]{In-plane angle distribution for a cleaned subset of the FtsZ particles, colored by class. The original (wrong) plot (top right), showed no correlation between angles and class; the updated plot (bottom right) shows similar correlation to that found in the filament picking poses.}
+    \label{fig:ftsz_filament_angles}
 \end{figure}
 
-We soon realized that in this specific case the 3D reconstruction routines of both Relion~\cite{scheresRELIONImplementationBayesian2012} and CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} were struggling with assigning Euler angles, resulting in practically random orientations.
+Based on the (wrong) assumption that angles were not properly assigned, we concluded that in this specific case the 3D reconstruction routines of both Relion~\cite{scheresRELIONImplementationBayesian2012} and CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} were struggling with assigning Euler angles, resulting in practically random orientations.
 
-To impose more constraints on the refinement based on the expected angle correlations, we calculated the theoretical orientation of each particle based on the in-plane angle (and assuming perfect preferential orientation), which we then used to initialize the particle poses (\fullref{stemia_angles}).
+Therefore, to impose more constraints on the refinement based on the expected angle correlations, we calculated the theoretical orientation of each particle based on the in-plane angle (and assuming perfect preferential orientation), which we then used to initialize the particle poses (\fullref{stemia_angles}).
 
-Unfortunately, this approach did not yet bear fruits: CryoSPARC does not provide fine control over angle priors and search patterns, and Relion's parameters for angle refinement proved tricky to control and resulted in orientations being either stuck in local minima, or fully randomized again (\autoref{fig:ftsz_angle_dist}).
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=\textwidth]{example-image.png}
-    \titledcaption[Angle distribution after 3D reconstruction in FtsZ tilted dataset]{TODO: angle distribution plot}
-    \label{fig:ftsz_angle_dist}
-\end{figure}
+Unfortunately --- though in hindsight unsurprisingly --- this approach did not improve our reconstruction, and we learned that CryoSPARC does not provide fine control over angle priors and search patterns, and Relion's parameters for angle refinement are tricky to control and may easily lead to orientations being stuck in local minima.
 
 \subsubsection{Addition of detergent}
 Detergent has long been used as a way to address preferential orientation and aggregation of proteins in the sample.
@@ -384,7 +404,7 @@ Specifically, waretomo:
 When possible, each step is performed in parallel (and on GPUs) to maximize resource usage and minimize idle time.
 While this tool is available and open-source, it's not yet publication-ready and still in alpha, so bugs are expected.
 
-\subsection{emscan}
+\subsection{emscan}\label{emscan}
 
 In cell-extract cryo-EM~\cite{suBuildRetrieveMethodology2021,kyrilisIntegrativeBiologyNative2019}, a dataset may contain a large variety of proteins and complexes, many of which unknown.
 In these non-purified datasets, automating parts of the selection and protein identification processes is essential for practical applications such as structural proteomics of a novel organism.

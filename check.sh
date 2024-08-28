@@ -25,8 +25,10 @@ rg --vimgrep -s 'fourier' $FILES
 echo === open-source ===
 rg --vimgrep -s '(O|o)pen source' $FILES
 
-echo === captions missing title ===
-rg --vimgrep -s '\\caption\{' $FILES
+echo === captions missing title or empty ===
+rg --vimgrep -s '^    \\caption\{' $FILES
+rg --vimgrep -s '\\titledcaption\{' $FILES
+rg --vimgrep -s '\\caption\{\}' $FILES
 
 echo === italicized in vitro etc ===
 rg --vimgrep -s '[^\{]in vitro' $FILES

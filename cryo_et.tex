@@ -136,7 +136,7 @@ To do so, tilt series alignment parameters must first be estimated in order to c
 The most basic alignment procedures require at least full-frame alignment; similar to motion correction, tilt images are rotated and shifted in order to maximize their CC score.
 Where fiducials are present (\fullref{fiducials}), these can be treated as static points within the sample and used instead as anchors to mathematically estimate the geometric transformation between different tilts~\cite{nicastroMolecularArchitectureAxonemes2006,heumannClusteringVarianceMaps2011,castano-diezDynamoCatalogueGeometrical2017}.
 
-In state of the art software, alignment procedures (with or without fiducials) can also account for spatio-temporal deformations of the sample, either already during tilt series alignment~\cite{zhengAreTomoIntegratedSoftware2022}, or later during refinement~\cite{tegunovMultiparticleCryoEMRefinement2021,burtImageProcessingPipeline2024,galaz-montoyaSingleParticleTomography2015,chenCompleteDataProcessing2019} (\fullref{et_refinement}).
+In state of the art software, alignment procedures (with or without fiducials) can also account for spatio-temporal deformations of the sample, either already during tilt series alignment~\cite{zhengAreTomoIntegratedSoftware2022}, or later during refinement~\cite{tegunovMultiparticleCryoEMRefinement2021,burtImageProcessingPipeline2024,galaz-montoyaSingleParticleTomography2015,chenCompleteDataProcessing2019}.
 
 \subsection{Tomogram Reconstruction}\label{et_tomo_reconstruction}
 Similarly to how 3D reconstructions are obtained from 2D particles in SPA based on the central slice theorem (\fullref{em_reconstruction}), the aligned tilt series can be used to reconstruct the full tomogram.
@@ -145,7 +145,7 @@ Depending on the software suite and workflow, full tomogram reconstructions may 
 Differently from SPA, cryo-ET has the advantage of knowing the 3D positioning of each point in the tomogram.
 This allows to bring defocus estimation and CTF correction to the next level: not only is CTF locally estimated depending on the in-plane position of features, but also accounting for the defocus difference between the top and bottom of the sample.
 While this idea was around for a long time, only in recent years tools were developed that can run in reasonable time and significantly improve the final resolution~\cite{turonovaEfficient3DCTFCorrection2017,tegunovRealtimeCryoelectronMicroscopy2019}. 
-Depending on the software, 3D-CTF might be estimated and corrected at different levels (tilt image, full tomogram or subtomogram), and may be able to be refined during refinement (\fullref{et_refinement}).
+Depending on the software, 3D-CTF might be estimated and corrected at different levels (tilt image, full tomogram or subtomogram), and may be able to be refined during refinement.
 
 Due to the limited range of tilt angles collected in typical cryo-ET workflows, not all views of the sample are represented; when reconstructing the 3D FT of the sample, this is clearly visible in Fourier space as a wedge of missing information (\autoref{fig:et_missing_wedge}).
 The missing wedge introduces several problems in downstream processing: it blurs the tomogram in the Z direction, biases subtomogram alignment, and leads to anisotropic resolution for objects with preferential orientation.

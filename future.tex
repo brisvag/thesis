@@ -4,7 +4,7 @@ This manuscript does not mark the end of the projects herein; the development of
 
 \localtableofcontents
 
-\section{blik and napari}
+\section{blik}
 
 The development of blik has already proven useful for daily use in our group and others.
 However, there are several features that were part of blik's original plan, but which are not yet implemented, or only partially.
@@ -31,6 +31,32 @@ Another crucial improvement for napari (and therefore blik) which is underway an
 Especially for segmentation and annotation, having access two linked views of 2D and 3D visualisations can make a big difference in the ergonomics of a tool.
 
 
+\section{napari}
+
+This thesis was heavily influenced and shaped by my extended collaboration with the \href{https://napari.org/}{napari} project~\cite{thenaparicommunityNapariMultidimensionalImage2024} and its core developers and community~\cite{thenaparicommunityCommunityNapari2024}, whose values and goals for the development of scientific software strongly align with mine.
+
+The napari community aims to provide a fast, user-friendly, hackable and reusable library and application for the visualization and annotation of n-dimensional scientific imaging data.
+It's built on top of the well-established and widespread libraries at the core of the scientific python ecosystem (such as numpy and pandas), in order to allow seamless interactive visualization both programmatically and via graphical user interface.
+Our committed effort to bridge many different imaging fields in order to share knowledge and resources has resulted in a steady influx of new contributors and users from various backgrounds, who ensured napari remains user-friendly, hackable, and powerful.
+
+Due to the distributed and collaborative nature of community-driven open-source development --- especially of as large a project as napari --- it's a difficult (and futile) exercise to determine who "authored" a specific feature, and yet the steady contributions from newcomers shows that this approach to development is what many research developers seek.
+
+Other developers do not directly contribute to napari, but develop plugins for it instead.
+There are already \href{https://www.napari-hub.org/plugins?search=cryo+ET&sort=relevance&page=1}{many cryo-ET-focused plugins} that appeared independently, which build upon some of the groundwork contributed to napari by me as part of this thesis and by many other contributors.
+
+The current \href{https://github.com/orgs/napari/projects/24/views/2?pane=info}{napari roadmap} is filled with exciting new features, and I expect that in the next few years the project will continue growing and expanding to new fields.
+
+
+\section{Teamtomo}\label{teamtomo}
+
+As another effort to go against the academia-machine, early on in my PhD, Alister Burt and I started the \href{https://teamtomo.org}{teamtomo} project, with the goal of creating a shared, open-source resource for cryo-ET developers, and to encourage the community to collaborate on the development of cryo-ET software within the python ecosystem.
+
+While at first we were the only two people involved, at the time of writing almost 30 researchers and developers from several different groups around the world have contributed to libraries and tools in the \href{https://github.com/teamtomo}{teamtomo repositories}, and more are joining our montly meetings where we plan future concerted efforts.
+
+With time, we aim to collect well-scoped and well-documented libraries that cover all the needs of a cryo-ET data processing pipeline, from simple ones like I/O utilities or cross-correlation, to more complex routines such as tilt-series alignment.
+Some of these tools --- contributed by various developers --- are already available, such as \href{https://github.com/teamtomo/ttmask}{ttmask} for mask creation, \href{https://github.com/teamtomo/cryohub}{cryohub} for I/O, or \href{https://github.com/teamtomo/fidder}{fidder} for fiducial masking.
+
+
 \section{\textit{D. radiodurans}: FtsZ, HU, and more}
 
 The ongoing efforts on HU and FtsZ encountered technical challenges that so far prevented us from reaching high resolution and unravel the structure and function of these proteins.
@@ -42,7 +68,7 @@ There are also new directions in which we'd like to extend our work on \textit{D
 To increase our chances to identify and pick HU, a new dataset was collected with a phase plate, which allows to collect data closer to focus while improving the contrast of low spatial fequency information (\fullref{em_ctf}).
 Preliminary results on this data showed more classes containing what could be HU in a similar conformation to what seen in \autoref{fig:hu_structure}, but more work is needed.
 
-TODO: any plans/ideas still for tomography here?
+% TODO: any plans/ideas still for tomography here?
 
 \subsection{FtsZ SPA}
 
@@ -75,40 +101,55 @@ A way to tackle this problem is to force the bacteria into different orientation
 Preliminary attempts to prepare such sample were promising, but due to technical problems with the cryo-FIB microscope we were not yet able to continue with this sample.
 Similarly, freezing the sample with a Leica™ plunge freezer showed a more diverse orientation distribution of the bacteria.
 
-TODO: effects of radiation, initial dataset,...
+\subsection{Effects of stress and radiation}
 
-\subsection{Structural proteomics}
+\textit{D. radiodurans} is especially intriguing due its incredibly effective radiation and stress resistance machinery.
+While the FtsZ and HU projects are interesting in of themselves, they all fit in a wider question: \textbf{How does \textit{D. radiodurans} protect itself from radiation?}
+To answer this, we plan to compare how the known machineries are affected by radiation exposure.
+Some preliminary cryo-ET data, collected at the same time as the septation dataset (\fullref{drad}), appeared to show some morphological differences in the nucleoid and membranes after irradiation.
+New, higher magnification data will probably be collected to move this investigation further.
 
-TODO: connecting with eymi's work on effects of radiation.
+\subsubsection{Structural proteomics}
+
+The study of the effects of radiation damage on \textit{D. radiodurans} may come in the form of another cross-over with the cell-extract project in the MICA group (\fullref{emscan}).
+Cell-extract SPA cryo-EM could be used to perform \textbf{structural proteomics}, identifying not only the changes in the proteome caused by irradiation, but the effects that these have on protein structures and complexes.
 
 
-\section{Cryo-ET: state of the art and future directions}
+\section{Cryo-ET}
 
 During the course of this thesis, the cryo-ET world has changed a lot, starting from improved sample preparation techniques, all the way to high resolution STA processing and post-processing.
 
+\section{Hardware}
+
 Cryo-FIB milling~\cite{markoFocusedionbeamThinningFrozenhydrated2007} has become an essential procedure in every group working on cellular tomography, leading to the automation of lamellae production being a major focus of hardware and software development around the world.
+The combination of FIB milling and Correlative light-electron microscopy (CLEM) is especially powerful, pushing the field towards being able to reliably and accurately locate a structure of interest in a large cell or tissue, cut out a lamella, and image it at high resolution~\cite{bergerCryoelectronTomographyFocused2023,debeerPreciseTargeting3D2023,klumpeModularPlatformAutomated2021}.
+
+Exciting progress is being made towards cheaper, smaller, lower-energy microscopes that are still powerful and capable of high resolution work~\cite{naydenovaCryoEM100KeV2019,russoElectronCryomicroscopeHardware2023}.
+Development of such instruments will hopefully help spread and democratize electron-microscopy, which currently requires extremely expensive equipment (due also in part to the quasi-monopolistic industry) and is therefore in constant lack of supply and out of reach for many researchers around the world.
+
+
+\section{Software}
+
+During the course of this thesis, many new software suites and standalone tools have appeared, improving the field both in ergonomics and algorithmically.
 
 Software pipelines are steadily moving away from the naive "reconstruct full tomogram -> extract subvolumes" approach in favour of different flavours of per-particle tilt-series, as the field pushes for sub-nanometer resolution.
 
+Interactive visualization tools like blik~\cite{gaifasBlikExtensible3D2024} and ArtiaX~\cite{ermelArtiaXElectronTomography2022} appeared to answer the need for a HITL workflow, together with integrative workflow managers like Scipion~\cite{delarosa-trevinScipionSoftwareFramework2016} now providing extensive support for cryo-ET.
+
+Community initiatives --- such as Teamtomo --- aiming to establish common frameworks and conventions will be paramount to the development of the cryo-ET software ecosystem.
+
+The industry giant Relion has implemented an almost full pipeline for cryo-ET and STA~\cite{zivanovBayesianApproachSingleparticle2022,burtImageProcessingPipeline2024}, and many other complete software suites are being published, often together with novel and unique tools~\cite{balyschewStreamlinedStructureDetermination2023,galaz-montoyaSingleParticleTomography2015,galaz-montoyaAlignmentAlgorithmsPerparticle2016,himesEmClaritySoftwareHighresolution2018,liuNextPYPComprehensiveScalable2023}
+
+Of note is also the recently (beta) release of \href{https://github.com/warpem/warp}{Warptools}, a linux port of Warp~\cite{tegunovRealtimeCryoelectronMicroscopy2019} allowing to finally integrate parts of the Warp pipeline into others, without the need of using a graphical interface and a Windows machine.
+
+The tide of Machine-learning tools of the last few years has flooded --- among many others --- the cryo-ET field, giving rise to powerful automated tools for denoising~\cite{beplerTopazDenoiseGeneralDeep2020}, segmentation~\cite{lammMemBrainV2Endtoend2024,eisensteinSmartParallelAutomated2024}, picking~\cite{wagnerEvolutionSPHIREcrYOLOParticle2020,riceTomoTwinGeneralized3D2023}, modeling~\cite{jamaliAutomatedModelBuilding2024}, structure prediction~\cite{jumperHighlyAccurateProtein2021,abramsonAccurateStructurePrediction2024,baekAccuratePredictionProtein2021}, and much more.
+While these tools may work like magic, it's important to keep an eye out for hallucinations~\cite{maynezFaithfulnessFactualityAbstractive2020}, especially as the field moves towards heavier and more normalized use of the technology; ML validation and introspection are already a high priority in other fields, and cryo-ET will be no exception.
+
+\section{Applications}
+
 As cryo-ET becomes more widespread, it's being used in a variety of different and novel applications; with this wider spectrum of literature, the community is realizing where cryo-ET really shines, and where other techniques might be preferrable.
 Especially thanks to the evolution of FIB milling and the ever faster data collection, high-resolution structure determination \textit{in situ} can also be achieved by using SPA on the same samples (with all the SNR benefit that comes with it).
+On the other hand, cryo-ET is establishing as the go-to technique for superstructural studies, where the mesoscale view allows to investigate emergent structures and behaviours which are simply too heterogeneous to be visible via SPA.
 
-in certain applications, while traditional SPA cryo-EM is better suited for some TODO??????
-
-CLEM
-
-something about industry (expensive microscopes... mention chris russo).
-
-what it's good for, what not
-
-what changed in the field during this thesis (relion 5, warptools for linux, teamtomo, ai picking, 
-
-scipion
-
-cool stuff for future (MD + cryoet = awesome, generalized convention for per-particle tilt series and deformation fields etc)
-
-\subsection{AI: Common pitfalls}
-
-denoising, ai, important to look at things, to showcase
-
-future with ML and AI in general?
+A particularly exciting prospect for me is the marriage of cryo-ET and (coarse-grained) molecular dynamics to investigate large systems such as whole cells, which was only dreamed of at the beginning of my thesis~\cite{earnestChallengesIntegratingStochastic2017}.
+The cryo-ET/MD combination is already bearing fruits in exploring conformational variability~\cite{vuillemotMDTOMOMethodContinuous2023}, in multi-scale modeling~\cite{liDevelopmentMultiscaleUltracoarsegrained2023}, and much more; it's only a matter of time before we'll be able to take a snapshot of a cell \textit{in situ}, and just simulate to see what happens next.

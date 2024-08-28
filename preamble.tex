@@ -1,6 +1,7 @@
 % different stuff if printer-friendly or not
 \RequirePackage{xifthen} \newboolean{printer-friendly} \setboolean{printer-friendly}{false}
 
+% TODO: move to memoir (requires lots of fixes)
 \ifthenelse{\boolean{printer-friendly}}{
     \documentclass[8pt,a5paper]{extbook} % extbook to allow smaller font
     \usepackage[twoside=true]{geometry} % twoside for book binding
