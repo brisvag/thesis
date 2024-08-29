@@ -1,6 +1,6 @@
 \chapter{Bacterial chromatin, FtsZ, and other projects}\label{other_projects}
 
-My PhD project was originally focused on unraveling the the mechanism of action of the nucleoid-associated protein HU, and its role in chromatin compaction and nucleoid dynamics in \textit{D. radiodurans}.
+My PhD project was originally focused on unraveling the mechanism of action of the nucleoid-associated protein HU, and its role in chromatin compaction and nucleoid dynamics in \textit{D. radiodurans}.
 The structural study of FtsZ --- both in STA and SPA --- emerged from our exploration of the nucleoid and cell dividion processes of \textit{D. radiodurans} in cryo-ET as part of the septation paper (\fullref{drad})
 Along the way, I contributed to a few other projects and developed several tools.
 This chapter presents these projects and the tools and scripts worthy of mention in this manuscript.
@@ -37,8 +37,8 @@ Such drastically different modes may explain the heterogeneous highly dynamic na
 \end{figure}
 
 To begin investigating DrHU in complex with the DNA, my supervisors collected single particle cryo-EM data of an \textit{in vitro} preparation of plasmid DNA and HU, in order to observe the interaction in a free aqueous environment.
-The bacterial genomic DNA is large, circular and supercoiled; where previous structural studies used short DNA segments, we opted for a circular dsDNA plasmid as it would be a more appropriate stand-in that would allows us to evaluate how circularity, supercoiling and DNA topology affect HU binding and assembly on DNA.
-HU and plasmid DNA were mixed at different ratios, and within a small range of relative concentration (\sim100 HU/2686 bp plasmid) intriguing spirals (\autoref{fig:hu_spirals_all}) were formed by the DNA.
+The bacterial genomic DNA is large, circular and supercoiled; where previous structural studies used short DNA segments, we opted for a circular dsDNA plasmid as it would be a more appropriate stand-in that would allow us to evaluate how circularity, supercoiling and DNA topology affect HU binding and assembly on DNA.
+HU and pUC19 plasmid DNA were mixed at different ratios, and within a small range of relative concentration (\sim100 HU/2686 bp plasmid) intriguing spirals (\autoref{fig:hu_spirals_all}) were formed by the DNA.
 Notably, these spirals were formed by supercoiled DNA only, but not by relaxed or linearized plasmid, and were never observed in the absence of HU.
 Our original idea based on these images was that HU would form tetramers and bind between two neighbouring turns of the DNA spirals to hold them together.
 
@@ -107,7 +107,7 @@ With these picks and a few rounds of 2D classification and cleaning, we were abl
     \label{fig:hu_classes}
 \end{figure}
 
-We attempted also to pick particle manually or using topaz, focusing on each occurrence of a small "blob" of HU-compatible dimensions appearing next to the DNA (\autoref{fig:hu_topaz}).
+We attempted also to pick particles manually or using topaz, focusing on each occurrence of a small "blob" of HU-compatible dimensions appearing next to the DNA (\autoref{fig:hu_topaz}).
 
 \begin{figure}[ht]
     \centering
@@ -128,8 +128,13 @@ We attempted also to pick particle manually or using topaz, focusing on each occ
     \label{fig:hu_topaz}
 \end{figure}
 
-In all these cases, when doing 3D reconstruction, we attempted to tight masking around the filament or next to it, or to restrict the refinement shifts to allow the DNA to help with initial alignement without hindering the pose refinement.
+In all these cases, when doing 3D reconstruction, we attempted to apply tight masking around the filament or next to it, or to restrict the refinement shifts to allow the DNA to help with initial alignement without hindering the pose refinement.
 Unfortunately, in none of these cases we were able to successfully identify HU in our dataset, likely due to the small size of HU, but also the heterogeneous and dynamic nature of the HU-DNA complex.
+
+\bigskip
+
+Given the difficulty of picking HU and refining further, we concluded that we needed to devise a new sample preparation and/or data collection that was designed to help with picking and refinement.
+In the interest of time --- and to focus on my primary goal of software development --- the project was temporarily shelved to be later picked up by others in the group (\fullref{future_hu}).
 
 
 \section{FtsZ function and structure}\label{ftsz}
@@ -155,7 +160,7 @@ There is currently no consensus model that fully explains the function and mode 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{other/ftsz_ring.png}
-    \titledcaption[FtsZ forms a ring \textit{in vivo} and filaments \textit{in vitro}]{During cell division, FtsZ is known to localize on a ring (termed Z-ring) corresponding to the tips of the septa (left, figure adapted from \autoref{drad_fig6}). Many structural studies were done on FtsZ, identifying the formation of protofilament via head-to-tail stacking (right, figure adapted from \citet{olivaStructuralInsightsFtsZ2004}.}
+    \titledcaption[FtsZ forms a ring \textit{in vivo} and filaments \textit{in vitro}]{During cell division, FtsZ is known to localize on a ring located at the tips of the septa, as can be seen in these images of \textit{D. radiodurans} (left, figure adapted from \autoref{drad_fig6}). Many structural studies were done on FtsZ, identifying the formation of protofilament via head-to-tail stacking (right, figure adapted from \citet{olivaStructuralInsightsFtsZ2004}.}
     \label{fig:ftsz_ring}
 \end{figure}
 
@@ -312,7 +317,7 @@ Our observations on the reconstructed tomograms matched those by \citet{sextonSu
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{other/ftsz_slices.png}
-    \titledcaption[FtsZ: tomogram slices from top and side view]{When viewing a cross-section of the bundle at the tip of the septa of \textit{D. radiodurans} (left), FtsZ is visible as a double arch separated by a gridded pattern. This is likely the result of a layer of FtsA bridging between the membrane and a layer of FtsZ filaments. (figure adapted from \autoref{drad_fig4}).}
+    \titledcaption[FtsZ: tomogram slices from top and side view]{When viewing a cross-section of a tomogram of \textit{D. radiodurans} (left), a double arch separated by a gridded pattern can be seen near the tip of the septa. This is likely a layer of FtsA bridging between the membrane and a layer of FtsZ filaments. The distance of the second arch (FtsZ) from the membrane is \sim14 nm, in concordance with the literature. The distance between each line in the gridded pattern (expected to match the filaments) is \sim55 Å, similar to the inter-filament distance from other studies. A side view of the septal tip (right) shows that the double-arch is an elongated structure, matching the expectation of a bundle of filaments forming a septation ring. Figure adapted from \autoref{drad_fig4}.}
     \label{fig:ftsz_tomo_slice}
 \end{figure}
 
@@ -327,7 +332,7 @@ To get a higher resolution view of this complex \textit{in situ}, we performed S
 
 Given the apparent regularity of the bundles (whose morphology appears unchanged across their length), we used blik's surface picking tool~\cite{gaifasBlikExtensible3D2024,gaifasBlikPythonTool2024}, which allows us to distribute regularly spaced particles on the sheet-like FtsZ bundles.
 The inter-particle distance was chosen to be based on the spacing in the regular comb-like pattern along the FtsZ arches.
-Several different different sets of particles were thus generated, with two showing more promising results: with inter-particle distance matching the visible pattern (\sim50 Å), and twice oversampled (\sim25 Å) (\autoref{fig:ftsz_tomo_picks}).
+Several different sets of particles were thus generated, with two showing more promising results: with inter-particle distance matching the visible pattern (\sim50 Å), and twice oversampled (\sim25 Å) (\autoref{fig:ftsz_tomo_picks}).
 
 \begin{figure}[ht]
     \centering
@@ -376,13 +381,16 @@ Even still, this map is likely to contain artifacts due to misalignement of the 
         \caption{FtsZ subtomogram compared to a FtsZ structure.}
         \label{fig:ftsz_subtomo_iso_struct}
     \end{subfigure}%
-    \titledcaption[FtsZ STA preliminary results]{Subtomogram averaging results of the particle picks on FtsZ at the tip of the septa in \textit{D. radiodurans}. The grid-like pattern visible in the tomogram slices is captured by the subtomograms, but it's likely to be partly artifactual, as the spacing between filaments the resolution is too low. On the right, FtsZ filament crystal structures fitted to the map in two different orientations show the mismatch in sizes.}
+    \titledcaption[FtsZ STA preliminary results]{Subtomogram averaging results of the particle picks on FtsZ at the tip of the septa in \textit{D. radiodurans}. The grid-like pattern visible in the tomogram slices is captured by the subtomograms, but it's likely to be partly artifactual, as the spacing between filaments is too low. On the right, FtsZ filament crystal structures fitted to the map in two different orientations show the mismatch in sizes.}
     \label{fig:ftsz_subtomo}
 \end{figure}
 
-It's worth noting that due to the nature of the division cycle of \textit{D. radiodurans}, the bacterium is generally found as a tetrad laying flat on the grid, which leads to a preferential orientation of the septa (and therefore the FtsZ filaments) along the Z axis on the tomograms.
+It's worth noting that, due to the nature of the division cycle of \textit{D. radiodurans}, the bacterium is generally found as a tetrad laying flat on the grid, which leads to a preferential orientation of the septa (and therefore the FtsZ filaments) along the Z axis on the tomograms.
 Due to the missing wedge (\fullref{et_tomo_reconstruction}), along which the filaments are aligned, the information is blurred along the FtsZ filament axis, limiting for example the ability to distinguish individual FtsZ monomers.
 
+\bigskip
+
+This project has now been picked up by other members of the group, and by using existing and new datasets it'is already showing promising improvements over this work, both on the single particle (\fullref{future_ftsz_spa}) and the subtomogram averaging work (\fullref{future_ftsz_sta}).
 
 \section{Tools and scripts}
 
@@ -456,19 +464,19 @@ A small tool, but used widely by our group and others, and later \href{https://s
 Some of the more relevant tools are noted here for reference.
 
 
-\subsubsection{csplot}
-An interactive tool to plot any combination of CryoSPARC particle data columns in a few different styles.
+\subsubsection{\texttt{csplot}}
+An interactive tool to plot any combination of CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} particle data columns in a few different styles.
 Since this was developed, CryoSPARC's own live plotting tools reached similar functionality for particles and micrographs.
 
-\subsubsection{create_mask}
+\subsubsection{\texttt{create\_mask}}
 A simple tool to create geometric masks, which often solved problems with similar tools available in other software suites.
-A better and more full-featured version of this is now being developed by others in Teamtomo (\href{https://github.com/teamtomo/ttmask}{ttmask}).
+A better and more full-featured version of this is now being developed by others in Teamtomo at \href{https://github.com/teamtomo/ttmask}{ttmask} (\fullref{teamtomo}).
 
-\subsubsection{project_profiles}
+\subsubsection{\texttt{project\_profiles}}
 A very ad hoc tool, but which was instrumental in streamlining and speeding up significantly the calculation of memebrane profiles for the septation paper (\fullref{drad}).
 
-\subsubsection{warp}
+\subsubsection{\texttt{warp}}
 A collection of tools to work with Warp, such as for spoofing or fixing mdocs, offsetting tilt angles, or preparing data for processing.
 
-\subsubsection{generate_tilt_angles}\label{stemia_angles}
+\subsubsection{\texttt{generate\_tilt\_angles}}\label{stemia_angles}
 A tool developed to work on the FtsZ tilted dataset (\fullref{ftsz_tilted}) which can be used to initialize angle priors for particles in a tilted dataset.

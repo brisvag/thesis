@@ -59,18 +59,18 @@ Some of these tools --- contributed by various developers --- are already availa
 
 \section{\textit{D. radiodurans}: FtsZ, HU, and more}
 
-The ongoing efforts on HU and FtsZ encountered technical challenges that so far prevented us from reaching high resolution and unravel the structure and function of these proteins.
-We already started to work around these challenges, and Harald Bernhard --- a postdoc in the MICA group --- has picked up the work on these projects and already started improving on it.
+The ongoing efforts on HU and FtsZ encountered technical challenges that so far prevented us from reaching high resolution and unraveling the structure and function of these proteins.
+We already started to work around these challenges, and Harald Bernhard --- a joint GenOM/MICA postdoc --- has picked up the work on these projects and already started improving on it.
 There are also new directions in which we'd like to extend our work on \textit{D. radiodurans}, using cryo-EM, cryo-ET and other imaging techniques; particularly, we're interested in understanding the effects of radiation damage on all these processes, and how \textit{D. radiodurans} protects itself from it.
 
-\subsection{Chromatin and HU}
+\subsection{Chromatin and HU}\label{future_hu}
 
 To increase our chances to identify and pick HU, a new dataset was collected with a phase plate, which allows to collect data closer to focus while improving the contrast of low spatial fequency information (\fullref{em_ctf}).
-Preliminary results on this data showed more classes containing what could be HU in a similar conformation to what seen in \autoref{fig:hu_structure}, but more work is needed.
+Preliminary results on this data showed more classes containing what could be HU in a similar conformation to what was seen in \autoref{fig:hu_structure}, but more work is needed.
 
 % TODO: any plans/ideas still for tomography here?
 
-\subsection{FtsZ SPA}
+\subsection{FtsZ SPA}\label{future_ftsz_spa}
 
 Since Harald picked up this project, he has already managed to improve the results from the FtsZ+DDM dataset in a few ways.
 With careful use of 2D and 3D classifications, it's possible to better isolate single filaments, which improves the initial model generation.
@@ -89,14 +89,14 @@ Depending on the outcome of the detergent dataset, we might need to go back to t
 We think that the process of assigning angles and restricting the search should be theoretically sound, so it may be worth spending more time tweaking parameters in Relion to find a working setup.
 A recent study by ~\citet{aiyerOvercomingResolutionAttenuation2024} showed that negative effects of thickening the sample (due to tilting) should be negligible with proper preprocessing, so the achievable resolution should be unrestricted by the tilt.
 
-\subsection{FtsZ STA}
+\subsection{FtsZ STA}\label{future_ftsz_sta}
 
 The cryo-ET dataset used in the septation paper (\fullref{drad}) was collected with the goal of capturing a wide field of view including a full \textit{D. radiodurans} cell.
 For this reason, it contains a relatively low amount of FtsZ bundles (which are often not visible and/or not present in the lamellae), and has a relatively high pixel size (4.346 Å/px), which significantly limits our ability to reach high resolutions.
 
 A new dataset has recently been collected by Harald with higher magnification and focused on the septa tips, which will hopefully provide a higher resolution view on the tips.
 
-However, another problem with STA of FtsZ was the preferential orientation of the filaments, a consequence of how \textit{D. radiodurans} absorbs on the grid.
+However, another problem with STA of FtsZ was the preferential orientation of the filaments, a consequence of how \textit{D. radiodurans} lies on the grid.
 A way to tackle this problem is to force the bacteria into different orientations, for example by creating a dense paste of bacteria to freeze using the waffle method~\cite{kelleyWaffleMethodGeneral2022}.
 Preliminary attempts to prepare such sample were promising, but due to technical problems with the cryo-FIB microscope we were not yet able to continue with this sample.
 Similarly, freezing the sample with a Leica™ plunge freezer showed a more diverse orientation distribution of the bacteria.
@@ -104,7 +104,7 @@ Similarly, freezing the sample with a Leica™ plunge freezer showed a more dive
 \subsection{Effects of stress and radiation}
 
 \textit{D. radiodurans} is especially intriguing due its incredibly effective radiation and stress resistance machinery.
-While the FtsZ and HU projects are interesting in of themselves, they all fit in a wider question: \textbf{How does \textit{D. radiodurans} protect itself from radiation?}
+While the FtsZ and HU projects are interesting by themselves, they all fit in a wider question: \textbf{How does \textit{D. radiodurans} protect itself from radiation?}
 To answer this, we plan to compare how the known machineries are affected by radiation exposure.
 Some preliminary cryo-ET data, collected at the same time as the septation dataset (\fullref{drad}), appeared to show some morphological differences in the nucleoid and membranes after irradiation.
 New, higher magnification data will probably be collected to move this investigation further.
@@ -119,7 +119,7 @@ Cell-extract SPA cryo-EM could be used to perform \textbf{structural proteomics}
 
 During the course of this thesis, the cryo-ET world has changed a lot, starting from improved sample preparation techniques, all the way to high resolution STA processing and post-processing.
 
-\section{Hardware}
+\subsection{Hardware}
 
 Cryo-FIB milling~\cite{markoFocusedionbeamThinningFrozenhydrated2007} has become an essential procedure in every group working on cellular tomography, leading to the automation of lamellae production being a major focus of hardware and software development around the world.
 The combination of FIB milling and Correlative light-electron microscopy (CLEM) is especially powerful, pushing the field towards being able to reliably and accurately locate a structure of interest in a large cell or tissue, cut out a lamella, and image it at high resolution~\cite{bergerCryoelectronTomographyFocused2023,debeerPreciseTargeting3D2023,klumpeModularPlatformAutomated2021}.
@@ -128,7 +128,7 @@ Exciting progress is being made towards cheaper, smaller, lower-energy microscop
 Development of such instruments will hopefully help spread and democratize electron-microscopy, which currently requires extremely expensive equipment (due also in part to the quasi-monopolistic industry) and is therefore in constant lack of supply and out of reach for many researchers around the world.
 
 
-\section{Software}
+\subsection{Software}
 
 During the course of this thesis, many new software suites and standalone tools have appeared, improving the field both in ergonomics and algorithmically.
 
@@ -145,7 +145,7 @@ Of note is also the recently (beta) release of \href{https://github.com/warpem/w
 The tide of Machine-learning tools of the last few years has flooded --- among many others --- the cryo-ET field, giving rise to powerful automated tools for denoising~\cite{beplerTopazDenoiseGeneralDeep2020}, segmentation~\cite{lammMemBrainV2Endtoend2024,eisensteinSmartParallelAutomated2024}, picking~\cite{wagnerEvolutionSPHIREcrYOLOParticle2020,riceTomoTwinGeneralized3D2023}, modeling~\cite{jamaliAutomatedModelBuilding2024}, structure prediction~\cite{jumperHighlyAccurateProtein2021,abramsonAccurateStructurePrediction2024,baekAccuratePredictionProtein2021}, and much more.
 While these tools may work like magic, it's important to keep an eye out for hallucinations~\cite{maynezFaithfulnessFactualityAbstractive2020}, especially as the field moves towards heavier and more normalized use of the technology; ML validation and introspection are already a high priority in other fields, and cryo-ET will be no exception.
 
-\section{Applications}
+\subsection{Applications}
 
 As cryo-ET becomes more widespread, it's being used in a variety of different and novel applications; with this wider spectrum of literature, the community is realizing where cryo-ET really shines, and where other techniques might be preferrable.
 Especially thanks to the evolution of FIB milling and the ever faster data collection, high-resolution structure determination \textit{in situ} can also be achieved by using SPA on the same samples (with all the SNR benefit that comes with it).
