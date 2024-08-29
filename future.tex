@@ -87,16 +87,16 @@ While the anisotropy issue remains, the new maps are much more interpretable, an
 
 Depending on the outcome of the detergent dataset, we might need to go back to the tilted dataset.
 We think that the process of assigning angles and restricting the search should be theoretically sound, so it may be worth spending more time tweaking parameters in Relion to find a working setup.
-A recent study by ~\citet{aiyerOvercomingResolutionAttenuation2024} showed that negative effects of thickening the sample (due to tilting) should be negligible with proper preprocessing, so the achievable resolution should be unrestricted.
+A recent study by ~\citet{aiyerOvercomingResolutionAttenuation2024} showed that negative effects of thickening the sample (due to tilting) should be negligible with proper preprocessing, so the achievable resolution should be unrestricted by the tilt.
 
 \subsection{FtsZ STA}
 
 The cryo-ET dataset used in the septation paper (\fullref{drad}) was collected with the goal of capturing a wide field of view including a full \textit{D. radiodurans} cell.
 For this reason, it contains a relatively low amount of FtsZ bundles (which are often not visible and/or not present in the lamellae), and has a relatively high pixel size (4.346 Å/px), which significantly limits our ability to reach high resolutions.
 
-A new dataset has recently been collected by Irina with higher magnification and focused on the septa tips, which will hopefully provide a higher resolution view on the tips.
+A new dataset has recently been collected by Harald with higher magnification and focused on the septa tips, which will hopefully provide a higher resolution view on the tips.
 
-However, another problem with STA of FtsZ was the preferential orientation of the filaments, a consequence of how \textit{D. radiodurans} grows on the grid.
+However, another problem with STA of FtsZ was the preferential orientation of the filaments, a consequence of how \textit{D. radiodurans} absorbs on the grid.
 A way to tackle this problem is to force the bacteria into different orientations, for example by creating a dense paste of bacteria to freeze using the waffle method~\cite{kelleyWaffleMethodGeneral2022}.
 Preliminary attempts to prepare such sample were promising, but due to technical problems with the cryo-FIB microscope we were not yet able to continue with this sample.
 Similarly, freezing the sample with a Leica™ plunge freezer showed a more diverse orientation distribution of the bacteria.
@@ -124,7 +124,7 @@ During the course of this thesis, the cryo-ET world has changed a lot, starting 
 Cryo-FIB milling~\cite{markoFocusedionbeamThinningFrozenhydrated2007} has become an essential procedure in every group working on cellular tomography, leading to the automation of lamellae production being a major focus of hardware and software development around the world.
 The combination of FIB milling and Correlative light-electron microscopy (CLEM) is especially powerful, pushing the field towards being able to reliably and accurately locate a structure of interest in a large cell or tissue, cut out a lamella, and image it at high resolution~\cite{bergerCryoelectronTomographyFocused2023,debeerPreciseTargeting3D2023,klumpeModularPlatformAutomated2021}.
 
-Exciting progress is being made towards cheaper, smaller, lower-energy microscopes that are still powerful and capable of high resolution work~\cite{naydenovaCryoEM100KeV2019,russoElectronCryomicroscopeHardware2023}.
+Exciting progress is being made towards cheaper, smaller, lower-energy microscopes that are still powerful and capable of high resolution work~\cite{naydenovaCryoEM100KeV2019,russoElectronCryomicroscopeHardware2023} --- though for thicker samples it might be more complicated (\autoref{fig:et_smallest_particle}).
 Development of such instruments will hopefully help spread and democratize electron-microscopy, which currently requires extremely expensive equipment (due also in part to the quasi-monopolistic industry) and is therefore in constant lack of supply and out of reach for many researchers around the world.
 
 
@@ -138,7 +138,7 @@ Interactive visualization tools like blik~\cite{gaifasBlikExtensible3D2024} and 
 
 Community initiatives --- such as Teamtomo --- aiming to establish common frameworks and conventions will be paramount to the development of the cryo-ET software ecosystem.
 
-The industry giant Relion has implemented an almost full pipeline for cryo-ET and STA~\cite{zivanovBayesianApproachSingleparticle2022,burtImageProcessingPipeline2024}, and many other complete software suites are being published, often together with novel and unique tools~\cite{balyschewStreamlinedStructureDetermination2023,galaz-montoyaSingleParticleTomography2015,galaz-montoyaAlignmentAlgorithmsPerparticle2016,himesEmClaritySoftwareHighresolution2018,liuNextPYPComprehensiveScalable2023}
+The field giant Relion has implemented an almost full pipeline for cryo-ET and STA~\cite{zivanovBayesianApproachSingleparticle2022,burtImageProcessingPipeline2024}, and many other complete software suites are being published, often together with novel and unique tools~\cite{balyschewStreamlinedStructureDetermination2023,galaz-montoyaSingleParticleTomography2015,galaz-montoyaAlignmentAlgorithmsPerparticle2016,himesEmClaritySoftwareHighresolution2018,liuNextPYPComprehensiveScalable2023}
 
 Of note is also the recently (beta) release of \href{https://github.com/warpem/warp}{Warptools}, a linux port of Warp~\cite{tegunovRealtimeCryoelectronMicroscopy2019} allowing to finally integrate parts of the Warp pipeline into others, without the need of using a graphical interface and a Windows machine.
 

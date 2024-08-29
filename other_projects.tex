@@ -350,7 +350,7 @@ Several different different sets of particles were thus generated, with two show
 
 Subtomograms were reconstructed in Warp~\cite{tegunovRealtimeCryoelectronMicroscopy2019} using these particle picks, at different resolutions and with varying box sizes.
 Using Relion~\cite{scheresRELIONImplementationBayesian2012,zivanovBayesianApproachSingleparticle2022,burtImageProcessingPipeline2024}, we performed subtomogram averaging and 3D classification to refine the positions and obtain a 3D map of the particles.
-Due to the low magnification of the dataset (Nyquist \simeq9 Å), Relion was in most cases struggling to assign orientations.
+Due to the low magnification of the dataset (Nyquist \simeq8.8 Å), Relion was in most cases struggling to assign orientations.
 The only refinement that resulted in consistent orientations and a reasonable map was with particles picked at 50 Å spacing, and subtomograms reconstructed at the highest resolution (4.346 Å/px) and with a large box size of 64 pixels, corresponding to \sim28 nm (\autoref{fig:ftsz_subtomo}).
 Even still, this map is likely to contain artifacts due to misalignement of the repeating filament patterns, as evidenced by the too-small inter-filament distance (\sim21.1 Å) (\autoref{fig:ftsz_subtomo_iso_struct}).
 
