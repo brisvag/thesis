@@ -413,13 +413,26 @@ As a contribution to the PhD project of Eymeline Pageot --- another PhD student 
 
 This allows for example to discard classes from already-solved structures, or to identify 2D classes that potentially belong to different views of a protein whose homologues are present on the EMDB.
 
-% TODO explain how it works
+\subsubsection{Design and workflow}
 
-% \1 projection matching for eymeline's work
-%     \2 more native than SPA but more straightforward than STA
-%     \2 would be cool to go into some technical details here (cross-correlation, projection, etc)
-%     \2 optimizing for space and performance
-%     \2 the issues around cross correlation
+The challenging part of such a tool is performance: the EMDB is a big database, and performing exhaustive cross-correlation search on all the maps could be prohibitive if not done cleverly.
+To save on networking, storage, and computation, emscan keeps an up-to-date local version of the EMDB database but, instead of storing maps, it stores the FT of map projections at different angles (by default, 150 views per map).
+
+When input 2D classes are provided, their FT is calculated and used to compute the CC value between them and each projection of each map (and their mirror image), including a rotational search (by default with a 2° angle step).
+This step is the bulk of the work, and thus heavily optimized: FTs and intermediate calculations are cached and reused as much as possible, and computations are performed on the GPU when available.
+With this setup, emscan can currently process each 2D class in about 2 hours.
+
+The user is then presented with the best scoring matches, displayed in napari side-by-side for visual comparison with the input classes; a few shortcuts allow to quickly navigation to the relative EMDB page, to open a 3D map in a new napari window, or to generate projections for use in template matching.
+It's also possible to group together the result of multiple classes by averaging their best scores for each projection comparison; this is useful to determine whether different 2D classes are from unrelated proteins or just different views of the same object.
+
+\subsubsection{Potential improvements}
+
+While the tool already proved useful for the cell-extract project, there are several potential avenues for improvement, especially for performance --- which will be crucial for the future automation plans.
+
+The current CC calculation is a bit limited and not stricly correct (compromises were made for performance), and its speed could be improved with some clever chaching tricks~\cite{kasoComputationNormalizedCrosscorrelation2018}.
+Alternatively, changing the method altogether, for example by using Fourier-Bessel functions~\cite{zhaoFourierBesselRotational2013} or other methods~\cite{almiraFastNormalizedCrosscorrelation2024}, might improve the performance even more.
+
+No optimization is currently in place to account for symmetrical objects, which are very common and would require much fewer computations if properly treated.
 
 \subsection{Other napari tools}
 
