@@ -35,7 +35,7 @@
     \newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{DOI:~\detokenize{#1}}} % hyperlink DOIs (only non-print)
 }
 % "fullref" (especially for printed cause link can't be clicked and it's easier to find with section numbers)
-\newcommand*\fullref[1]{\hyperref[{#1}]{\bfseries\ref*{#1} \nameref*{#1}}}
+\newcommand*\fullref[1]{\hyperref[{#1}]{\bfseries\ref*{#1}: \nameref*{#1}}}
 
 % useful miscellaneous
 \usepackage{xcolor} % colors by name and modifiers to alpha and such

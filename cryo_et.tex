@@ -26,7 +26,7 @@ At its core, cryo-ET is just cryo-EM with extra steps; they share much of the th
 The key difference is that, where single particle cryo-EM uses projections from different \textit{copies} of the same object to reconstruct a 3D map, cryo-ET images the same location from multiple orientations in order to reconstruct a 3D map from multiple projections of the \textit{same} object.
 This chapter describes the theory of cryo-ET, how it deviates from SPA in its workflow (\autoref{fig:et_workflow}), and the current state of the art with its limitations and upcoming developments.
 
-\begin{figure}[ht]
+\begin{figure}
     \centering
     \resizebox{\textwidth}{!}{\begin{tikzpicture}[node distance=2ex and 5ex]
         \node (purif) [node] {Expression/Purification};
@@ -94,7 +94,7 @@ In recent years, focused ion beam (FIB) milling --- a technique already well est
 FIB milling typically makes use of a gallium ion beam --- or, more recently, xenon or oxygen plasma --- to ablate thick samples, which can be thus thinned to below 150 nm.
 Preparing lamellae via FIB milling is becoming standard procedure in cryo-ET, and many cryo-ET facilities are automating much of the process, increasing reliability, speed and reproducibility.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/fib.png}
     \titledcaption[FIB milling]{Microscope snapshots from FIB milling procedure on \textit{Deinococcus radiodurans}. A cluster of cells, visible as a bump on the SEM, is selected from the grid (top left). From a shallow angle of around 15° from the grid (top right) the FIB is used to ablate material above and below the area of interest. This leaves a thin lamellae suitable for cryo-ET (bottom). Milled cell drawing (bottom left) taken from \citet{villaOpeningWindowsCell2013}.}
@@ -152,7 +152,7 @@ The missing wedge introduces several problems in downstream processing: it blurs
 
 If fiducials (or other high-contrast objects of no real interest) are present in the sample, it is often useful to mask them during reconstruction, in order to avoid the high-contrast artifactual streaks caused by the missing wedge, which can impair the interpretability of the tomogram~\cite{tegunovRealtimeCryoelectronMicroscopy2019,burtTeamtomoFidder2024}.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/missing_wedge.png}
     \titledcaption[Missing wedge]{2D slice through the 3D FT of a tomogram, perpendicular to the tilt axis. The 2D FT of images of the tiltseries are visible as lines at regular angular spacing; at the top and bottom they are not present, creating the missing wedge.}
@@ -210,7 +210,7 @@ A distinctive strength of cryo-ET is the ability to explore mesoscale systems or
 Many of cryo-ET's limitations are ultimately ascribable to the low SNR; some of them can be overcome with hardware improvements (better sample preparation, detectors and phase plates), and others with software advances (chromatic aberration correction, better alignment and refinement procedures).
 In recent years, several groups are working on developing new hardware and software for cryo-EM and cryo-ET, steadily improving the attainable resolution (\autoref{fig:et_smallest_particle})~\cite{russoCryomicroscopySituWhat2022}.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{introduction/smallest_particle_plot_russo.png}
     \titledcaption[Particle size limit versus sample thickness]{Theoretical lower limit of particle size that can be resolved from cryo-EM data, depending on the sample thickness. Currently, even the best tomography results are far from the theoretical limits due to lack of optimization in sample preparation and hardware. The current theoretical limits can yet be improved by implementing some additional methods. Figure taken from \citet{russoElectronCryomicroscopeHardware2023}.}

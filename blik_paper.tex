@@ -78,7 +78,7 @@ Data in napari is exposed as \texttt{layers} that can be controlled individually
 
 Images, image stacks and volumes in the most common formats (\texttt{.tif}, \texttt{.mrc}, \texttt{.em}, \texttt{.hdf}) can be opened and viewed both in 2D as slices (\autoref{images-showcase}A) and in 3D as volumetric projections (\autoref{images-showcase}B), isosurfaces (\autoref{images-showcase}C) and more. It is possible to change colormaps, contrast limits, gamma and other basic image visualisation parameters. 3D visualisation also allows for slicing the volumes at arbitrary planes (\autoref{images-showcase}D), similar to IMOD's \texttt{slicer} tool.
 
-\begin{figure}[!ht]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{blik_paper/image_volume_showcase.png}
     \titledcaption[Volume visualisations]{Showcase of the image visualisation capabilities of napari and blik. Chemoreceptor arrays of the \textit{E. coli} minicells~\cite{burtCompleteStructureChemosensory2020} are used for illustrative purposes throughout the figures. \textbf{A.} 2D slice through a 3D volume. \textbf{B.} Maximum intensity projection of the 3D volume. \textbf{C.} Isosurface. \textbf{D.} Arbitrary 3D plane slicing in 3D view. \textbf{E.} 2D slice through the 3D power spectrum of the volume. \textbf{F.} Segmentation (in semi-transparent brown) of 3D objects.}
@@ -98,7 +98,7 @@ Additionally, masks and pixel-based segmentations (often called just "segmentati
 
 Particle data (coordinates, orientations, and any additional features and metadata) can be loaded from common formats (\texttt{.star}, \texttt{.tbl}). Coordinates are visualised as spheres, and orientations as basis vectors centred on the spheres (\autoref{particles-showcase}). Both components can be disabled or tweaked (such as color-coded or resized, labeled, etc.) for better visualisation. As with images, particles can be easily viewed in 3D.
 
-\begin{figure}[!ht]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{blik_paper/particle_plot.png}
     \titledcaption[3D particle visualisation and feature plotting]{Particles are from a Relion 3D classification of chemoreceptor arrays of the \textit{E. coli} minicells~\cite{burtCompleteStructureChemosensory2020}. Orientations are displayed with the three basis vectors in red/blue/green. The properties-plotter widget (bottom) shows a plot of a Relion data column -- in this case, the \texttt{rlnClassNumber} -- as a histogram. By selecting an area of this plot, the corresponding subset of particles is selected. This can be then used for further processing; in this case, selected particles are coloured differently (in magenta), showing that the selected classes contain mostly particles from the core of the chemoreceptor array lattice.}
@@ -204,7 +204,7 @@ While this approach is advantageous for relatively regular surfaces, for which t
 \subsubsection{Resampling}\label{resampling}
 The grid-like, regularly spaced nature of these models can be additionally used to create visualisation aids (meshes and filaments) and to resample the annotated volume along the annotated object. Such volume resampling can be useful for quantitative and spatially consistent volume analysis of otherwise complex 3D objects; density profiles of a complex 3D surface can thus be generated while retaining spatial information. In practice, this can also be used to aid visualisation, by "straightening" an otherwise curved surface.
 
-\begin{figure}[!ht]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{blik_paper/surface_resample.png}
     \titledcaption[Surface-based volume resampling]{\textbf{Top}: a surface is generated using the surface widget, following the shape of a minicell membrane. The tomogram volume is then resampled based on the picked surface and a few parameters set in the widget, such as sample thickness and pixel spacing. \textbf{Bottom}: the result is a 3D volume containing a "straightened" version of the picked surface, displayed here averaged along Z into a 2D image.}

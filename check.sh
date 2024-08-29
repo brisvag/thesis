@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # exclude papers (or should we fix them too?)
-FILES=$(fd --exclude "*_paper*" --glob "*.tex")
+FILES=$(fd --glob "*.tex")
 
 echo === Checking for TODO comments
 rg --vimgrep 'TODO' $FILES
@@ -36,6 +36,7 @@ rg --vimgrep -s '[^\{]in situ' $FILES
 rg --vimgrep -s '[^\{]in vivo' $FILES
 rg --vimgrep -s '[^\{]in cellulo' $FILES
 rg --vimgrep -s '[^\{]in silico' $FILES
+rg --vimgrep -s 'radiodurans[^\}]' $FILES
 
 # echo === Style checking with Vale
 # vale --output vale_template.tmpl $FILES
