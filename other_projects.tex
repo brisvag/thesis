@@ -13,7 +13,7 @@ Initially the main project of my PhD, the study of bacterial chromatin compactio
 It builds upon previous fluorescence imaging on \textit{D. radiodurans} nucleoids done by the GenOM team and more recent cryo-EM and cryo-ET data collected and analyzed by the MICA group.
 
 The main protein of interest is HU, a nucleoid-associated protein (NAP) present in most bacteria (including \textit{E. coli} and \textit{D. radiodurans}) which is known to be a key player in chromatin compaction and nucleoid morphology throughout the cell cycle.
-The structure of dimeric HU from various bacterial species has been solved in either its apo- or DNA-bound forms (\autoref{fig:hu}).
+The structure of dimeric HU from various bacterial species has been solved in either its apo- or DNA-bound forms (\figref{fig:hu}).
 HU is thought to have a histone-like bending function --- with molecular dynamics simulations supporting the evidence to this binding mode~\cite{hognonMolecularBasesDNA2019} --- but it was also observed forming stacks of dimers that lay parallel to the DNA duplex, suggesting the possibility of multiple modes of interaction between HU dimers and the DNA~\cite{hammelHUMultimerizationShift2016}.
 Such drastically different modes may explain the heterogeneous highly dynamic nature of the \textit{D. radiodurans} nucleoids despite the relatively low number of players involved --- mostly driven by HU and a DNA-gyrase.
 
@@ -38,7 +38,7 @@ Such drastically different modes may explain the heterogeneous highly dynamic na
 
 To begin investigating DrHU in complex with the DNA, my supervisors collected single particle cryo-EM data of an \textit{in vitro} preparation of plasmid DNA and HU, in order to observe the interaction in a free aqueous environment.
 The bacterial genomic DNA is large, circular and supercoiled; where previous structural studies used short DNA segments, we opted for a circular dsDNA plasmid as it would be a more appropriate stand-in that would allow us to evaluate how circularity, supercoiling and DNA topology affect HU binding and assembly on DNA.
-HU and pUC19 plasmid DNA were mixed at different ratios, and within a small range of relative concentration (\sim100 HU/2686 bp plasmid) intriguing spirals (\autoref{fig:hu_spirals_all}) were formed by the DNA.
+HU and pUC19 plasmid DNA were mixed at different ratios, and within a small range of relative concentration (\sim100 HU/2686 bp plasmid) intriguing spirals (\figref{fig:hu_spirals_all}) were formed by the DNA.
 Notably, these spirals were formed by supercoiled DNA only, but not by relaxed or linearized plasmid, and were never observed in the absence of HU.
 Our original idea based on these images was that HU would form tetramers and bind between two neighbouring turns of the DNA spirals to hold them together.
 
@@ -61,11 +61,11 @@ Our original idea based on these images was that HU would form tetramers and bin
     \label{fig:hu_spirals_all}
 \end{figure}
 
-The very small molecular weight of HU (\sim25 kDa in its dimeric form) meant that picking and processing these particles (even in the expected dimeric or tetrameric forms) would be practically impossible in cryo-EM (see \autoref{fig:et_smallest_particle} for the theoretical limits).
+The very small molecular weight of HU (\sim25 kDa in its dimeric form) meant that picking and processing these particles (even in the expected dimeric or tetrameric forms) would be practically impossible in cryo-EM (see \figref{fig:et_smallest_particle} for the theoretical limits).
 However, due to the relatively high concentration of HU --- \sim100 HU/plasmid corresponds to approximately 1 HU for every 26bp --- the DNA should be densely decorated by HU, unless the protein distribution on the grid is not uniform or big aggregates are forming.
 It should therefore be possible to work around the particle size limitation by using the supporting geometry of the DNA filament to do the picking and guide refinement.
 
-With this in mind, we devised two picking strategies: a DNA-aligned one (\autoref{fig:hu_picks_ondna}), from which we might be able to isolate picks where HU is decorating the DNA on the side, and one positioned between two DNA filaments (\autoref{fig:hu_picks_betweendna}), where we might be able to see tetramer of HU, hypothesized to form a bridge between DNA filaments based on previous biochemical studies by the GenOM team.
+With this in mind, we devised two picking strategies: a DNA-aligned one (\figref{fig:hu_picks_ondna}), from which we might be able to isolate picks where HU is decorating the DNA on the side, and one positioned between two DNA filaments (\figref{fig:hu_picks_betweendna}), where we might be able to see tetramer of HU, hypothesized to form a bridge between DNA filaments based on previous biochemical studies by the GenOM team.
 
 \begin{figure}
     \centering
@@ -86,9 +86,9 @@ With this in mind, we devised two picking strategies: a DNA-aligned one (\autore
     \label{gih:hu_picks}
 \end{figure}
 
-With these picks and a few rounds of 2D classification and cleaning, we were able to obtain 2D classes in which DNA features were clearly visible; unfortunately, no decoration on the DNA was visible (\autoref{fig:hu_classes}).
+With these picks and a few rounds of 2D classification and cleaning, we were able to obtain 2D classes in which DNA features were clearly visible; unfortunately, no decoration on the DNA was visible (\figref{fig:hu_classes}).
 
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \begin{subfigure}[B]{.49\textwidth}
         \centering
@@ -107,7 +107,7 @@ With these picks and a few rounds of 2D classification and cleaning, we were abl
     \label{fig:hu_classes}
 \end{figure}
 
-We attempted also to pick particles manually or using topaz, focusing on each occurrence of a small "blob" of HU-compatible dimensions appearing next to the DNA (\autoref{fig:hu_topaz}).
+We attempted also to pick particles manually or using topaz, focusing on each occurrence of a small "blob" of HU-compatible dimensions appearing next to the DNA (\figref{fig:hu_topaz}).
 
 \begin{figure}
     \centering
@@ -158,7 +158,7 @@ There is currently no consensus model that fully explains the function and mode 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{other/ftsz_ring.png}
-    \titledcaption[FtsZ forms a ring \textit{in vivo} and filaments \textit{in vitro}]{During cell division, FtsZ is known to localize on a ring located at the tips of the septa, as can be seen in these images of \textit{D. radiodurans} (left, figure adapted from \autoref{drad_fig6}). Many structural studies were done on FtsZ, identifying the formation of protofilament via head-to-tail stacking (right, figure adapted from \citet{olivaStructuralInsightsFtsZ2004}.}
+    \titledcaption[FtsZ forms a ring \textit{in vivo} and filaments \textit{in vitro}]{During cell division, FtsZ is known to localize on a ring located at the tips of the septa, as can be seen in these images of \textit{D. radiodurans} (left, figure adapted from \figref{drad_fig6}). Many structural studies were done on FtsZ, identifying the formation of protofilament via head-to-tail stacking (right, figure adapted from \citet{olivaStructuralInsightsFtsZ2004}.}
     \label{fig:ftsz_ring}
 \end{figure}
 
@@ -186,9 +186,9 @@ Collectively, the literature hints that FtsZ treadmilling is likely not the only
 
 We began our investigation of the structure of DrFtsZ filaments by doing SPA on \textit{in vitro} samples prepared from purified monomeric FtsZ from \textit{D. radiodurans}.
 Since successful polymerization is highly sensitive to FtsZ concentration, temperature, concentration of GTP (or other nucleotide), and elongation time, my supervisors screened a variety of conditions.
-The selected cryo-EM preparation resulted in FtsZ filaments long enough to allow filament picking and helical reconstruction, while avoiding an excess of filament bundles which make picking and refinement more difficult (\autoref{fig:ftsz_micrographs}).
+The selected cryo-EM preparation resulted in FtsZ filaments long enough to allow filament picking and helical reconstruction, while avoiding an excess of filament bundles which make picking and refinement more difficult (\figref{fig:ftsz_micrographs}).
 
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{other/ftsz_mics.png}
     \titledcaption[Micrographs of FtsZ filaments]{Micrographs containing FtsZ filaments. When filaments are individual and well separated (left) they are ideal for picking and refinement. In some cases, FtsZ filaments form bundles (right) which are harder to pick, refine and classify due to the overlapping particles.}
@@ -196,20 +196,20 @@ The selected cryo-EM preparation resulted in FtsZ filaments long enough to allow
 \end{figure}
 
 We used CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} for filament picking, which gave us a large amount of particles (>4M) to classify and clean up from spurious picks.
-After cleaning, we ended up with about 2M particles, and very uniform classes with little variation (\autoref{fig:ftsz_classes}).
+After cleaning, we ended up with about 2M particles, and very uniform classes with little variation (\figref{fig:ftsz_classes}).
 This is a typical symptom of strong preferential orientation due to the air-water interface (\fullref{em_pref_ori}), leading to a very limited range of views in the particle projections.
 Although we saw hints of different views in the bundled filaments, they proved impossible to disentangle enough to obtain well-resolved classes.
 
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{other/ftsz_classes_untilted.png}
     \titledcaption[FtsZ filament: 2D classes]{Classification results from particles with strong preferential orientation. All classes show very similar views of the FtsZ filaments, with minor variation in the out-of-plane angle.}
     \label{fig:ftsz_classes}
 \end{figure}
 
-Given the strong preferential orientation, it's unsurprising that 3D reconstructions from these particles showed very strong resolution anisotropy (while reporting \sim4 Å global resolution), so much so that we couldn't convincingly fit the monomeric model in the map (\autoref{fig:ftsz_map_bad}).
+Given the strong preferential orientation, it's unsurprising that 3D reconstructions from these particles showed very strong resolution anisotropy (while reporting \sim4 Å global resolution), so much so that we couldn't convincingly fit the monomeric model in the map (\figref{fig:ftsz_map_bad}).
 
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{other/ftsz_map_bad.png}
     \titledcaption[FtsZ filament: anisotropic map]{FtsZ filament map affected by preferential orientation, viewed from the same direction as most 2D classes (top) and rotated by 90° (bottom) to highlight the streaking artifacts due to anisotropic orientation sampling.}
@@ -229,7 +229,7 @@ While these approaches have been shown to work, we struggled to obtain usable gr
 \subsubsection{Tilted data collection}\label{ftsz_tilted}
 
 We prepared the sample in the same way as originally, but this time the data collection was done with the grid at a 35° tilt.
-Following the same workflow as with the untilted dataset, we then picked, classified and selected particles, obtaining a new set of class averages (\autoref{fig:ftsz_classes_tilted}).
+Following the same workflow as with the untilted dataset, we then picked, classified and selected particles, obtaining a new set of class averages (\figref{fig:ftsz_classes_tilted}).
 These classes looked immediately more promising than the ones from the untilted datasets, showing multiple views from the first round of classification, even in isolated filaments. % TODO: explain why these classes where better, did we get more, explain figure, what we were looking for, etc
 
 \begin{figure}
@@ -244,9 +244,9 @@ Assuming a uniform distribution of in-plane angles of the filaments (which we ob
 
 With preferentially oriented filaments collected at a fixed tilt angle, there should be a strong correlation between in-plane angle (easily identifiable from the micrograph) and the projection view (which is identified by classification).
 Indeed, this is what we see when plotting the in-plane angle distribution per class from the filament picking;
-however, in the angle distribution after 3D helical reconstruction, we no longer saw any correlation, suggesting that the refinement procedure was unable to properly assign in- and out-of-plane angles to each particle (\autoref{fig:ftsz_filament_angles_bad}).
+however, in the angle distribution after 3D helical reconstruction, we no longer saw any correlation, suggesting that the refinement procedure was unable to properly assign in- and out-of-plane angles to each particle (\figref{fig:ftsz_filament_angles_bad}).
 
-Unfortunately, we recently discovered we made a mistake in our calculations --- likely due to the (undocumented) angle conversions from CryoSPARC data to Relion Euler angles (\fullref{metadata}) --- which, once fixed, revealed that correlation was still present and angular assignment was probably not the source of our resolution plateau (\autoref{fig:ftsz_filament_angles_good}).
+Unfortunately, we recently discovered we made a mistake in our calculations --- likely due to the (undocumented) angle conversions from CryoSPARC data to Relion Euler angles (\fullref{metadata}) --- which, once fixed, revealed that correlation was still present and angular assignment was probably not the source of our resolution plateau (\figref{fig:ftsz_filament_angles_good}).
 
 \begin{figure}
     \centering
@@ -276,7 +276,7 @@ Unfortunately --- though in hindsight unsurprisingly --- this approach did not i
 
 \subsubsection{Addition of detergent}
 Detergent has long been used as a way to address preferential orientation and aggregation of proteins in the sample.
-In our case, while it did not affect the orientation problem, it allowed FtsZ to polymerize into longer filaments without creating large bundles (\autoref{fig:ftsz_ddm_mics}).
+In our case, while it did not affect the orientation problem, it allowed FtsZ to polymerize into longer filaments without creating large bundles (\figref{fig:ftsz_ddm_mics}).
 
 \begin{figure}
     \centering
@@ -287,7 +287,7 @@ In our case, while it did not affect the orientation problem, it allowed FtsZ to
 
 The longer filaments and the very small helical twist (estimated at <1° with the previous samples), should result in different side views of the monomers being visible in the dataset.
 
-Preliminary results indeed showed a higher diversity in class averages, including classes with different views of single filaments (\autoref{fig:ftsz_ddm_classes_single}) and classes with two or three filaments potentially interacting side-by-side (\autoref{fig:ftsz_ddm_classes_double}).
+Preliminary results indeed showed a higher diversity in class averages, including classes with different views of single filaments (\figref{fig:ftsz_ddm_classes_single}) and classes with two or three filaments potentially interacting side-by-side (\figref{fig:ftsz_ddm_classes_double}).
 
 \begin{figure}
     \centering
@@ -313,12 +313,12 @@ Preliminary results indeed showed a higher diversity in class averages, includin
 In parallel to the study of \textit{in vitro} FtsZ filament by SPA, we also investigated the FtsZ \textit{in situ} in the tomograms of \textit{D. radiodurans} lamellae.
 Some of our findings and speculations about the 3D morphology of FtsZ are included in the \textit{D. radiodurans} manuscript (\fullref{drad_ftsz} and \fullref{ftsz_discussion}).
 
-Our observations on the reconstructed tomograms matched those by \citet{sextonSuperresolutionConfocalCryoCLEM2022}, who also used tomography to look into \textit{D. radiodurans} and identified FtsZ and FtsA forming filaments just inside the inner membrane of the septal tips (\autoref{fig:ftsz_tomo_slice}). % TODO: show more examples of this, how many have it, etc...
+Our observations on the reconstructed tomograms matched those by \citet{sextonSuperresolutionConfocalCryoCLEM2022}, who also used tomography to look into \textit{D. radiodurans} and identified FtsZ and FtsA forming filaments just inside the inner membrane of the septal tips (\figref{fig:ftsz_tomo_slice}). % TODO: show more examples of this, how many have it, etc...
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{other/ftsz_slices.png}
-    \titledcaption[FtsZ: tomogram slices from top and side view]{When viewing a cross-section of a tomogram of \textit{D. radiodurans} (left), a double arch separated by a gridded pattern can be seen near the tip of the septa. This is likely a layer of FtsA bridging between the membrane and a layer of FtsZ filaments. The distance of the second arch (FtsZ) from the membrane is \sim14 nm, in concordance with the literature. The distance between each line in the gridded pattern (expected to match the filaments) is \sim55 Å, similar to the inter-filament distance from other studies. A side view of the septal tip (right) shows that the double-arch is an elongated structure, matching the expectation of a bundle of filaments forming a septation ring. Figure adapted from \autoref{drad_fig4}.}
+    \titledcaption[FtsZ: tomogram slices from top and side view]{When viewing a cross-section of a tomogram of \textit{D. radiodurans} (left), a double arch separated by a gridded pattern can be seen near the tip of the septa. This is likely a layer of FtsA bridging between the membrane and a layer of FtsZ filaments. The distance of the second arch (FtsZ) from the membrane is \sim14 nm, in concordance with the literature. The distance between each line in the gridded pattern (expected to match the filaments) is \sim55 Å, similar to the inter-filament distance from other studies. A side view of the septal tip (right) shows that the double-arch is an elongated structure, matching the expectation of a bundle of filaments forming a septation ring. Figure adapted from \figref{drad_fig4}.}
     \label{fig:ftsz_tomo_slice}
 \end{figure}
 
@@ -329,11 +329,11 @@ However, the width of the bundle appears to be smaller than the previously repor
 \subsubsection{Subtomogram averaging}
 
 While it is clear that FtsZ and FtsA are forming filaments and bundles \textit{in vitro}, and that they localize to the Z-ring in a bundle-like fashion, the details of this superstructural assembly are unknown.
-To get a higher resolution view of this complex \textit{in situ}, we performed STA on particles picked from the FtsZ arches at the tips of the septa (\autoref{fig:ftsz_tomo_slice}).
+To get a higher resolution view of this complex \textit{in situ}, we performed STA on particles picked from the FtsZ arches at the tips of the septa (\figref{fig:ftsz_tomo_slice}).
 
 Given the apparent regularity of the bundles (whose morphology appears unchanged across their length), we used blik's surface picking tool~\cite{gaifasBlikExtensible3D2024,gaifasBlikPythonTool2024}, which allows us to distribute regularly spaced particles on the sheet-like FtsZ bundles.
 The inter-particle distance was chosen to be based on the spacing in the regular comb-like pattern along the FtsZ arches.
-Several different sets of particles were thus generated, with two showing more promising results: with inter-particle distance matching the visible pattern (\sim50 Å), and twice oversampled (\sim25 Å) (\autoref{fig:ftsz_tomo_picks}).
+Several different sets of particles were thus generated, with two showing more promising results: with inter-particle distance matching the visible pattern (\sim50 Å), and twice oversampled (\sim25 Å) (\figref{fig:ftsz_tomo_picks}).
 
 \begin{figure}
     \centering
@@ -357,8 +357,8 @@ Several different sets of particles were thus generated, with two showing more p
 Subtomograms were reconstructed in Warp~\cite{tegunovRealtimeCryoelectronMicroscopy2019} using these particle picks, at different resolutions and with varying box sizes.
 Using Relion~\cite{scheresRELIONImplementationBayesian2012,zivanovBayesianApproachSingleparticle2022,burtImageProcessingPipeline2024}, we performed subtomogram averaging and 3D classification to refine the positions and obtain a 3D map of the particles.
 Due to the low magnification of the dataset (Nyquist \simeq8.8 Å), Relion was in most cases struggling to assign orientations.
-The only refinement that resulted in consistent orientations and a reasonable map was with particles picked at 50 Å spacing, and subtomograms reconstructed at the highest resolution (4.346 Å/px) and with a large box size of 64 pixels, corresponding to \sim28 nm (\autoref{fig:ftsz_subtomo}).
-Even still, this map is likely to contain artifacts due to misalignement of the repeating filament patterns, as evidenced by the too-small inter-filament distance (\sim21.1 Å) (\autoref{fig:ftsz_subtomo_iso_struct}).
+The only refinement that resulted in consistent orientations and a reasonable map was with particles picked at 50 Å spacing, and subtomograms reconstructed at the highest resolution (4.346 Å/px) and with a large box size of 64 pixels, corresponding to \sim28 nm (\figref{fig:ftsz_subtomo}).
+Even still, this map is likely to contain artifacts due to misalignement of the repeating filament patterns, as evidenced by the too-small inter-filament distance (\sim21.1 Å) (\figref{fig:ftsz_subtomo_iso_struct}).
 
 \begin{figure}
     \centering

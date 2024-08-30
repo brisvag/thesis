@@ -24,7 +24,7 @@ Tomographic reconstruction is not a recent invention: the first appearance goes 
 
 At its core, cryo-ET is just cryo-EM with extra steps; they share much of the theory, hardware and software.
 The key difference is that, where single particle cryo-EM uses projections from different \textit{copies} of the same object to reconstruct a 3D map, cryo-ET images the same location from multiple orientations in order to reconstruct a 3D map from multiple projections of the \textit{same} object.
-This chapter describes the theory of cryo-ET, how it deviates from SPA in its workflow (\autoref{fig:et_workflow}), and the current state of the art with its limitations and upcoming developments.
+This chapter describes the theory of cryo-ET, how it deviates from SPA in its workflow (\figref{fig:et_workflow}), and the current state of the art with its limitations and upcoming developments.
 
 \begin{figure}
     \centering
@@ -147,7 +147,7 @@ This allows to bring defocus estimation and CTF correction to the next level: no
 While this idea was around for a long time, only in recent years tools were developed that can run in reasonable time and significantly improve the final resolution~\cite{turonovaEfficient3DCTFCorrection2017,tegunovRealtimeCryoelectronMicroscopy2019}. 
 Depending on the software, 3D-CTF might be estimated and corrected at different levels (tilt image, full tomogram or subtomogram), and may be able to be refined during refinement.
 
-Due to the limited range of tilt angles collected in typical cryo-ET workflows, not all views of the sample are represented; when reconstructing the 3D FT of the sample, this is clearly visible in Fourier space as a wedge of missing information (\autoref{fig:et_missing_wedge}).
+Due to the limited range of tilt angles collected in typical cryo-ET workflows, not all views of the sample are represented; when reconstructing the 3D FT of the sample, this is clearly visible in Fourier space as a wedge of missing information (\figref{fig:et_missing_wedge}).
 The missing wedge introduces several problems in downstream processing: it blurs the tomogram in the Z direction, biases subtomogram alignment, and leads to anisotropic resolution for objects with preferential orientation.
 
 If fiducials (or other high-contrast objects of no real interest) are present in the sample, it is often useful to mask them during reconstruction, in order to avoid the high-contrast artifactual streaks caused by the missing wedge, which can impair the interpretability of the tomogram~\cite{tegunovRealtimeCryoelectronMicroscopy2019,burtTeamtomoFidder2024}.
@@ -158,6 +158,7 @@ If fiducials (or other high-contrast objects of no real interest) are present in
     \titledcaption[Missing wedge]{2D slice through the 3D FT of a tomogram, perpendicular to the tilt axis. The 2D FT of images of the tiltseries are visible as lines at regular angular spacing; at the top and bottom they are not present, creating the missing wedge.}
     \label{fig:et_missing_wedge}
 \end{figure}
+
 
 The high contrast artifacts and information void caused by the missing wedge can make visualisation and annotation of the data difficult.
 For this reason, tools have been developed that are able to "fill in" the missing information, improving the visual quality of the tomograms~\cite{liuIsotropicReconstructionElectron2021,zhangMethodRestoringSignals2023}.
@@ -208,7 +209,7 @@ At the same time, thanks to STA, cryo-ET is able to bridge the gap with single p
 A distinctive strength of cryo-ET is the ability to explore mesoscale systems or superstructures --- such as folded 2D lattices and filaments --- without trivializing them for bottom up, \textit{in vitro} reconstitution, and instead observing their structural arrangement as it behaves \textit{in situ}.
 
 Many of cryo-ET's limitations are ultimately ascribable to the low SNR; some of them can be overcome with hardware improvements (better sample preparation, detectors and phase plates), and others with software advances (chromatic aberration correction, better alignment and refinement procedures).
-In recent years, several groups are working on developing new hardware and software for cryo-EM and cryo-ET, steadily improving the attainable resolution (\autoref{fig:et_smallest_particle})~\cite{russoCryomicroscopySituWhat2022}.
+In recent years, several groups are working on developing new hardware and software for cryo-EM and cryo-ET, steadily improving the attainable resolution (\figref{fig:et_smallest_particle})~\cite{russoCryomicroscopySituWhat2022}.
 
 \begin{figure}[!ht]
     \centering
@@ -217,4 +218,13 @@ In recent years, several groups are working on developing new hardware and softw
     \label{fig:et_smallest_particle}
 \end{figure}
 
-Another common hurdle, especially for researchers new to cryo-ET or programming, is presented by the budding, messy and fragmented software ecosystem. 
+Another common hurdle, especially for researchers new to cryo-ET or programming, is presented by the budding, messy and fragmented software ecosystem.
+
+\section{Acknowledgements}
+We are particularly grateful to Alister Burt for stimulating discussions, suggestions, and initial guidance.
+
+\section{Data Availability}
+The current version of blik at time of publication is available permanently at Zenodo (\url{https://doi.org/10.5281/zenodo.10894490}). The source code is maintained at \url{https://github.com/brisvag/blik}.
+
+\section{Funding}
+This project received funding from GRAL, the Grenoble Alliance for Integrated Structural and Cell Biology, a programme of the Chemistry Biology Health Graduate School of Université Grenoble Alpes (ANR-17-EURE-0003), and from the Agence Nationale de la Recherche (grant ANR DecRisp ANR-19-CE11-0017-01 to I.G.). The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.

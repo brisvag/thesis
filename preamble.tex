@@ -34,8 +34,21 @@
 \ifthenelse{\boolean{printer-friendly}}{}{
     \newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{DOI:~\detokenize{#1}}} % hyperlink DOIs (only non-print)
 }
+% better autoref names for chapters and sections
+\addto\extrasenglish{
+    \def\partautorefname{Part}
+    \def\chapterautorefname{Chapter}
+    \def\sectionautorefname{Section}
+    \def\subsectionautorefname{\sectionautorefname}
+    \def\subsubsectionautorefname{\sectionautorefname}
+}
+\setcounter{secnumdepth}{3} % number down to subsubsection
 % "fullref" (especially for printed cause link can't be clicked and it's easier to find with section numbers)
-\newcommand*\fullref[1]{\hyperref[{#1}]{\bfseries\ref*{#1}: \nameref*{#1}}}
+\newcommand*\fullref[1]{\hyperref[{#1}]{\bfseries\autoref*{#1}: \nameref*{#1}}}
+% "figref" same as autoref but bold and has optional argument for extra details
+% example: \figref[A][SI ]{fig1label} => "SI Figure 1A", all a link
+\usepackage{xparse} % for commands with multiple opt arguments
+\NewDocumentCommand{\figref}{ O{} O{} m }{\hyperref[{#3}]{\bfseries#2\autoref*{#3}#1}}
 
 % useful miscellaneous
 \usepackage{xcolor} % colors by name and modifiers to alpha and such
@@ -56,6 +69,12 @@
 \usepackage{graphicx} \graphicspath{{img/}}
 \usepackage[format=plain,labelfont={sc,bf},labelsep=endash,textfont={color=black!80},font=footnotesize]{caption}
 \usepackage{subcaption} % subfigures
+\renewcommand{\thesubfigure}{\Alph{subfigure}} % capitalize subfigure lettering
+% force floats to the top when on float-only pages (https://tex.stackexchange.com/a/28565)
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
 
 % code boxes and frames
 \usepackage{minted} % syntax highlighting

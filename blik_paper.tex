@@ -1,10 +1,10 @@
 \section*{blik is an extensible 3D visualization tool for the annotation and analysis of cryo-electron tomography data} % does not appear in contents
 
-\textbf{
-Lorenzo Gaifas\textsuperscript{1*},
-Moritz A. Kirchner\textsuperscript{1},
-Joanna Timmins\textsuperscript{1} \&
-Irina Gutsche\textsuperscript{1,2*}
+{\setlength{\parindent}{0cm} \bfseries
+Lorenzo~Gaifas\textsuperscript{1*},
+Moritz~A.~Kirchner\textsuperscript{1},
+Joanna~Timmins\textsuperscript{1}~\&
+Irina~Gutsche\textsuperscript{1,2*}
 }
 
 \begin{singlespace}
@@ -76,7 +76,7 @@ Data in napari is exposed as \texttt{layers} that can be controlled individually
 
 \subsubsection{Images and Volumes}\label{images-and-volumes}
 
-Images, image stacks and volumes in the most common formats (\texttt{.tif}, \texttt{.mrc}, \texttt{.em}, \texttt{.hdf}) can be opened and viewed both in 2D as slices (\autoref{images-showcase}A) and in 3D as volumetric projections (\autoref{images-showcase}B), isosurfaces (\autoref{images-showcase}C) and more. It is possible to change colormaps, contrast limits, gamma and other basic image visualisation parameters. 3D visualisation also allows for slicing the volumes at arbitrary planes (\autoref{images-showcase}D), similar to IMOD's \texttt{slicer} tool.
+Images, image stacks and volumes in the most common formats (\texttt{.tif}, \texttt{.mrc}, \texttt{.em}, \texttt{.hdf}) can be opened and viewed both in 2D as slices (\figref[A]{images-showcase}) and in 3D as volumetric projections (\figref[B]{images-showcase}), isosurfaces (\figref[C]{images-showcase}) and more. It is possible to change colormaps, contrast limits, gamma and other basic image visualisation parameters. 3D visualisation also allows for slicing the volumes at arbitrary planes (\figref[D]{images-showcase}), similar to IMOD's \texttt{slicer} tool.
 
 \begin{figure}
     \centering
@@ -89,14 +89,14 @@ blik also provides some widgets with extra functionality to complement image vis
 
 \begin{itemize} 
     \item A basic GPU-accelerated filtering tool (gaussian blur) for 2D images and 2D slices that is computed on the fly and whose parameters can be regulated with sliders. Simple gaussian filters are frequently used in image visualisation, especially with noisy cryo-EM data. While generating a filtered image is a relatively fast procedure, it is rarely fast enough to be computed on the fly on a CPU. GPU-accelerated filtering allows switching on and off on the fly, as well as changing kernel size and sigma, without having to generate a new image. While blik exposes only gaussian filtering, the underlying logic was implemented in the vispy OpenGL shader allowing for arbitrary convolutional kernels. Firstly, the image texture is sampled in a NxM grid (for a kernel of shape NxM) centered around the texture coordinates. A weighted average is then computed based on the kernel weights and the resulting value is forwarded to the rest of the shader. 
-    \item A \texttt{power\ spectrum} widget, which quickly computes the power spectra of single images, stacks or volumes (\autoref{images-showcase}E). Power spectra are a fundamental tool for data inspection and validation in cryo-EM, from estimating resolution, to generating hypotheses about symmetry, to finding caveats in the data collection procedure. Like any other computation made by blik or napari, the power spectrum is then available as a normal numpy array for further use from within Python or to export to the available formats.
+    \item A \texttt{power\ spectrum} widget, which quickly computes the power spectra of single images, stacks or volumes (\figref[E]{images-showcase}). Power spectra are a fundamental tool for data inspection and validation in cryo-EM, from estimating resolution, to generating hypotheses about symmetry, to finding caveats in the data collection procedure. Like any other computation made by blik or napari, the power spectrum is then available as a normal numpy array for further use from within Python or to export to the available formats.
 \end{itemize}
 
-Additionally, masks and pixel-based segmentations (often called just "segmentations", or "labels" in napari jargon) are easily displayed (and modified with all the tools provided by napari, such as free-hand painting, even in 3D) by using the napari \texttt{Labels} layer, which is designed specifically to work with segmentation data (binary or integer arrays) (\autoref{images-showcase}F). Label processing is a particularly thriving area of the napari ecosystem, albeit mostly in the field of fluorescence and optical microscopy. This is a great opportunity for knowledge sharing and code reuse between fields that otherwise are typically relegated to separate software pipelines.
+Additionally, masks and pixel-based segmentations (often called just "segmentations", or "labels" in napari jargon) are easily displayed (and modified with all the tools provided by napari, such as free-hand painting, even in 3D) by using the napari \texttt{Labels} layer, which is designed specifically to work with segmentation data (binary or integer arrays) (\figref[F]{images-showcase}). Label processing is a particularly thriving area of the napari ecosystem, albeit mostly in the field of fluorescence and optical microscopy. This is a great opportunity for knowledge sharing and code reuse between fields that otherwise are typically relegated to separate software pipelines.
 
 \subsubsection{Particles}\label{particles}
 
-Particle data (coordinates, orientations, and any additional features and metadata) can be loaded from common formats (\texttt{.star}, \texttt{.tbl}). Coordinates are visualised as spheres, and orientations as basis vectors centred on the spheres (\autoref{particles-showcase}). Both components can be disabled or tweaked (such as color-coded or resized, labeled, etc.) for better visualisation. As with images, particles can be easily viewed in 3D.
+Particle data (coordinates, orientations, and any additional features and metadata) can be loaded from common formats (\texttt{.star}, \texttt{.tbl}). Coordinates are visualised as spheres, and orientations as basis vectors centred on the spheres (\figref{particles-showcase}). Both components can be disabled or tweaked (such as color-coded or resized, labeled, etc.) for better visualisation. As with images, particles can be easily viewed in 3D.
 
 \begin{figure}
     \centering
@@ -109,7 +109,7 @@ Since particles are actually simple napari \texttt{Points} layers, everything in
 
 For example, points (and thus particles) may hold extra metadata in their \texttt{features} dataframe, such as classification results or quantitative values such as a confidence score. All such features can be used to encode visualisation parameters like color, rendered symbol (sphere, square, cross, etc.) and size, facilitating data inspection and selection of suitable candidates for further processing.
 
-To fully take advantage of this, shipped as part of blik --- but developed as a standalone field-agnostic napari plugin --- is the \texttt{napari-properties-plotter} plugin, which allows interactive plotting of per-point features (\autoref{particles-showcase}, bottom widget), such as Relion's figure of merit, classification results, resolution estimates, etc. Distribution histograms or scatter plots with any combination of features as axes can be automatically generated by simply selecting the desired features. Moreover, by picking subsections of such plots, particles can then be selectively rendered, modified, saved and otherwise processed.
+To fully take advantage of this, shipped as part of blik --- but developed as a standalone field-agnostic napari plugin --- is the \texttt{napari-properties-plotter} plugin, which allows interactive plotting of per-point features (\figref[, bottom widget]{particles-showcase}), such as Relion's figure of merit, classification results, resolution estimates, etc. Distribution histograms or scatter plots with any combination of features as axes can be automatically generated by simply selecting the desired features. Moreover, by picking subsections of such plots, particles can then be selectively rendered, modified, saved and otherwise processed.
 
 \subsection{Input/Output}\label{input-output}
 
@@ -139,7 +139,7 @@ A few annotation and analysis tools were implemented as part of blik or standalo
 
 The napari community has already developed numerous plugins for segmentation and annotation of 2D and 3D imaging data, spanning from manual annotation and traditional image-processing-based segmentation to AI tools. blik's current contributions to this ecosystem are in some cases general-purpose -- such as utilities for manual annotation of volumetric segmentations -- and in other cases focused on cryo-ET-specific issues that are not easily solved by existing methods -- such as rigorous geometry-based particle picking on filaments and surfaces.
 
-Pixel-based image segmentation is already natively supported in napari through the \texttt{Labels} layer, with mature tools for editing, data exploration and annotation. One previously missing feature is the ability to easily interpolate labels from sparsely annotated 2D slices of a 3D volume into full 3D volumetric labels. blik brings a standalone plugin for this purpose called \texttt{napari-label-interpolator} (\autoref{interpolator-showcase}), which works with any \texttt{Image} layer and interpolates n-dimensionally (e.g: it can interpolate 3D labels over a time series).
+Pixel-based image segmentation is already natively supported in napari through the \texttt{Labels} layer, with mature tools for editing, data exploration and annotation. One previously missing feature is the ability to easily interpolate labels from sparsely annotated 2D slices of a 3D volume into full 3D volumetric labels. blik brings a standalone plugin for this purpose called \texttt{napari-label-interpolator} (\figref{interpolator-showcase}), which works with any \texttt{Image} layer and interpolates n-dimensionally (e.g: it can interpolate 3D labels over a time series).
 
 \begin{figure}[!ht]
     \centering
@@ -156,10 +156,10 @@ This system plays very well with volumetric annotation, but has limits with thin
 
 A different kind of image segmentation uses mathematical representations such as filaments, surfaces and fields to describe morphological features. In this context, blik contributions were made to a general-purpose library at \href{https://github.com/morphometrics/morphosamplers}{\texttt{morphometrics\-/\-morphosamplers}}, which aims to provide generalised morphological descriptions and sampling for scientific imaging. Specifically, we developed a helical filament model based on parametric splines, as well as a parametrised spline-grid surface model which allows to rigorously annotate surface-like objects such as membranes from simple point annotations.
 
-The morphosamplers code was implemented with two main goals: keeping the manual annotation procedure simple and robust, and generating ordered, regularly spaced poses that can be used both for particle picking for subtomogram averaging and to allow volume resampling (\nameref{resampling}). Picking particles as a regularly spaced lattice can significantly improve the results of subtomogram averaging when it reflects the underlying geometry of the sample~\cite{castano-diezDynamoCatalogueGeometrical2017,burtFlexibleFrameworkMultiparticle2021}. Model picking tools in Dynamo~\cite{castano-diezDynamoFlexibleUserfriendly2012} had a strong influence on the purpose and functionality of blik; unlike the Dynamo mesh-based approach, the spline-based implementation aims to optimise regular Euclidean spacing and consistency in initial particle positioning and orientations.
+The morphosamplers code was implemented with two main goals: keeping the manual annotation procedure simple and robust, and generating ordered, regularly spaced poses that can be used both for particle picking for subtomogram averaging and to allow volume resampling (\fullref{resampling}). Picking particles as a regularly spaced lattice can significantly improve the results of subtomogram averaging when it reflects the underlying geometry of the sample~\cite{castano-diezDynamoCatalogueGeometrical2017,burtFlexibleFrameworkMultiparticle2021}. Model picking tools in Dynamo~\cite{castano-diezDynamoFlexibleUserfriendly2012} had a strong influence on the purpose and functionality of blik; unlike the Dynamo mesh-based approach, the spline-based implementation aims to optimise regular Euclidean spacing and consistency in initial particle positioning and orientations.
 
 \subsubsection{Filaments}
-Filament picking (\autoref{filament-pick}) uses a relatively simple single-spline approach:
+Filament picking (\figref{filament-pick}) uses a relatively simple single-spline approach:
 
 \begin{itemize}[noitemsep]
     \item Points are picked manually in 3D space along the filament.
@@ -177,7 +177,7 @@ Filament picking (\autoref{filament-pick}) uses a relatively simple single-splin
 \end{figure}
 
 \subsubsection{Surfaces}
-The surface generation uses the same underlying parametric spline logic as filaments, but creates a grid of splines to capture the surface shape (\autoref{surface-pick}). The procedure can be broken down into the following steps:
+The surface generation uses the same underlying parametric spline logic as filaments, but creates a grid of splines to capture the surface shape (\figref{surface-pick}). The procedure can be broken down into the following steps:
 
 \begin{itemize}[noitemsep] 
     \item A few points are picked along the desired surface, repeating at different Z-slices.
@@ -204,7 +204,7 @@ While this approach is advantageous for relatively regular surfaces, for which t
 \subsubsection{Resampling}\label{resampling}
 The grid-like, regularly spaced nature of these models can be additionally used to create visualisation aids (meshes and filaments) and to resample the annotated volume along the annotated object. Such volume resampling can be useful for quantitative and spatially consistent volume analysis of otherwise complex 3D objects; density profiles of a complex 3D surface can thus be generated while retaining spatial information. In practice, this can also be used to aid visualisation, by "straightening" an otherwise curved surface.
 
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{blik_paper/surface_resample.png}
     \titledcaption[Surface-based volume resampling]{\textbf{Top}: a surface is generated using the surface widget, following the shape of a minicell membrane. The tomogram volume is then resampled based on the picked surface and a few parameters set in the widget, such as sample thickness and pixel spacing. \textbf{Bottom}: the result is a 3D volume containing a "straightened" version of the picked surface, displayed here averaged along Z into a 2D image.}
@@ -224,7 +224,7 @@ blik provides a few tools for picking particles for subtomogram averaging. All s
 
 The most basic picking tool is a manual picker; simply clicking points on an image or volume slice will generate a particle in that position. Manually modifying the orientation is not yet implemented, but is planned for a future release.
 
-For more complex picking, the aforementioned filament and surface models can also be used to generate particles (\autoref{picking-showcase}). These will be regularly distributed on the surface with a provided inter-particle spacing, and oriented with their Z basis vector along the filament axis, or the normal of the surface. This is useful for initialising particle picks for objects following an underlying geometry, such as helical filaments and membrane proteins, and is particularly suited for dense lattices.
+For more complex picking, the aforementioned filament and surface models can also be used to generate particles (\figref{picking-showcase}). These will be regularly distributed on the surface with a provided inter-particle spacing, and oriented with their Z basis vector along the filament axis, or the normal of the surface. This is useful for initialising particle picks for objects following an underlying geometry, such as helical filaments and membrane proteins, and is particularly suited for dense lattices.
 
 \subsection{Scipion Integration}\label{scipion-integration}
 
