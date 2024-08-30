@@ -268,7 +268,7 @@ Unfortunately, we recently discovered we made a mistake in our calculations --- 
 
 Based on the (wrong) assumption that angles were not properly assigned, we concluded that in this specific case the 3D reconstruction routines of both Relion~\cite{scheresRELIONImplementationBayesian2012} and CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} were struggling with assigning Euler angles, resulting in practically random orientations.
 
-Therefore, to impose more constraints on the refinement based on the expected angle correlations, we calculated the theoretical orientation of each particle based on the in-plane angle (and assuming perfect preferential orientation), which we then used to initialize the particle poses (\fullref{stemia_angles}).
+Therefore, to impose more constraints on the refinement based on the expected angle correlations, we calculated the theoretical orientation of each particle based on the in-plane angle (and assuming perfect preferential orientation), which we used to initialize the particle poses (\fullref{stemia_angles}).
 
 Unfortunately --- though in hindsight unsurprisingly --- this approach did not improve our reconstruction, and we learned that CryoSPARC does not provide fine control over angle priors and search patterns, and Relion's parameters for angle refinement are tricky to control and may easily lead to orientations being stuck in local minima.
 
