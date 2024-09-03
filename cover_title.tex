@@ -1,5 +1,7 @@
 \includepdf{cover_page.pdf} % remove addtocounter line if this is removed
 
+\ifthenelse{\boolean{printer-friendly}}{\newpage\mbox{}\newpage}{} % blank page only in printer-friendly
+
 \begin{titlingpage}
 \vspace*{\fill} % has to be different cause it's not in the middle of the page
 

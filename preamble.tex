@@ -9,10 +9,11 @@
 }
 
 % general must-have or good-to-have stuff
-\usepackage[english]{babel}
+\usepackage[main=english,french]{babel}
 \usepackage{microtype} % fixes some over/under-full box warnings
 \usepackage[T1]{fontenc} % better behaviour for fonts (copy-pasting, etc)
 \usepackage{XCharter} % font typeface (compared to charter has support for unicode input/output)
+\usepackage[svgnames]{xcolor} % colors by name and modifiers to alpha and such
 \OnehalfSpacing
 
 % bibliography
@@ -21,16 +22,17 @@
 \def\bibfont{\footnotesize}
 
 % hyperrefs and friends
-\ifthenelse{\boolean{printer-friendly}}{
-    \usepackage[pagebackref,breaklinks,hidelinks]{hyperref}
-}{
-    \usepackage[pagebackref,breaklinks,colorlinks,linkcolor=blue,citecolor=blue,urlcolor=cyan]{hyperref}
-}
+\usepackage[pagebackref,breaklinks,colorlinks,linktoc=all,allcolors=FireBrick]{hyperref}
 \urlstyle{same} % don't use monospace font for urls
 \renewcommand*\backref[1]{\ifx#1\relax \else (pg. #1) \fi} % backref to citation location formatted as: (pg. N)
 \usepackage{hypernat} % fixes backref of ranges. must be after natbib and hyperref
+% when in printer-friendly convert href (which normally hides url with text) to a footnote so you can see it
+\ifthenelse{\boolean{printer-friendly}}{
+    \let\oldhref\href \renewcommand\href[2]{\oldhref{#1}{#2}\footnote{\url{#1}}}
+}{}
+% hyperlink DOIs (only non-print or it will become a useless footnote)
 \ifthenelse{\boolean{printer-friendly}}{}{
-    \newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{DOI:~\detokenize{#1}}} % hyperlink DOIs (only non-print)
+    \newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{DOI:~\detokenize{#1}}}
 }
 % better autoref names for chapters and sections
 \addto\extrasenglish{
@@ -49,7 +51,6 @@
 \NewDocumentCommand{\figref}{ O{} O{} m }{\hyperref[{#3}]{\bfseries#2\autoref*{#3}#1}}
 
 % useful miscellaneous
-\usepackage{xcolor} % colors by name and modifiers to alpha and such
 \usepackage{pdfpages} % include pre-rendered pdfs
 \usepackage{tocbibind} % add lof and lot to toc
 \usepackage{etoc} % local TOCs per-chapter
@@ -68,7 +69,14 @@
 \usepackage{graphicx} \graphicspath{{img/}}
 \usepackage[format=plain,labelfont={sc,bf},labelsep=endash,textfont={color=black!80},font=footnotesize]{caption}
 \usepackage{subcaption} % subfigures
-\renewcommand{\thesubfigure}{\Alph{subfigure}} % capitalize subfigure lettering
+% smart caption that uses TOC title to add in bold at beginning, if given
+\newcommand\titledcaption[2][]{
+    \ifthenelse{\isempty{#1}}
+        {\caption{#2}}
+        {\caption[#1]{\textbf{#1.} #2}}
+}
+% capitalize subfigure lettering
+\renewcommand{\thesubfigure}{\Alph{subfigure}}
 % force floats to the top when on float-only pages (https://tex.stackexchange.com/a/28565)
 \makeatletter
 \setlength{\@fptop}{0pt}
