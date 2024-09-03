@@ -3,10 +3,13 @@
 # exclude papers (or should we fix them too?)
 FILES=$(fd --glob "*.tex")
 
-echo === Checking for TODO comments
+echo === Checking for TODO-style comments
 rg --vimgrep 'TODO' $FILES
 rg --vimgrep 'CITE' $FILES
 rg --vimgrep 'FIG' $FILES
+rg --vimgrep 'NOTE' $FILES
+rg --vimgrep 'FIXME' $FILES
+rg --vimgrep 'XXX' $FILES
 echo
 
 echo === Checking for cryo-em/cryo-et variations
@@ -22,7 +25,7 @@ echo
 echo === checking capitalization ===
 rg --vimgrep -s 'fourier' $FILES
 
-echo === open-source ===
+echo === open-source without hyphen ===
 rg --vimgrep -s '(O|o)pen source' $FILES
 
 echo === captions missing title or empty ===
@@ -37,6 +40,9 @@ rg --vimgrep -s '[^\{]in vivo' $FILES
 rg --vimgrep -s '[^\{]in cellulo' $FILES
 rg --vimgrep -s '[^\{]in silico' $FILES
 rg --vimgrep -s 'radiodurans[^\}]' $FILES
+
+echo === temporary stuff ===
+rg --vimgrep 'sloppy' $FILES
 
 # echo === Style checking with Vale
 # vale --output vale_template.tmpl $FILES

@@ -3,11 +3,9 @@
 
 % TODO: move to memoir (requires lots of fixes)
 \ifthenelse{\boolean{printer-friendly}}{
-    \documentclass[8pt,a5paper]{extbook} % extbook to allow smaller font
-    \usepackage[twoside=true]{geometry} % twoside for book binding
+    \documentclass[12pt,a4paper,twoside]{memoir} % extbook to allow smaller font
 }{
-    \documentclass[12pt,a4paper]{extbook}
-    \usepackage[twoside=false]{geometry}
+    \documentclass[12pt,a4paper,oneside]{memoir}
 }
 
 % general must-have or good-to-have stuff
@@ -15,7 +13,7 @@
 \usepackage{microtype} % fixes some over/under-full box warnings
 \usepackage[T1]{fontenc} % better behaviour for fonts (copy-pasting, etc)
 \usepackage{XCharter} % font typeface (compared to charter has support for unicode input/output)
-\usepackage{setspace} \onehalfspacing % use stuff like \onehalfspacing and \begin{singlespace}
+\OnehalfSpacing
 
 % bibliography
 \usepackage[super,sort&compress,comma]{natbib}
@@ -54,8 +52,8 @@
 \usepackage{xcolor} % colors by name and modifiers to alpha and such
 \usepackage{pdfpages} % include pre-rendered pdfs
 \usepackage{tocbibind} % add lof and lot to toc
-\usepackage[titles]{tocloft} % fix formatting issues with etoc and 3-digit page numbers in TOC
 \usepackage{etoc} % local TOCs per-chapter
+\renewcommand*{\cftdotsep}{1} \setpnumwidth{3em} \setrmarg{4em} % fit 3-digit numbers in TOCs
 \usepackage{bookmark} % allow to end parts/sections (\startatroot}
 \usepackage{booktabs} % improved tables
 \usepackage{tabularx} % improved tables
@@ -64,6 +62,7 @@
 \usepackage[perpage, symbol*]{footmisc} % footnotes counters use symbols and reset each page
 \usepackage{amsmath,amssymb} % for better math symbols
 \usepackage{epigraph} \setlength{\epigraphwidth}{.7\textwidth} \renewcommand\textflush{flushright} % cool quotes
+\usepackage[shortcuts]{extdash} % use \-/ for hyphen that allows breaks in words
 
 % figures and captions
 \usepackage{graphicx} \graphicspath{{img/}}

@@ -1,4 +1,4 @@
-\chapter{Bacterial chromatin, FtsZ, and other projects}\label{other_projects}
+\chapter{Bacterial chromatin, FtsZ, and other projects}\chaptermark{Other projects}\label{other_projects}
 
 My PhD project was originally focused on unraveling the mechanism of action of the nucleoid-associated protein HU, and its role in chromatin compaction and nucleoid dynamics in \textit{D. radiodurans}.
 The structural study of FtsZ --- both in STA and SPA --- emerged from our exploration of the nucleoid and cell dividion processes of \textit{D. radiodurans} in cryo-ET as part of the septation paper (\fullref{drad})
@@ -331,9 +331,11 @@ However, the width of the bundle appears to be smaller than the previously repor
 While it is clear that FtsZ and FtsA are forming filaments and bundles \textit{in vitro}, and that they localize to the Z-ring in a bundle-like fashion, the details of this superstructural assembly are unknown.
 To get a higher resolution view of this complex \textit{in situ}, we performed STA on particles picked from the FtsZ arches at the tips of the septa (\figref{fig:ftsz_tomo_slice}).
 
+\begin{sloppypar}
 Given the apparent regularity of the bundles (whose morphology appears unchanged across their length), we used blik's surface picking tool~\cite{gaifasBlikExtensible3D2024,gaifasBlikPythonTool2024}, which allows us to distribute regularly spaced particles on the sheet-like FtsZ bundles.
 The inter-particle distance was chosen to be based on the spacing in the regular comb-like pattern along the FtsZ arches.
 Several different sets of particles were thus generated, with two showing more promising results: with inter-particle distance matching the visible pattern (\sim50 Å), and twice oversampled (\sim25 Å) (\figref{fig:ftsz_tomo_picks}).
+\end{sloppypar}
 
 \begin{figure}
     \centering
@@ -456,7 +458,9 @@ Some smaller napari-based tools and plugins I contributed to that are worthy of 
 
 \subsection{cs2star}
 
+\begin{sloppypar}
 A small tool, but used widely by our group and others, and later \href{https://sbgrid.org/software/titles/cs2star}{added to SBGrid}~\cite{morinCuttingEdgeCollaboration2013}, \href{https://github.com/brisvag/cs2star}{cs2star}~\cite{gaifasCs2starPy2021} is a small wrapper around the widespread \href{https://github.com/asarnow/pyem}{cryosparc2star.py} which automates a few tedious manual steps normally needed when converting CryoSPARC~\cite{punjaniCryoSPARCAlgorithmsRapid2017} projects to Relion~\cite{scheresRELIONImplementationBayesian2012} ones.
+\end{sloppypar}
 
 \subsection{stemia}
 

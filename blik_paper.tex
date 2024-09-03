@@ -4,10 +4,11 @@
 Lorenzo~Gaifas\textsuperscript{1*},
 Moritz~A.~Kirchner\textsuperscript{1},
 Joanna~Timmins\textsuperscript{1}~\&
+
 Irina~Gutsche\textsuperscript{1,2*}
 }
 
-\begin{singlespace}
+\begin{SingleSpace}
 \begin{scriptsize}
 \raggedright
 \begin{tabularx}{\linewidth}{>{\bfseries}l X}
@@ -16,7 +17,7 @@ Irina~Gutsche\textsuperscript{1,2*}
 * & Corresponding authors. \\
 \end{tabularx}
 \end{scriptsize}
-\end{singlespace}
+\end{SingleSpace}
 
 \section{Abstract}
 Powerful, workflow-agnostic and interactive visualisation is essential for the ad-hoc, human-in-the-loop workflows typical of cryo-electron tomography (cryo-ET). While several tools exist for visualisation and annotation of cryo-ET data, they are often integrated as part of monolithic processing pipelines, or focused on a specific task and offering limited reusability and extensibility. With each software suite presenting its own pros and cons and tools tailored to address specific challenges, seamless integration between available pipelines is often a difficult task.
@@ -288,7 +289,9 @@ The data structures and input/output (IO) functions used by blik are extracted i
     \item \href{https://github.com/teamtomo/cryohub/}{cryohub}: provides reading and writing functions for popular image formats and particle data, with both fine-grained controls and a higher level "magic" interface (\texttt{cryohub.open(\textless{}anything\textgreater{})}). Data is read to and from cryotypes data structures, easily allowing for conversion between formats and integration in any third-party Python tool.
 \end{itemize}
 
+\begin{sloppypar}
 cryohub provides granular I/O functions such as \texttt{read\_star} and \texttt{read\_mrc}, which will all return objects following the cryotypes specification.
+\end{sloppypar}
 
 \begin{minted}{python}
 from cryohub.reading import read_star
