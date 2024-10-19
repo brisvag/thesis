@@ -47,8 +47,7 @@ This chapter describes the theory of cryo-ET, how it deviates from SPA in its wo
 
         \node (refine) [node, right = of annot, xshift=4ex] {Refinement};
         \node (sharp) [node, below = of refine] {Sharpening/Denoising};
-        \node (dummy2) [dummy, below = of sharp] {};
-        \node (build) [node, below = of dummy2] {Model building};
+        \node (build) [node, below = of sharp, yshift=-4ex] {Model building};
 
         \draw [arrow] (purif) -- (fid);
         \draw [arrow] (fid) -- (vit);
