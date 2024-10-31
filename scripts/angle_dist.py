@@ -42,14 +42,14 @@ def load_data(data_path, passthrough_path):
 
 
 if __name__ == '__main__':
-    df1 = load_data('/home/brisvag/tmp/plots/j181/particles_selected.cs', '/run/media/brisvag/writable/plots/j181/P88_J181_passthrough_particles_selected.cs')
+    df1 = load_data('picked_particles.cs', 'picked_passthrough_particles.cs')
 
     df1['source'] = 'filament picking'
     df1 = df1[['alignments2D/class', 'filament/filament_pose', 'source']]
     df1.columns = ['class', 'angle', 'source']
     df1['angle'] = (df1['angle'] / np.pi * 180)
 
-    df2 = load_data('/home/brisvag/tmp/plots/j184/cryosparc_P88_J184_009_particles.cs', '/run/media/brisvag/writable/plots/j184/P88_J184_passthrough_particles.cs')
+    df2 = load_data('3d_particles.cs', '/3d_passthrough_particles.cs')
 
     df2['source'] = 'assigned angle'
     df2 = df2[['alignments2D/class', 'alignments3D/pose_col00', 'alignments3D/pose_col01', 'alignments3D/pose_col02', 'source']]

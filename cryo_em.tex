@@ -252,7 +252,7 @@ This is a useful feature for most applications, because we often care about wher
     \includegraphics[width=\textwidth]{introduction/cross_correlation.png}
     \titledcaption[Cross-correlation of 1D signals]{Cross-correlation of two 1D signals, \texttt{spike} and \texttt{blob}. The position of the peak of the resulting \texttt{cross-correlation} indicates relative shift at which \texttt{blob} presents maximal similarity with \texttt{spike}. Shifting \texttt{blob} by the same amount shows the best overlap between the two signals.}
     \label{fig:em_cross_correlation}
-    % TODO: generated with cc_image.py script. Should add somehow to thesis!
+    % generated with cc_image.py script
 \end{figure}
 
 In the case of 2D data, calculating the cross-correlation of two images often also includes the additional step of a rotational search, to account for the different in-plane rotation of particles that would otherwise be missed by simple CC.
@@ -270,7 +270,7 @@ In practice, this is often used to remove high-frequency components (low-pass fi
     \includegraphics[width=\textwidth]{introduction/filtering.png}
     \titledcaption[Fourier filtering]{Examples of how filtering a noisy image (top left image) with different kinds of Fourier masks (bottom row) produces different results (top row). From left to right: no filtering, low-pass, band-pass, high-pass. Low-pass filtering can restore interpretability of highly noisy images. As highlighted by the difference between the low-passed (second column) and high-passed (last column) images, a very small range of low spatial frequencies is actually responsible for the majority of our perception of the general shape of an object. Noise, on the other hand, more strongly affects high resolution information.}
     \label{fig:em_filtering}
-    % TODO: made with filter.py
+    % made with filter.py
 \end{figure}
 
 In the last few years, denoising using ML tools has become standard practice, with algorithms such as noise2noise and noise2void~\cite{lehtinenNoise2NoiseLearningImage2018,krullNoise2VoidLearningDenoising2019} being implemented in several cryo-EM software suites~\cite{beplerTopazDenoiseGeneralDeep2020,tegunovRealtimeCryoelectronMicroscopy2019,buchholzCryoCAREContentAwareImage2018}.
@@ -378,7 +378,7 @@ The threshold typically used to formally determine the "resolution of the map" i
     \includegraphics[width=\textwidth]{introduction/fsc.png}
     \titledcaption[Fourier shell correlation]{Showcase of a 2D version of Fourier shell correlation. Gaussian noise was applied to two identical images, which were then compared by gradually cross-correlating concentric shells (left). The resulting plot (right) is a measure of the similarity as a function of spatial frequency. As spatial frequency increases, noise becomes dominant, degrading correlation and thus the trustworthiness of the data. The threshold of 0.143 is used to determine the final resolution, which is higher for the less noisy image.}
     \label{fig:em_fsc}
-    % TODO: made with script fsc.py
+    % made with script fsc.py
 \end{figure}
 
 \subsection{Map post-processing}

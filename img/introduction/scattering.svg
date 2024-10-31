@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   height="134.43001mm"
+   id="svg1"
+   inkscape:export-filename="scattering.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   sodipodi:docname="scattering.svg"
+   version="1.1"
+   viewBox="0 0 209.42302 134.43002"
+   width="209.42302mm"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     id="namedview1"
+     inkscape:current-layer="g41"
+     inkscape:cx="214.33513"
+     inkscape:cy="278.00636"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:pagecheckerboard="0"
+     inkscape:pageopacity="0"
+     inkscape:showpageshadow="0"
+     inkscape:window-height="1571"
+     inkscape:window-maximized="1"
+     inkscape:window-width="2558"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:zoom="1.3506885"
+     pagecolor="#505050"
+     showgrid="false"
+     showguides="true">
+    <sodipodi:guide
+       id="guide16"
+       inkscape:locked="false"
+       orientation="0,-1"
+       position="-66.216144,86.965029" />
+    <sodipodi:guide
+       id="guide17"
+       inkscape:locked="false"
+       orientation="0,-1"
+       position="-137.69343,-6.7096359" /></sodipodi:namedview>
+  <defs
+     id="defs1">
+    <rect
+       height="115.43873"
+       id="rect1"
+       width="393.26132"
+       x="820.71072"
+       y="579.19915" />
+    <rect
+       height="69.10144"
+       id="rect43"
+       width="177.83568"
+       x="632.39215"
+       y="179.15372" />
+    <marker
+       id="Triangle"
+       inkscape:collect="always"
+       inkscape:isstock="true"
+       inkscape:stockid="Triangle arrow"
+       markerHeight="1"
+       markerWidth="1"
+       orient="auto-start-reverse"
+       preserveAspectRatio="xMidYMid"
+       refX="0"
+       refY="0"
+       style="overflow:visible"
+       viewBox="0 0 1 1">
+      <path
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         transform="scale(0.5)" /></marker>
+    <rect
+       height="38.924255"
+       id="rect5"
+       width="27.859215"
+       x="327.35211"
+       y="512.98846" />
+  </defs>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1"
+     transform="translate(-66.216142,-107.71058)">
+    <g
+       id="g43">
+      <g
+         id="g15"
+         inkscape:label="atom">
+        <circle
+           cx="105.13455"
+           cy="155.26115"
+           id="circle2"
+           r="37.25"
+           style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1" />
+        <circle
+           cx="105.13455"
+           cy="155.26115"
+           id="circle3"
+           r="28.49604"
+           style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1" />
+        <circle
+           cx="105.13455"
+           cy="155.26115"
+           id="circle4"
+           inkscape:label="circle4"
+           r="19.900482"
+           style="fill:none;stroke:#000000;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1" />
+        <g
+           id="g6"
+           inkscape:label="nucleus">
+          <circle
+             cx="105.13455"
+             cy="155.26115"
+             id="circle5"
+             r="8.6969681"
+             style="fill:#900000;fill-opacity:1;stroke:#000000;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1" />
+          <text
+             id="text5"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29.3333px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect5);display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.16157;stroke-dasharray:none;stroke-opacity:1"
+             transform="matrix(0.4304508,0,0,0.4304508,-39.205182,-72.139606)"
+             xml:space="preserve">
+            <tspan
+               id="tspan4"
+               x="327.35156"
+               y="538.94138">N</tspan></text>
+        </g>
+      </g>
+      <path
+         d="m 121.33912,107.99253 c 1.48909,51.50345 -4.61647,58.83895 -11.97039,59.96257 -16.467648,2.51614 -19.587564,-8.35939 -22.4639,-49.06861"
+         id="path13"
+         sodipodi:nodetypes="csc"
+         style="fill:none;fill-opacity:1;stroke:#2f7c00;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5, 1.5;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Triangle)" />
+      <path
+         d="m 80.751262,107.99253 v 93.67465"
+         id="path8"
+         sodipodi:nodetypes="cc"
+         style="fill:none;fill-opacity:1;stroke:#3ab5ff;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5, 1.5;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Triangle)" />
+      <g
+         id="g8"
+         transform="translate(-25.439669,33.940682)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle8"
+           r="2.4942336"
+           style="fill:#0e00e8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text8"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan8"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <g
+         id="g9"
+         transform="translate(-60.727918,22.760935)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle9"
+           r="2.4942336"
+           style="fill:#0e00e8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text9"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan9"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <g
+         id="g8-4"
+         transform="translate(-48.896684,65.597947)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle8-3"
+           r="2.4942336"
+           style="fill:#3ab5ff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text8-0"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan8-7"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <path
+         d="m 121.33912,107.99253 c 0.11722,62.52294 2.3468,39.70517 -28.538399,93.86199"
+         id="path9"
+         sodipodi:nodetypes="cc"
+         style="fill:none;fill-opacity:1;stroke:#72ff3a;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5, 1.5;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Triangle)" />
+      <g
+         id="g10"
+         transform="translate(-39.631806,65.597947)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle10"
+           r="2.4942336"
+           style="fill:#72ff3a;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text10"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan10"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <path
+         d="m 131.72542,107.99253 v 37.07711 l -3.7932,56.59754"
+         id="path10"
+         sodipodi:nodetypes="ccc"
+         style="fill:none;fill-opacity:1;stroke:#ee8100;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5, 1.5;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Triangle)" />
+      <g
+         id="g7"
+         transform="translate(2.0371298,4.0781113)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="path5"
+           r="2.4942336"
+           style="fill:#0e00e8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text6"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan5"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <path
+         d="m 133.84494,142.33791 c 1.63581,-1.93921 2.86929,-1.00759 4.50616,-3.10257 1.73912,-2.14144 0.73183,-4.01152 2.28642,-5.95869 1.52611,-1.91151 3.30727,-0.86262 4.89572,-3.16734 1.73078,-2.20655 0.27603,-3.33514 1.99834,-5.50472 1.41252,-2.00699 2.80782,-0.99937 4.23236,-2.99284 1.19785,-1.6259 0.35852,-2.49855 2.04427,-4.68369"
+         id="path11"
+         sodipodi:nodetypes="ccscccc"
+         style="fill:none;fill-opacity:1;stroke:#a50000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Triangle)" />
+      <path
+         d="m 134.37577,147.42802 17.93607,19.47582"
+         id="path12"
+         sodipodi:nodetypes="cc"
+         style="fill:none;fill-opacity:1;stroke:#a50000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1.5, 1.5;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Triangle)" />
+      <g
+         id="g13"
+         transform="translate(-43.062498,-27.202428)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle13"
+           r="2.4942336"
+           style="fill:#2f7c00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text13"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan13"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <g
+         id="g14"
+         transform="translate(26.047557,29.610144)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle14"
+           r="2.4942336"
+           style="fill:#a50000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text14"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan14"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <g
+         id="g16"
+         transform="translate(-1.9791412,65.597947)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle15"
+           r="2.4942336"
+           style="fill:#ee8100;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text15"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan15"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.500001"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g37"
+       inkscape:label="legend"
+       style="stroke-width:1.49216"
+       transform="matrix(0.67016733,0,0,0.67016733,-26.358758,127.68295)">
+      <g
+         id="g17"
+         style="stroke-width:1.49216"
+         transform="translate(37.797618,4.7263919)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle17"
+           r="2.4942336"
+           style="fill:#2f7c00;fill-opacity:1;stroke:#000000;stroke-width:0.746082;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text17"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.746084;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan17"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.746084"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <g
+         id="g18"
+         style="stroke-width:1.49216"
+         transform="translate(37.797618,19.793762)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle18"
+           r="2.4942336"
+           style="fill:#a50000;fill-opacity:1;stroke:#000000;stroke-width:0.746082;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text18"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.746084;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan18"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.746084"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <g
+         id="g19"
+         style="stroke-width:1.49216"
+         transform="translate(37.797618,12.260077)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle19"
+           r="2.4942336"
+           style="fill:#ee8100;fill-opacity:1;stroke:#000000;stroke-width:0.746082;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text19"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.746084;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan19"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.746084"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <g
+         id="g20"
+         style="stroke-width:1.49216"
+         transform="translate(37.797618,-10.340978)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle20"
+           r="2.4942336"
+           style="fill:#3ab5ff;fill-opacity:1;stroke:#000000;stroke-width:0.746082;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text20"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.746084;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan20"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.746084"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <g
+         id="g21"
+         style="stroke-width:1.49216"
+         transform="translate(37.797618,-2.807293)">
+        <circle
+           cx="129.68829"
+           cy="141.07233"
+           id="circle21"
+           r="2.4942336"
+           style="fill:#72ff3a;fill-opacity:1;stroke:#000000;stroke-width:0.746082;stroke-dasharray:none;stroke-opacity:1" />
+        <text
+           id="text21"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.746084;stroke-dasharray:none;stroke-opacity:1"
+           x="127.97741"
+           xml:space="preserve"
+           y="142.61116">
+          <tspan
+             id="tspan21"
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.6378px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.746084"
+             x="127.97741"
+             y="142.61116">e</tspan></text>
+      </g>
+      <path
+         d="m 164.67237,168.48228 c 2.83997,-2.83702 1.54053,-0.0203 4.10276,-0.11539"
+         id="path21"
+         sodipodi:nodetypes="cc"
+         style="fill:none;fill-opacity:1;stroke:#a50000;stroke-width:0.746082;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Triangle)" />
+      <text
+         id="text22"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.31683036px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.746081;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         x="173.15997"
+         xml:space="preserve"
+         y="132.57259">
+        <tspan
+           id="tspan31"
+           sodipodi:role="line"
+           style="stroke-width:0.746081;-inkscape-font-specification:'Calibri, Normal';font-family:Calibri;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:6.31683036px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           x="173.15997"
+           y="132.57259">Transmitted</tspan></text>
+      <text
+         id="text23"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.31683036px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.746081;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         x="172.79823"
+         xml:space="preserve"
+         y="139.63481">
+        <tspan
+           id="tspan32"
+           sodipodi:role="line"
+           style="stroke-width:0.746081;-inkscape-font-specification:'Calibri, Normal';font-family:Calibri;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:6.31683036px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           x="172.79823"
+           y="139.63481">Elastically scattered</tspan></text>
+      <text
+         id="text24"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.31683036px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.746081;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         x="172.79823"
+         xml:space="preserve"
+         y="147.16849">
+        <tspan
+           id="tspan33"
+           sodipodi:role="line"
+           style="stroke-width:0.746081;-inkscape-font-specification:'Calibri, Normal';font-family:Calibri;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:6.31683036px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           x="172.79823"
+           y="147.16849">Elastically back-scattered</tspan></text>
+      <text
+         id="text25"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.31683036px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.746081;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         x="172.79823"
+         xml:space="preserve"
+         y="162.15021">
+        <tspan
+           id="tspan37"
+           sodipodi:role="line"
+           style="stroke-width:0.746081;-inkscape-font-specification:'Calibri, Normal';font-family:Calibri;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:6.31683036px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           x="172.79823"
+           y="162.15021">Emitted secondary</tspan></text>
+      <text
+         id="text26"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.31683036px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.746081;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         x="172.78859"
+         xml:space="preserve"
+         y="154.70218">
+        <tspan
+           id="tspan35"
+           sodipodi:role="line"
+           style="stroke-width:0.746081;-inkscape-font-specification:'Calibri, Normal';font-family:Calibri;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:6.31683036px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           x="172.78859"
+           y="154.70218">Inelastically scattered</tspan></text>
+      <text
+         id="text27"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.31683036px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.746081;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         x="172.79823"
+         xml:space="preserve"
+         y="169.76231">
+        <tspan
+           id="tspan36"
+           sodipodi:role="line"
+           style="stroke-width:0.746081;-inkscape-font-specification:'Calibri, Normal';font-family:Calibri;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:6.31683036px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           x="172.79823"
+           y="169.76231">Emitted X-ray</tspan></text>
+    </g>
+    <g
+       id="g42"
+       style="stroke-width:0.87663"
+       transform="matrix(1,0,0,1.3012684,0.4341415,-35.095857)">
+      <rect
+         height="2.5534306"
+         id="rect3"
+         style="fill:#000000;fill-opacity:1;stroke:#0c0011;stroke-width:0.438315;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         width="104.79545"
+         x="166.31613"
+         y="197.41492" />
+      <rect
+         height="8.1229401"
+         id="rect2"
+         style="fill:#c66d94;fill-opacity:1;stroke:#000000;stroke-width:0.438315;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+         width="77.41069"
+         x="180.00853"
+         y="131.48129" />
+      <ellipse
+         cx="218.71385"
+         cy="166.79536"
+         id="path2"
+         rx="56.272015"
+         ry="4.72995"
+         style="fill:#9dd4eb;fill-opacity:1;stroke:#000000;stroke-width:0.438315;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         d="m 218.71387,109.96319 v 25.57957 l -46.37894,31.2526 46.37894,30.61956"
+         id="path1"
+         sodipodi:nodetypes="cccc"
+         style="fill:none;fill-opacity:1;stroke:#72ff3a;stroke-width:0.438315;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:5.25978;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         d="m 218.71387,109.96319 v 25.57957 l -27.78417,31.2526 27.75843,30.61956"
+         id="path3"
+         sodipodi:nodetypes="cccc"
+         style="fill:none;fill-opacity:1;stroke:#cc3aff;stroke-width:0.438315;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:5.25978;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         d="m 218.71387,109.96319 v 87.45173"
+         id="path8-4"
+         sodipodi:nodetypes="cc"
+         style="fill:none;fill-opacity:1;stroke:#3ab5ff;stroke-width:0.438315;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:5.25978;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text43"
+         style="font-size:18.6667px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';white-space:pre;shape-inside:url(#rect43);display:inline;fill:#a50000;fill-opacity:1;stroke:#72ff3a;stroke-width:1.88976;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:22.6772;stroke-dashoffset:0;stroke-opacity:1"
+         transform="matrix(0.26458333,0,0,0.20332726,65.782,109.76858)"
+         xml:space="preserve" />
+    </g>
+    <g
+       id="g41"
+       transform="translate(-14.319361,15.119026)">
+      <text
+         id="text29"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333333px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         x="196.19414"
+         xml:space="preserve"
+         y="216.52876">
+        <tspan
+           id="tspan28"
+           sodipodi:role="line"
+           style="stroke-width:0.499999;-inkscape-font-specification:'Calibri, Normal';font-family:Calibri;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:4.23333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           x="196.19414"
+           y="216.52876">Unscattered</tspan></text>
+      <text
+         id="text29-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         transform="scale(1.1529618,0.86733143)"
+         x="213.03513"
+         xml:space="preserve"
+         y="147.51535">
+        <tspan
+           id="tspan3"
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.499999"
+           x="213.03513"
+           y="147.51535">Sample</tspan></text>
+      <text
+         id="text30"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333333px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         x="195.95171"
+         xml:space="preserve"
+         y="221.26164">
+        <tspan
+           id="tspan29"
+           sodipodi:role="line"
+           style="stroke-width:0.499999;-inkscape-font-specification:'Calibri, Normal';font-family:Calibri;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:4.23333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           x="195.95171"
+           y="221.26164">Low angle scattering (low spatial freq.)</tspan></text>
+      <text
+         id="text31"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333333px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         x="195.95171"
+         xml:space="preserve"
+         y="226.31046">
+        <tspan
+           id="tspan30"
+           sodipodi:role="line"
+           style="stroke-width:0.499999;-inkscape-font-specification:'Calibri, Normal';font-family:Calibri;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:4.23333333px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           x="195.95171"
+           y="226.31046">High angle scattering (high spatial freq.)</tspan></text>
+      <path
+         d="m 193.63149,215.29483 h -5.40407"
+         id="path39"
+         sodipodi:nodetypes="cc"
+         style="fill:none;fill-opacity:1;stroke:#3ab5ff;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:7.00001;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         d="m 193.63149,220.28064 h -5.40407"
+         id="path40"
+         sodipodi:nodetypes="cc"
+         style="fill:none;fill-opacity:1;stroke:#cc3aff;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:7.00001;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         d="m 193.63149,225.32945 h -5.40407"
+         id="path41"
+         sodipodi:nodetypes="cc"
+         style="fill:none;fill-opacity:1;stroke:#72ff3a;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:7.00001;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text45"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         transform="scale(1.1529618,0.86733143)"
+         x="216.33415"
+         xml:space="preserve"
+         y="194.40402">
+        <tspan
+           id="tspan45"
+           sodipodi:role="line"
+           x="216.33415"
+           y="194.40402">Lens</tspan></text>
+      <text
+         id="text46"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         transform="scale(1.1529618,0.86733143)"
+         x="209.45912"
+         xml:space="preserve"
+         y="236.45825">
+        <tspan
+           id="tspan46"
+           sodipodi:role="line"
+           x="209.45912"
+           y="236.45825">Detector</tspan></text>
+      <text
+         id="text1"
+         style="fill:#a50000;stroke-width:1.88976378;-inkscape-font-specification:'Calibri, Normal';font-family:Calibri;font-size:16px;stroke-linecap:round;stroke-linejoin:round;stroke:#72ff3a;stroke-dasharray:22.6771536;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect1)"
+         transform="matrix(0.26458333,0,0,0.26458333,80.535503,92.591554)"
+         xml:space="preserve" />
+    </g>
+    <text
+       id="text44"
+       style="font-size:4.9389px;font-family:'MesloLGS NF';-inkscape-font-specification:'MesloLGS NF, Normal';fill:#a50000;fill-opacity:1;stroke:#72ff3a;stroke-width:0.499999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:6.00001;stroke-dashoffset:0;stroke-opacity:1"
+       x="247.49139"
+       xml:space="preserve"
+       y="195.6581">
+      <tspan
+         id="tspan44"
+         sodipodi:role="line"
+         style="stroke-width:0.5"
+         x="247.49139"
+         y="195.6581" /></text>
+  </g>
+</svg>

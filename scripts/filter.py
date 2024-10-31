@@ -35,7 +35,7 @@ def annulus(shape, start, end, padding=0.0):
 
 
 if __name__ == '__main__':
-    im = Image.open('/home/brisvag/Downloads/moyai.jpg').convert('L')
+    im = Image.open('moyai.jpg').convert('L')
     a = np.asarray(im)
     a = random_noise(a, var=0.5)
     ft = fftshift(fftn(a))

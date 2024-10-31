@@ -144,8 +144,6 @@ Data processing on the single particle and tomography data, and software tool de
 
 \subsection{State of the art}
 
-% TODO: maybe I should just remove all this intro...
-
 FtsZ is an extremely well conserved prokaryotic tubulin homologue, known to form ring-like structures (the Z-ring) at the septation site in most bacteria.
 It polymerizes in a GTP-dependent fashion to form filaments and bundles, anchoring to the membrane via its partner FtsA, and interacting with several other partners in the cytokinesis and peptidoglycan (PG) synthesis machinery~\cite{barrowsFtsZDynamicsBacterial2021,mcquillenInsightsStructureFunction2020}.
 
@@ -214,7 +212,6 @@ Given the strong preferential orientation, it's unsurprising that 3D reconstruct
     \includegraphics[width=\textwidth]{other/ftsz_map_bad.png}
     \titledcaption[FtsZ filament: anisotropic map]{FtsZ filament map affected by preferential orientation, viewed from the same direction as most 2D classes (top) and rotated by 90° (bottom) to highlight the streaking artifacts due to anisotropic orientation sampling.}
     \label{fig:ftsz_map_bad}
-    % TODO: add pref orientation proof (orientation map or so)
 \end{figure}
 
 The best map currently available of FtsZ filaments (from \textit{Klebsiella pneumoniae}) also suffered from similar issues, despite the high reported resolution (\sim3 Å)~\cite{fujitaStructuresFtsZSingle2023}.
@@ -230,7 +227,7 @@ While these approaches have been shown to work, we struggled to obtain usable gr
 
 We prepared the sample in the same way as originally, but this time the data collection was done with the grid at a 35° tilt.
 Following the same workflow as with the untilted dataset, we then picked, classified and selected particles, obtaining a new set of class averages (\figref{fig:ftsz_classes_tilted}).
-These classes looked immediately more promising than the ones from the untilted datasets, showing multiple views from the first round of classification, even in isolated filaments. % TODO: explain why these classes where better, did we get more, explain figure, what we were looking for, etc
+These classes looked immediately more promising than the ones from the untilted datasets, showing multiple views from the first round of classification, even in isolated filaments.
 
 \begin{figure}
     \centering
@@ -313,7 +310,7 @@ Preliminary results indeed showed a higher diversity in class averages, includin
 In parallel to the study of \textit{in vitro} FtsZ filament by SPA, we also investigated the FtsZ \textit{in situ} in the tomograms of \textit{D. radiodurans} lamellae.
 Some of our findings and speculations about the 3D morphology of FtsZ are included in the \textit{D. radiodurans} manuscript (\fullref{drad_ftsz} and \fullref{ftsz_discussion}).
 
-Our observations on the reconstructed tomograms matched those by \citet{sextonSuperresolutionConfocalCryoCLEM2022}, who also used tomography to look into \textit{D. radiodurans} and identified FtsZ and FtsA forming filaments just inside the inner membrane of the septal tips (\figref{fig:ftsz_tomo_slice}). % TODO: show more examples of this, how many have it, etc...
+Our observations on the reconstructed tomograms matched those by \citet{sextonSuperresolutionConfocalCryoCLEM2022}, who also used tomography to look into \textit{D. radiodurans} and identified FtsZ and FtsA forming filaments just inside the inner membrane of the septal tips (\figref{fig:ftsz_tomo_slice}).
 
 \begin{figure}
     \centering

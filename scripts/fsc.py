@@ -31,7 +31,7 @@ def ncc(a, b):
 
 
 if __name__ == '__main__':
-    im = Image.open('/home/brisvag/Downloads/moyai.jpg').convert('L')
+    im = Image.open('moyai.jpg').convert('L')
     a = np.asarray(im)
     nshells = 50
     bins = [(i, i + 1/nshells) for i in np.arange(0, nshells) / nshells]
